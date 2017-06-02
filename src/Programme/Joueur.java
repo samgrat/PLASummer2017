@@ -53,11 +53,11 @@ public class Joueur extends Personnage {
 		this.p = p;
 		if (indice_joueur == 1){
 			//position.positionnerCartesien(0, 0);
-			creeJoueur("images/Textures/personnagebleu.png", 0);
+			creeJoueur("image/Textures/personnagebleu.png", 0);
 		}
 		if(indice_joueur == 2) {
 			//position.positionnerCartesien(15*TAILLE_CASE, 15*TAILLE_CASE);
-			creeJoueur("images/Textures/personnagerouge.png", 900);			
+			creeJoueur("image/Textures/personnagerouge.png", 900);			
 		}		
 	}
 	public void creeJoueur(String file, int pos){

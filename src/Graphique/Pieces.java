@@ -1,7 +1,6 @@
 package Graphique;
 
 import Programme.Joueur;
-import java.util.Timer;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,7 +21,7 @@ public class Pieces extends Parent {
 
 		int x = (int) (Math.random() * 16);
 		int y = (int) (Math.random() * 16);
-		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piece.png")));
+		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("image/Textures/piece.png")));
 		piece.setFitWidth(60);
 		piece.setFitHeight(60);
 		piece.setTranslateX(5 + x * 60);
