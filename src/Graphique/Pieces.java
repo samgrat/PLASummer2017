@@ -16,6 +16,7 @@ public class Pieces extends Parent {
 		this.addPieces();
 		this.p = p;
 	}
+	
 
 	public void addPieces() {
 
