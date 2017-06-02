@@ -12,20 +12,26 @@ public class Unaire extends Operateur {
 		sym = "";
 	}
 	
-	private Unaire(String sym)
-	{
-		this.sym = sym;
-	}
+	//public Unaire(String sym)
+	//{
+	//	this.sym = sym;
+	//}
 	
 	public String toString(){
 		return sym;
 	}
 
-	static public Unaire NewSymbole(String sym)
-	{
-		if(contexteSym.containsKey(sym)) return contexteSym.get(sym);
-		Unaire s = new Unaire(sym);
-		contexteSym.put(sym, s);
-		return s;
+//	static public Unaire NewSymbole(String sym)
+//	{
+//		if(contexteSym.containsKey(sym)) return contexteSym.get(sym);
+//		Unaire s = new Unaire(sym);
+//		contexteSym.put(sym, s);
+//		return s;
+//	}
+
+	public static Expression Unaire(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

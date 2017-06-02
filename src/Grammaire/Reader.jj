@@ -7,9 +7,9 @@ options
 }
 
 PARSER_BEGIN(Reader)
-package lvm.grammar;
-import lvm.sexpr.*;
+package Parser;
 import java.util.LinkedList;
+import Grammaire.*;
 
 public class Reader
 {
@@ -19,7 +19,7 @@ public class Reader
     while (true)
     {
       System.out.println("Reading from standard input...");
-      System.out.print("Enter an expression like \"1+(2+3)*4;\" :");
+      System.out.print("Enter an expression : ");
       try
       {
         Expression exp = Reader.EXPRESSION();
@@ -110,53 +110,55 @@ SKIP :
   < ~[ ] >
 } // les lexèmes du langage
 
-TOKEN :
+TOKEN : /* TO_IGNORE */
 {
-  < TO_IGNORE :
-  (
-	  < DIGITS : ["0"-"9"] >
+      < DIGITS : ["0"-"9"]>
 	| < LOWER_LETTERS : ["a"-"z"] >
-	| < UPPER_LETTERS : [ "A", "C", "D", "E", " ", "G"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
-  ) >
+	| < UPPER_LETTERS : [ "A", "C", "D", "E", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
 }
 
-TOKEN : /* OPERATORS */
+
+TOKEN : /* SPECIALS */
 {
-  < SPECIAL :
-  (
+
     < LACC : "{" >
   | < RACC : "}" >
   | < STAR : "*" >
   | < SEMI : ";" >
-  ) >
+
 }
 
-TOKEN : 
+TOKEN : /* BINAIRE */
 {
-  < BINAIRE :
-  (
     < PIPE : "|" >
   | < MORETHAN : ">" >
-  ) >
 }
 
-TOKEN :
+TOKEN : /* UNAIRE */
 {
   < UNAIRE :
-    (
-      < HIT : "H">
-    | < RECOLT : "R">
-    | < EXPLORE : "E">
-    | < BEST : "B">
-    | < FOLLOW : "F">
-    | < MOVE : "M">
-    ) >   
+  (
+      < HIT >
+    | < RECOLT >
+    | < EXPLORE >
+    | < BEST >
+    | < FOLLOW >
+    | < MOVE >
+  )
+  >
+  
+    | < #HIT : "H" >
+	| < #RECOLT : "R" >
+	| < #EXPLORE : "E" >
+	| < #BEST : "B">
+	| < #FOLLOW : "F">
+    | < #MOVE : "M">
 
 }
 
 Expression EXPRESSION() :
 {
-  Expression exp, l, r;
+  Expression exp;
   LinkedList < Expression > list = new LinkedList();
 }
 {
@@ -167,8 +169,9 @@ Expression EXPRESSION() :
   }
 | < STAR > exp = EXPRESSION()
   {
-    return Liste.star(expr);
+    return Liste.star(exp);
   }
+
 | < LACC > 
   exp = LISTE() 
   < RACC >
@@ -176,6 +179,23 @@ Expression EXPRESSION() :
     return exp;
   }
 }
+
+//Expression SEQ() :
+//{
+//  Expression exp1;
+//  Expression
+//}
+//{
+//  exp1 = LISTE() 
+//  {
+//    return exp1;
+//  }
+//
+//  exp1 = OPERATOR()
+//  {
+//    return exp1;
+//  }
+//}
 
 Expression LISTE() :
 {
@@ -196,9 +216,13 @@ Expression LISTE() :
   {
     return Binaire.morethan(s1, s2);
   }
+  |
+  {
+    return s1;
+  }
   )
   {
-    return NIL();
+    return Nil.Nil();
   }
 }
 
@@ -211,6 +235,6 @@ Expression OPERATOR() :
   t = < UNAIRE >
   {
     s = t.toString();	
-    return Unaire.newUnaire(t.toString());
+    return Unaire.Unaire(t.toString());
   }
 }
