@@ -19,8 +19,7 @@ public class Main extends Application {
 		
 		Group root = new Group();
 		
-		
-		Scene scene = new Scene(root, 1000, 770, Color.LIGHTBLUE);
+		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
 		
 		Plateau p = new Plateau();
 		
