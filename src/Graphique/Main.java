@@ -13,6 +13,7 @@ public class Main extends Application {
 		Application.launch(Main.class, args);
 	}
 
+	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Zombie War Machine Demolition Evolution III");
