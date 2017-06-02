@@ -15,7 +15,7 @@ public class Plateau extends Parent {
 		casePlateau = new Integer[16][16];
 		murPlateau = new Integer[17][17];
 
-		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/background.png")));
+		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/interface.png")));
 		this.getChildren().add(bck);
 		
 		int j = 0;
@@ -26,7 +26,7 @@ public class Plateau extends Parent {
 			rectangle.setWidth(60);
 			rectangle.setHeight(60);
 			rectangle.setFill(Color.TRANSPARENT);
-			rectangle.setStroke(Color.GREY);
+			rectangle.setStroke(Color.TRANSPARENT);
 			rectangle.setStrokeWidth(1);
 			this.getChildren().add(rectangle);
 			if (i == 15) {

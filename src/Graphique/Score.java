@@ -21,14 +21,14 @@ public class Score extends Parent {
 		panneau.setX(980);
 		if (j.Indice_joueur() == 1) {
 			panneau.setY(100);
-			panneau.setFill(Color.BLUE);
+			panneau.setFill(Color.TRANSPARENT);
 		} else {
 			panneau.setY(400);
-			panneau.setFill(Color.RED);
+			panneau.setFill(Color.TRANSPARENT);
 		}
 		this.getChildren().add(panneau);
 
-		piece = new Text("Pieces : " + String.valueOf(j.Nbr_piece()));
+		/*piece = new Text("Pieces : " + String.valueOf(j.Nbr_piece()));
 		piece.setX(985);
 		if (j.Indice_joueur() == 1) {
 			piece.setY(120);
@@ -36,7 +36,7 @@ public class Score extends Parent {
 			piece.setY(420);
 		}
 		piece.setFill(Color.WHITE);
-		this.getChildren().add(piece);
+		this.getChildren().add(piece);*/
 	}
 
 	public void actuScore() {
