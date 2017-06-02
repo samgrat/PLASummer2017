@@ -52,11 +52,11 @@ public class Joueur extends Personnage {
 		this.indice_joueur = indice_joueur;
 		this.p = p;
 		if (indice_joueur == 1){
-			//position.positionnerCartesien(0, 0);
+			p.setCasePlateau(indice_joueur, 0, 0);
 			creeJoueur("image/Textures/personnagebleu.png", 0);
 		}
 		if(indice_joueur == 2) {
-			//position.positionnerCartesien(15*TAILLE_CASE, 15*TAILLE_CASE);
+			p.setCasePlateau(indice_joueur, 15, 15);
 			creeJoueur("image/Textures/personnagerouge.png", 900);			
 		}		
 	}

@@ -10,6 +10,14 @@ public class Plateau extends Parent {
 	Integer[][] casePlateau;
 	Integer[][] murPlateau;
 	
+	
+	public Integer getCasePlateau(int x, int y) { return casePlateau[x][y]; }
+	public void setCasePlateau(int value, int x, int y) { this.casePlateau[x][y] = value; }
+
+	public Integer getMurPlateau(int x, int y) { return murPlateau[x][y];	}
+	public void setMurPlateau(int value, int x, int y) {	this.murPlateau[x][y] = value; }
+
+
 	public Plateau(){
 		
 		casePlateau = new Integer[16][16];
