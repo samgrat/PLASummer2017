@@ -19,6 +19,8 @@ public class Score extends Parent {
 		panneau.setHeight(200);
 		panneau.setWidth(290);
 		panneau.setX(980);
+		
+		
 		if (j.Indice_joueur() == 1) {
 			panneau.setY(100);
 			panneau.setFill(Color.TRANSPARENT);
