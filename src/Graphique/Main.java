@@ -13,13 +13,14 @@ public class Main extends Application {
 		Application.launch(Main.class, args);
 	}
 
+	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Zombie War Machine Demolition Evolution III");
 		
 		Group root = new Group();
-		
-		Scene scene = new Scene(root, 1280, 980, Color.LIGHTBLUE);
+	
+		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
 		
 		Plateau p = new Plateau();
 
