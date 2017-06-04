@@ -37,7 +37,7 @@ public class Joueur extends Personnage {
 	
 	//accesseur nbr_piece
 	public int Nbr_piece(){ return nbr_piece; }
-	public void incrPiece(){ nbr_piece++; System.out.println(this.nbr_piece);}
+	public void incrPiece(){ nbr_piece++;}
 	
 	/**
 	 * creation d'un joueur
@@ -53,11 +53,11 @@ public class Joueur extends Personnage {
 		this.p = p;
 		if (indice_joueur == 1){
 			p.setCasePlateau(indice_joueur, 0, 0);
-			creeJoueur("image/Textures/personnagebleu.png", 0);
+			creeJoueur("images/Textures/personnagebleu.png", 0);
 		}
 		if(indice_joueur == 2) {
 			p.setCasePlateau(indice_joueur, 15, 15);
-			creeJoueur("image/Textures/personnagerouge.png", 900);			
+			creeJoueur("images/Textures/personnagerouge.png", 900);			
 		}		
 	}
 	public void creeJoueur(String file, int pos){
