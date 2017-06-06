@@ -20,16 +20,16 @@ public class Main extends Application {
 		
 		Group root = new Group();
 		
-		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
+		Scene scene = new Scene(root, 1280, 970, Color.WHITE);
 		System.out.println("root cree");
 		System.out.println("scene");
 		Plateau p = new Plateau();
 		System.out.println("plateau");
 		Pieces listePiece = new Pieces(p);
 		System.out.println("piece");
-		Joueur joueur1 = new Joueur(1, p); Score score1 = new Score(joueur1); joueur1.setScore(score1);
+		Joueur joueur1 = new Joueur(1, p); Score scorej1 = new Score(joueur1); joueur1.setScore(scorej1);
 		System.out.println("j1");
-		Joueur joueur2 = new Joueur(2, p); Score score2 = new Score(joueur2); joueur2.setScore(score2);
+		Joueur joueur2 = new Joueur(2, p); Score scorej2 = new Score(joueur2); joueur2.setScore(scorej2);
 		System.out.println("j2");
 
 		Clavier clav = new Clavier(joueur2, joueur1, listePiece);
@@ -37,8 +37,8 @@ public class Main extends Application {
 
 		
 		root.getChildren().add(p);
-		root.getChildren().add(score1);
-		root.getChildren().add(score2);
+		root.getChildren().add(scorej1);
+		root.getChildren().add(scorej2);
 		root.getChildren().add(listePiece);
 		root.getChildren().add(joueur1);
 		root.getChildren().add(joueur2);

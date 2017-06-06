@@ -1,6 +1,7 @@
 package Graphique;
 
 import Programme.Joueur;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
@@ -24,25 +25,24 @@ public class Score extends Parent {
 	
 	public Score(Joueur j) {
 		this.j = j;
-
-		// TODO : centrer les noms dans les cases correspondantes
+		
 		// TODO : scanf pour entrer le nom des joueurs en début de partie 
 		
+		Rectangle rectnomj1 = new Rectangle(976, 9, 298, 46);
+		rectnomj1.setFill(Color.TRANSPARENT);
 		nomj1 = new Text("JOUEUR 1");
-		nomj2 = new Text("JOUEUR 2");
-		
 		nomj1.setX(1050);
 		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
 		nomj1.setFontSmoothingType(FontSmoothingType.LCD);
 		
+		Rectangle rectnomj2 = new Rectangle(976, 915, 298, 46);
+		rectnomj2.setFill(Color.TRANSPARENT);
+		nomj2 = new Text("JOUEUR 2");
 		nomj2.setX(1050);
 		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
 		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 		
-		// TODO : centrer le score dans les cases correspondantes
-		
 		scorej = new Text(String.valueOf(j.Nbr_piece()));
-		
 		scorej.setX(1115);
 		scorej.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
 		scorej.setFontSmoothingType(FontSmoothingType.LCD);
@@ -59,7 +59,7 @@ public class Score extends Parent {
 			nomj2.setY(950);
 		}
 		
-		this.getChildren().addAll(scorej, nomj1, nomj2);
+		// this.getChildren().addAll(rectnomj1, rectnomj2, scorej, nomj1, nomj2);
 	}
 
 	public void actuScore() {
