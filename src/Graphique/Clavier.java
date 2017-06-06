@@ -9,18 +9,20 @@ public class Clavier extends Parent {
 
 	public Clavier(Joueur c1, Joueur c2, Plateau p) {
 
-
 		c1.setTranslateX(900);
 		c1.setTranslateY(900);
-		
+
 		p.setCasePlateau(0, 0, 1);
 		p.setCasePlateau(15, 15, 2);
 
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent ke) {
+				System.out.println(ke.getCode().toString());
 				if (ke.getCode().toString() == "RIGHT" || ke.getCode().toString() == "LEFT"
-						|| ke.getCode().toString() == "UP" || ke.getCode().toString() == "DOWN") {
-					
+						|| ke.getCode().toString() == "UP" || ke.getCode().toString() == "DOWN"
+						|| ke.getCode().toString() == "DIGIT9" || ke.getCode().toString() == "DIGIT0"
+						|| ke.getCode().toString() == "RIGHT_PARENTHESIS" || ke.getCode().toString() == "EQUALS") {
+
 					switch (ke.getCode().toString()) {
 					case "RIGHT":
 						c1.droite();
@@ -34,28 +36,52 @@ public class Clavier extends Parent {
 					case "DOWN":
 						c1.descendre();
 						break;
+					case "DIGIT9":
+						c1.invoquerRobot1();
+						break;
+					case "DIGIT0":
+						c1.invoquerRobot2();
+						break;
+					case "RIGHT_PARENTHESIS":
+						c1.invoquerRobot3();
+						break;
+					case "EQUALS":
+						c1.invoquerRobot4();
+						break;
 					}
-					
-					
+
 				} else {
-					
-						switch (ke.getCode().toString()) {
-						case "D":
-							c2.droite();
-							break;
-						case "Q":
-							c2.gauche();
-							break;
-						case "Z":
-							c2.monter();
-							break;
-						case "S":
-							c2.descendre();
-							break;
-						}
-					
+
+					switch (ke.getCode().toString()) {
+					case "D":
+						c2.droite();
+						break;
+					case "Q":
+						c2.gauche();
+						break;
+					case "Z":
+						c2.monter();
+						break;
+					case "S":
+						c2.descendre();
+						break;
+					case "DIGIT1":
+						c2.invoquerRobot1();
+						break;
+					case "DIGIT2":
+						c2.invoquerRobot2();
+						break;
+					case "DIGIT3":
+						c2.invoquerRobot3();
+						break;
+					case "DIGIT4":
+						c2.invoquerRobot4();
+						break;
+					}
+
 				}
 
 			}
 		});
-}}
+	}
+}

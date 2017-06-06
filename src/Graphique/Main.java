@@ -16,7 +16,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		primaryStage.setTitle("Zombie War Machine Demolition Evolution III");
+		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
 		
 		Group root = new Group();
 		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
@@ -26,9 +26,9 @@ public class Main extends Application {
 
 		Plateau p = new Plateau(listePiece, o);
 		
-		Joueur joueur1 = new Joueur(1, p); Score score1 = new Score(joueur1); joueur1.setScore(score1);
+		Joueur joueur1 = new Joueur(1, p, root); Score score1 = new Score(joueur1); joueur1.setScore(score1);
 		
-		Joueur joueur2 = new Joueur(2, p); Score score2 = new Score(joueur2); joueur2.setScore(score2);
+		Joueur joueur2 = new Joueur(2, p, root); Score score2 = new Score(joueur2); joueur2.setScore(score2);
 		
 		Clavier clav = new Clavier(joueur2, joueur1, p);
 		
