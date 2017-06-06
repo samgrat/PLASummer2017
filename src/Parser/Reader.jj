@@ -1,0 +1,224 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(Reader)
+package Parser;
+import java.util.LinkedList;
+import Grammaire.*;
+import Grammaire.Binaires.*;
+
+public class Reader
+{
+  public static void main(String args []) throws ParseException
+  {
+    Reader parser = new Reader(System.in);
+    while (true)
+    {
+      System.out.println("Reading from standard input...");
+      System.out.print("Enter an expression : ");
+      try
+      {
+        Expression exp = Reader.EXPRESSION();
+        System.out.println("exp= " + exp.toString());
+      }
+      catch (Exception e)
+      {
+        System.out.println("NOK.");
+        System.out.println(e.getMessage());
+        Reader.ReInit(System.in);
+      }
+      catch (Error e)
+      {
+        System.out.println("Oops.");
+        System.out.println(e.getMessage());
+        break;
+      }
+    }
+  }
+}
+
+PARSER_END(Reader)
+
+// les caractères ignorés
+SKIP :
+{
+  "'"
+| "\t"
+| "\r"
+| "\n"
+  // attention élimine la notion de fin de ligne
+| ""
+| "\u0001"
+| "\u0002"
+| "\u0003"
+| "\u0004"
+| "\u0005"
+| "\u0006"
+| "\u0007"
+| "\u0008"
+| "\u000b"
+| "\u000c"
+| "\u000e"
+| "\u000f"
+| "\u0010"
+| "\u0011"
+| "\u0012"
+| "\u0013"
+| "\u0014"
+| "\u0015"
+| "\u0016"
+| "\u0017"
+| "\u0018"
+| "\u0019"
+| "\u001a"
+| "\u001b"
+| "\u001c"
+| "\u001d"
+| "\u001e"
+| "\u001f"
+| "\u007f"
+}
+
+MORE :
+{
+  "//" : IN_SL_COMMENT
+| "/*" : IN_ML_COMMENT
+}
+
+< IN_SL_COMMENT >
+SPECIAL_TOKEN :
+{
+  < SL_COMMENT :
+    "\n"
+  | "\r"
+  | "\r\n" > : DEFAULT
+}
+
+< IN_ML_COMMENT >
+SPECIAL_TOKEN :
+{
+  < ML_COMMENT : "*/" > : DEFAULT
+}
+
+< IN_SL_COMMENT, IN_ML_COMMENT >
+SKIP :
+{
+  < ~[ ] >
+} // les lexèmes du langage
+
+TOKEN : /* TO_IGNORE */
+{
+      < DIGITS : ["0"-"9"]>
+	| < LOWER_LETTERS : ["a"-"z"] >
+	| < UPPER_LETTERS : [ "A", "C", "D", "E", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
+}
+
+
+TOKEN : /* SPECIALS */
+{
+
+    < LACC : "{" >
+  | < RACC : "}" >
+//  | < STAR : "*" >
+  | < SEMI : ";" >
+
+}
+
+TOKEN : /* BINAIRE */
+{
+    < PIPE : "|" >
+  | < MORETHAN : ">" >
+}
+
+TOKEN : /* UNAIRE */
+{
+  < UNAIRE :
+  (
+      < HIT >
+    | < RECOLT >
+    | < EXPLORE >
+    | < BEST >
+    | < FOLLOW >
+    | < MOVE >
+  )
+  >
+  
+    | < #HIT : "H" >
+	| < #RECOLT : "R" >
+	| < #EXPLORE : "E" >
+	| < #BEST : "B">
+	| < #FOLLOW : "F">
+    | < #MOVE : "M">
+
+}
+
+Expression EXPRESSION() :
+{
+  Expression exp;
+  LinkedList < Expression > list = new LinkedList();
+}
+{
+  exp = OPERATOR()
+  {
+    //System.out.println("Operator=" + exp.toString());
+    return exp;
+  }
+//| < STAR > exp = EXPRESSION()
+//  {
+//    return Liste.star(exp);
+//  }
+
+| < LACC > 
+  exp = LISTE() 
+  < RACC >
+  {
+    return exp;
+  }
+}
+
+Expression LISTE() :
+{
+  Expression s1, s2;
+}
+{
+    s1 = EXPRESSION()
+  (
+    < SEMI > s2 = EXPRESSION()
+  {
+    return (new Liste(s1, s2));
+  }
+  | < PIPE > s2 = EXPRESSION()
+  {
+    return (new Pipe(s1, s2));
+  }
+  | < MORETHAN > s2 = EXPRESSION()
+  {
+    return (new Morethan(s1, s2));
+  }
+  |
+  {
+    return s1;
+  }
+  )
+  {
+    return (new Nil());
+  }
+}
+
+Expression OPERATOR() :
+{
+  Token t;
+  String s;
+}
+{
+  t = < UNAIRE >
+  {
+    s = t.toString();	
+    return Dico.get(t.toString());
+  }
+}

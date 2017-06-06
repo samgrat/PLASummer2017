@@ -1,15 +1,29 @@
 package Grammaire;
 
 public class Liste implements Expression{
+	Expression head;
+	Expression tail;
 
-	public static Expression Liste(Expression s1, Expression s2) {
-		// TODO Auto-generated method stub
-		return null;
+	public Liste() {
+		tail = new Nil();
+		head = new Nil();
+	}
+	
+	public Liste(Expression s1, Expression s2) {
+		head = s1;
+		tail = s2;
+
 	}
 
-	public static Expression star(Expression exp) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public void exec() {
+		head.exec();
+		tail.exec();
+		
+	}
+	
+	public String toString(){
+		return ("{h = " + head.toString() + " ; t = " + tail.toString() + "}");
 	}
 
 }

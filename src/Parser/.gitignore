@@ -1,11 +1,3 @@
-/Expression.class
-/Operateur.class
-/Liste.class
-/Unaire.class
-/Binaire.class
-/Morethan.class
-/Pipe.class
-/Nil.class
 /ParseException.java
 /Reader.java
 /ReaderConstants.java

@@ -2,6 +2,7 @@
 package Parser;
 import java.util.LinkedList;
 import Grammaire.*;
+import Grammaire.Binaires.*;
 
 public class Reader implements ReaderConstants {
   public static void main(String args []) throws ParseException
@@ -14,7 +15,7 @@ public class Reader implements ReaderConstants {
       try
       {
         Expression exp = Reader.EXPRESSION();
-        //System.out.println("exp=" + exp.toString());
+        System.out.println("exp= " + exp.toString());
       }
       catch (Exception e)
       {
@@ -40,11 +41,6 @@ public class Reader implements ReaderConstants {
     //System.out.println("Operator=" + exp.toString());
     {if (true) return exp;}
       break;
-    case STAR:
-      jj_consume_token(STAR);
-      exp = EXPRESSION();
-    {if (true) return Liste.star(exp);}
-      break;
     case LACC:
       jj_consume_token(LACC);
       exp = LISTE();
@@ -59,22 +55,6 @@ public class Reader implements ReaderConstants {
     throw new Error("Missing return statement in function");
   }
 
-//Expression SEQ() :
-//{
-//  Expression exp1;
-//  Expression
-//}
-//{
-//  exp1 = LISTE() 
-//  {
-//    return exp1;
-//  }
-//
-//  exp1 = OPERATOR()
-//  {
-//    return exp1;
-//  }
-//}
   static final public Expression LISTE() throws ParseException {
   Expression s1, s2;
     s1 = EXPRESSION();
@@ -82,23 +62,23 @@ public class Reader implements ReaderConstants {
     case SEMI:
       jj_consume_token(SEMI);
       s2 = EXPRESSION();
-    {if (true) return Liste.Liste(s1, s2);}
+    {if (true) return (new Liste(s1, s2));}
       break;
     case PIPE:
       jj_consume_token(PIPE);
       s2 = EXPRESSION();
-    {if (true) return Binaire.pipe(s1, s2);}
+    {if (true) return (new Pipe(s1, s2));}
       break;
     case MORETHAN:
       jj_consume_token(MORETHAN);
       s2 = EXPRESSION();
-    {if (true) return Binaire.morethan(s1, s2);}
+    {if (true) return (new Morethan(s1, s2));}
       break;
     default:
       jj_la1[1] = jj_gen;
     {if (true) return s1;}
     }
-    {if (true) return Nil.Nil();}
+    {if (true) return (new Nil());}
     throw new Error("Missing return statement in function");
   }
 
@@ -107,7 +87,7 @@ public class Reader implements ReaderConstants {
   String s;
     t = jj_consume_token(UNAIRE);
     s = t.toString();
-    {if (true) return Unaire.Unaire(t.toString());}
+    {if (true) return Dico.get(t.toString());}
     throw new Error("Missing return statement in function");
   }
 
@@ -132,7 +112,7 @@ public class Reader implements ReaderConstants {
       jj_la1_0 = new int[] {0x0,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x22800,0x1c000,};
+      jj_la1_1 = new int[] {0x10800,0xe000,};
    }
 
   /** Constructor with InputStream. */
@@ -270,7 +250,7 @@ public class Reader implements ReaderConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[56];
+    boolean[] la1tokens = new boolean[55];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -287,7 +267,7 @@ public class Reader implements ReaderConstants {
         }
       }
     }
-    for (int i = 0; i < 56; i++) {
+    for (int i = 0; i < 55; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

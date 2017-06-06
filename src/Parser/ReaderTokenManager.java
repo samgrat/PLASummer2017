@@ -2,6 +2,7 @@
 package Parser;
 import java.util.LinkedList;
 import Grammaire.*;
+import Grammaire.Binaires.*;
 
 /** Token Manager. */
 public class ReaderTokenManager implements ReaderConstants
@@ -33,18 +34,16 @@ static private int jjMoveStringLiteralDfa0_0()
 {
    switch(curChar)
    {
-      case 42:
-         return jjStopAtPos(0, 45);
       case 47:
          return jjMoveStringLiteralDfa1_0(0x1800000000L);
       case 59:
-         return jjStopAtPos(0, 46);
+         return jjStopAtPos(0, 45);
       case 62:
-         return jjStopAtPos(0, 48);
+         return jjStopAtPos(0, 47);
       case 123:
          return jjStopAtPos(0, 43);
       case 124:
-         return jjStopAtPos(0, 47);
+         return jjStopAtPos(0, 46);
       case 125:
          return jjStopAtPos(0, 44);
       default :
@@ -131,8 +130,8 @@ static private int jjMoveNfa_0(int startState, int curPos)
                   }
                   if ((0x42164L & l) != 0L)
                   {
-                     if (kind > 49)
-                        kind = 49;
+                     if (kind > 48)
+                        kind = 48;
                   }
                   break;
                case 1:
@@ -144,8 +143,8 @@ static private int jjMoveNfa_0(int startState, int curPos)
                      kind = 42;
                   break;
                case 3:
-                  if ((0x42164L & l) != 0L && kind > 49)
-                     kind = 49;
+                  if ((0x42164L & l) != 0L && kind > 48)
+                     kind = 48;
                   break;
                default : break;
             }
@@ -290,8 +289,8 @@ public static final String[] jjstrLiteralImages = {
 "", null, null, null, null, null, null, null, null, null, null, null, null, 
 null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
 null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-null, null, "\173", "\175", "\52", "\73", "\174", "\76", null, null, null, null, 
-null, null, null, };
+null, null, "\173", "\175", "\73", "\174", "\76", null, null, null, null, null, null, 
+null, };
 
 /** Lexer state names. */
 public static final String[] lexStateNames = {
@@ -304,10 +303,10 @@ public static final String[] lexStateNames = {
 public static final int[] jjnewLexState = {
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 2, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-   -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, 
 };
 static final long[] jjtoToken = {
-   0x3ff0000000001L, 
+   0x1ff0000000001L, 
 };
 static final long[] jjtoSkip = {
    0xe7fffffffeL, 

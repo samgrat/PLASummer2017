@@ -25,27 +25,25 @@ public interface ReaderConstants {
   /** RegularExpression Id. */
   int RACC = 44;
   /** RegularExpression Id. */
-  int STAR = 45;
+  int SEMI = 45;
   /** RegularExpression Id. */
-  int SEMI = 46;
+  int PIPE = 46;
   /** RegularExpression Id. */
-  int PIPE = 47;
+  int MORETHAN = 47;
   /** RegularExpression Id. */
-  int MORETHAN = 48;
+  int UNAIRE = 48;
   /** RegularExpression Id. */
-  int UNAIRE = 49;
+  int HIT = 49;
   /** RegularExpression Id. */
-  int HIT = 50;
+  int RECOLT = 50;
   /** RegularExpression Id. */
-  int RECOLT = 51;
+  int EXPLORE = 51;
   /** RegularExpression Id. */
-  int EXPLORE = 52;
+  int BEST = 52;
   /** RegularExpression Id. */
-  int BEST = 53;
+  int FOLLOW = 53;
   /** RegularExpression Id. */
-  int FOLLOW = 54;
-  /** RegularExpression Id. */
-  int MOVE = 55;
+  int MOVE = 54;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -101,7 +99,6 @@ public interface ReaderConstants {
     "<UPPER_LETTERS>",
     "\"{\"",
     "\"}\"",
-    "\"*\"",
     "\";\"",
     "\"|\"",
     "\">\"",
