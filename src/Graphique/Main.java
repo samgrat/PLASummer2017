@@ -20,17 +20,18 @@ public class Main extends Application {
 		
 		Group root = new Group();
 		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
-		
-		Plateau p = new Plateau();
-		
-		Pieces listePiece = new Pieces(p);
+
+		Pieces listePiece = new Pieces();
+		Obstacles o = new Obstacles();
+
+		Plateau p = new Plateau(listePiece, o);
 		
 		Joueur joueur1 = new Joueur(1, p); Score score1 = new Score(joueur1); joueur1.setScore(score1);
 		
 		Joueur joueur2 = new Joueur(2, p); Score score2 = new Score(joueur2); joueur2.setScore(score2);
 		
-
-		Clavier clav = new Clavier(joueur2, joueur1, listePiece);
+		Clavier clav = new Clavier(joueur2, joueur1, p);
+		
 		Menu menu = new Menu(clav);
 		
 		
@@ -38,6 +39,7 @@ public class Main extends Application {
 		root.getChildren().add(score1);
 		root.getChildren().add(score2);
 		root.getChildren().add(listePiece);
+		root.getChildren().add(o);
 		root.getChildren().add(joueur1);
 		root.getChildren().add(joueur2);
 		root.getChildren().add(menu);

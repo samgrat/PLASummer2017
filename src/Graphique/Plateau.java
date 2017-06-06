@@ -1,5 +1,6 @@
 package Graphique;
 
+import Programme.Joueur;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -7,27 +8,35 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Plateau extends Parent {
-	Integer[][] casePlateau;
-	Integer[][] murPlateau;
-	
+	private Integer[][] casePlateau;
+	private Integer[][] murPlateau;
+	private Pieces listePiece;
+	private Obstacles listeObstacle;
 	
 	public Integer getCasePlateau(int x, int y) { return casePlateau[x][y]; }
-	public void setCasePlateau(int value, int x, int y) { this.casePlateau[x][y] = value; }
+	public void setCasePlateau(int x, int y, int value) { if(x<16 && x>=0 && y<16 && y>=0){this.casePlateau[x][y] = value; }}
 
 	public Integer getMurPlateau(int x, int y) { return murPlateau[x][y];	}
 	public void setMurPlateau(int value, int x, int y) {	this.murPlateau[x][y] = value; }
-
-
-	public Plateau(){
+	
+	public Pieces getListePiece() { return listePiece; }
+	public void setListePiece(Pieces listePiece) { this.listePiece = listePiece; }
+	
+	public Plateau(Pieces p, Obstacles o){
 		
 		casePlateau = new Integer[16][16];
+		for (int i = 0; i < casePlateau.length; i++) {
+			for (int j = 0; j < casePlateau.length; j++) {
+				casePlateau[i][j] = 0;
+			}
+		}
 		murPlateau = new Integer[17][17];
-
+		this.listePiece = p;
+		this.listeObstacle = o;
 
 		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/interface.png")));
 
 		this.getChildren().add(bck);
-		System.out.println("1");
 		int j = 0;
 		for (int i = 0; i < 16; i++) {
 			Rectangle rectangle = new Rectangle();
@@ -47,5 +56,36 @@ public class Plateau extends Parent {
 				i = 15;
 			}
 		}
+		
+		listePiece.addPieces(this);
+		listePiece.addPieces(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
+		listeObstacle.addObstacles(this);
 	}
+	
+	public void ramasser(int x, int y, Joueur j, int indice) {
+		switch (indice) {
+		case 3: 
+		case 11:
+			listePiece.getPiece(x, y).setVisible(false);
+			listePiece.setPiece(x, y, null);
+			casePlateau[x][y] = 0;
+			j.incrPiece();
+			listePiece.addPieces(this);
+			break;
+		case 12:
+			
+		default:
+			break;
+		}
+		
+	}
+	
+	public int rechercher(int x, int y) { return casePlateau[x][y]; }
 }
