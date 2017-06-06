@@ -42,19 +42,31 @@ public class Score extends Parent {
 		scorej.setFontSmoothingType(FontSmoothingType.LCD);
 		
 		if (j.Indice_joueur() == 1) {
+		
 			scorej.setFill(Color.BLUE);
 			scorej.setY(430);
-			nomj1.setFill(Color.BLUE);
+			// centrage du score du joueur dans l'interface prévue
+			double WS1 = scorej.getBoundsInLocal().getWidth();
+			double HS1 = scorej.getBoundsInLocal().getHeight();
+			scorej.relocate(1125 - WS1 / 2, 420 - HS1 / 2);
 			
+			nomj1.setFill(Color.BLUE);
 			// centrage du nom du joueur dans l'interface prévue
 			double W1 = nomj1.getBoundsInLocal().getWidth();
 			double H1 = nomj1.getBoundsInLocal().getHeight();
 			nomj1.relocate(1125 - W1 / 2, 33 - H1 / 2);
-		} else {
+		} 
+		
+		else {
+			
 			scorej.setFill(Color.RED);
 			scorej.setY(570);
-			nomj2.setFill(Color.RED);
+			// centrage du score du joueur dans l'interface prévue
+			double WS1 = scorej.getBoundsInLocal().getWidth();
+			double HS1 = scorej.getBoundsInLocal().getHeight();
+			scorej.relocate(1125 - WS1 / 2, 560 - HS1 / 2);
 			
+			nomj2.setFill(Color.RED);
 			// centrage du nom du joueur dans l'interface prévue
 			double W2 = nomj2.getBoundsInLocal().getWidth();
 			double H2 = nomj2.getBoundsInLocal().getHeight();
