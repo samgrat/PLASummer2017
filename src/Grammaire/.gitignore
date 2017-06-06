@@ -6,3 +6,13 @@
 /Morethan.class
 /Pipe.class
 /Nil.class
+<<<<<<< HEAD
+=======
+/ParseException.java
+/Reader.java
+/ReaderConstants.java
+/ReaderTokenManager.java
+/SimpleCharStream.java
+/Token.java
+/TokenMgrError.java
+>>>>>>> refs/heads/master

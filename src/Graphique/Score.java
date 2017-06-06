@@ -2,14 +2,10 @@ package Graphique;
 
 import Programme.Joueur;
 import javafx.scene.Parent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import sun.management.resources.agent;
 
 public class Score extends Parent {
 	Text piece;
@@ -57,6 +53,5 @@ public class Score extends Parent {
 
 	public void actuScore() {
 		piece.setText(String.valueOf(j.Nbr_piece()));
-		
 	}
 }

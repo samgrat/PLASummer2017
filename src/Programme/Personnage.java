@@ -5,13 +5,15 @@ import javafx.scene.Parent;
 public class Personnage extends Parent{
 	static protected int TAILLE_CASE;
 	
-	private int x, y;			// la position courante du robot
+	private int x, y;			
 	
 	// accesseur absicisse
-	public double abscisse(){ return this.x; }
+	public int getX(){ return this.x; }
+	public void setX(int x){ this.x = x; }
 	
 	// accesseur ordonnee
-	public double ordonnee(){ return this.y; }
+	public int getY(){ return this.y; }
+	public void setY(int y){ this.y = y; }
 
 	
 //	/**
