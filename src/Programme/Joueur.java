@@ -53,11 +53,11 @@ public class Joueur extends Personnage {
 		this.p = p;
 		if (indice_joueur == 1){
 			//position.positionnerCartesien(0, 0);
-			creeJoueur("images/Textures/personnagebleu.png", 0);
+			creeJoueur("image/Textures/personnagebleu.png", 0);
 		}
 		if(indice_joueur == 2) {
 			//position.positionnerCartesien(15*TAILLE_CASE, 15*TAILLE_CASE);
-			creeJoueur("images/Textures/personnagerouge.png", 900);			
+			creeJoueur("image/Textures/personnagerouge.png", 900);			
 		}		
 	}
 	public void creeJoueur(String file, int pos){
@@ -100,37 +100,5 @@ public class Joueur extends Personnage {
 		} else {
 			this.setTranslateY(this.getTranslateY() + 60);
 		}
-	}
-	/**
-	 * creation d'un robot recolte 
-	 * @return 
-	 * 
-	 */
-	public void RobotRecolte(){
-		
-	}
-	
-	/**
-	 * creation d'un robot attaque
-	 * 
-	 */
-	public void RobotAttaque(){
-		
-	}
-	
-	/**
-	 * Level up robot recolte
-	 *
-	 */
-	public void LevelUpRR(){
-		
-	}
-	
-	/**
-	 * Level up robot attaque
-	 *
-	 */
-	public void LevelUpRA(){
-		
 	}
 }
