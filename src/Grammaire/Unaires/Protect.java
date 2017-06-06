@@ -1,6 +1,7 @@
 package Grammaire.Unaires;
 
 import Grammaire.Unaire;
+import Programme.Robot;
 
 public class Protect extends Unaire {
 
@@ -10,8 +11,13 @@ public class Protect extends Unaire {
 
 	@Override
 	public void exec() {
+		// fonction de test
+		System.out.println("exec P");
+	}
+
+	@Override
+	public void exec(Robot robot) {
 		// TODO Algo de Protect:
 		// le robot se protege contre un attaque
-		System.out.println("exec P");
 	}
 }

@@ -1,6 +1,7 @@
 package Grammaire.Unaires;
 
 import Grammaire.Unaire;
+import Programme.Robot;
 
 public class Hit extends Unaire {
 
@@ -10,8 +11,14 @@ public class Hit extends Unaire {
 
 	@Override
 	public void exec() {
+		// fonction de test
+		System.out.println("exec H");
+	}
+
+	@Override
+	public void exec(Robot robot) {
 		// TODO Algo de Hit:
 		// le robot frappe en face de lui
-		System.out.println("exec H");
+		
 	}
 }

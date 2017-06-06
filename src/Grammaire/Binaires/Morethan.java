@@ -5,6 +5,7 @@ import java.util.Random;
 import Grammaire.Binaire;
 import Grammaire.ExpException;
 import Grammaire.Expression;
+import Programme.Robot;
 
 public class Morethan extends Binaire{
 	Expression head, tail;
@@ -25,9 +26,7 @@ public class Morethan extends Binaire{
 	 */
 	// TODO arriver a tester l execution de head sans l'executer
 	public Expression morethan() {
-		Expression head_2;
-		head_2 = head;
-		if(head_2.isExecutable())
+		if(head.isExecutable())
 			return head;
 		else{
 			return tail;
@@ -36,7 +35,9 @@ public class Morethan extends Binaire{
 	
 	@Override
 	public void exec() {
-		morethan().exec();
+		Expression header = morethan();
+		if(header != head)
+			morethan().exec();
 	}
 	
 	@Override
@@ -52,5 +53,12 @@ public class Morethan extends Binaire{
 		else{
 			return false;
 		}
+	}
+
+	@Override
+	public void exec(Robot robot) {
+		Expression header = morethan();
+		if(header != head)
+			morethan().exec(robot);
 	}
 }

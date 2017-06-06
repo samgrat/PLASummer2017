@@ -12,8 +12,7 @@ public class Move extends Unaire {
 
 	@Override
 	public void exec() {
-		// TODO Algo de Move:
-		// le robot se deplace d une case dans une direction autre que arriere
+		// fonction de test
 		System.out.println("exec M");
 	}
 	
@@ -21,7 +20,8 @@ public class Move extends Unaire {
 	public void exec(Robot r) {
 		// TODO Algo de Move:
 		// le robot se deplace d une case dans une direction autre que arriere
-		System.out.println("exec M");
+		
+		System.out.println("exec M(robot)");
 	}
 }
 

@@ -1,5 +1,7 @@
 package Grammaire;
 
+import Programme.Robot;
+
 public class Liste implements Expression{
 	Expression head;
 	Expression tail;
@@ -32,6 +34,12 @@ public class Liste implements Expression{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void exec(Robot robot) {
+		head.exec(robot);
+		tail.exec(robot);
 	}
 
 }

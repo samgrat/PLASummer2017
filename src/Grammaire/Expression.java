@@ -1,5 +1,7 @@
 package Grammaire;
 
+import Programme.Robot;
+
 public interface Expression {
 
 	void exec();
@@ -7,5 +9,7 @@ public interface Expression {
 	String toString();
 	
 	boolean isExecutable();
+
+	void exec(Robot robot);
 
 }

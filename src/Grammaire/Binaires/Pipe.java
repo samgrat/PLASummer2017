@@ -4,6 +4,7 @@ import java.util.Random;
 
 import Grammaire.Binaire;
 import Grammaire.Expression;
+import Programme.Robot;
 
 public class Pipe extends Binaire {
 	Expression head, tail;
@@ -61,5 +62,11 @@ public class Pipe extends Binaire {
 		else{
 			return false;
 		}
+	}
+
+	@Override
+	public void exec(Robot robot) {
+		pipe().exec(robot);
+		
 	}
 }
