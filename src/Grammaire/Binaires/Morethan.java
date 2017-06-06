@@ -3,6 +3,7 @@ package Grammaire.Binaires;
 import java.util.Random;
 
 import Grammaire.Binaire;
+import Grammaire.ExpException;
 import Grammaire.Expression;
 
 public class Morethan extends Binaire{
@@ -22,12 +23,15 @@ public class Morethan extends Binaire{
 	 * @param head une Expression
 	 * @param tail une autre Expression
 	 */
-	// TODO choose between 
-	// public Expression exec(Expression head, Expression tail) {
-	// or
+	// TODO arriver a tester l execution de head sans l'executer
 	public Expression morethan() {
-		// TODO faire un try{} catch{}
-		return null;
+		Expression head_2;
+		head_2 = head;
+		if(head_2.isExecutable())
+			return head;
+		else{
+			return tail;
+		}
 	}
 	
 	@Override
@@ -38,5 +42,15 @@ public class Morethan extends Binaire{
 	@Override
 	public String toString() {
 		return ("{h = " + head.toString() + " > t = " + tail.toString() + "}");
+	}
+
+	@Override
+	public boolean isExecutable() {
+		if(this.morethan().isExecutable()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

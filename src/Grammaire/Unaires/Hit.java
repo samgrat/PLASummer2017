@@ -12,6 +12,6 @@ public class Hit extends Unaire {
 	public void exec() {
 		// TODO Algo de Hit:
 		// le robot frappe en face de lui
-		
+		System.out.println("exec H");
 	}
 }

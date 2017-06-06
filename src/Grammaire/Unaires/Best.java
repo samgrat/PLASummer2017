@@ -12,6 +12,7 @@ public class Best extends Unaire {
 	public void exec() {
 		// TODO algo de Best:
 		// le robot se dirige vers la resource la plus recherchee par le joueur
+		System.out.println("exec B");
 		
 	}
 }

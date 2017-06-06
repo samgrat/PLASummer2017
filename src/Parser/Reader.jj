@@ -17,13 +17,14 @@ public class Reader
   public static void main(String args []) throws ParseException
   {
     Reader parser = new Reader(System.in);
+    Expression exp = null;
     while (true)
     {
       System.out.println("Reading from standard input...");
       System.out.print("Enter an expression : ");
       try
       {
-        Expression exp = Reader.EXPRESSION();
+        exp = Reader.EXPRESSION();
         System.out.println("exp= " + exp.toString());
       }
       catch (Exception e)
@@ -38,6 +39,7 @@ public class Reader
         System.out.println(e.getMessage());
         break;
       }
+		exp.exec();
     }
   }
 }
@@ -47,7 +49,8 @@ PARSER_END(Reader)
 // les caractères ignorés
 SKIP :
 {
-  "'"
+  " "
+| "'"
 | "\t"
 | "\r"
 | "\n"

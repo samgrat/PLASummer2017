@@ -2,6 +2,8 @@ package Grammaire.Unaires;
 
 import Grammaire.Unaire;
 
+import Programme.Robot;;
+
 public class Move extends Unaire {
 
 	public String toString() {
@@ -11,8 +13,15 @@ public class Move extends Unaire {
 	@Override
 	public void exec() {
 		// TODO Algo de Move:
-		// le robot se deplace d une case dans une direction autre aue arriere
-		
+		// le robot se deplace d une case dans une direction autre que arriere
+		System.out.println("exec M");
+	}
+	
+	// TODO changer le robot en param en consequence
+	public void exec(Robot r) {
+		// TODO Algo de Move:
+		// le robot se deplace d une case dans une direction autre que arriere
+		System.out.println("exec M");
 	}
 }
 

@@ -22,14 +22,8 @@ public class Pipe extends Binaire {
 	 * @param head une Expression
 	 * @param tail une autre Expression
 	 */
-	// TODO choose between 
-	// public Expression exec(Expression head, Expression tail) {
-	// or
+	
 	public Expression pipe(){
-		
-		// TODO rand(0,1)
-		// si 0 exec(head)
-		// si 1 exec(tail)
 		
 		Random r = new Random();
 		int valeur = r.nextInt(2); // génere soit 1, soit 0
@@ -57,5 +51,15 @@ public class Pipe extends Binaire {
 	@Override
 	public String toString() {
 		return ("{h = " + head.toString() + " | t = " + tail.toString() + "}");
+	}
+	
+	@Override
+	public boolean isExecutable() {
+		if(this.pipe().isExecutable()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

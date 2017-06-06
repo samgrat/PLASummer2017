@@ -12,6 +12,6 @@ public class Repeat extends Unaire {
 	public void exec() {
 		// TODO Algo de Repeat:
 		// Repete l action suivante un nombre n de fois...
-		
+		System.out.println("exec R");
 	}
 }

@@ -42,14 +42,6 @@ public class Dico {
 		return un.toString();
 	}
 	
-//	/**
-//	 * 
-//	 * 
-//	 * @return l'opérateur correspondant a l'indice donné
-//	 */
-//	public String toString() {
-//		return contexteSym.get(i);
-//	}
 	/**
 	 * La fonction affiche le contenu de la table
 	 * @param contexteSym : la table contenant les opérateurs unaire

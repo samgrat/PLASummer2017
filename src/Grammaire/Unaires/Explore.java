@@ -12,6 +12,6 @@ public class Explore extends Unaire {
 	public void exec() {
 		// TODO Algo de Explore:
 		// le robot se dirige vers une case non exploree en prenant un chemin aleatoire
-		
+		System.out.println("exec E");
 	}
 }

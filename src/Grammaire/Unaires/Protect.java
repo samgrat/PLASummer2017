@@ -12,6 +12,6 @@ public class Protect extends Unaire {
 	public void exec() {
 		// TODO Algo de Protect:
 		// le robot se protege contre un attaque
-		
+		System.out.println("exec P");
 	}
 }

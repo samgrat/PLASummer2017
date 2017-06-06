@@ -26,4 +26,12 @@ public class Liste implements Expression{
 		return ("{h = " + head.toString() + " ; t = " + tail.toString() + "}");
 	}
 
+	@Override
+	public boolean isExecutable() {
+		if(head.isExecutable() && tail.isExecutable()){
+			return true;
+		}
+		return false;
+	}
+
 }

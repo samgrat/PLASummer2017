@@ -12,6 +12,6 @@ public class Follow extends Unaire{
 	public void exec() {
 		// TODO Algo de Follow:
 		// le robot suit le robot allie le plus proche
-		
+		System.out.println("exec F");
 	}
 }

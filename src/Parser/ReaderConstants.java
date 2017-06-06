@@ -11,39 +11,39 @@ public interface ReaderConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int SL_COMMENT = 37;
+  int SL_COMMENT = 38;
   /** RegularExpression Id. */
-  int ML_COMMENT = 38;
+  int ML_COMMENT = 39;
   /** RegularExpression Id. */
-  int DIGITS = 40;
+  int DIGITS = 41;
   /** RegularExpression Id. */
-  int LOWER_LETTERS = 41;
+  int LOWER_LETTERS = 42;
   /** RegularExpression Id. */
-  int UPPER_LETTERS = 42;
+  int UPPER_LETTERS = 43;
   /** RegularExpression Id. */
-  int LACC = 43;
+  int LACC = 44;
   /** RegularExpression Id. */
-  int RACC = 44;
+  int RACC = 45;
   /** RegularExpression Id. */
-  int SEMI = 45;
+  int SEMI = 46;
   /** RegularExpression Id. */
-  int PIPE = 46;
+  int PIPE = 47;
   /** RegularExpression Id. */
-  int MORETHAN = 47;
+  int MORETHAN = 48;
   /** RegularExpression Id. */
-  int UNAIRE = 48;
+  int UNAIRE = 49;
   /** RegularExpression Id. */
-  int HIT = 49;
+  int HIT = 50;
   /** RegularExpression Id. */
-  int RECOLT = 50;
+  int RECOLT = 51;
   /** RegularExpression Id. */
-  int EXPLORE = 51;
+  int EXPLORE = 52;
   /** RegularExpression Id. */
-  int BEST = 52;
+  int BEST = 53;
   /** RegularExpression Id. */
-  int FOLLOW = 53;
+  int FOLLOW = 54;
   /** RegularExpression Id. */
-  int MOVE = 54;
+  int MOVE = 55;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -55,6 +55,7 @@ public interface ReaderConstants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
+    "\" \"",
     "\"\\\'\"",
     "\"\\t\"",
     "\"\\r\"",
@@ -93,7 +94,7 @@ public interface ReaderConstants {
     "\"/*\"",
     "<SL_COMMENT>",
     "\"*/\"",
-    "<token of kind 39>",
+    "<token of kind 40>",
     "<DIGITS>",
     "<LOWER_LETTERS>",
     "<UPPER_LETTERS>",

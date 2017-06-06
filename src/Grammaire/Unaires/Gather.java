@@ -12,6 +12,6 @@ public class Gather extends Unaire {
 	public void exec() {
 		// TODO Algo de Gather
 		// le robot recolte une ressource dans un perimetre autour de lui
-		
+		System.out.println("exec G");
 	}
 }

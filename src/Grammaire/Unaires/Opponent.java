@@ -12,6 +12,6 @@ public class Opponent extends Unaire {
 	public void exec() {
 		// TODO Algo de Opponent:
 		// le robot se dirige vers l adversaire le plus proche
-		
+		System.out.println("exec O");
 	}
 }
