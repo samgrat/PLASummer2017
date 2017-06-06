@@ -1,27 +1,32 @@
 package Graphique;
 
-import Programme.Joueur;
-import java.util.Timer;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Pieces extends Parent {
-	ImageView[][] listePiece;
-	Plateau p;
+	private ImageView[][] listePiece;
+	final int indice_piece = 11;
 
-	public Pieces(Plateau p) {
-		listePiece = new ImageView[16][16];
-		this.addPieces();
-		this.addPieces();
-		this.p = p;
+	public ImageView getPiece(int x, int y) {
+		return listePiece[x][y];
 	}
-	
 
-	public void addPieces() {
+	public void setPiece(int x, int y, ImageView val) {
+		this.listePiece[x][y] = val;
+	}
 
-		int x = (int) (Math.random() * 16);
-		int y = (int) (Math.random() * 16);
+	public Pieces() {
+		listePiece = new ImageView[16][16];
+	}
+
+	public void addPieces(Plateau p) {
+		int x, y;
+		do {
+			x = (int) (Math.random() * 16);
+			y = (int) (Math.random() * 16);
+		} while (p.rechercher(x, y) != 0);
+
 		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piece.png")));
 		piece.setFitWidth(60);
 		piece.setFitHeight(60);
@@ -29,24 +34,8 @@ public class Pieces extends Parent {
 		piece.setTranslateY(5 + y * 60);
 		listePiece[x][y] = piece;
 		this.getChildren().add(piece);
+		p.setCasePlateau(x, y, indice_piece);
 
 	}
 
-	public ImageView rechercher(int x, int y) {
-		if (listePiece[x][y] != null) {
-			return listePiece[x][y];
-		}
-
-		return null;
-	}
-
-	public void ramasser(int x, int y, Joueur j) {
-		listePiece[x][y].setVisible(false);
-		listePiece[x][y] = null;
-		j.incrPiece();
-		addPieces();
-	}
-	
 }
-
-
