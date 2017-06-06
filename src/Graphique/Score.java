@@ -28,17 +28,11 @@ public class Score extends Parent {
 		
 		// TODO : scanf pour entrer le nom des joueurs en début de partie 
 		
-		Rectangle rectnomj1 = new Rectangle(976, 9, 298, 46);
-		rectnomj1.setFill(Color.TRANSPARENT);
 		nomj1 = new Text("JOUEUR 1");
-		nomj1.setX(1050);
 		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
 		nomj1.setFontSmoothingType(FontSmoothingType.LCD);
 		
-		Rectangle rectnomj2 = new Rectangle(976, 915, 298, 46);
-		rectnomj2.setFill(Color.TRANSPARENT);
 		nomj2 = new Text("JOUEUR 2");
-		nomj2.setX(1050);
 		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
 		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 		
@@ -51,15 +45,23 @@ public class Score extends Parent {
 			scorej.setFill(Color.BLUE);
 			scorej.setY(430);
 			nomj1.setFill(Color.BLUE);
-			nomj1.setY(45);
+			
+			// centrage du nom du joueur dans l'interface prévue
+			double W1 = nomj1.getBoundsInLocal().getWidth();
+			double H1 = nomj1.getBoundsInLocal().getHeight();
+			nomj1.relocate(1125 - W1 / 2, 33 - H1 / 2);
 		} else {
 			scorej.setFill(Color.RED);
 			scorej.setY(570);
 			nomj2.setFill(Color.RED);
-			nomj2.setY(950);
+			
+			// centrage du nom du joueur dans l'interface prévue
+			double W2 = nomj2.getBoundsInLocal().getWidth();
+			double H2 = nomj2.getBoundsInLocal().getHeight();
+			nomj2.relocate(1125 - W2 / 2, 940 - H2 / 2);
 		}
 		
-		// this.getChildren().addAll(rectnomj1, rectnomj2, scorej, nomj1, nomj2);
+		this.getChildren().addAll(scorej, nomj1, nomj2);
 	}
 
 	public void actuScore() {
