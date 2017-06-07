@@ -26,6 +26,7 @@ public class Plateau extends Parent {
 				casePlateau[i][j] = 0;
 			}
 		}
+
 		this.listePiece = p;
 		this.listeObstacle = o;
 

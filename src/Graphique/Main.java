@@ -23,15 +23,19 @@ public class Main extends Application {
 		Application.launch(Main.class, args);
 	}
 
+	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
 
+
 		Group root = new Group();
+
 		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
 
 		Pieces listePiece = new Pieces();
 		Obstacles o = new Obstacles();
+
 		Plateau p = new Plateau(listePiece, o);
 
 		Joueur joueur1 = new Joueur(1, p, root);
@@ -44,7 +48,6 @@ public class Main extends Application {
 
 		Clavier clav = new Clavier(joueur2, joueur1, p);
 
-		
 		
 		Text temps = new Text("temp : " + String.valueOf(this.t));
 		temps.setX(1055);

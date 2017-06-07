@@ -1,5 +1,6 @@
 package Programme;
 
+import Grammaire.Expression;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
@@ -60,7 +61,8 @@ public class Joueur extends Personnage {
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
-		r = new Robot(indice_joueur+2);
+		Expression exp = null;
+		r = new Robot(indice_joueur+2, p, exp);
 		if (indice_joueur == 1) {
 			p.setCasePlateau(indice_joueur, 0, 0);
 			creeJoueur("images/Textures/personnagebleu.png");

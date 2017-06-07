@@ -5,7 +5,10 @@ import javafx.scene.Parent;
 public class Personnage extends Parent{
 	static protected int TAILLE_CASE;
 	
-	private int x, y;			
+
+	protected int x;
+
+	protected int y;			
 	
 	// accesseur absicisse
 	public int getX(){ return this.x; }

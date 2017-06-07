@@ -7,6 +7,7 @@
 /Pipe.class
 /Nil.class
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /ParseException.java
 /Reader.java
@@ -16,3 +17,12 @@
 /Token.java
 /TokenMgrError.java
 >>>>>>> refs/heads/master
+=======
+/ParseException.java
+/Reader.java
+/ReaderConstants.java
+/ReaderTokenManager.java
+/SimpleCharStream.java
+/Token.java
+/TokenMgrError.java
+>>>>>>> branch 'Sam' of https://baptiste.betend@gitlab.com/baptiste.betend/PLA.git

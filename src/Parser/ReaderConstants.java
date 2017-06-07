@@ -11,21 +11,19 @@ public interface ReaderConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int SL_COMMENT = 37;
+  int SL_COMMENT = 38;
   /** RegularExpression Id. */
-  int ML_COMMENT = 38;
+  int ML_COMMENT = 39;
   /** RegularExpression Id. */
-  int DIGITS = 40;
+  int DIGITS = 41;
   /** RegularExpression Id. */
-  int LOWER_LETTERS = 41;
+  int LOWER_LETTERS = 42;
   /** RegularExpression Id. */
-  int UPPER_LETTERS = 42;
+  int UPPER_LETTERS = 43;
   /** RegularExpression Id. */
-  int LACC = 43;
+  int LACC = 44;
   /** RegularExpression Id. */
-  int RACC = 44;
-  /** RegularExpression Id. */
-  int STAR = 45;
+  int RACC = 45;
   /** RegularExpression Id. */
   int SEMI = 46;
   /** RegularExpression Id. */
@@ -57,6 +55,7 @@ public interface ReaderConstants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
+    "\" \"",
     "\"\\\'\"",
     "\"\\t\"",
     "\"\\r\"",
@@ -95,13 +94,12 @@ public interface ReaderConstants {
     "\"/*\"",
     "<SL_COMMENT>",
     "\"*/\"",
-    "<token of kind 39>",
+    "<token of kind 40>",
     "<DIGITS>",
     "<LOWER_LETTERS>",
     "<UPPER_LETTERS>",
     "\"{\"",
     "\"}\"",
-    "\"*\"",
     "\";\"",
     "\"|\"",
     "\">\"",

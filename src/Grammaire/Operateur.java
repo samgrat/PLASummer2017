@@ -1,5 +1,13 @@
 package Grammaire;
 
-public class Operateur implements Expression{
+import Programme.Robot;
+
+public interface Operateur extends Expression{
+
+	public String toString();
+	
+	@Override
+	public void exec();
+	
 
 }

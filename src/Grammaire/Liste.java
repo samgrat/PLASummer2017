@@ -1,15 +1,45 @@
 package Grammaire;
 
-public class Liste implements Expression{
+import Programme.Robot;
 
-	public static Expression Liste(Expression s1, Expression s2) {
-		// TODO Auto-generated method stub
-		return null;
+public class Liste implements Expression{
+	Expression head;
+	Expression tail;
+
+	public Liste() {
+		tail = new Nil();
+		head = new Nil();
+	}
+	
+	public Liste(Expression s1, Expression s2) {
+		head = s1;
+		tail = s2;
+
 	}
 
-	public static Expression star(Expression exp) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public void exec() {
+		head.exec();
+		tail.exec();
+		
+	}
+	
+	public String toString(){
+		return ("{h = " + head.toString() + " ; t = " + tail.toString() + "}");
+	}
+
+	@Override
+	public boolean isExecutable() {
+		if(head.isExecutable() && tail.isExecutable()){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void exec(Robot robot) {
+		head.exec(robot);
+		tail.exec(robot);
 	}
 
 }
