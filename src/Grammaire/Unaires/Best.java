@@ -17,7 +17,7 @@ public class Best extends Unaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO algo de Best:
 		// le robot se dirige vers la resource la plus recherchee par le joueur
 	}

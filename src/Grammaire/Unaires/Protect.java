@@ -16,7 +16,7 @@ public class Protect extends Unaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO Algo de Protect:
 		// le robot se protege contre un attaque
 	}

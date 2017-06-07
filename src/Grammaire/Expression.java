@@ -10,6 +10,6 @@ public interface Expression {
 	
 	boolean isExecutable();
 
-	void exec(Robot robot);
+	void exec(int x, int y, Robot robot);
 
 }

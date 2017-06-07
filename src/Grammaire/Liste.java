@@ -37,9 +37,9 @@ public class Liste implements Expression{
 	}
 
 	@Override
-	public void exec(Robot robot) {
-		head.exec(robot);
-		tail.exec(robot);
+	public void exec(int x, int y, Robot robot) {
+		head.exec(x, y, robot);
+		tail.exec(x, y, robot);
 	}
 
 }

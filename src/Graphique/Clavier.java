@@ -17,7 +17,6 @@ public class Clavier extends Parent {
 
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent ke) {
-				System.out.println(ke.getCode().toString());
 				if (ke.getCode().toString() == "RIGHT" || ke.getCode().toString() == "LEFT"
 						|| ke.getCode().toString() == "UP" || ke.getCode().toString() == "DOWN"
 						|| ke.getCode().toString() == "DIGIT9" || ke.getCode().toString() == "DIGIT0"

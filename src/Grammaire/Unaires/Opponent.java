@@ -16,7 +16,7 @@ public class Opponent extends Unaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO Algo de Opponent:
 		// le robot se dirige vers l adversaire le plus proche
 		

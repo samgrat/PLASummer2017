@@ -19,7 +19,7 @@ public class Move extends Unaire {
 	}
 	
 	// TODO changer le robot en param en consequence
-	public void exec(Robot r) {
+	public void exec(int x, int y, Robot r) {
 		// TODO Algo de Move:
 		// le robot se deplace d une case dans une direction autre que arriere
 		//System.out.println("exec M(robot)");
@@ -31,7 +31,7 @@ public class Move extends Unaire {
 		switch (valtest) {
 		case 0:
 			// TODO modifier le test d obstacles
-			r.droite();
+			r.droite(x, y);
 			break;
 		case 1:
 			r.gauche();

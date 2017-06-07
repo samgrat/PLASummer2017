@@ -16,7 +16,7 @@ public class Explore extends Unaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO Algo de Explore:
 		// le robot se dirige vers une case non exploree en prenant un chemin aleatoire
 	}

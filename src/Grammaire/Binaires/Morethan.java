@@ -56,9 +56,9 @@ public class Morethan extends Binaire{
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		Expression header = morethan();
 		if(header != head)
-			morethan().exec(robot);
+			morethan().exec(x, y, robot);
 	}
 }

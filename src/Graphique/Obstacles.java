@@ -27,7 +27,6 @@ public class Obstacles extends Parent {
 		obstacle.setVisible(true);
 		listeObstacle[x][y] = obstacle;
 
-		System.out.println(direction);
 		if(direction == 0){
 			obstacle.setFitWidth(60*taille);
 			for (int i = 0; i < taille; i++) {

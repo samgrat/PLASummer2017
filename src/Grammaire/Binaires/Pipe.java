@@ -65,8 +65,8 @@ public class Pipe extends Binaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
-		pipe().exec(robot);
+	public void exec(int x, int y, Robot robot) {
+		pipe().exec(x, y, robot);
 		
 	}
 }

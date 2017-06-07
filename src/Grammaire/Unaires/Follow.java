@@ -16,7 +16,7 @@ public class Follow extends Unaire{
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO Algo de Follow:
 		// le robot suit le robot allie le plus proche
 		

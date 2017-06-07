@@ -16,7 +16,7 @@ public class Hit extends Unaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO Algo de Hit:
 		// le robot frappe en face de lui
 		

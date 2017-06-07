@@ -16,7 +16,7 @@ public class Repeat extends Unaire {
 	}
 
 	@Override
-	public void exec(Robot robot) {
+	public void exec(int x, int y, Robot robot) {
 		// TODO Algo de Repeat:
 		// Repete l action suivante un nombre n de fois...
 	}
