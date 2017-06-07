@@ -2,7 +2,6 @@ package Graphique;
 
 import java.awt.TextField;
 import java.beans.EventHandler;
-
 import Programme.Joueur;
 import javafx.application.Application;
 import javafx.geometry.Insets;
