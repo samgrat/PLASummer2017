@@ -5,15 +5,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import sun.management.resources.agent;
 
 public class Score extends Parent {
 	Text scorej;
@@ -25,6 +21,7 @@ public class Score extends Parent {
 	
 	public Score(Joueur j) {
 		this.j = j;
+
 		
 		// TODO : scanf pour entrer le nom des joueurs en début de partie 
 		
@@ -40,12 +37,12 @@ public class Score extends Parent {
 		scorej.setX(1115);
 		scorej.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
 		scorej.setFontSmoothingType(FontSmoothingType.LCD);
-		
+
 		if (j.Indice_joueur() == 1) {
 		
 			scorej.setFill(Color.BLUE);
 			scorej.setY(430);
-			
+
 			nomj1.setFill(Color.BLUE);
 			// centrage du nom du joueur dans l'interface prévue
 			double W1 = nomj1.getBoundsInLocal().getWidth();
@@ -64,11 +61,13 @@ public class Score extends Parent {
 			double H2 = nomj2.getBoundsInLocal().getHeight();
 			nomj2.relocate(1125-W2/2, 940-H2/2);
 		}
-		
+
 		this.getChildren().addAll(scorej, nomj1, nomj2);
+
 	}
 
 	public void actuScore() {
+
 		scorej.setText(String.valueOf(j.Nbr_piece()));
 		
 		if (j.Indice_joueur() == 1) {
