@@ -4,6 +4,7 @@ import Grammaire.Expression;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
+import Parser.ParseException;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,7 @@ public class Joueur extends Personnage {
 	Rectangle vie2;
 	Rectangle vie3;
 	Group root;
+	
 
 	public Score getScore() {
 		return this.s;
@@ -68,8 +70,9 @@ public class Joueur extends Personnage {
 	 * 
 	 * @param indice
 	 *            1 si joueur 1 ou 2 si joueur 2
+	 * @throws ParseException 
 	 */
-	public Joueur(int indice_joueur, Plateau p, Group root) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) { 
 		nbr_boulon = 0;
 		nbr_planche = 0;
 		nbr_vis = 0;
@@ -308,10 +311,8 @@ public class Joueur extends Personnage {
 	public void invoquerRobot1(Group root) {
 		if (this.nbr_piece >= 5) {
 			this.nbr_piece -= 5;
-			int x = getX();
-			int y = getY();
 			Expression exp = null;
-			new Robot(indice_joueur, root, p, exp, x, y);
+			new Robot(this, root, p, exp, x, y);
 		}
 	}
 

@@ -1,6 +1,5 @@
 package Grammaire;
 
-import Programme.Robot;
 
 public interface Operateur extends Expression{
 

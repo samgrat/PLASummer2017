@@ -17,6 +17,7 @@ public class Clavier extends Parent {
 		p.setCasePlateau(15, 15, 2);
 
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().toString() == "RIGHT" || ke.getCode().toString() == "LEFT"
 						|| ke.getCode().toString() == "UP" || ke.getCode().toString() == "DOWN"
