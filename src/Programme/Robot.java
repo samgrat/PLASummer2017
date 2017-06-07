@@ -50,7 +50,6 @@ public class Robot extends Personnage {
 		listeRobot[x][y].setVisible(false);
 		listeRobot[x][y] = null;
 		plateau.setCasePlateau(x, y, 0);
-		
 	}
 	
 	public void exec(int x, int y, Plateau p, Group root){

@@ -32,26 +32,42 @@ public class Joueur extends Personnage {
 	Rectangle vie3;
 	Group root;
 
-	public Score getScore() { return this.s; }
+	public Score getScore() {
+		return this.s;
+	}
 
-	public void setScore(Score s) { this.s = s; }
+	public void setScore(Score s) {
+		this.s = s;
+	}
 
 	// accesseur indice_joueur
-	public int Indice_joueur() { return indice_joueur; }
+	public int Indice_joueur() {
+		return indice_joueur;
+	}
 
 	// accesseur nbr_boulon
-	public int Nbr_boulon() { return nbr_boulon; }
+	public int Nbr_boulon() {
+		return nbr_boulon;
+	}
 
 	// accesseur nbr_planche
-	public int Nbr_planche() { return nbr_planche; }
+	public int Nbr_planche() {
+		return nbr_planche;
+	}
 
 	// accesseur niveau_attaque
-	public int Nbr_vis() { return nbr_vis; }
+	public int Nbr_vis() {
+		return nbr_vis;
+	}
 
 	// accesseur nbr_piece
-	public int Nbr_piece() { return nbr_piece; }
-	
-	public void incrPiece() { nbr_piece++; }
+	public int Nbr_piece() {
+		return nbr_piece;
+	}
+
+	public void incrPiece() {
+		nbr_piece++;
+	}
 
 	/**
 	 * creation d'un joueur
@@ -67,7 +83,7 @@ public class Joueur extends Personnage {
 		this.indice_joueur = indice_joueur;
 		this.p = p;
 		Expression exp = null;
-		r = new Robot(indice_joueur+2, p, exp);
+		r = new Robot(indice_joueur + 2, p, exp);
 		if (indice_joueur == 1) {
 			p.setCasePlateau(indice_joueur, 0, 0);
 			creeJoueur("images/Textures/personnagebleu.png");
@@ -168,7 +184,7 @@ public class Joueur extends Personnage {
 		int x = (int) this.getTranslateX() / 60;
 		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
 		if (this.getTranslateX() + 60 > 959) {
@@ -200,7 +216,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
-				p.setCasePlateau(x-1, y, indice_joueur);
+				p.setCasePlateau(x - 1, y, indice_joueur);
 			}
 
 		}
@@ -210,7 +226,7 @@ public class Joueur extends Personnage {
 		int x = (int) this.getTranslateX() / 60;
 		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
 		if (this.getTranslateX() - 60 < 0) {
@@ -242,7 +258,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
-				p.setCasePlateau(x+1, y, indice_joueur);
+				p.setCasePlateau(x + 1, y, indice_joueur);
 			}
 
 		}
@@ -253,7 +269,7 @@ public class Joueur extends Personnage {
 		int x = (int) this.getTranslateX() / 60;
 		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
 		if (this.getTranslateY() - 60 < 0) {
@@ -285,7 +301,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
-				p.setCasePlateau(x, y+1, indice_joueur);
+				p.setCasePlateau(x, y + 1, indice_joueur);
 			}
 
 		}
@@ -295,7 +311,7 @@ public class Joueur extends Personnage {
 		int x = (int) this.getTranslateX() / 60;
 		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
 		if (this.getTranslateY() + 60 > 959) {
@@ -327,7 +343,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
-				p.setCasePlateau(x, y-1, indice_joueur);
+				p.setCasePlateau(x, y - 1, indice_joueur);
 			}
 
 		}
@@ -337,22 +353,22 @@ public class Joueur extends Personnage {
 	public void invoquerRobot1() {
 		if (this.nbr_piece >= 5) {
 			this.nbr_piece -= 5;
-		int x = (int)getTranslateX()/60;
-		int y = (int)getTranslateY()/60;
-		if (indice_joueur == 1) {
-			r.addRobotBleu(x, y, root);
-			this.getChildren().add(r);
-		} else {
-			r.addRobotRouge(x, y, root);
-			this.getChildren().add(r);
-		}
-		
-		Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(5000), new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				r.delRobbot(x, y);
+			int x = (int) getTranslateX() / 60;
+			int y = (int) getTranslateY() / 60;
+			if (indice_joueur == 1) {
+				r.addRobotBleu(x, y, root);
+				this.getChildren().add(r);
+			} else {
+				r.addRobotRouge(x, y, root);
+				this.getChildren().add(r);
 			}
-		}));
-		tpsVieRobot.play();
+
+			Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(5000), new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					r.delRobbot(x, y);
+				}
+			}));
+			tpsVieRobot.play();
 		}
 	}
 
