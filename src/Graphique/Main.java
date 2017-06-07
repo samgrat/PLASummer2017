@@ -4,6 +4,7 @@ import java.awt.TextField;
 import java.beans.EventHandler;
 import Programme.Joueur;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,10 +15,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static void main(String[] args) {
+		// Application.launch(Nom.class, args);
 		Application.launch(Main.class, args);
 	}
 
-	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Zombie War Machine Demolition Evolution III");

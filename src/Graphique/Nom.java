@@ -36,38 +36,28 @@ public class Nom extends Application {
         GridPane.setHalignment(nomJ2, HPos.CENTER);
         root.add(nomJ2, 1, 4);
         root.add(setNomJ2, 2, 4);
-        
-		Button boutonValider1 = new Button("Valider");
-		GridPane.setHalignment(boutonValider1, HPos.RIGHT);
-		root.add(boutonValider1, 3, 3);
-		
-		Button boutonValider2 = new Button("Valider");
-		GridPane.setHalignment(boutonValider2, HPos.RIGHT);
-		root.add(boutonValider2, 3, 4);
 		
 		Button boutonJouer = new Button("Jouer !");
-		GridPane.setHalignment(boutonValider1, HPos.RIGHT);
+		GridPane.setHalignment(boutonJouer, HPos.RIGHT);
 		root.add(boutonJouer, 2, 6);
-		
-        
-		boutonValider1.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent event) {
-				System.out.println("nom du joueur 1 choisi");
-			}
-		});
-			
-		boutonValider2.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent event) {
-				System.out.println("nom du joueur 2 choisi");
-			}
-		});
 			
 		boutonJouer.setOnAction(new EventHandler<ActionEvent>() {
 
+			/* TODO :
+			 * - Gestion du cas où les noms sont similaires
+			 * - Gestion du cas où les champs entrés sont vides
+			 */
+			
 			public void handle(ActionEvent event) {
-				System.out.println("les noms ont été choisis");
+				
+				String getNomJ1 = setNomJ1.getText();
+				System.out.printf("nom du joueur 1 : ");
+				System.out.println(getNomJ1);
+				
+				String getNomJ2 = setNomJ2.getText();
+				System.out.printf("nom du joueur 2 : ");
+				System.out.println(getNomJ2);
+			
 				primaryStage.close();
 			}
 		});
