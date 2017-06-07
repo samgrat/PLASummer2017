@@ -33,8 +33,7 @@ public class Main extends Application {
 		Clavier clav = new Clavier(joueur2, joueur1, p);
 		
 		Menu menu = new Menu(clav);
-		
-		
+        
 		root.getChildren().add(p);
 		root.getChildren().add(score1);
 		root.getChildren().add(score2);

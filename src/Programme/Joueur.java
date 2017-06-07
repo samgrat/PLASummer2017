@@ -177,6 +177,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(15, y, indice_joueur);
 			}
 
 		} else {
@@ -192,6 +193,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x-1, y, indice_joueur);
 			}
 
 		}
@@ -217,6 +219,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(0, y, indice_joueur);
 			}
 
 		} else {
@@ -232,6 +235,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x+1, y, indice_joueur);
 			}
 
 		}
@@ -258,6 +262,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, 0, indice_joueur);
 			}
 
 		} else {
@@ -273,6 +278,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, y+1, indice_joueur);
 			}
 
 		}
@@ -298,6 +304,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, 15, indice_joueur);
 			}
 
 		} else {
@@ -313,6 +320,7 @@ public class Joueur extends Personnage {
 
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, y-1, indice_joueur);
 			}
 
 		}
