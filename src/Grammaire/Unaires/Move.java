@@ -26,8 +26,9 @@ public class Move extends Unaire {
 		
 		Random R = new Random();
 		int valeur = R.nextInt(3); // génere soit 2, soit 1, soit 0
+		int valtest = 0;
 		
-		switch (valeur) {
+		switch (valtest) {
 		case 0:
 			// TODO modifier le test d obstacles
 			r.droite();

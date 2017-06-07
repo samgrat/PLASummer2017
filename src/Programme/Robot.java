@@ -50,16 +50,13 @@ public class Robot extends Personnage {
 		root.getChildren().add(robot);
 		p.setCasePlateau(x, y, indice_robot);
 		int test = 0;
-		while(test < 100){
+		while(test < 10){
 			this.exec(x, y, root);
 			test++;
 		}
 	}
 	
 	public void exec(int x, int y, Group root){
-		//test
-		this.x = x;
-		this.y = y;
 		express.exec(this);
 	}
 	
@@ -97,11 +94,11 @@ public class Robot extends Personnage {
 
 	public void droite() {
 		// on recupere la position locale
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
+		int x = (int) listeRobot[this.x][this.y].getTranslateX() / 60;
+		int y = (int) listeRobot[this.x][this.y].getTranslateY() / 60;
 		// on recupere l indice de la case (x,y)
 		int indice = p.rechercher(x, y);
-		System.out.println("indice =" +p.getCasePlateau(x,y));
+		System.out.println("x = " + (this.getTranslateX() / 60)+" y = "+ ((int) this.getTranslateY() / 60));
 		// si l indice recupere est different de l indice du joueur
 //		if (indice != indice_robot-2) {
 //			p.setCasePlateau(x, y, 0);
@@ -116,7 +113,8 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 
 				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateX(0);
+				listeRobot[15][y].setTranslateX(0);
+				System.out.println("getTx = "+this.getTranslateX());
 
 			} else {
 				//this.perdVie();
@@ -129,7 +127,8 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 
 				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateX(this.getTranslateX() + 60);
+				listeRobot[x-1][y].setTranslateX(this.getTranslateX() + 60);
+				System.out.println("getTx + 60= "+ (this.getTranslateX()+60));
 
 			} else {
 				//this.perdVie();
