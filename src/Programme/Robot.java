@@ -21,6 +21,7 @@ public class Robot extends Personnage {
 	ImageView imageRobot;
 	private Plateau plateau;
 	private Expression express;
+	private int count = 0;
 
 	public Robot(Joueur j, Group root, Plateau p, Expression exp, int x, int y){
 		joueur = j;
@@ -43,38 +44,38 @@ public class Robot extends Personnage {
 		robot.setFitHeight(60);
 		robot.setLayoutX(5 + x * 60);
 		robot.setLayoutY(5 + y * 60);
-		p.setCasePlateau(x, y, joueur.Indice_joueur());
+		p.setCasePlateau(x, y, joueur.Indice_joueur()+2);
 		root.getChildren().add(robot);
-		Robot r = this;
+		//Robot r = this;
+		
 		Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				int count = 0;
-				if(count==5){
+				if(count == 5){
 					imageRobot.setVisible(false);
 					plateau.setCasePlateau(x, y, 0);
-				}else {
+				} else {
 					count++;
-					exp.exec(r);
+					exec();
 				}
 			}
 		}));
-		tpsVieRobot.setCycleCount(5);
+		tpsVieRobot.setCycleCount(6);
 		tpsVieRobot.play();
 	}
 	
 	public void droite() {
 		int indice = plateau.rechercher(x, y);
-		if (indice != joueur.Indice_joueur() + 2) {
+		if (indice != joueur.Indice_joueur()) {
 			plateau.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateX() + 60 > 959) {
+		if (getX() + 1 > 15) {
 			indice = plateau.rechercher(0, y);
 			if (indice > 10 || indice == 0) {
 				setX(0);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateX(0);
+				imageRobot.setTranslateX(0);
 			} else {
 				plateau.setCasePlateau(15, y, joueur.Indice_joueur());
 			}
@@ -84,59 +85,59 @@ public class Robot extends Personnage {
 				setX(getX() + 1);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateX(this.getTranslateX() + 60);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateX(imageRobot.getTranslateX() + 60);
 			} else {
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
 			}
 		}
 	}
 
 	public void gauche() {
 		int indice = plateau.rechercher(x, y);
-		if (indice != joueur.Indice_joueur() + 2) {
+		if (indice != joueur.Indice_joueur()) {
 			plateau.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateX() - 60 < 0) {
+		if (getX() - 1 < 0) {
 			indice = plateau.rechercher(15, y);
 			if (indice > 10 || indice == 0) {
 				setX(15);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateX(900);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateX(900);
 			} else {
-				plateau.setCasePlateau(0, y, joueur.Indice_joueur());
+				plateau.setCasePlateau(0, y, joueur.Indice_joueur()+2);
 			}
 		} else {
-			indice = plateau.rechercher(x - 1, y);
+			indice = plateau.rechercher(x-1, y);
 			if (indice > 10 || indice == 0) {
 				setX(getX() - 1);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateX(this.getTranslateX() - 60);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateX(imageRobot.getTranslateX() - 60);
 			} else {
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
 			}
 		}
 	}
 
 	public void monter() {
 		int indice = plateau.rechercher(x, y);
-		if (indice != joueur.Indice_joueur() + 2) {
+		if (indice != joueur.Indice_joueur()) {
 			plateau.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateY() - 60 < 0) {
+		if (getY() - 1 < 0) {
 			indice = plateau.rechercher(x, 15);
 			if (indice > 10 || indice == 0) {
 				setY(15);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateY(900);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateY(900);
 			} else {
-				plateau.setCasePlateau(x, 0, joueur.Indice_joueur());
+				plateau.setCasePlateau(x, 0, joueur.Indice_joueur()+2);
 			}
 		} else {
 			indice = plateau.rechercher(x, y - 1);
@@ -144,29 +145,29 @@ public class Robot extends Personnage {
 				setY(getY() - 1);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateY(this.getTranslateY() - 60);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateY(imageRobot.getTranslateY() - 60);
 			} else {
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
 			}
 		}
 	}
 
 	public void descendre() {
 		int indice = plateau.rechercher(x, y);
-		if (indice != joueur.Indice_joueur() + 2) {
+		if (indice != joueur.Indice_joueur()) {
 			plateau.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateY() + 60 > 959) {
+		if (getY() + 1 > 15) {
 			indice = plateau.rechercher(x, 0);
 			if (indice > 10 || indice == 0) {
 				setY(0);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateY(0);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateY(0);
 			} else {
-				plateau.setCasePlateau(x, 15, joueur.Indice_joueur());
+				plateau.setCasePlateau(x, 15, joueur.Indice_joueur()+2);
 			}
 		} else {
 			indice = plateau.rechercher(x, y + 1);
@@ -174,20 +175,16 @@ public class Robot extends Personnage {
 				setY(getY() + 1);
 				plateau.ramasser(x, y, joueur, indice);
 				joueur.getScore().actuScore();
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
-				this.setTranslateY(this.getTranslateY() + 60);
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
+				imageRobot.setTranslateY(imageRobot.getTranslateY() + 60);
 			} else {
-				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
+				plateau.setCasePlateau(x, y, joueur.Indice_joueur()+2);
 			}
 		}
 	}
 	
-	public void exec(int x, int y, Plateau p){
-		this.plateau = p;
-		this.x = x;
-		this.y = y;
+	public void exec(){
 		express.exec(this);
-		//addRobotBleu(this.x, this.y, root);
 	}
 	
 }

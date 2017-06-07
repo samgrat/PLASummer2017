@@ -24,11 +24,11 @@ public class Move extends Unaire {
 		// le robot se deplace d une case dans une direction autre que arriere
 		//System.out.println("exec M(robot)");
 		
-		//Random R = new Random();
-		//int valeur = R.nextInt(3); // génere soit 2, soit 1, soit 0
-		int valtest = 0;
+		Random R = new Random();
+		int valeur = R.nextInt(3); // génere soit 2, soit 1, soit 0
 		
-		switch (valtest) {
+		
+		switch (valeur) {
 		case 0:
 			// TODO modifier le test d obstacles
 			r.droite();
@@ -38,6 +38,9 @@ public class Move extends Unaire {
 			break;
 		case 2:
 			r.monter();
+			break;
+		case 3:
+			r.descendre();
 			break;
 		default:
 			break;

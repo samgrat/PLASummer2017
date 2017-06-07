@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 public class Joueur extends Personnage {
 	private Score s;
 	private Plateau p;
+	private Expression exp;
 	private int pv = 3;
 	private int indice_joueur;
 
@@ -76,6 +77,7 @@ public class Joueur extends Personnage {
 		nbr_boulon = 0;
 		nbr_planche = 0;
 		nbr_vis = 0;
+		this.exp = exp;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -309,9 +311,8 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		if (this.nbr_piece >= 5) {
+		if (this.nbr_piece >= 0) {
 			this.nbr_piece -= 5;
-			Expression exp = null;
 			new Robot(this, root, p, exp, x, y);
 		}
 	}
