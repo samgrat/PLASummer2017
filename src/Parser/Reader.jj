@@ -9,7 +9,6 @@ options
 PARSER_BEGIN(Reader)
 package Parser;
 import java.util.LinkedList;
-import Grammaire.Binaires.*;
 
 public class Reader
 {
