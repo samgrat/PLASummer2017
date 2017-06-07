@@ -44,7 +44,7 @@ public class Main extends Application {
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
 
-		Clavier clav = new Clavier(joueur2, joueur1, p);
+		Clavier clav = new Clavier(joueur2, joueur1, p, root);
 
 		Text temps = new Text("temp : " + String.valueOf(this.t));
 		temps.setX(1055);

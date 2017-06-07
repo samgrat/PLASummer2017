@@ -2,12 +2,13 @@ package Graphique;
 
 import Programme.Joueur;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
 
 public class Clavier extends Parent {
 
-	public Clavier(Joueur c1, Joueur c2, Plateau p) {
+	public Clavier(Joueur c1, Joueur c2, Plateau p, Group root) {
 
 		c1.setTranslateX(900);
 		c1.setTranslateY(900);
@@ -36,16 +37,16 @@ public class Clavier extends Parent {
 						c1.descendre();
 						break;
 					case "DIGIT9":
-						c1.invoquerRobot1();
+						c1.invoquerRobot1(root);
 						break;
 					case "DIGIT0":
-						c1.invoquerRobot2();
+						c1.invoquerRobot2(root);
 						break;
 					case "RIGHT_PARENTHESIS":
-						c1.invoquerRobot3();
+						c1.invoquerRobot3(root);
 						break;
 					case "EQUALS":
-						c1.invoquerRobot4();
+						c1.invoquerRobot4(root);
 						break;
 					}
 
@@ -65,16 +66,16 @@ public class Clavier extends Parent {
 						c2.descendre();
 						break;
 					case "DIGIT1":
-						c2.invoquerRobot1();
+						c2.invoquerRobot1(root);
 						break;
 					case "DIGIT2":
-						c2.invoquerRobot2();
+						c2.invoquerRobot2(root);
 						break;
 					case "DIGIT3":
-						c2.invoquerRobot3();
+						c2.invoquerRobot3(root);
 						break;
 					case "DIGIT4":
-						c2.invoquerRobot4();
+						c2.invoquerRobot4(root);
 						break;
 					}
 
