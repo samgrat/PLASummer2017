@@ -10,13 +10,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-	private int t = 60;
+	private int t = 5;
 
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -53,7 +54,7 @@ public class Main extends Application {
 		
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				compteArebour(temps);
+				compteArebour(temps, root);
 			}
 		}));
 		timeline.setCycleCount(Animation.INDEFINITE);
@@ -66,13 +67,29 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 
-	public void compteArebour(Text temps) {
+	public void compteArebour(Text temps, Group root) {
 		if(this.t>0){
 			this.t--;
+			temps.setText("temp : " + String.valueOf(this.t));
 		}
 		else {
+			Rectangle fin = new Rectangle();
+			fin.setX(300);
+			fin.setY(400);
+			fin.setWidth(500);
+			fin.setHeight(200);
+			fin.setArcHeight(500);
+			fin.setArcWidth(50);
+			Text GO = new Text("GAME OVER");
+			GO.setX(450);
+			GO.setY(450);
+			GO.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+			GO.setFill(Color.WHITE);
 			
+			root.getChildren().add(fin);
+			root.getChildren().add(GO);
+			root.requestFocus();
 		}
-		temps.setText("temp : " + String.valueOf(this.t));
+		
 	}
 }
