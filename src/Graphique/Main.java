@@ -1,5 +1,11 @@
 package Graphique;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import Grammaire.Expression;
+import Parser.ParseException;
+import Parser.Reader;
 import Programme.Joueur;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -15,7 +21,7 @@ public class Main extends Application {
 
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws ParseException {
 		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
 		
 		Group root = new Group();
@@ -26,9 +32,13 @@ public class Main extends Application {
 
 		Plateau p = new Plateau(listePiece, o);
 		
-		Joueur joueur1 = new Joueur(1, p, root); Score score1 = new Score(joueur1); joueur1.setScore(score1);
+		InputStream in = new ByteArrayInputStream("{M}".getBytes());
+	    Reader parser = new Reader(in);
+		Expression exp = Reader.read(parser);
 		
-		Joueur joueur2 = new Joueur(2, p, root); Score score2 = new Score(joueur2); joueur2.setScore(score2);
+		Joueur joueur1 = new Joueur(1, p, root, exp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
+		
+		Joueur joueur2 = new Joueur(2, p, root, exp); Score score2 = new Score(joueur2); joueur2.setScore(score2);
 		
 		Clavier clav = new Clavier(joueur2, joueur1, p);
 		

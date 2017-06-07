@@ -9,40 +9,37 @@ options
 PARSER_BEGIN(Reader)
 package Parser;
 import java.util.LinkedList;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import Grammaire.*;
 import Grammaire.Binaires.*;
 
 public class Reader
 {
-  public static void main(String args []) throws ParseException
+  public static Expression read(Reader parser) throws ParseException
   {
-    Reader parser = new Reader(System.in);
     Expression exp = null;
-    while (true)
+    System.out.println("Reading from standard input...");
+    System.out.print("Enter an expression : ");
+    try
     {
-      System.out.println("Reading from standard input...");
-      System.out.print("Enter an expression : ");
-      try
-      {
-        exp = Reader.EXPRESSION();
-        System.out.println("exp= " + exp.toString());
-      }
-      catch (Exception e)
-      {
-        System.out.println("NOK.");
-        System.out.println(e.getMessage());
-        Reader.ReInit(System.in);
-      }
-      catch (Error e)
-      {
-        System.out.println("Oops.");
-        System.out.println(e.getMessage());
-        break;
-      }
-		exp.exec();
+      exp = Reader.EXPRESSION();
+      System.out.println("exp= " + exp.toString());
+    }
+    catch (Exception e)
+    {
+      System.out.println("NOK.");
+      System.out.println(e.getMessage());
+      //Reader.ReInit(System.in);
+    }
+    catch (Error e)
+    {
+      System.out.println("Oops.");
+      System.out.println(e.getMessage());
+    }
+	return exp;
     }
   }
-}
 
 PARSER_END(Reader)
 

@@ -1,8 +1,14 @@
 package Programme;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import Grammaire.Expression;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
+import Parser.ParseException;
+import Parser.Reader;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +31,7 @@ public class Joueur extends Personnage {
 	Rectangle vie2;
 	Rectangle vie3;
 	Group root;
+	
 
 	public Score getScore() { return this.s; }
 
@@ -52,15 +59,16 @@ public class Joueur extends Personnage {
 	 * 
 	 * @param indice
 	 *            1 si joueur 1 ou 2 si joueur 2
+	 * @throws ParseException 
 	 */
-	public Joueur(int indice_joueur, Plateau p, Group root) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) { 
 		nbr_boulon = 0;
 		nbr_planche = 0;
 		nbr_vis = 0;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
-		r = new Robot(indice_joueur+2);
+		r = new Robot(indice_joueur, p, exp);
 		if (indice_joueur == 1) {
 			p.setCasePlateau(indice_joueur, 0, 0);
 			creeJoueur("images/Textures/personnagebleu.png");
