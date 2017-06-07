@@ -4,11 +4,16 @@ import Grammaire.Expression;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public class Joueur extends Personnage {
 	private Score s;
@@ -330,14 +335,25 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1() {
+		if (this.nbr_piece >= 5) {
+			this.nbr_piece -= 5;
+		int x = (int)getTranslateX()/60;
+		int y = (int)getTranslateY()/60;
 		if (indice_joueur == 1) {
-			r.addRobotBleu((int)getTranslateX()/60, (int)getTranslateY()/60, p, root);
+			r.addRobotBleu(x, y, root);
 			this.getChildren().add(r);
 		} else {
-			r.addRobotRouge((int)getTranslateX()/60, (int)getTranslateY()/60, p, root);
+			r.addRobotRouge(x, y, root);
 			this.getChildren().add(r);
 		}
 		
+		Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(5000), new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				r.delRobbot(x, y);
+			}
+		}));
+		tpsVieRobot.play();
+		}
 	}
 
 	public void invoquerRobot2() {

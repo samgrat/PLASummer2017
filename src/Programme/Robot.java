@@ -25,15 +25,15 @@ public class Robot extends Personnage {
 		express = exp;
 	}
 	
-	public void addRobotBleu(int x, int y, Plateau p, Group root){
+	public void addRobotBleu(int x, int y, Group root){
 		ImageView robot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
-		addRobot(x, y, p, root, robot);
+		addRobot(x, y, plateau, root, robot);
 	}
 	
 	
-	public void addRobotRouge(int x, int y, Plateau p, Group root){
+	public void addRobotRouge(int x, int y, Group root){
 		ImageView robot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge.png")));
-		addRobot(x, y, p, root, robot);
+		addRobot(x, y, plateau, root, robot);
 	}
 	
 	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot){
@@ -46,12 +46,19 @@ public class Robot extends Personnage {
 		p.setCasePlateau(x, y, indice_joueur);
 	}
 	
+	public void delRobbot(int x, int y){
+		listeRobot[x][y].setVisible(false);
+		listeRobot[x][y] = null;
+		plateau.setCasePlateau(x, y, 0);
+		
+	}
+	
 	public void exec(int x, int y, Plateau p, Group root){
 		this.plateau = p;
 		this.x = x;
 		this.y = y;
 		express.exec(this);
-		addRobotBleu(this.x, this.y, p, root);
+		addRobotBleu(this.x, this.y, root);
 	}
 	
 }

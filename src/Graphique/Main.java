@@ -17,17 +17,15 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-	private int t = 5;
+	private int t = 50;
 
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
 	}
 
-	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
-
 
 		Group root = new Group();
 
@@ -48,22 +46,20 @@ public class Main extends Application {
 
 		Clavier clav = new Clavier(joueur2, joueur1, p);
 
-		
 		Text temps = new Text("temp : " + String.valueOf(this.t));
 		temps.setX(1055);
 		temps.setY(500);
 		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		
-		
+
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				compteArebour(temps, root);
 			}
 		}));
 		timeline.setCycleCount(Animation.INDEFINITE);
-		
+
 		Menu menu = new Menu(clav, timeline);
-		
+
 		root.getChildren().addAll(p, score1, score2, listePiece, o, joueur1, joueur2, menu, clav, temps);
 
 		primaryStage.setScene(scene);
@@ -71,11 +67,10 @@ public class Main extends Application {
 	}
 
 	public void compteArebour(Text temps, Group root) {
-		if(this.t>0){
+		if (this.t > 0) {
 			this.t--;
 			temps.setText("temp : " + String.valueOf(this.t));
-		}
-		else {
+		} else {
 			Rectangle fin = new Rectangle();
 			fin.setX(300);
 			fin.setY(400);
@@ -88,11 +83,11 @@ public class Main extends Application {
 			GO.setY(450);
 			GO.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 			GO.setFill(Color.WHITE);
-			
+
 			root.getChildren().add(fin);
 			root.getChildren().add(GO);
 			root.requestFocus();
 		}
-		
+
 	}
 }
