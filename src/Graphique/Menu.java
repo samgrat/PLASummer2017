@@ -1,12 +1,14 @@
 package Graphique;
 
+
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 public class Menu extends Parent {
-	public Menu(Clavier clav){
+	public Menu(Clavier clav, Timeline timeline){
 		Button boutonMode1 = new Button();
 		Button boutonMode2 = new Button();
 		Button boutonMode3 = new Button();
@@ -21,6 +23,7 @@ public class Menu extends Parent {
 				boutonMode3.setVisible(false);
 				System.out.println("Start Game");
 				clav.requestFocus();
+				timeline.play();
 			}
 		});
 
@@ -35,6 +38,7 @@ public class Menu extends Parent {
 				boutonMode3.setVisible(false);
 				System.out.println("Start Game");
 				clav.requestFocus();
+				timeline.play();
 			}
 		});
 
@@ -49,9 +53,10 @@ public class Menu extends Parent {
 				boutonMode3.setVisible(false);
 				System.out.println("Start Game");
 				clav.requestFocus();
+				timeline.play();
 			}
 		});
-		
+
 		this.getChildren().add(boutonMode1);
 		this.getChildren().add(boutonMode2);
 		this.getChildren().add(boutonMode3);

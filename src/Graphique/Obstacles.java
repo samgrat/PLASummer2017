@@ -13,8 +13,8 @@ public class Obstacles extends Parent {
 	}
 	
 	public void addObstacles(Plateau p){
-		int x = (int) (2+Math.random() * 13);
-		int y = (int) (2+Math.random() * 13);
+		int x = (int) (Math.random() * 11);
+		int y = (int) (Math.random() * 14);
 		int direction = (int) (Math.random() * 2);
 		int taille = (int) (1 + Math.random() * 5);
 		
@@ -27,7 +27,6 @@ public class Obstacles extends Parent {
 		obstacle.setVisible(true);
 		listeObstacle[x][y] = obstacle;
 
-		System.out.println(direction);
 		if(direction == 0){
 			obstacle.setFitWidth(60*taille);
 			for (int i = 0; i < taille; i++) {

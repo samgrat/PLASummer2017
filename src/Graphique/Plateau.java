@@ -9,15 +9,11 @@ import javafx.scene.shape.Rectangle;
 
 public class Plateau extends Parent {
 	private Integer[][] casePlateau;
-	private Integer[][] murPlateau;
 	private Pieces listePiece;
 	private Obstacles listeObstacle;
 	
 	public Integer getCasePlateau(int x, int y) { return casePlateau[x][y]; }
 	public void setCasePlateau(int x, int y, int value) { if(x<16 && x>=0 && y<16 && y>=0){this.casePlateau[x][y] = value; }}
-
-	public Integer getMurPlateau(int x, int y) { return murPlateau[x][y];	}
-	public void setMurPlateau(int value, int x, int y) {	this.murPlateau[x][y] = value; }
 	
 	public Pieces getListePiece() { return listePiece; }
 	public void setListePiece(Pieces listePiece) { this.listePiece = listePiece; }
@@ -30,7 +26,7 @@ public class Plateau extends Parent {
 				casePlateau[i][j] = 0;
 			}
 		}
-		murPlateau = new Integer[17][17];
+
 
 		this.listePiece = p;
 		this.listeObstacle = o;

@@ -9,44 +9,45 @@ options
 PARSER_BEGIN(Reader)
 package Parser;
 import java.util.LinkedList;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import Grammaire.*;
 
 public class Reader
 {
-  public static void main(String args []) throws ParseException
+  public static Expression read(Reader parser) throws ParseException
   {
-    Reader parser = new Reader(System.in);
-    while (true)
+    Expression exp = null;
+    System.out.println("Reading from standard input...");
+    System.out.print("Enter an expression : ");
+    try
     {
-      System.out.println("Reading from standard input...");
-      System.out.print("Enter an expression : ");
-      try
-      {
-        Expression exp = Reader.EXPRESSION();
-        //System.out.println("exp=" + exp.toString());
-      }
-      catch (Exception e)
-      {
-        System.out.println("NOK.");
-        System.out.println(e.getMessage());
-        Reader.ReInit(System.in);
-      }
-      catch (Error e)
-      {
-        System.out.println("Oops.");
-        System.out.println(e.getMessage());
-        break;
-      }
+      exp = Reader.EXPRESSION();
+      System.out.println("exp= " + exp.toString());
+    }
+    catch (Exception e)
+    {
+      System.out.println("NOK.");
+      System.out.println(e.getMessage());
+      //Reader.ReInit(System.in);
+    }
+    catch (Error e)
+    {
+      System.out.println("Oops.");
+      System.out.println(e.getMessage());
+    }
+	return exp;
     }
   }
-}
 
 PARSER_END(Reader)
 
 // les caractères ignorés
 SKIP :
 {
-  "'"
+  " "
+| "'"
 | "\t"
 | "\r"
 | "\n"
@@ -123,7 +124,7 @@ TOKEN : /* SPECIALS */
 
     < LACC : "{" >
   | < RACC : "}" >
-  | < STAR : "*" >
+//  | < STAR : "*" >
   | < SEMI : ";" >
 
 }
@@ -167,10 +168,10 @@ Expression EXPRESSION() :
     //System.out.println("Operator=" + exp.toString());
     return exp;
   }
-| < STAR > exp = EXPRESSION()
-  {
-    return Liste.star(exp);
-  }
+//| < STAR > exp = EXPRESSION()
+//  {
+//    return Liste.star(exp);
+//  }
 
 | < LACC > 
   exp = LISTE() 
@@ -179,23 +180,6 @@ Expression EXPRESSION() :
     return exp;
   }
 }
-
-//Expression SEQ() :
-//{
-//  Expression exp1;
-//  Expression
-//}
-//{
-//  exp1 = LISTE() 
-//  {
-//    return exp1;
-//  }
-//
-//  exp1 = OPERATOR()
-//  {
-//    return exp1;
-//  }
-//}
 
 Expression LISTE() :
 {
@@ -206,15 +190,15 @@ Expression LISTE() :
   (
     < SEMI > s2 = EXPRESSION()
   {
-    return Liste.Liste(s1, s2);
+    return (new Liste(s1, s2));
   }
   | < PIPE > s2 = EXPRESSION()
   {
-    return Binaire.pipe(s1, s2);
+    return (new Pipe(s1, s2));
   }
   | < MORETHAN > s2 = EXPRESSION()
   {
-    return Binaire.morethan(s1, s2);
+    return (new Morethan(s1, s2));
   }
   |
   {
@@ -222,7 +206,7 @@ Expression LISTE() :
   }
   )
   {
-    return Nil.Nil();
+    return (new Nil());
   }
 }
 
@@ -235,6 +219,6 @@ Expression OPERATOR() :
   t = < UNAIRE >
   {
     s = t.toString();	
-    return Unaire.Unaire(t.toString());
+    return Dico.get(t.toString());
   }
 }
