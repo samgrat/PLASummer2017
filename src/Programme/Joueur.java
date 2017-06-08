@@ -63,10 +63,10 @@ public class Joueur extends Personnage {
 		r = new Robot(indice_joueur+2);
 		if (indice_joueur == 1) {
 			p.setCasePlateau(indice_joueur, 0, 0);
-			creeJoueur("images/Textures/personnagebleu.png");
+			creeJoueur("images/Textures/persobleu.png");
 		} else if (indice_joueur == 2) {
 			p.setCasePlateau(indice_joueur, 15, 15);
-			creeJoueur("images/Textures/personnagerouge.png");
+			creeJoueur("images/Textures/persorouge.png");
 		}
 	}
 
@@ -83,10 +83,10 @@ public class Joueur extends Personnage {
 		r.setHeight(10);
 		r.setArcWidth(10);
 		r.setArcHeight(10);
-		r.setFill(Color.BLACK);
+		r.setFill(Color.TRANSPARENT);
 		r.setLayoutX(10);
 		r.setLayoutY(55);
-		r.setStroke(Color.WHITE);
+		r.setStroke(Color.TRANSPARENT);
 		this.getChildren().add(r);
 
 		afficherVie();
@@ -98,17 +98,28 @@ public class Joueur extends Personnage {
 		vie1.setHeight(8);
 		vie1.setArcWidth(5);
 		vie1.setArcHeight(5);
-		vie1.setFill(Color.LIGHTGREEN);
+		
+		if (indice_joueur == 1) {
+			vie1.setFill(Color.ROYALBLUE);
+		} else if (indice_joueur == 2) {
+			vie1.setFill(Color.RED);
+		}
+		
 		vie1.setLayoutX(12);
 		vie1.setLayoutY(56);
 		this.getChildren().add(vie1);
-
 		vie2 = new Rectangle();
 		vie2.setWidth(15);
 		vie2.setHeight(8);
 		vie2.setArcWidth(5);
 		vie2.setArcHeight(5);
-		vie2.setFill(Color.LIGHTGREEN);
+
+		if (indice_joueur == 1) {
+			vie2.setFill(Color.ROYALBLUE);
+		} else if (indice_joueur == 2) {
+			vie2.setFill(Color.RED);
+		}
+		
 		vie2.setLayoutX(12 + 15.5);
 		vie2.setLayoutY(56);
 		this.getChildren().add(vie2);
@@ -118,7 +129,13 @@ public class Joueur extends Personnage {
 		vie3.setHeight(8);
 		vie3.setArcWidth(5);
 		vie3.setArcHeight(5);
-		vie3.setFill(Color.LIGHTGREEN);
+
+		if (indice_joueur == 1) {
+			vie3.setFill(Color.ROYALBLUE);
+		} else if (indice_joueur == 2) {
+			vie3.setFill(Color.RED);
+		}
+		
 		vie3.setLayoutX(12 + 31);
 		vie3.setLayoutY(56);
 		this.getChildren().add(vie3);

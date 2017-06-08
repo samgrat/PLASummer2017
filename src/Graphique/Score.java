@@ -34,16 +34,16 @@ public class Score extends Parent {
 		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 		
 		scorej = new Text(String.valueOf(j.Nbr_piece()));
-		scorej.setX(1115);
-		scorej.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
+		scorej.setX(1111);
+		scorej.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 40));
 		scorej.setFontSmoothingType(FontSmoothingType.LCD);
 
 		if (j.Indice_joueur() == 1) {
 		
-			scorej.setFill(Color.BLUE);
-			scorej.setY(430);
+			scorej.setFill(Color.ROYALBLUE);
+			scorej.setY(420);
 
-			nomj1.setFill(Color.BLUE);
+			nomj1.setFill(Color.ROYALBLUE);
 			// centrage du nom du joueur dans l'interface prévue
 			double W1 = nomj1.getBoundsInLocal().getWidth();
 			double H1 = nomj1.getBoundsInLocal().getHeight();
@@ -53,7 +53,7 @@ public class Score extends Parent {
 		else {
 			
 			scorej.setFill(Color.RED);
-			scorej.setY(570);
+			scorej.setY(590);
 			
 			nomj2.setFill(Color.RED);
 			// centrage du nom du joueur dans l'interface prévue
@@ -74,14 +74,14 @@ public class Score extends Parent {
 			// centrage du score du joueur dans l'interface prévue
 			double WS1 = scorej.getBoundsInLocal().getWidth();
 			double HS1 = scorej.getBoundsInLocal().getHeight();
-			scorej.relocate(1125-WS1/2, 420-HS1/2);
+			scorej.relocate(1126-WS1/2, 400-HS1/2);
 		}
 
 		else {
 			// centrage du score du joueur dans l'interface prévue
 			double WS2 = scorej.getBoundsInLocal().getWidth();
 			double HS2 = scorej.getBoundsInLocal().getHeight();
-			scorej.relocate(1125-WS2/2, 560-HS2/2);
+			scorej.relocate(1126-WS2/2, 570-HS2/2);
 		}
 
 	}
