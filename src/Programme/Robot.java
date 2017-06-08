@@ -18,11 +18,11 @@ import javafx.util.Duration;
  */
 public class Robot extends Personnage {
 	private Joueur joueur;
-	ImageView imageRobot;
 	private Plateau plateau;
 	private Expression express;
 	private int count = 0;
-
+	ImageView imageRobot;
+	
 	public Robot(Joueur j, Group root, Plateau p, Expression exp, int x, int y){
 		joueur = j;
 		plateau = p;
@@ -46,11 +46,10 @@ public class Robot extends Personnage {
 		robot.setLayoutY(5 + y * 60);
 		p.setCasePlateau(x, y, joueur.Indice_joueur()+2);
 		root.getChildren().add(robot);
-		//Robot r = this;
 		
 		Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				if(count == 5){
+				if(count == 30){
 					imageRobot.setVisible(false);
 					plateau.setCasePlateau(x, y, 0);
 				} else {
@@ -59,7 +58,7 @@ public class Robot extends Personnage {
 				}
 			}
 		}));
-		tpsVieRobot.setCycleCount(6);
+		tpsVieRobot.setCycleCount(30);
 		tpsVieRobot.play();
 	}
 	
@@ -77,6 +76,12 @@ public class Robot extends Personnage {
 				plateau.setCasePlateau(x, y, joueur.Indice_joueur());
 				imageRobot.setTranslateX(0);
 			} else {
+				if(indice == 2 && joueur.Indice_joueur() == 1)
+				{
+					
+				} else if(indice == 1 && joueur.Indice_joueur() == 2) {
+					
+				}
 				plateau.setCasePlateau(15, y, joueur.Indice_joueur());
 			}
 		} else {

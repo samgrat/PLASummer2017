@@ -16,14 +16,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-	private int t = 50;
+	private int t = 120;
 
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -81,22 +80,7 @@ public class Main extends Application {
 			this.t--;
 			temps.setText("temp : " + String.valueOf(this.t));
 		} else {
-			Rectangle fin = new Rectangle();
-			fin.setX(300);
-			fin.setY(400);
-			fin.setWidth(500);
-			fin.setHeight(200);
-			fin.setArcHeight(500);
-			fin.setArcWidth(50);
-			Text GO = new Text("GAME OVER");
-			GO.setX(450);
-			GO.setY(450);
-			GO.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-			GO.setFill(Color.WHITE);
-
-			root.getChildren().add(fin);
-			root.getChildren().add(GO);
-			root.requestFocus();
+			new End(root);
 		}
 
 	}
