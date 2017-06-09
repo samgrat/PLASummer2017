@@ -47,32 +47,10 @@ public class Main extends Application {
 		Joueur joueur2 = new Joueur(2, p, root, null); Score score2 = new Score(joueur2); joueur2.setScore(score2);
 		
 		Clavier clav = new Clavier(joueur2, joueur1, p, root);
-	
-		Menu menu = new Menu(clav, null);
-
-		root.getChildren().add(p);
-		root.getChildren().add(score1);
-		root.getChildren().add(score2);
-		root.getChildren().add(listePiece);
-		root.getChildren().add(o);
-		root.getChildren().add(joueur1);
-		root.getChildren().add(joueur2);
-		root.getChildren().add(menu);
-		root.getChildren().add(clav);
 
 		InputStream in = new ByteArrayInputStream("{M}".getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
-
-		Joueur joueur1 = new Joueur(1, p, root, exp);
-		Score score1 = new Score(joueur1);
-		joueur1.setScore(score1);
-
-		Joueur joueur2 = new Joueur(2, p, root, exp);
-		Score score2 = new Score(joueur2);
-		joueur2.setScore(score2);
-
-		Clavier clav = new Clavier(joueur2, joueur1, p, root);
 
 		Text temps = new Text("temp : " + String.valueOf(this.t));
 		temps.setX(1055);
@@ -89,6 +67,16 @@ public class Main extends Application {
 		Menu menu = new Menu(clav, timeline);
 
 		root.getChildren().addAll(p, score1, score2, listePiece, o, joueur1, joueur2, menu, clav, temps);
+		
+		root.getChildren().add(p);
+		root.getChildren().add(score1);
+		root.getChildren().add(score2);
+		root.getChildren().add(listePiece);
+		root.getChildren().add(o);
+		root.getChildren().add(joueur1);
+		root.getChildren().add(joueur2);
+		root.getChildren().add(menu);
+		root.getChildren().add(clav);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
