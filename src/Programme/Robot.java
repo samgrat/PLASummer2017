@@ -42,6 +42,8 @@ public class Robot extends Personnage {
 	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Expression exp){
 		robot.setFitWidth(60);
 		robot.setFitHeight(60);
+		robot.setScaleX(1.5);
+		robot.setScaleY(1.5);
 		robot.setLayoutX(5 + x * 60);
 		robot.setLayoutY(5 + y * 60);
 		p.setCasePlateau(x, y, joueur.Indice_joueur()+2);

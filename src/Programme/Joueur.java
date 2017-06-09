@@ -135,7 +135,7 @@ public class Joueur extends Personnage {
 		}
 		
 		vie1.setLayoutX(12);
-		vie1.setLayoutY(56);
+		vie1.setLayoutY(60);
 		this.getChildren().add(vie1);
 		vie2 = new Rectangle();
 		vie2.setWidth(15);
@@ -150,7 +150,7 @@ public class Joueur extends Personnage {
 		}
 		
 		vie2.setLayoutX(12 + 15.5);
-		vie2.setLayoutY(56);
+		vie2.setLayoutY(60);
 		this.getChildren().add(vie2);
 
 		vie3 = new Rectangle();
@@ -166,7 +166,7 @@ public class Joueur extends Personnage {
 		}
 		
 		vie3.setLayoutX(12 + 31);
-		vie3.setLayoutY(56);
+		vie3.setLayoutY(60);
 		this.getChildren().add(vie3);
 	}
 
