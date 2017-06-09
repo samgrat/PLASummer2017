@@ -27,9 +27,9 @@ public class Pieces extends Parent {
 			y = (int) (Math.random() * 16);
 		} while (p.rechercher(x, y) != 0);
 
-		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piece.png")));
-		piece.setScaleX(.5);
-		piece.setScaleY(.5);
+		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piecerose.png")));
+		piece.setScaleX(2.0);
+		piece.setScaleY(2.0);
 		piece.setFitWidth(60);
 		piece.setFitHeight(60);
 		piece.setTranslateX(6 + x * 60);

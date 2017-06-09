@@ -101,6 +101,8 @@ public class Joueur extends Personnage {
 		ImageView joueur = new ImageView(new Image(Main.class.getResourceAsStream(file)));
 		joueur.setFitWidth(60);
 		joueur.setFitHeight(60);
+		joueur.setScaleX(1.5);
+		joueur.setScaleY(1.5);
 		joueur.setLayoutX(5);
 		joueur.setLayoutY(5);
 		this.getChildren().add(joueur);
