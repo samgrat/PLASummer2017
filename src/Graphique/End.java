@@ -9,20 +9,21 @@ import javafx.scene.text.Text;
 
 public class End extends Parent{
 	public End(Group root){
+		
 		Rectangle fin = new Rectangle();
-		fin.setX(300);
-		fin.setY(400);
-		fin.setWidth(500);
-		fin.setHeight(200);
-		fin.setArcHeight(500);
-		fin.setArcWidth(50);
+		fin.setX(350);
+		fin.setY(450);
+		fin.setWidth(275);
+		fin.setHeight(75);;
+		fin.setFill(Color.hsb(0, .0, .15));
+		
 		Text GO = new Text("GAME OVER");
-		GO.setX(450);
-		GO.setY(450);
+		GO.setX(390);
+		GO.setY(500);
 		GO.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		GO.setFill(Color.WHITE);
 
-		root.getChildren().add(fin);
+		// root.getChildren().add(fin);
 		root.getChildren().add(GO);
 		root.requestFocus();
 	}

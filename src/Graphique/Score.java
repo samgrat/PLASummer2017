@@ -26,11 +26,11 @@ public class Score extends Parent {
 		// TODO : scanf pour entrer le nom des joueurs en début de partie 
 		
 		nomj1 = new Text("JOUEUR 1");
-		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
+		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		nomj1.setFontSmoothingType(FontSmoothingType.LCD);
 		
 		nomj2 = new Text("JOUEUR 2");
-		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel.ttf"), 30));
+		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 		
 		scorej = new Text(String.valueOf(j.Nbr_piece()));

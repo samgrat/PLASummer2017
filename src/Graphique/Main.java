@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -52,31 +53,24 @@ public class Main extends Application {
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
-		Text temps = new Text("temp : " + String.valueOf(this.t));
-		temps.setX(1055);
-		temps.setY(500);
-		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		Text temps = new Text(String.valueOf(this.t));
+		temps.setX(1090);
+		temps.setY(505);
+		temps.setFill(Color.hsb(0, .0, .2));
+		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 40));
+		temps.setFontSmoothingType(FontSmoothingType.LCD);
 
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				compteArebour(temps, root);
 			}
 		}));
+		
 		timeline.setCycleCount(Animation.INDEFINITE);
 
 		Menu menu = new Menu(clav, timeline);
 
-		root.getChildren().addAll(p, score1, score2, listePiece, o, joueur1, joueur2, menu, clav, temps);
-		
-		root.getChildren().add(p);
-		root.getChildren().add(score1);
-		root.getChildren().add(score2);
-		root.getChildren().add(listePiece);
-		root.getChildren().add(o);
-		root.getChildren().add(joueur1);
-		root.getChildren().add(joueur2);
-		root.getChildren().add(menu);
-		root.getChildren().add(clav);
+		root.getChildren().addAll(p, score1, score2, listePiece, joueur1, joueur2, menu, clav, temps);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -85,10 +79,15 @@ public class Main extends Application {
 	public void compteArebour(Text temps, Group root) {
 		if (this.t > 0) {
 			this.t--;
-			temps.setText("temp : " + String.valueOf(this.t));
+			temps.setText(String.valueOf(this.t));
 		} else {
 			new End(root);
 		}
+		
+		// centrage du timer dans l'interface prévue
+		double W = temps.getBoundsInLocal().getWidth();
+		double H = temps.getBoundsInLocal().getHeight();
+		temps.relocate(1125-W/2, 485-H/2);
 
 	}
 }
