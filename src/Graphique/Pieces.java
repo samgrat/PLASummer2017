@@ -12,11 +12,17 @@ import javafx.util.Duration;
 
 public class Pieces extends Personnage {
 	private ImageView piece;
-	final int indice_piece = 11;
+	private CouleurPiece couleur;
+	private int indiceCouleur;
+	
 	private Timeline timeline;
 
 	public void stopTimeline(){
 		this.timeline.stop();
+	}
+	
+	public int getIndiceCouleur(){
+		return couleur.getIndice();
 	}
 	
 	public ImageView getImagePiece() {
@@ -27,18 +33,10 @@ public class Pieces extends Personnage {
 		this.piece = imagePiece;
 	}
 
-	public int getIndice_piece() {
-		return indice_piece;
-	}
 
 	public Pieces(Plateau p, Group root) {
 		
-
-
-		
 		int idpiece;
-		
-		
 		
 		p.setListePiece(this);
 		p.incrCompteurPiece();
@@ -59,20 +57,25 @@ public class Pieces extends Personnage {
 		idpiece = (int) (Math.random() * 100);
 		if ((0 <= idpiece) && (idpiece < 25)) {
 			piece = pieceviolette;
+			couleur = CouleurPiece.VIOLET;
 		}
 		
 		else if ((25 <= idpiece) && (idpiece < 50)) {
 			piece = pieceverte;
+			couleur = CouleurPiece.VERT;
 		}
 		
 		else if ((50 <= idpiece) && (idpiece < 60)) {
 			piece = piecerose;
+			couleur = CouleurPiece.ROSE;
 		}
 		
 		else {
 			piece = pieceorange;
+			couleur = CouleurPiece.ORANGE;
 		}
-		
+		this.indiceCouleur = getIndiceCouleur();
+		p.setCasePlateau(x, y, indiceCouleur);
 		piece.setScaleX(2.0);
 		piece.setScaleY(2.0);
 		piece.setFitWidth(60);
@@ -80,7 +83,6 @@ public class Pieces extends Personnage {
 		piece.setTranslateX(6 + x * 60);
 		piece.setTranslateY(6 + y * 60);
 		root.getChildren().add(piece);
-		p.setCasePlateau(x, y, indice_piece);
 		
 		
 		timeline = new Timeline(new KeyFrame(Duration.millis(7000), new EventHandler<ActionEvent>() {
@@ -92,8 +94,9 @@ public class Pieces extends Personnage {
 	}
 	
 	public void delPiece(ImageView piece, int x, int y, Plateau p, Group root){
-		piece.setVisible(false);
 		p.setCasePlateau(x, y, 0);
+		p.delListePiece(p.rechercherPiece(x, y));
+		piece.setVisible(false);
 		new Pieces(p, root);
 	}
 

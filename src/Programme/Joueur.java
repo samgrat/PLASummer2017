@@ -19,21 +19,53 @@ public class Joueur extends Personnage {
 	private int pv = 3;
 	private int indice_joueur;
 
-	private int nbr_boulon;
-	private int nbr_planche;
-	private int nbr_vis;
-	private int nbr_piece;
+	private int pieceViolette = 0;
+	private int pieceVerte = 0;
+	private int pieceRose = 0;
+	private int pieceOrange = 0;
 
 	Rectangle vie1;
 	Rectangle vie2;
 	Rectangle vie3;
 	Group root;
-	private int difficulte = 0;
-	
-	public void setDifficulte(int d){
+	private int difficulte;
+
+	public int getPieceViolette() {
+		return pieceViolette;
+	}
+
+	public void setPieceViolette(int pieceViolette) {
+		this.pieceViolette = pieceViolette;
+	}
+
+	public int getPieceVerte() {
+		return pieceVerte;
+	}
+
+	public void setPieceVerte(int pieceVerte) {
+		this.pieceVerte = pieceVerte;
+	}
+
+	public int getPieceRose() {
+		return pieceRose;
+	}
+
+	public void setPieceRose(int pieceRose) {
+		this.pieceRose = pieceRose;
+	}
+
+	public int getPieceOrange() {
+		return pieceOrange;
+	}
+
+	public void setPieceOrange(int pieceOrange) {
+		this.pieceOrange = pieceOrange;
+	}
+
+	public void setDifficulte(int d) {
 		this.difficulte = d;
 	}
-	
+
 	public Score getScore() {
 		return this.s;
 	}
@@ -42,33 +74,25 @@ public class Joueur extends Personnage {
 		this.s = s;
 	}
 
-	// accesseur indice_joueur
 	public int Indice_joueur() {
 		return indice_joueur;
 	}
 
-	// accesseur nbr_boulon
-	public int Nbr_boulon() {
-		return nbr_boulon;
-	}
-
-	// accesseur nbr_planche
-	public int Nbr_planche() {
-		return nbr_planche;
-	}
-
-	// accesseur niveau_attaque
-	public int Nbr_vis() {
-		return nbr_vis;
-	}
-
-	// accesseur nbr_piece
-	public int Nbr_piece() {
-		return nbr_piece;
-	}
-
-	public void incrPiece() {
-		nbr_piece++;
+	public void incrPiece(int indice) {
+		switch (indice) {
+		case 11:
+			this.pieceViolette++;
+			break;
+		case 12:
+			this.pieceVerte++;
+			break;
+		case 13:
+			this.pieceRose++;
+			break;
+		case 14:
+			this.pieceOrange++;
+			break;
+		}
 	}
 
 	/**
@@ -76,13 +100,10 @@ public class Joueur extends Personnage {
 	 * 
 	 * @param indice
 	 *            1 si joueur 1 ou 2 si joueur 2
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
-	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) { 
-		nbr_boulon = 0;
-		nbr_planche = 0;
-		nbr_vis = 0;
-		nbr_piece = 0;
+	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) {
+		
 		this.exp = exp;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
@@ -174,7 +195,6 @@ public class Joueur extends Personnage {
 			vie3.setVisible(false);
 			break;
 		default:
-			this.nbr_piece = 0;
 			this.pv = 3;
 			vie1.setVisible(true);
 			vie2.setVisible(true);
@@ -189,20 +209,21 @@ public class Joueur extends Personnage {
 		actualiserVie();
 	}
 
-	public void droite() {
+	public void droite() {System.out.println("je suis en " + getX() + ";" + getY());
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (getX()+1  > 15) {
+		if (getX() + 1 > 15) {
 			indice = p.rechercher(0, y);
-			if (indice > 10 || indice == 0 || indice == this.indice_joueur+2) {
+			if (indice > 10 || indice == 0
+					) {
 				setX(0);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(0);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(15, y, indice_joueur);
 			} else {
 				this.perdVie();
@@ -216,21 +237,21 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(this.getTranslateX() + 60);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}
+		}System.out.println("je vais en " + getX() + ";" + getY());
 	}
 
-	public void gauche() {
+	public void gauche() {System.out.println("je suis en " + getX() + ";" + getY());
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (getX()-1 < 0) {
+		if (getX() - 1 < 0) {
 			indice = p.rechercher(15, y);
 			if (indice > 10 || indice == 0) {
 				setX(15);
@@ -238,7 +259,7 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(900);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(0, y, indice_joueur);
 			} else {
 				this.perdVie();
@@ -252,21 +273,21 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(this.getTranslateX() - 60);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}
+		}System.out.println("je vais en " + getX() + ";" + getY());
 	}
 
-	public void monter() {
+	public void monter() {System.out.println("je suis en " + getX() + ";" + getY());
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (getY()-1 < 0) {
+		if (getY() - 1 < 0) {
 			indice = p.rechercher(x, 15);
 			if (indice > 10 || indice == 0) {
 				setY(15);
@@ -274,7 +295,7 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateY(900);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, 0, indice_joueur);
 			} else {
 				this.perdVie();
@@ -288,16 +309,16 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateY(this.getTranslateY() - 60);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}
+		}System.out.println("je vais en " + getX() + ";" + getY());
 	}
 
-	public void descendre() {
+	public void descendre() {System.out.println("je suis en " + getX() + ";" + getY());
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
@@ -310,7 +331,7 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateY(0);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, 15, indice_joueur);
 			} else {
 				this.perdVie();
@@ -324,20 +345,19 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateY(this.getTranslateY() + 60);
-			} else if(indice == this.indice_joueur+2){
+			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}
+		}System.out.println("je vais en " + getX() + ";" + getY());
 	}
 
 	public void invoquerRobot1(Group root) {
-		if (this.nbr_piece >= 0) {
-			this.nbr_piece -= 0;
+		
 			new Robot(this, root, p, exp, x, y, difficulte);
-		}
+		
 	}
 
 	public void invoquerRobot2(Group root) {
