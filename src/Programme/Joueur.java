@@ -104,6 +104,8 @@ public class Joueur extends Personnage {
 
 	public void creeJoueur(String file) {
 		ImageView joueur = new ImageView(new Image(Main.class.getResourceAsStream(file)));
+		joueur.setScaleX(1.2);
+		joueur.setScaleY(1.2);
 		joueur.setFitWidth(60);
 		joueur.setFitHeight(60);
 		joueur.setLayoutX(5);

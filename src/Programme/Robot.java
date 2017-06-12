@@ -40,6 +40,8 @@ public class Robot extends Personnage {
 	}
 	
 	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Expression exp, int difficulte){
+		robot.setScaleX(1.2);
+		robot.setScaleY(1.2);
 		robot.setFitWidth(60);
 		robot.setFitHeight(60);
 		robot.setLayoutX(5 + x * 60);
