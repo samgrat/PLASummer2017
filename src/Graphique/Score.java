@@ -147,6 +147,5 @@ public class Score extends Parent {
 			pieceOrange.relocate(1346 - WOr / 2, 913 - HOr / 2);
 
 		}
-
 	}
 }
