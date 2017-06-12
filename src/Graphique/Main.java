@@ -2,6 +2,7 @@ package Graphique;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 import Grammaire.Expression;
 import Parser.ParseException;
@@ -17,12 +18,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-	private int t = 120;
+	private int t = 151;
 
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -34,11 +36,9 @@ public class Main extends Application {
 
 		Group root = new Group();
 
-		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
+		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
 
-		Obstacles o = new Obstacles();
-
-		Plateau p = new Plateau(o, root);
+		Plateau p = new Plateau(root);
 
 		InputStream in = new ByteArrayInputStream("{M}".getBytes());
 	    Reader parser = new Reader(in);
@@ -54,33 +54,48 @@ public class Main extends Application {
 
 		Clavier clav = new Clavier(joueur2, joueur1, p, root);
 
-		Text temps = new Text("temp : " + String.valueOf(this.t));
-		temps.setX(1055);
-		temps.setY(500);
-		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-
+		Text temps = new Text(String.valueOf(this.t));
+		temps.setX(1090);
+		temps.setY(505);
+		temps.setFill(Color.hsb(0, .0, .2));
+		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 40));
+		temps.setFontSmoothingType(FontSmoothingType.LCD);
+		compteArebour(temps, root);
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				compteArebour(temps, root);
 			}
 		}));
+		
 		timeline.setCycleCount(Animation.INDEFINITE);
+
 
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 
-		root.getChildren().addAll(p, score1, score2, o, joueur1, joueur2, menu, clav, temps);
+		root.getChildren().addAll(p, score1, score2, joueur1, joueur2, menu, clav, temps);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
-	public void compteArebour(Text temps, Group root) {
+public void compteArebour(Text temps, Group root) {
+		
+		DecimalFormat formater = new DecimalFormat("00");
+		
 		if (this.t > 0) {
 			this.t--;
-			temps.setText("temp : " + String.valueOf(this.t));
+			String min = String.valueOf(this.t / 60);
+			String sec = formater.format(this.t % 60);
+			temps.setText(min + ":" + sec);
 		} else {
 			new End(root);
 		}
+		
+		// centrage du timer dans l'interface prvue
+		double W = temps.getBoundsInLocal().getWidth();
+		double H = temps.getBoundsInLocal().getHeight();
+		temps.relocate(1125-W/2, 485-H/2);
 
 	}
+
 }

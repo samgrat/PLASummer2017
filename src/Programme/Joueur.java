@@ -92,12 +92,12 @@ public class Joueur extends Personnage {
 			setX(0);
 			setY(0);
 			p.setCasePlateau(indice_joueur, x, y);
-			creeJoueur("images/Textures/personnagebleu.png");
+			creeJoueur("images/Textures/persobleu.png");
 		} else if (indice_joueur == 2) {
 			setX(15);
 			setY(15);
 			p.setCasePlateau(indice_joueur, x, y);
-			creeJoueur("images/Textures/personnagerouge.png");
+			creeJoueur("images/Textures/persorouge.png");
 		}
 	}
 

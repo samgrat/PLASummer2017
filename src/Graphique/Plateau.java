@@ -13,7 +13,6 @@ public class Plateau extends Parent {
 	private Integer[][] casePlateau;
 	private Pieces[] listePiece;
 	private int compteurPiece = 0;
-	private Obstacles listeObstacle;
 
 	public Integer getCasePlateau(int x, int y) {
 		return casePlateau[x][y];
@@ -29,7 +28,7 @@ public class Plateau extends Parent {
 		this.listePiece[compteurPiece] = piece;
 	}
 
-	public Plateau(Obstacles o, Group root) {
+	public Plateau(Group root) {
 		this.root = root;
 		casePlateau = new Integer[16][16];
 		for (int i = 0; i < casePlateau.length; i++) {
@@ -38,7 +37,6 @@ public class Plateau extends Parent {
 			}
 		}
 		this.listePiece = new Pieces[256];
-		this.listeObstacle = o;
 
 		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/interface.png")));
 
@@ -63,14 +61,7 @@ public class Plateau extends Parent {
 			}
 		}
 
-		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
-		// listeObstacle.addObstacles(this);
-		// listeObstacle.addObstacles(this);
-		// listeObstacle.addObstacles(this);
+		new Obstacles(this);
 		new Pieces(this, root);
 		new Pieces(this, root);
 	}

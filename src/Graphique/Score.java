@@ -5,11 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 
 public class Score extends Parent {
-	Text piece;
-	Text joueur;
+	Text scorej;
+	Text nomj1;
+	Text nomj2;
 	Rectangle panneau;
 	Joueur j;
 
@@ -18,40 +20,67 @@ public class Score extends Parent {
 		this.j = j;
 
 		
-		joueur = new Text("NOM JOUEUR");
+		// TODO : scanf pour entrer le nom des joueurs en dbut de partie 
 		
-		// TODO : centrer les noms dans les cases correspondantes
-		// TODO : scanf pour entrer le nom des joueurs en début de partie 
+		nomj1 = new Text("JOUEUR 1");
+		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		nomj1.setFontSmoothingType(FontSmoothingType.LCD);
 		
-		joueur.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		joueur.setX(1025);
+		nomj2 = new Text("JOUEUR 2");
+		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 		
-		piece = new Text(String.valueOf(j.Nbr_piece()));
+		scorej = new Text(String.valueOf(j.Nbr_piece()));
+		scorej.setX(1111);
+		scorej.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 40));
+		scorej.setFontSmoothingType(FontSmoothingType.LCD);
 
-		// TODO : centrer le score dans les cases correspondantes
-		
-		piece.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 20));
-		piece.setX(1120);
-		
 		if (j.Indice_joueur() == 1) {
-
-			piece.setFill(Color.BLUE);
-			piece.setY(425);
-			joueur.setFill(Color.BLUE);
-			joueur.setY(45);
-		} else {
-			piece.setFill(Color.RED);
-			piece.setY(565);
-			
-			joueur.setFill(Color.RED);
-			joueur.setY(950);
-		}
 		
-		this.getChildren().add(piece);
-		this.getChildren().add(joueur);
+			scorej.setFill(Color.ROYALBLUE);
+			scorej.setY(420);
+
+			nomj1.setFill(Color.ROYALBLUE);
+			// centrage du nom du joueur dans l'interface prvue
+			double W1 = nomj1.getBoundsInLocal().getWidth();
+			double H1 = nomj1.getBoundsInLocal().getHeight();
+			nomj1.relocate(1125-W1/2, 30-H1/2);
+		} 
+		
+		else {
+			
+			scorej.setFill(Color.RED);
+			scorej.setY(590);
+			
+			nomj2.setFill(Color.RED);
+			// centrage du nom du joueur dans l'interface prvue
+			double W2 = nomj2.getBoundsInLocal().getWidth();
+			double H2 = nomj2.getBoundsInLocal().getHeight();
+			nomj2.relocate(1125-W2/2, 938-H2/2);
+		}
+
+		this.getChildren().addAll(scorej, nomj1, nomj2);
+
 	}
 
 	public void actuScore() {
-		piece.setText(String.valueOf(j.Nbr_piece()));
+
+		scorej.setText(String.valueOf(j.Nbr_piece()));
+		
+		if (j.Indice_joueur() == 1) {
+			// centrage du score du joueur dans l'interface prvue
+			double WS1 = scorej.getBoundsInLocal().getWidth();
+			double HS1 = scorej.getBoundsInLocal().getHeight();
+			scorej.relocate(1126-WS1/2, 400-HS1/2);
+		}
+
+		else {
+			// centrage du score du joueur dans l'interface prvue
+			double WS2 = scorej.getBoundsInLocal().getWidth();
+			double HS2 = scorej.getBoundsInLocal().getHeight();
+			scorej.relocate(1126-WS2/2, 570-HS2/2);
+		}
+
 	}
+	
 }
