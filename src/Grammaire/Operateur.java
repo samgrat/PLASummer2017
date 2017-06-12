@@ -8,6 +8,5 @@ public interface Operateur extends Expression{
 	
 	@Override
 	public void exec();
-	
 
 }

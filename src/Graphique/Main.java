@@ -18,8 +18,15 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
 	}
-
 	
+	private Expression StringtoExpr(String s) throws ParseException{
+		
+		InputStream in = new ByteArrayInputStream(s.getBytes());
+	    Reader parser = new Reader(in);
+		Expression exp = Reader.read(parser);
+		return exp;
+	}
+
 	@Override
 	public void start(Stage primaryStage) throws ParseException {
 		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
@@ -32,9 +39,7 @@ public class Main extends Application {
 
 		Plateau p = new Plateau(listePiece, o);
 		
-		InputStream in = new ByteArrayInputStream("{M}".getBytes());
-	    Reader parser = new Reader(in);
-		Expression exp = Reader.read(parser);
+		Expression exp = StringtoExpr("{M}");
 		
 		Joueur joueur1 = new Joueur(1, p, root, exp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
 		

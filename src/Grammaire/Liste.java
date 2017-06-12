@@ -41,5 +41,9 @@ public class Liste implements Expression{
 		head.exec(robot);
 		tail.exec(robot);
 	}
+	
+	public String typeObject(){
+		return "Liste";
+	}
 
 }

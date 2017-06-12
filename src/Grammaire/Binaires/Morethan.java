@@ -1,5 +1,6 @@
 package Grammaire.Binaires;
 
+import java.util.List;
 import java.util.Random;
 
 import Grammaire.Binaire;
@@ -9,6 +10,10 @@ import Programme.Robot;
 
 public class Morethan extends Binaire{
 	Expression head, tail;
+	
+//	public List<Expression> getObject(){
+//		return this;
+//	}
 	
 	/**
 	 * @param s1 head
