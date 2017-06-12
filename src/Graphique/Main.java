@@ -58,7 +58,8 @@ public class Main extends Application {
 		temps.setX(1090);
 		temps.setY(505);
 		temps.setFill(Color.hsb(0, .0, .2));
-		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 40));
+
+		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
 		temps.setFontSmoothingType(FontSmoothingType.LCD);
 		compteArebour(temps, root);
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {

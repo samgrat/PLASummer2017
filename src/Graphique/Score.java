@@ -9,6 +9,7 @@ import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 
 public class Score extends Parent {
+
 	Text scorej, pieceViolette, pieceVerte, pieceRose, pieceOrange;
 	Rectangle panneau;
 	Joueur j;
@@ -26,8 +27,7 @@ public class Score extends Parent {
 		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 
-		scorej = new Text(
-				String.valueOf(j.getPieceOrange() + j.getPieceRose() + j.getPieceVerte() + j.getPieceViolette()));
+		scorej = new Text(String.valueOf(j.getPieceOrange() + j.getPieceRose() + j.getPieceVerte() + j.getPieceViolette()));
 		scorej.setX(1111);
 		scorej.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 40));
 		scorej.setFontSmoothingType(FontSmoothingType.LCD);
@@ -49,9 +49,10 @@ public class Score extends Parent {
 		pieceOrange.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		pieceOrange.setFontSmoothingType(FontSmoothingType.LCD);
 		int a = 0;
+
+
 		if (j.Indice_joueur() == 1) {
 
-			
 			scorej.setFill(Color.ROYALBLUE);
 			scorej.setY(420);
 
@@ -85,7 +86,6 @@ public class Score extends Parent {
 	}
 
 	public void actuScore() {
-
 		scorej.setText(String.valueOf(j.getPieceOrange() + j.getPieceRose() + j.getPieceVerte() + j.getPieceViolette()));
 		pieceViolette.setText(String.valueOf(j.getPieceViolette()));
 		pieceVerte.setText(String.valueOf(j.getPieceVerte()));
@@ -104,8 +104,8 @@ public class Score extends Parent {
 			double WS2 = scorej.getBoundsInLocal().getWidth();
 			double HS2 = scorej.getBoundsInLocal().getHeight();
 			scorej.relocate(1126 - WS2 / 2, 570 - HS2 / 2);
+
 		}
 
 	}
-
 }

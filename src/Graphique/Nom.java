@@ -65,6 +65,7 @@ public class Nom extends Application {
         Scene scene = new Scene(root, 400, 225);
 		
         primaryStage.setTitle("Sélection des noms des joueurs");
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }

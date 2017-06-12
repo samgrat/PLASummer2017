@@ -102,6 +102,7 @@ public class Joueur extends Personnage {
 	 *            1 si joueur 1 ou 2 si joueur 2
 	 * @throws ParseException
 	 */
+
 	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) {
 		
 		this.exp = exp;
@@ -124,6 +125,8 @@ public class Joueur extends Personnage {
 
 	public void creeJoueur(String file) {
 		ImageView joueur = new ImageView(new Image(Main.class.getResourceAsStream(file)));
+		joueur.setScaleX(1.2);
+		joueur.setScaleY(1.2);
 		joueur.setFitWidth(60);
 		joueur.setFitHeight(60);
 		joueur.setLayoutX(5);
@@ -135,10 +138,10 @@ public class Joueur extends Personnage {
 		r.setHeight(10);
 		r.setArcWidth(10);
 		r.setArcHeight(10);
-		r.setFill(Color.BLACK);
+		r.setFill(Color.TRANSPARENT);
 		r.setLayoutX(10);
 		r.setLayoutY(55);
-		r.setStroke(Color.WHITE);
+		r.setStroke(Color.TRANSPARENT);
 		this.getChildren().add(r);
 
 		afficherVie();
@@ -146,33 +149,51 @@ public class Joueur extends Personnage {
 
 	public void afficherVie() {
 		vie1 = new Rectangle();
-		vie1.setWidth(15);
+		vie1.setWidth(14);
 		vie1.setHeight(8);
-		vie1.setArcWidth(5);
-		vie1.setArcHeight(5);
-		vie1.setFill(Color.LIGHTGREEN);
 		vie1.setLayoutX(12);
 		vie1.setLayoutY(56);
+		
+		if (indice_joueur == 1) {
+			vie1.setFill(Color.ROYALBLUE);
+		}
+		
+		else {
+			vie1.setFill(Color.RED);
+		}
+		
 		this.getChildren().add(vie1);
 
 		vie2 = new Rectangle();
-		vie2.setWidth(15);
+		vie2.setWidth(14);
 		vie2.setHeight(8);
-		vie2.setArcWidth(5);
-		vie2.setArcHeight(5);
-		vie2.setFill(Color.LIGHTGREEN);
 		vie2.setLayoutX(12 + 15.5);
 		vie2.setLayoutY(56);
+		
+		if (indice_joueur == 1) {
+			vie2.setFill(Color.ROYALBLUE);
+		}
+		
+		else {
+			vie2.setFill(Color.RED);
+		}
+		
 		this.getChildren().add(vie2);
 
 		vie3 = new Rectangle();
-		vie3.setWidth(15);
+		vie3.setWidth(14);
 		vie3.setHeight(8);
-		vie3.setArcWidth(5);
-		vie3.setArcHeight(5);
-		vie3.setFill(Color.LIGHTGREEN);
 		vie3.setLayoutX(12 + 31);
 		vie3.setLayoutY(56);
+		
+		if (indice_joueur == 1) {
+			vie3.setFill(Color.ROYALBLUE);
+		}
+		
+		else {
+			vie3.setFill(Color.RED);
+		}
+		
 		this.getChildren().add(vie3);
 	}
 
@@ -214,10 +235,9 @@ public class Joueur extends Personnage {
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (getX() + 1 > 15) {
+		if (getX()+1  > 15) {
 			indice = p.rechercher(0, y);
-			if (indice > 10 || indice == 0
-					) {
+			if (indice > 10 || indice == 0) {
 				setX(0);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
@@ -355,8 +375,7 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		
-			new Robot(this, root, p, exp, x, y, difficulte);
+		new Robot(this, root, p, exp, x, y, difficulte);
 		
 	}
 

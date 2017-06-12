@@ -14,7 +14,6 @@ public class Pieces extends Personnage {
 	private ImageView piece;
 	private CouleurPiece couleur;
 	private int indiceCouleur;
-	
 	private Timeline timeline;
 
 	public void stopTimeline(){
@@ -33,10 +32,10 @@ public class Pieces extends Personnage {
 		this.piece = imagePiece;
 	}
 
-
 	public Pieces(Plateau p, Group root) {
 		
 		int idpiece;
+
 		
 		p.setListePiece(this);
 		p.incrCompteurPiece();
@@ -57,6 +56,7 @@ public class Pieces extends Personnage {
 		idpiece = (int) (Math.random() * 100);
 		if ((0 <= idpiece) && (idpiece < 25)) {
 			piece = pieceviolette;
+
 			couleur = CouleurPiece.VIOLET;
 		}
 		
@@ -76,6 +76,7 @@ public class Pieces extends Personnage {
 		}
 		this.indiceCouleur = getIndiceCouleur();
 		p.setCasePlateau(x, y, indiceCouleur);
+
 		piece.setScaleX(2.0);
 		piece.setScaleY(2.0);
 		piece.setFitWidth(60);
@@ -97,6 +98,7 @@ public class Pieces extends Personnage {
 		p.setCasePlateau(x, y, 0);
 		p.delListePiece(p.rechercherPiece(x, y));
 		piece.setVisible(false);
+
 		new Pieces(p, root);
 	}
 
