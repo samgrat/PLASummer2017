@@ -76,11 +76,9 @@ public class Plateau extends Parent {
 	}
 
 	public void ramasser(int x, int y, Joueur j, int indice) {
-		System.out.println("je ramasse " + indice);
 		switch (indice) {
 		case 11:
 			int i = rechercherPiece(x, y);
-			System.out.println(i);
 			if (i != -1) {
 				casePlateau[x][y] = 0;
 				j.incrPiece();
@@ -102,9 +100,7 @@ public class Plateau extends Parent {
 		for (int j = 0; j < 256; j++) {
 			if (listePiece[j] != null) {
 				xP = listePiece[j].getX();
-				System.out.println(xP);
 				yP = listePiece[j].getY();
-				System.out.println(yP);
 			}
 			if (x == xP && y == yP) {
 				return i;

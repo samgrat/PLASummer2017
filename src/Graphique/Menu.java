@@ -1,6 +1,7 @@
 package Graphique;
 
 
+import Programme.Joueur;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 public class Menu extends Parent {
-	public Menu(Clavier clav, Timeline timeline){
+	public Menu(Clavier clav, Timeline timeline, Joueur j1, Joueur j2){
 		Button boutonMode1 = new Button();
 		Button boutonMode2 = new Button();
 		Button boutonMode3 = new Button();
@@ -21,6 +22,8 @@ public class Menu extends Parent {
 				boutonMode1.setVisible(false);
 				boutonMode2.setVisible(false);
 				boutonMode3.setVisible(false);
+				j1.setDifficulte(1);
+				j2.setDifficulte(1);
 				System.out.println("Start Game");
 				clav.requestFocus();
 				timeline.play();
@@ -36,6 +39,8 @@ public class Menu extends Parent {
 				boutonMode1.setVisible(false);
 				boutonMode2.setVisible(false);
 				boutonMode3.setVisible(false);
+				j1.setDifficulte(2);
+				j2.setDifficulte(2);
 				System.out.println("Start Game");
 				clav.requestFocus();
 				timeline.play();
@@ -51,6 +56,8 @@ public class Menu extends Parent {
 				boutonMode1.setVisible(false);
 				boutonMode2.setVisible(false);
 				boutonMode3.setVisible(false);
+				j1.setDifficulte(4);
+				j2.setDifficulte(4);
 				System.out.println("Start Game");
 				clav.requestFocus();
 				timeline.play();

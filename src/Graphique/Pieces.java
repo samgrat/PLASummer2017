@@ -48,7 +48,7 @@ public class Pieces extends Personnage {
 		imagePiece.setTranslateX(5 + x * 60);
 		imagePiece.setTranslateY(5 + y * 60);
 		root.getChildren().add(imagePiece);
-		p.setCasePlateau(x, y, indice_piece); System.out.println("p = " + p.getCasePlateau(x, y));
+		p.setCasePlateau(x, y, indice_piece);
 		
 		timeline = new Timeline(new KeyFrame(Duration.millis(7000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {

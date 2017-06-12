@@ -23,7 +23,7 @@ public class Robot extends Personnage {
 	private int count = 0;
 	ImageView imageRobot;
 	
-	public Robot(Joueur j, Group root, Plateau p, Expression exp, int x, int y){
+	public Robot(Joueur j, Group root, Plateau p, Expression exp, int x, int y, int difficulte){
 		joueur = j;
 		plateau = p;
 		express = exp;
@@ -32,14 +32,14 @@ public class Robot extends Personnage {
 		
 		if (j.Indice_joueur() == 1) {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
-			addRobot(getX(), getY(), plateau, root, imageRobot, exp);
+			addRobot(getX(), getY(), plateau, root, imageRobot, exp, difficulte);
 		} else {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge.png")));
-			addRobot(getX(), getY(), plateau, root, imageRobot, exp);
+			addRobot(getX(), getY(), plateau, root, imageRobot, exp, difficulte);
 		}
 	}
 	
-	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Expression exp){
+	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Expression exp, int difficulte){
 		robot.setFitWidth(60);
 		robot.setFitHeight(60);
 		robot.setLayoutX(5 + x * 60);
@@ -47,9 +47,9 @@ public class Robot extends Personnage {
 		p.setCasePlateau(getX(), getY(), joueur.Indice_joueur()+2);
 		root.getChildren().add(robot);
 		
-		Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+		Timeline tpsVieRobot = new Timeline(new KeyFrame(Duration.millis(1000/difficulte), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				if(count == 30){
+				if(count == 50*difficulte){
 					imageRobot.setVisible(false);
 					plateau.setCasePlateau(getX(), getY(), 0);
 				} else {
@@ -58,7 +58,7 @@ public class Robot extends Personnage {
 				}
 			}
 		}));
-		tpsVieRobot.setCycleCount(31);
+		tpsVieRobot.setCycleCount(50*difficulte+1);
 		tpsVieRobot.play();
 	}
 	

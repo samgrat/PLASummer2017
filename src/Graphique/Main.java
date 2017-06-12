@@ -66,7 +66,7 @@ public class Main extends Application {
 		}));
 		timeline.setCycleCount(Animation.INDEFINITE);
 
-		Menu menu = new Menu(clav, timeline);
+		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 
 		root.getChildren().addAll(p, score1, score2, o, joueur1, joueur2, menu, clav, temps);
 
