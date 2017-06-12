@@ -10,10 +10,24 @@ import javafx.scene.shape.Rectangle;
 
 public class Plateau extends Parent {
 	private Group root;
+	private Joueur j1, j2;
 	private Integer[][] casePlateau;
 	private Pieces[] listePiece;
 	private int compteurPiece = 0;
+	
+	public void setJoueur(Joueur j1, Joueur j2){
+		this.j1 = j1;
+		this.j2 = j2;
+	}
 
+	public Joueur getJoueur1(int indice){
+		if (indice == 1) {
+			return j1;
+		} else if(indice == 2){
+			return this.j2;
+		} else return null;
+	}
+	
 	public void delListePiece(int indiceTableau){
 		listePiece[indiceTableau] = null;
 	}
@@ -71,12 +85,9 @@ public class Plateau extends Parent {
 	}
 
 	public void ramasser(int x, int y, Joueur j, int indice) {
-			System.out.println("x = " + x + " y = " + y);
 			int i = rechercherPiece(x, y);
-			System.out.println("i =" + i);
 			if (i != -1) {
 				casePlateau[x][y] = 0;
-				System.out.println("IndiceCouleur = " + listePiece[i].getIndiceCouleur());
 				j.incrPiece(listePiece[i].getIndiceCouleur());
 				listePiece[i].stopTimeline();
 				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
