@@ -36,10 +36,9 @@ public class Main extends Application {
 
 		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
 
-		Pieces listePiece = new Pieces();
 		Obstacles o = new Obstacles();
 
-		Plateau p = new Plateau(listePiece, o);
+		Plateau p = new Plateau(o, root);
 
 		InputStream in = new ByteArrayInputStream("{M}".getBytes());
 	    Reader parser = new Reader(in);
@@ -69,7 +68,7 @@ public class Main extends Application {
 
 		Menu menu = new Menu(clav, timeline);
 
-		root.getChildren().addAll(p, score1, score2, listePiece, o, joueur1, joueur2, menu, clav, temps);
+		root.getChildren().addAll(p, score1, score2, o, joueur1, joueur2, menu, clav, temps);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();

@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 
 public class Obstacles extends Parent {
 	private ImageView[][] listeObstacle;
-	final int indice_obstacles = 3;
+	final int indice_obstacles = 5;
 	
 	public Obstacles(){
 		listeObstacle = new ImageView[16][16];
@@ -19,27 +19,26 @@ public class Obstacles extends Parent {
 		int taille = (int) (1 + Math.random() * 5);
 		
 		ImageView obstacle = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/obstacle.png")));
-		listeObstacle[x][y] = obstacle;
-		obstacle.setFitWidth(60);
-		obstacle.setFitHeight(60);
-		obstacle.setTranslateX(5 + x * 60);
-		obstacle.setTranslateY(5 + y * 60);
-		obstacle.setVisible(true);
-		listeObstacle[x][y] = obstacle;
 
+		obstacle.setFitHeight(60);
+		obstacle.setLayoutX(5 + (x) * 60);
+		obstacle.setLayoutY(5 + (y) * 60);
+		listeObstacle[x][y] = obstacle;
 		if(direction == 0){
 			obstacle.setFitWidth(60*taille);
 			for (int i = 0; i < taille; i++) {
 				p.setCasePlateau(x+i, y, indice_obstacles);
+				System.out.println("ObstacleH : " + "x " + (x+i) + " y+i " + y + " id_obs " + indice_obstacles);
 			}
 		} else {
-			obstacle.setTranslateX(5 + (x-1) * 60);
-			obstacle.setTranslateY(5 + (y+1) * 60);
-			obstacle.setFitWidth(180);
+			obstacle.setTranslateX(-(taille-1)*30);
+			obstacle.setTranslateY((taille-1)*30);
+			obstacle.setFitWidth(60*taille);
 			obstacle.setRotate(90);
-			p.setCasePlateau(x, y, indice_obstacles);
-			p.setCasePlateau(x, y+1, indice_obstacles);
-			p.setCasePlateau(x, y+2, indice_obstacles);
+			for (int i = 0; i < taille; i++) {
+				p.setCasePlateau(x, y+i, indice_obstacles);
+				System.out.println("ObstacleV : " + "x " + x + " y+i " + (y+i) + "id_obs " + indice_obstacles);
+			}
 		}
 		this.getChildren().add(obstacle);
 	}

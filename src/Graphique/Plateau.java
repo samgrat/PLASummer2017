@@ -1,6 +1,7 @@
 package Graphique;
 
 import Programme.Joueur;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,26 +9,35 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Plateau extends Parent {
+	private Group root;
 	private Integer[][] casePlateau;
-	private Pieces listePiece;
+	private Pieces[] listePiece;
+	private int compteurPiece = 0;
 	private Obstacles listeObstacle;
-	
-	public Integer getCasePlateau(int x, int y) { return casePlateau[x][y]; }
-	public void setCasePlateau(int x, int y, int value) { if(x<16 && x>=0 && y<16 && y>=0){this.casePlateau[x][y] = value; }}
-	
-	public Pieces getListePiece() { return listePiece; }
-	public void setListePiece(Pieces listePiece) { this.listePiece = listePiece; }
-	
-	public Plateau(Pieces p, Obstacles o){
-		
+
+	public Integer getCasePlateau(int x, int y) {
+		return casePlateau[x][y];
+	}
+
+	public void setCasePlateau(int x, int y, int value) {
+		if (x < 16 && x >= 0 && y < 16 && y >= 0) {
+			this.casePlateau[x][y] = value;
+		}
+	}
+
+	public void setListePiece(Pieces piece) {
+		this.listePiece[compteurPiece] = piece;
+	}
+
+	public Plateau(Obstacles o, Group root) {
+		this.root = root;
 		casePlateau = new Integer[16][16];
 		for (int i = 0; i < casePlateau.length; i++) {
 			for (int j = 0; j < casePlateau.length; j++) {
 				casePlateau[i][j] = 0;
 			}
 		}
-
-		this.listePiece = p;
+		this.listePiece = new Pieces[256];
 		this.listeObstacle = o;
 
 		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/interface.png")));
@@ -52,36 +62,63 @@ public class Plateau extends Parent {
 				i = 15;
 			}
 		}
-		
-		listePiece.addPieces(this);
-		listePiece.addPieces(this);
+
 		listeObstacle.addObstacles(this);
 		listeObstacle.addObstacles(this);
 		listeObstacle.addObstacles(this);
 		listeObstacle.addObstacles(this);
 		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
-		listeObstacle.addObstacles(this);
+		// listeObstacle.addObstacles(this);
+		// listeObstacle.addObstacles(this);
+		// listeObstacle.addObstacles(this);
+		new Pieces(this, root);
+		new Pieces(this, root);
 	}
-	
+
 	public void ramasser(int x, int y, Joueur j, int indice) {
+		System.out.println("je ramasse " + indice);
 		switch (indice) {
-		case 3: 
 		case 11:
-			listePiece.getPiece(x, y).setVisible(false);
-			listePiece.setPiece(x, y, null);
-			casePlateau[x][y] = 0;
-			j.incrPiece();
-			listePiece.addPieces(this);
+			int i = rechercherPiece(x, y);
+			System.out.println(i);
+			if (i != -1) {
+				casePlateau[x][y] = 0;
+				j.incrPiece();
+				listePiece[i].stopTimeline();
+				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
+				listePiece[i] = null;
+			}
 			break;
 		case 12:
-			
+
 		default:
 			break;
 		}
-		
+
 	}
-	
-	public int rechercher(int x, int y) { return casePlateau[x][y]; }
+
+	public int rechercherPiece(int x, int y) {
+		int i = 0, xP = 0, yP = 0;
+		for (int j = 0; j < 256; j++) {
+			if (listePiece[j] != null) {
+				xP = listePiece[j].getX();
+				System.out.println(xP);
+				yP = listePiece[j].getY();
+				System.out.println(yP);
+			}
+			if (x == xP && y == yP) {
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
+
+	public int rechercher(int x, int y) {
+		return casePlateau[x][y];
+	}
+
+	public void incrCompteurPiece() {
+		this.compteurPiece++;
+	}
 }

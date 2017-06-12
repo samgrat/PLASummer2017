@@ -157,7 +157,7 @@ public class Joueur extends Personnage {
 			vie1.setVisible(false);
 			vie2.setVisible(false);
 			vie3.setVisible(false);
-			new End(root);
+			//new End(root);
 			break;
 		case 1:
 			vie1.setVisible(true);
@@ -286,7 +286,7 @@ public class Joueur extends Personnage {
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateY() + 60 > 959) {
+		if (getY() + 1 > 15) {
 			indice = p.rechercher(x, 0);
 			if (indice > 10 || indice == 0) {
 				setY(0);
@@ -314,8 +314,8 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		if (this.nbr_piece >= 2) {
-			this.nbr_piece -= 2;
+		if (this.nbr_piece >= 0) {
+			this.nbr_piece -= 0;
 			new Robot(this, root, p, exp, x, y);
 		}
 	}
