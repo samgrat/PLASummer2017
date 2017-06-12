@@ -2,6 +2,8 @@ package Graphique;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.DecimalFormat;
+
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
@@ -23,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-	private int t = 120;
+	private int t = 150;
 
 	public static void main(String[] args) {
 		// Application.launch(Nom.class, args);
@@ -77,9 +79,14 @@ public class Main extends Application {
 	}
 
 	public void compteArebour(Text temps, Group root) {
+		
+		DecimalFormat formater = new DecimalFormat("00");
+		
 		if (this.t > 0) {
 			this.t--;
-			temps.setText(String.valueOf(this.t));
+			String min = String.valueOf(this.t / 60);
+			String sec = formater.format(this.t % 60);
+			temps.setText(min + ":" + sec);
 		} else {
 			new End(root);
 		}

@@ -47,7 +47,7 @@ public class Score extends Parent {
 			// centrage du nom du joueur dans l'interface prévue
 			double W1 = nomj1.getBoundsInLocal().getWidth();
 			double H1 = nomj1.getBoundsInLocal().getHeight();
-			nomj1.relocate(1125-W1/2, 33-H1/2);
+			nomj1.relocate(1125-W1/2, 30-H1/2);
 		} 
 		
 		else {
@@ -59,7 +59,7 @@ public class Score extends Parent {
 			// centrage du nom du joueur dans l'interface prévue
 			double W2 = nomj2.getBoundsInLocal().getWidth();
 			double H2 = nomj2.getBoundsInLocal().getHeight();
-			nomj2.relocate(1125-W2/2, 940-H2/2);
+			nomj2.relocate(1125-W2/2, 938-H2/2);
 		}
 
 		this.getChildren().addAll(scorej, nomj1, nomj2);
