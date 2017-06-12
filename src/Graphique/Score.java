@@ -68,6 +68,7 @@ public class Score extends Parent {
 
 		else {
 			a = 502;
+			
 			scorej.setFill(Color.RED);
 			scorej.setY(590);
 
