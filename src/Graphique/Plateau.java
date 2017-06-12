@@ -14,6 +14,10 @@ public class Plateau extends Parent {
 	private Pieces[] listePiece;
 	private int compteurPiece = 0;
 
+	public void delListePiece(int indiceTableau){
+		listePiece[indiceTableau] = null;
+	}
+
 	public Integer getCasePlateau(int x, int y) {
 		return casePlateau[x][y];
 	}
@@ -67,27 +71,24 @@ public class Plateau extends Parent {
 	}
 
 	public void ramasser(int x, int y, Joueur j, int indice) {
-		switch (indice) {
-		case 11:
+
+			System.out.println("x = " + x + " y = " + y);
 			int i = rechercherPiece(x, y);
+			System.out.println("i =" + i);
 			if (i != -1) {
 				casePlateau[x][y] = 0;
-				j.incrPiece();
+				System.out.println("IndiceCouleur = " + listePiece[i].getIndiceCouleur());
+				j.incrPiece(listePiece[i].getIndiceCouleur());
 				listePiece[i].stopTimeline();
 				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
 				listePiece[i] = null;
 			}
-			break;
-		case 12:
-
-		default:
-			break;
-		}
-
 	}
 
 	public int rechercherPiece(int x, int y) {
-		int i = 0, xP = 0, yP = 0;
+
+		int i = 0, xP = -1, yP = -1;
+
 		for (int j = 0; j < 256; j++) {
 			if (listePiece[j] != null) {
 				xP = listePiece[j].getX();
