@@ -2,6 +2,7 @@ package I_O;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 
 public class fichier {
 	public static ArrayList<String> lecture(String fichier) {
-		String chaine = "";
 
 		ArrayList<String> tab = new ArrayList<String>();
 
@@ -25,7 +25,7 @@ public class fichier {
 			while ((ligne = br.readLine()) != null) {
 				tab.add(ligne);
 				System.out.println(ligne);
-				chaine += ligne + "\n";
+
 			}
 			br.close();
 
@@ -37,7 +37,7 @@ public class fichier {
 
 	public static void initialisation() {
 		try {
-			String fichier = "/Joueur1.txt";
+			String fichier = "Joueur1/1.txt";
 			FileWriter fw = new FileWriter(fichier);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter fichierSortie = new PrintWriter(bw);
@@ -53,7 +53,7 @@ public class fichier {
 		}
 
 		try {
-			String fichier2 = "Joueur2.txt";
+			String fichier2 = "Joueur2/1.txt";
 			FileWriter fw2 = new FileWriter(fichier2);
 			BufferedWriter bw2 = new BufferedWriter(fw2);
 			PrintWriter fichierSortie2 = new PrintWriter(bw2);
@@ -73,19 +73,19 @@ public class fichier {
 	}
 
 	public static void ecrire(String fichier, ArrayList<String> s) {
+
 		try {
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(fichier)));
 
-			FileWriter fw = new FileWriter(fichier);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter fichierSortie = new PrintWriter(bw);
-			for (String e : s) {
-				fichierSortie.println(e);
+			for (String d : s) {
+				pw.println(d);
 			}
-			fichierSortie.close();
 
-		} catch (Exception e) {
-			System.out.println(e.toString());
+			pw.close();
+		} catch (IOException exception) {
+			System.out.println("Erreur lors de la lecture : " + exception.getMessage());
 		}
 
 	}
+
 }
