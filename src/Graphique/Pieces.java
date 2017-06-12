@@ -22,12 +22,35 @@ public class Pieces extends Parent {
 
 	public void addPieces(Plateau p) {
 		int x, y;
+		int idpiece;
+		ImageView piece = new ImageView();
 		do {
 			x = (int) (Math.random() * 16);
 			y = (int) (Math.random() * 16);
 		} while (p.rechercher(x, y) != 0);
 
-		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piecerose.png")));
+		ImageView pieceorange = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceorange.png")));
+		ImageView piecerose = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piecerose.png")));
+		ImageView pieceverte = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceverte.png")));
+		ImageView pieceviolette = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceviolette.png")));
+		
+		idpiece = (int) (Math.random() * 100);
+		if ((0 <= idpiece) && (idpiece < 25)) {
+			piece = pieceviolette;
+		}
+		
+		else if ((25 <= idpiece) && (idpiece < 50)) {
+			piece = pieceverte;
+		}
+		
+		else if ((50 <= idpiece) && (idpiece < 60)) {
+			piece = piecerose;
+		}
+		
+		else {
+			piece = pieceorange;
+		}
+		
 		piece.setScaleX(2.0);
 		piece.setScaleY(2.0);
 		piece.setFitWidth(60);

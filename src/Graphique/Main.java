@@ -32,11 +32,11 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws ParseException {
-		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
+		primaryStage.setTitle("THE FLOOR IS LAVA");
 
 		Group root = new Group();
 
-		Scene scene = new Scene(root, 1280, 970, Color.DARKGREY);
+		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
 
 		Pieces listePiece = new Pieces();
 		Obstacles o = new Obstacles();
