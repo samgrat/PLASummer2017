@@ -82,7 +82,6 @@ public class Plateau extends Parent {
 				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
 				listePiece[i] = null;
 			}
-
 	}
 
 	public int rechercherPiece(int x, int y) {
