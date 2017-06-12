@@ -36,7 +36,6 @@ public class Pieces extends Personnage {
 		
 		int idpiece;
 
-		
 		p.setListePiece(this);
 		p.incrCompteurPiece();
 		int abs, ord;
