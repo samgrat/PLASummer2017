@@ -32,7 +32,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws ParseException {
-		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
+		primaryStage.setTitle("THE FLOOR IS LAVA");
 
 		Group root = new Group();
 
