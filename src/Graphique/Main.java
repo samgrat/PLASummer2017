@@ -1,6 +1,7 @@
 package Graphique;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
@@ -16,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
@@ -33,7 +36,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws ParseException {
 		primaryStage.setTitle("THE FLOOR IS LAVA");
-
+        
 		Group root = new Group();
 
 		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
