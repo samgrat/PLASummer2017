@@ -17,6 +17,5 @@ public class End extends Parent{
 
 		root.getChildren().add(GO);
 		root.requestFocus();
-	}
-	
+	}	
 }

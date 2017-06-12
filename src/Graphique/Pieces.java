@@ -55,9 +55,8 @@ public class Pieces extends Personnage {
 		
 		idpiece = (int) (Math.random() * 100);
 		if ((0 <= idpiece) && (idpiece < 25)) {
-			piece = pieceviolette;
-
-			couleur = CouleurPiece.VIOLET;
+			piece = piecerose;
+			couleur = CouleurPiece.ROSE;
 		}
 		
 		else if ((25 <= idpiece) && (idpiece < 50)) {
@@ -66,13 +65,13 @@ public class Pieces extends Personnage {
 		}
 		
 		else if ((50 <= idpiece) && (idpiece < 60)) {
-			piece = piecerose;
-			couleur = CouleurPiece.ROSE;
+			piece = pieceorange;
+			couleur = CouleurPiece.ORANGE;
 		}
 		
 		else {
-			piece = pieceorange;
-			couleur = CouleurPiece.ORANGE;
+			piece = pieceviolette;
+			couleur = CouleurPiece.VIOLET;
 		}
 		this.indiceCouleur = getIndiceCouleur();
 		p.setCasePlateau(x, y, indiceCouleur);
