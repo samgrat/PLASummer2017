@@ -28,7 +28,7 @@ public class Move extends Unaire {
 		int valeur = R.nextInt(3); // génere soit 2, soit 1, soit 0
 		
 		
-		switch (1) {
+		switch (valeur) {
 		case 0:
 			// TODO modifier le test d obstacles
 			r.droite();

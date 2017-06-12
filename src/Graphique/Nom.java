@@ -44,8 +44,8 @@ public class Nom extends Application {
 		boutonJouer.setOnAction(new EventHandler<ActionEvent>() {
 
 			/* TODO :
-			 * - Gestion du cas où les noms sont similaires
-			 * - Gestion du cas où les champs entrés sont vides
+			 * - Gestion du cas o les noms sont similaires
+			 * - Gestion du cas o les champs entrs sont vides
 			 */
 			
 			public void handle(ActionEvent event) {
@@ -64,7 +64,7 @@ public class Nom extends Application {
 		
         Scene scene = new Scene(root, 400, 225);
 		
-        primaryStage.setTitle("Sélection des noms des joueurs");
+        primaryStage.setTitle("Slection des noms des joueurs");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
