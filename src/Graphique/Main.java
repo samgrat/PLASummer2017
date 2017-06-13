@@ -3,6 +3,8 @@ package Graphique;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import Dijkstra_explore.Dijkstra;
+import Dijkstra_explore.Graphe;
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
@@ -38,6 +40,16 @@ public class Main extends Application {
 		Obstacles o = new Obstacles();
 
 		Plateau p = new Plateau(listePiece, o);
+		
+		Graphe g = new Graphe(p);
+		
+		Dijkstra d = new Dijkstra(g, 0, 220);
+		System.out.print("Dijkstra de "+d.origine+" a "+d.destination+" [ ");
+		for(int i = 0; i< d.chemin.size(); i++){
+			System.out.print(d.chemin.get(i)+" ");
+		}
+		System.out.println("]");
+		
 		
 		Expression exp = StringtoExpr("{M}");
 		
