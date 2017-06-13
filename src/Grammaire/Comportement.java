@@ -13,7 +13,15 @@ public class Comportement {
 	
 	public void exec(Robot r){
 		exp.exec(r, avancement);
-		avancement++;
+		// lorsquon atteint l avancement max on boucle
+		if( avancement < exp.getAvancementMax())
+			avancement++;
+		else
+			avancement = 0;
+	}
+	
+	public String toString(){
+		return ("Comportement: "+exp.toString()+" av = "+avancement);
 	}
 
 }

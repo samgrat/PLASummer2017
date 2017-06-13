@@ -41,4 +41,9 @@ public class Opponent extends Unaire {
 	public int getAvancement() {
 		return avancement;
 	}
+	
+	@Override
+	public int getAvancementMax() {
+		return avancement;
+	}
 }

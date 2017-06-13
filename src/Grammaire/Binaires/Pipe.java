@@ -8,6 +8,7 @@ import Programme.Robot;
 
 public class Pipe extends Binaire {
 	Expression head, tail;
+	Expression passed;
 	int avancement;
 
 	/**
@@ -19,11 +20,13 @@ public class Pipe extends Binaire {
 	public Pipe(Expression s1, Expression s2) {
 		head = s1;
 		tail = s2;
+		passed = null;
 	}
 
 	public Pipe(Expression s1, Expression s2, int a) {
 		head = s1;
 		tail = s2;
+		passed = null;
 		avancement = a;
 	}
 
@@ -43,9 +46,10 @@ public class Pipe extends Binaire {
 
 		switch (valeur) {
 		case 0:
-			// head.exec();
+			passed = head;
 			return head;
 		case 1:
+			passed = tail;
 			return tail;
 
 		default:
@@ -84,7 +88,11 @@ public class Pipe extends Binaire {
 	@Override
 	public void exec(Robot r, int a) {
 		if (a >= avancement) {
-			pipe().exec(r);
+			// si on a jamais execute l arbre
+			if(passed == null)
+				pipe().exec(r);
+			else
+				passed.exec(r);
 		}
 
 	}
@@ -101,5 +109,18 @@ public class Pipe extends Binaire {
 		head.setAvancement(a);
 		tail.setAvancement(a);
 
+	}
+
+	@Override
+	public int getAvancementMax() {
+		if (passed == null) {
+			int AvHead = head.getAvancementMax();
+			int AvTail = tail.getAvancementMax();
+			if (AvHead >= AvTail)
+				return AvHead;
+			else
+				return AvTail;
+		}else
+			return passed.getAvancementMax();
 	}
 }

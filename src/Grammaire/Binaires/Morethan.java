@@ -10,6 +10,8 @@ import Programme.Robot;
 
 public class Morethan extends Binaire {
 	Expression head, tail;
+	Expression passed;
+
 	int avancement;
 
 	// public List<Expression> getObject(){
@@ -25,11 +27,13 @@ public class Morethan extends Binaire {
 	public Morethan(Expression s1, Expression s2) {
 		head = s1;
 		tail = s2;
+		passed = null;
 	}
 
 	public Morethan(Expression s1, Expression s2, int a) {
 		head = s1;
 		tail = s2;
+		passed = null;
 		avancement = a;
 	}
 
@@ -67,9 +71,13 @@ public class Morethan extends Binaire {
 	@Override
 	public void exec(Robot r, int a) {
 		if (a >= avancement) {
-			Expression header = morethan();
-			if (header != head)
-				morethan().exec(r, a);
+			// si on est jamais passe par la
+			if (passed == null) {
+				Expression header = morethan();
+				if (header != head)
+					morethan().exec(r, a);
+			} else
+				passed.exec(r);
 		}
 	}
 
@@ -99,5 +107,18 @@ public class Morethan extends Binaire {
 		head.setAvancement(a);
 		tail.setAvancement(a);
 
+	}
+
+	@Override
+	public int getAvancementMax() {
+		if (passed == null) {
+			int AvHead = head.getAvancementMax();
+			int AvTail = tail.getAvancementMax();
+			if (AvHead >= AvTail)
+				return AvHead;
+			else
+				return AvTail;
+		}else
+			return passed.getAvancementMax();
 	}
 }

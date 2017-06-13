@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import Dijkstra_explore.Dijkstra;
 import Dijkstra_explore.Graphe;
+import Grammaire.Comportement;
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
@@ -29,7 +30,7 @@ public class Main extends Application {
 		
 		exp.setAvancement(0);
 		System.out.println();
-		System.out.println(exp.toString());
+		System.out.println(exp.toString()+" avancement max = "+exp.getAvancementMax());
 		return exp;
 	}
 
@@ -59,6 +60,8 @@ public class Main extends Application {
 //		}
 			
 		Expression exp = StringtoExpr("{M;{H>{{H;H}|M}}}");
+		
+		Comportement c = new Comportement(exp);
 		
 		Joueur joueur1 = new Joueur(1, p, root, exp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
 		

@@ -76,4 +76,15 @@ public class Liste implements Expression {
 		tail.setAvancement(a + 1);
 	}
 
+	@Override
+	public int getAvancementMax() {
+		int AvHead = head.getAvancementMax();
+		int AvTail = tail.getAvancementMax();
+		
+		if(AvHead >= AvTail)
+			return AvHead;
+		else
+			return AvTail;
+	}
+
 }

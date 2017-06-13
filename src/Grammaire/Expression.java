@@ -18,4 +18,6 @@ public interface Expression {
 	
 	void setAvancement(int a);
 
+	int getAvancementMax();
+
 }
