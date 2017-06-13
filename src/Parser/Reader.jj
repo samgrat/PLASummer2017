@@ -25,7 +25,7 @@ public class Reader
     try
     {
       exp = Reader.EXPRESSION();
-      System.out.println("exp= " + exp.toString());
+      System.out.println("exp = " + exp.toString());
     }
     catch (Exception e)
     {

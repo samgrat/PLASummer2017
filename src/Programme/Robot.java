@@ -22,6 +22,9 @@ public class Robot extends Personnage {
 	private int count = 0;
 	ImageView imageRobot;
 	
+	public Joueur getJoueur(){
+		return this.joueur;
+	}
 	
 	public Plateau getPlateau(){
 		return this.plateau;
@@ -96,7 +99,7 @@ public class Robot extends Personnage {
 
 		if (plateau.rechercher(x1, y) == a || plateau.rechercher(x2, y) == a || plateau.rechercher(x, y1) == a
 				|| plateau.rechercher(x, y2) == a) {
-			plateau.getJoueur1(a).perdVie();
+			plateau.getJoueur(a).perdVie();
 		}
 
 	}

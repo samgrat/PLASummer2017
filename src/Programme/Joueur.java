@@ -1,5 +1,7 @@
 package Programme;
 
+import java.net.URL;
+
 import Grammaire.Expression;
 import Graphique.End;
 import Graphique.Main;
@@ -9,6 +11,8 @@ import Parser.ParseException;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -31,6 +35,9 @@ public class Joueur extends Personnage {
 	Rectangle cache3;
 	Group root;
 
+	final URL resource = getClass().getResource("images/Textures/hit.mp3");
+    final Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
 	private int difficulte;
 
 	public int getPieceViolette() {
@@ -259,6 +266,8 @@ public class Joueur extends Personnage {
 
 	public void perdVie() {
 		this.pv--;
+		
+	    mediaPlayer.play();
 		actualiserVie();
 	}
 

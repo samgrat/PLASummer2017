@@ -16,7 +16,7 @@ public class Reader implements ReaderConstants {
     try
     {
       exp = Reader.EXPRESSION();
-      System.out.println("exp= " + exp.toString());
+      System.out.println("exp = " + exp.toString());
     }
     catch (Exception e)
     {

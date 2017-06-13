@@ -2,6 +2,7 @@ package Graphique;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 
 import Grammaire.Expression;
@@ -16,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
@@ -35,9 +38,14 @@ public class Main extends Application {
 		primaryStage.setTitle("THE FLOOR IS LAVA");
         
 		Group root = new Group();
-
+		
 		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
-
+		
+		final URL resource = getClass().getResource("images/Textures/ThemeSong.mp3");
+	    final Media media = new Media(resource.toString());
+	    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+	    mediaPlayer.play();
+	    
 		InputStream in = new ByteArrayInputStream("{E}".getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);

@@ -40,8 +40,7 @@ public class Dijkstra {
 
 			for (int i = 0; i < g.NCases; i++) {
 				// si il y a un arc
-
-				if (g.arcs[noeud_courant.getEtiquette()][i] != 0) {
+				if(g.arcs[noeud_courant.getEtiquette()][i] != 0){
 					// si le nouveau chemin est plus court
 					if (noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i] < g.list_noeuds[i]
 							.getDistance()) {

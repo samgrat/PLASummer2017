@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Plateau extends Parent {
-	private int size = 30;
+	private int size = 60;
 	private Group root;
 	private Joueur j1, j2;
 	private Integer[][] casePlateau;
@@ -24,7 +24,7 @@ public class Plateau extends Parent {
 		this.j2 = j2;
 	}
 
-	public Joueur getJoueur1(int indice){
+	public Joueur getJoueur(int indice){
 		if (indice == 1) {
 			return j1;
 		} else if(indice == 2){
