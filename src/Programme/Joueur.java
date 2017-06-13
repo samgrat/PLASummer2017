@@ -11,6 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
+import javafx.scene.text.Text;
 
 public class Joueur extends Personnage {
 	private Score s;
@@ -229,7 +232,6 @@ public class Joueur extends Personnage {
 			vie2.setVisible(false);
 			vie3.setVisible(false);
 			cache3.setVisible(false);
-			new End(root);
 			break;
 		case 1:
 			vie1.setVisible(true);
@@ -260,6 +262,29 @@ public class Joueur extends Personnage {
 	public void perdVie() {
 		this.pv--;
 		actualiserVie();
+		if (pv == 0) {
+			if (indice_joueur == 1) {
+				Text j2win = new Text("LE JOUEUR 2 A GAGNÉ!");
+				j2win.setX(390);
+				j2win.setY(500);
+				j2win.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+				j2win.setFontSmoothingType(FontSmoothingType.LCD);
+				j2win.setFill(Color.WHITE);
+				root.getChildren().add(j2win);
+				root.requestFocus();
+			}
+			
+			else {
+				Text j1win = new Text("LE JOUEUR 1 A GAGNÉ!");
+				j1win.setX(390);
+				j1win.setY(500);
+				j1win.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+				j1win.setFontSmoothingType(FontSmoothingType.LCD);
+				j1win.setFill(Color.WHITE);
+				root.getChildren().add(j1win);
+				root.requestFocus();
+			}
+		}
 	}
 
 	public void droite() {
@@ -267,7 +292,7 @@ public class Joueur extends Personnage {
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (getX()+1  > 15) {
+		if (getX() + 1 > 15) {
 			indice = p.rechercher(0, y);
 			if (indice > 10 || indice == 0) {
 				setX(0);

@@ -96,7 +96,7 @@ public void compteArebour(Text temps, Group root) {
 			new End(root);
 		}
 		
-		// centrage du timer dans l'interface prvue
+		// centrage du timer dans l'interface prevue
 		double W = temps.getBoundsInLocal().getWidth();
 		double H = temps.getBoundsInLocal().getHeight();
 		temps.relocate(1125-W/2, 485-H/2);
