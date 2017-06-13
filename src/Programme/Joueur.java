@@ -27,7 +27,10 @@ public class Joueur extends Personnage {
 	Rectangle vie1;
 	Rectangle vie2;
 	Rectangle vie3;
+	Rectangle cache1;
+	Rectangle cache3;
 	Group root;
+
 	private int difficulte;
 
 	public int getPieceViolette() {
@@ -134,14 +137,14 @@ public class Joueur extends Personnage {
 		this.getChildren().add(joueur);
 
 		Rectangle r = new Rectangle();
-		r.setWidth(50);
+		r.setFill(Color.WHITE);
+		r.setWidth(47);
 		r.setHeight(10);
+		r.opacityProperty().set(.35);
 		r.setArcWidth(10);
 		r.setArcHeight(10);
-		r.setFill(Color.TRANSPARENT);
-		r.setLayoutX(10);
+		r.setLayoutX(11);
 		r.setLayoutY(55);
-		r.setStroke(Color.TRANSPARENT);
 		this.getChildren().add(r);
 
 		afficherVie();
@@ -149,20 +152,31 @@ public class Joueur extends Personnage {
 
 	public void afficherVie() {
 		vie1 = new Rectangle();
-		vie1.setWidth(14);
+		vie1.setWidth(10);
 		vie1.setHeight(8);
+		vie1.setArcWidth(10);
+		vie1.setArcHeight(10);
 		vie1.setLayoutX(12);
 		vie1.setLayoutY(56);
 		
+		cache1 = new Rectangle();
+		cache1.setWidth(12);
+		cache1.setHeight(8);
+		cache1.setLayoutX(16);
+		cache1.setLayoutY(56);
+		
+		
 		if (indice_joueur == 1) {
 			vie1.setFill(Color.ROYALBLUE);
+			cache1.setFill(Color.ROYALBLUE);
 		}
 		
 		else {
 			vie1.setFill(Color.RED);
+			cache1.setFill(Color.RED);
 		}
 		
-		this.getChildren().add(vie1);
+		this.getChildren().addAll(vie1, cache1);
 
 		vie2 = new Rectangle();
 		vie2.setWidth(14);
@@ -183,43 +197,61 @@ public class Joueur extends Personnage {
 		vie3 = new Rectangle();
 		vie3.setWidth(14);
 		vie3.setHeight(8);
+		vie3.setArcWidth(10);
+		vie3.setArcHeight(10);
 		vie3.setLayoutX(12 + 31);
 		vie3.setLayoutY(56);
 		
+		cache3 = new Rectangle();
+		cache3.setWidth(10);
+		cache3.setHeight(8);
+		cache3.setLayoutX(40);
+		cache3.setLayoutY(56);
+		
 		if (indice_joueur == 1) {
 			vie3.setFill(Color.ROYALBLUE);
+			cache3.setFill(Color.ROYALBLUE);
 		}
 		
 		else {
 			vie3.setFill(Color.RED);
+			cache3.setFill(Color.RED);
 		}
 		
-		this.getChildren().add(vie3);
+		this.getChildren().addAll(vie3, cache3);
 	}
 
 	public void actualiserVie() {
 		switch (this.pv) {
 		case 0:
 			vie1.setVisible(false);
+			cache1.setVisible(false);
 			vie2.setVisible(false);
 			vie3.setVisible(false);
+			cache3.setVisible(false);
 			new End(root);
 			break;
 		case 1:
 			vie1.setVisible(true);
+			cache1.setVisible(true);
 			vie2.setVisible(false);
 			vie3.setVisible(false);
+			cache3.setVisible(false);
 			break;
 		case 2:
 			vie1.setVisible(true);
+			cache1.setVisible(true);
 			vie2.setVisible(true);
 			vie3.setVisible(false);
+			cache3.setVisible(false);
 			break;
 		default:
 			this.pv = 3;
 			vie1.setVisible(true);
+			cache1.setVisible(true);
 			vie2.setVisible(true);
 			vie3.setVisible(true);
+			cache3.setVisible(true);
 			s.actuScore();
 			break;
 		}
@@ -244,11 +276,13 @@ public class Joueur extends Personnage {
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(0);
 			} else if (indice == this.indice_joueur + 2) {
+
 				p.setCasePlateau(15, y, indice_joueur);
 			} else {
 				this.perdVie();
 				p.setCasePlateau(15, y, indice_joueur);
 			}
+			
 		} else {
 			indice = p.rechercher(x + 1, y);
 			if (indice > 10 || indice == 0) {
@@ -258,6 +292,7 @@ public class Joueur extends Personnage {
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(this.getTranslateX() + 60);
 			} else if (indice == this.indice_joueur + 2) {
+
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
@@ -271,6 +306,7 @@ public class Joueur extends Personnage {
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
+
 		if (getX() - 1 < 0) {
 			indice = p.rechercher(15, y);
 			if (indice > 10 || indice == 0) {
@@ -279,6 +315,7 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(900);
+
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(0, y, indice_joueur);
 			} else {
@@ -375,8 +412,7 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, exp, x, y, difficulte);
-		
+		new Robot(this, root, p, exp, x, y, difficulte);	
 	}
 
 	public void invoquerRobot2(Group root) {

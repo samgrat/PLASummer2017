@@ -23,7 +23,6 @@ public class Pieces extends Personnage {
 	public int getIndiceCouleur(){
 		return couleur.getIndice();
 	}
-	
 	public ImageView getImagePiece() {
 		return piece;
 	}
@@ -36,7 +35,6 @@ public class Pieces extends Personnage {
 		
 		int idpiece;
 
-		
 		p.setListePiece(this);
 		p.incrCompteurPiece();
 		int abs, ord;
@@ -55,9 +53,8 @@ public class Pieces extends Personnage {
 		
 		idpiece = (int) (Math.random() * 100);
 		if ((0 <= idpiece) && (idpiece < 25)) {
-			piece = pieceviolette;
-
-			couleur = CouleurPiece.VIOLET;
+			piece = piecerose;
+			couleur = CouleurPiece.ROSE;
 		}
 		
 		else if ((25 <= idpiece) && (idpiece < 50)) {
@@ -66,25 +63,25 @@ public class Pieces extends Personnage {
 		}
 		
 		else if ((50 <= idpiece) && (idpiece < 60)) {
-			piece = piecerose;
-			couleur = CouleurPiece.ROSE;
-		}
-		
-		else {
 			piece = pieceorange;
 			couleur = CouleurPiece.ORANGE;
 		}
+		
+		else {
+			piece = pieceviolette;
+			couleur = CouleurPiece.VIOLET;
+		}
 		this.indiceCouleur = getIndiceCouleur();
-		p.setCasePlateau(x, y, indiceCouleur);
 
+		p.setCasePlateau(x, y, indiceCouleur);
 		piece.setScaleX(2.0);
 		piece.setScaleY(2.0);
 		piece.setFitWidth(60);
 		piece.setFitHeight(60);
 		piece.setTranslateX(6 + x * 60);
 		piece.setTranslateY(6 + y * 60);
+
 		root.getChildren().add(piece);
-		
 		
 		timeline = new Timeline(new KeyFrame(Duration.millis(7000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -97,6 +94,7 @@ public class Pieces extends Personnage {
 	public void delPiece(ImageView piece, int x, int y, Plateau p, Group root){
 		p.setCasePlateau(x, y, 0);
 		p.delListePiece(p.rechercherPiece(x, y));
+
 		piece.setVisible(false);
 
 		new Pieces(p, root);

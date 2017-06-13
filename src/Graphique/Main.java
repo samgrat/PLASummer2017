@@ -71,8 +71,8 @@ public class Main extends Application {
 		Text temps = new Text(String.valueOf(this.t));
 		temps.setX(1090);
 		temps.setY(505);
-		temps.setFill(Color.hsb(0, .0, .2));
 
+		temps.setFill(Color.hsb(0, .0, .2));
 		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
 		temps.setFontSmoothingType(FontSmoothingType.LCD);
 		compteArebour(temps, root);
