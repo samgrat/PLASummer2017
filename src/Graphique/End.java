@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 public class End extends Parent{
 	public End(Group root){
 		
-
 		Text GO = new Text("GAME OVER");
 		GO.setX(390);
 		GO.setY(500);

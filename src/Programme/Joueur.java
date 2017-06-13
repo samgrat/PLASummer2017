@@ -230,7 +230,7 @@ public class Joueur extends Personnage {
 		actualiserVie();
 	}
 
-	public void droite() {System.out.println("je suis en " + getX() + ";" + getY());
+	public void droite() {
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
@@ -263,10 +263,10 @@ public class Joueur extends Personnage {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}System.out.println("je vais en " + getX() + ";" + getY());
+		}
 	}
 
-	public void gauche() {System.out.println("je suis en " + getX() + ";" + getY());
+	public void gauche() {
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
@@ -299,10 +299,10 @@ public class Joueur extends Personnage {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}System.out.println("je vais en " + getX() + ";" + getY());
+		}
 	}
 
-	public void monter() {System.out.println("je suis en " + getX() + ";" + getY());
+	public void monter() {
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
@@ -335,10 +335,10 @@ public class Joueur extends Personnage {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}System.out.println("je vais en " + getX() + ";" + getY());
+		}
 	}
 
-	public void descendre() {System.out.println("je suis en " + getX() + ";" + getY());
+	public void descendre() {
 		int indice = p.rechercher(x, y);
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
@@ -371,7 +371,7 @@ public class Joueur extends Personnage {
 				this.perdVie();
 				p.setCasePlateau(x, y, indice_joueur);
 			}
-		}System.out.println("je vais en " + getX() + ";" + getY());
+		}
 	}
 
 	public void invoquerRobot1(Group root) {

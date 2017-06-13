@@ -33,23 +33,26 @@ public class Score extends Parent {
 		scorej.setFontSmoothingType(FontSmoothingType.LCD);
 
 		pieceViolette = new Text(String.valueOf(j.getPieceViolette()));
-		pieceViolette.setX(1335);
-		pieceViolette.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		pieceViolette.setX(1339);
+		pieceViolette.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 20));
 		pieceViolette.setFontSmoothingType(FontSmoothingType.LCD);
+		
 		pieceVerte = new Text(String.valueOf(j.getPieceVerte()));
-		pieceVerte.setX(1335);
-		pieceVerte.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		pieceVerte.setX(1339);
+		pieceVerte.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 20));
 		pieceVerte.setFontSmoothingType(FontSmoothingType.LCD);
+		
 		pieceRose = new Text(String.valueOf(j.getPieceRose()));
-		pieceRose.setX(1335);
-		pieceRose.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		pieceRose.setX(1339);
+		pieceRose.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 20));
 		pieceRose.setFontSmoothingType(FontSmoothingType.LCD);
+		
 		pieceOrange = new Text(String.valueOf(j.getPieceOrange()));
-		pieceOrange.setX(1335);
-		pieceOrange.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+		pieceOrange.setX(1339);
+		pieceOrange.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 20));
 		pieceOrange.setFontSmoothingType(FontSmoothingType.LCD);
+		
 		int a = 0;
-
 
 		if (j.Indice_joueur() == 1) {
 
@@ -64,7 +67,7 @@ public class Score extends Parent {
 		}
 
 		else {
-			a = 500;
+			a = 502;
 			scorej.setFill(Color.RED);
 			scorej.setY(590);
 
@@ -74,14 +77,19 @@ public class Score extends Parent {
 			double H2 = nomj2.getBoundsInLocal().getHeight();
 			nomj2.relocate(1125 - W2 / 2, 938 - H2 / 2);
 		}
-		pieceViolette.setFill(Color.WHITE);
-		pieceViolette.setY(311+a);
-		pieceVerte.setFill(Color.WHITE);
-		pieceVerte.setY(199+a);
-		pieceRose.setFill(Color.WHITE);
-		pieceRose.setY(84+a);
-		pieceOrange.setFill(Color.WHITE);
-		pieceOrange.setY(425+a);
+		
+		pieceViolette.setFill(Color.hsb(0, .0, .2));
+		pieceViolette.setY(308 + a);
+		
+		pieceVerte.setFill(Color.hsb(0, .0, .2));
+		pieceVerte.setY(195 + a);
+		
+		pieceRose.setFill(Color.hsb(0, .0, .2));
+		pieceRose.setY(80 + a);
+		
+		pieceOrange.setFill(Color.hsb(0, .0, .2));
+		pieceOrange.setY(421 + a);
+		
 		this.getChildren().addAll(scorej, nomj1, nomj2, pieceViolette, pieceVerte, pieceRose, pieceOrange);
 	}
 
@@ -97,6 +105,22 @@ public class Score extends Parent {
 			double WS1 = scorej.getBoundsInLocal().getWidth();
 			double HS1 = scorej.getBoundsInLocal().getHeight();
 			scorej.relocate(1126 - WS1 / 2, 400 - HS1 / 2);
+			
+			double HVi = pieceViolette.getBoundsInLocal().getHeight();
+			double WVi = pieceViolette.getBoundsInLocal().getWidth();
+			pieceViolette.relocate(1346 - WVi / 2, 298 - HVi / 2);
+			
+			double HVe = pieceVerte.getBoundsInLocal().getHeight();
+			double WVe = pieceVerte.getBoundsInLocal().getWidth();
+			pieceVerte.relocate(1346 - WVe / 2, 185 - HVe / 2);
+			
+			double HRo = pieceRose.getBoundsInLocal().getHeight();
+			double WRo = pieceRose.getBoundsInLocal().getWidth();
+			pieceRose.relocate(1346 - WRo / 2, 70 - HRo / 2);
+			
+			double HOr = pieceOrange.getBoundsInLocal().getHeight();
+			double WOr = pieceOrange.getBoundsInLocal().getWidth();
+			pieceOrange.relocate(1346 - WOr / 2, 411 - HOr / 2);
 		}
 
 		else {
@@ -104,6 +128,23 @@ public class Score extends Parent {
 			double WS2 = scorej.getBoundsInLocal().getWidth();
 			double HS2 = scorej.getBoundsInLocal().getHeight();
 			scorej.relocate(1126 - WS2 / 2, 570 - HS2 / 2);
+			pieceViolette.relocate(1338, 815 - pieceViolette.getBoundsInLocal().getHeight());
+			
+			double HVi = pieceViolette.getBoundsInLocal().getHeight();
+			double WVi = pieceViolette.getBoundsInLocal().getWidth();
+			pieceViolette.relocate(1346 - WVi / 2, 800 - HVi / 2);
+			
+			double HVe = pieceVerte.getBoundsInLocal().getHeight();
+			double WVe = pieceVerte.getBoundsInLocal().getWidth();
+			pieceVerte.relocate(1346 - WVe / 2, 687 - HVe / 2);
+			
+			double HRo = pieceRose.getBoundsInLocal().getHeight();
+			double WRo = pieceRose.getBoundsInLocal().getWidth();
+			pieceRose.relocate(1346 - WRo / 2, 572 - HRo / 2);
+			
+			double HOr = pieceOrange.getBoundsInLocal().getHeight();
+			double WOr = pieceOrange.getBoundsInLocal().getWidth();
+			pieceOrange.relocate(1346 - WOr / 2, 913 - HOr / 2);
 
 		}
 

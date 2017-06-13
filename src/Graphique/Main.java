@@ -33,7 +33,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws ParseException {
 		primaryStage.setTitle("THE FLOOR IS LAVA");
-
+        
 		Group root = new Group();
 
 		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
@@ -51,6 +51,8 @@ public class Main extends Application {
 		Joueur joueur2 = new Joueur(2, p, root, exp);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
+		
+		p.setJoueur(joueur1, joueur2);
 
 		Clavier clav = new Clavier(joueur2, joueur1, p, root);
 
@@ -69,8 +71,7 @@ public class Main extends Application {
 		}));
 		
 		timeline.setCycleCount(Animation.INDEFINITE);
-
-
+		
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 
 		root.getChildren().addAll(p, score1, score2, joueur1, joueur2, menu, clav, temps);
