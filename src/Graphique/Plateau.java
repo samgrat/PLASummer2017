@@ -31,7 +31,7 @@ public class Plateau extends Parent {
 	public void delListePiece(int indiceTableau){
 		listePiece[indiceTableau] = null;
 	}
-	
+
 	public Integer getCasePlateau(int x, int y) {
 		return casePlateau[x][y];
 	}
@@ -85,6 +85,7 @@ public class Plateau extends Parent {
 	}
 
 	public void ramasser(int x, int y, Joueur j, int indice) {
+
 			int i = rechercherPiece(x, y);
 			if (i != -1) {
 				casePlateau[x][y] = 0;
@@ -97,6 +98,7 @@ public class Plateau extends Parent {
 
 	public int rechercherPiece(int x, int y) {
 		int i = 0, xP = -1, yP = -1;
+
 		for (int j = 0; j < 256; j++) {
 			if (listePiece[j] != null) {
 				xP = listePiece[j].getX();

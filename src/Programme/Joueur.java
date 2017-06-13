@@ -30,6 +30,7 @@ public class Joueur extends Personnage {
 	Rectangle cache1;
 	Rectangle cache3;
 	Group root;
+
 	private int difficulte;
 
 	public int getPieceViolette() {
@@ -275,11 +276,13 @@ public class Joueur extends Personnage {
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(0);
 			} else if (indice == this.indice_joueur + 2) {
+
 				p.setCasePlateau(15, y, indice_joueur);
 			} else {
 				this.perdVie();
 				p.setCasePlateau(15, y, indice_joueur);
 			}
+			
 		} else {
 			indice = p.rechercher(x + 1, y);
 			if (indice > 10 || indice == 0) {
@@ -289,6 +292,7 @@ public class Joueur extends Personnage {
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(this.getTranslateX() + 60);
 			} else if (indice == this.indice_joueur + 2) {
+
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
@@ -302,6 +306,7 @@ public class Joueur extends Personnage {
 		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
+
 		if (getX() - 1 < 0) {
 			indice = p.rechercher(15, y);
 			if (indice > 10 || indice == 0) {
@@ -310,6 +315,7 @@ public class Joueur extends Personnage {
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(900);
+
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(0, y, indice_joueur);
 			} else {
@@ -406,8 +412,7 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, exp, x, y, difficulte);
-		
+		new Robot(this, root, p, exp, x, y, difficulte);	
 	}
 
 	public void invoquerRobot2(Group root) {

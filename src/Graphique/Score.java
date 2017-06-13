@@ -17,8 +17,6 @@ public class Score extends Parent {
 	public Score(Joueur j) {
 		this.j = j;
 
-		// TODO : scanf pour entrer le nom des joueurs en debut de partie
-
 		Text nomj1 = new Text("JOUEUR 1");
 		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		nomj1.setFontSmoothingType(FontSmoothingType.LCD);
@@ -95,6 +93,7 @@ public class Score extends Parent {
 	}
 
 	public void actuScore() {
+
 		scorej.setText(String.valueOf(j.getPieceOrange() + j.getPieceRose() + j.getPieceVerte() + j.getPieceViolette()));
 		pieceViolette.setText(String.valueOf(j.getPieceViolette()));
 		pieceVerte.setText(String.valueOf(j.getPieceVerte()));
@@ -130,6 +129,7 @@ public class Score extends Parent {
 			// centrage du score du joueur dans l'interface prevue
 			double WS2 = scorej.getBoundsInLocal().getWidth();
 			double HS2 = scorej.getBoundsInLocal().getHeight();
+
 			scorej.relocate(1126 - WS2 / 2, 570 - HS2 / 2);
 			pieceViolette.relocate(1338, 815 - pieceViolette.getBoundsInLocal().getHeight());
 			
@@ -148,7 +148,6 @@ public class Score extends Parent {
 			double HOr = pieceOrange.getBoundsInLocal().getHeight();
 			double WOr = pieceOrange.getBoundsInLocal().getWidth();
 			pieceOrange.relocate(1346 - WOr / 2, 913 - HOr / 2);
-
 		}
 	}
 }
