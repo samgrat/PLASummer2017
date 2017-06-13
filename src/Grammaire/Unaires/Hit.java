@@ -4,9 +4,11 @@ import Grammaire.Unaire;
 import Programme.Robot;
 
 public class Hit extends Unaire {
+	
+	int avancement;
 
 	public String toString() {
-		return "H";
+		return "[H av("+ avancement+")]";
 	}
 
 	@Override
@@ -20,5 +22,23 @@ public class Hit extends Unaire {
 		// TODO Algo de Hit:
 		// le robot frappe en face de lui
 		
+	}
+
+	@Override
+	public void exec(Robot r, int a) {
+		if (a == avancement)
+			System.out.println("exec H avancement " + avancement);
+		
+	}
+	
+	@Override
+	public void setAvancement(int a) {
+		if (avancement == 0)
+			avancement = a;
+	}
+	
+	@Override
+	public int getAvancement() {
+		return avancement;
 	}
 }

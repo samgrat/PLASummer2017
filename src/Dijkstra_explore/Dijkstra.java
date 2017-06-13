@@ -11,6 +11,14 @@ public class Dijkstra {
 	public List<Integer> chemin;
 
 	public Dijkstra(Graphe g, int o, int d){
+		int param = 0;
+		destination = d;
+		System.out.println("Sur case X: "+etiquettetoX(d)+" Y: "+etiquettetoY(d)+" indice: "+d+" : "+g.p.rechercher(etiquettetoY(d), etiquettetoX(d)));
+		while(g.p.rechercher(etiquettetoX(d), etiquettetoY(d)) <= 10 && g.p.rechercher(etiquettetoX(d), etiquettetoY(d)) != 0){
+			System.out.println("Sur case in while"+d+" : "+g.p.rechercher(etiquettetoY(d), etiquettetoX(d)));
+			d = lookAround(destination, param);
+			param++ ;
+		}
 		chemin = new ArrayList<Integer>();
 		Q = new ArrayList<Boolean>();
 		int q = g.NCases-1;
@@ -68,6 +76,69 @@ public class Dijkstra {
 		reverse();
 	}
 	
+	private int lookAround(int d, int param) {
+		int var_dir_x = 0, var_dir_y = 0;
+		
+		switch (param) {
+		case 0:
+			var_dir_y = -1;
+			break;
+		case 1:
+			var_dir_y = 1;
+			break;
+		case 2:
+			var_dir_x = -1;
+			break;
+		case 3:
+			var_dir_x = 1;
+			break;
+		default:
+			System.out.println("Erreur: mauvaise direction.");
+			System.exit(-1);
+		}
+		
+		if (0 <= d + var_dir_x && d + var_dir_x < 16 && 0 <= d + var_dir_y && d + var_dir_y < 16) {
+
+			// la direction
+			switch (param) {
+			case 0:
+				d = d - 16;
+				break;
+			case 1:
+				d = d + 16;
+				break;
+			case 2:
+				d = d - 1;
+				break;
+			case 3:
+				d = d + 1;
+				break;
+			default:
+				System.out.println("Erreur: la cible est entouree");
+				System.exit(-1);
+			}
+		} else { // sinon donut
+			switch (param) {
+			case 0:
+				d = d + 240;
+				break;
+			case 1:
+				d = d - 240;
+				break;
+			case 2:
+				d = d + 15;
+				break;
+			case 3:
+				d = d - 15;
+				break;
+			default:
+				System.out.println("Erreur: la cible est entouree");
+				System.exit(-1);
+			}
+		}
+		return d;
+	}
+
 	private void reverse() {
 		List<Integer> save = Arrays.asList(new Integer[chemin.size()]);
 		for(int i = 1; i <= chemin.size(); i++)
@@ -95,5 +166,23 @@ public class Dijkstra {
 		}
 		return n;
 		
+	}
+	
+	/**
+	 * retourne le X associe a l etiquette entrante
+	 * @param etq
+	 * @return
+	 */
+	int etiquettetoX(int etq){
+		return etq/(16*((etq%16)+1));
+	}
+	
+	/**
+	 * retourne le Y associe a l etiquette entrante
+	 * @param etq
+	 * @return
+	 */
+	int etiquettetoY(int etq){
+		return etq%16;
 	}
 }

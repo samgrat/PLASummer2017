@@ -1,7 +1,5 @@
 package Grammaire;
 
-import Grammaire.Unaires.*;
-
 public abstract class Unaire implements Operateur {
 	
 	public abstract String toString();
@@ -18,4 +16,8 @@ public abstract class Unaire implements Operateur {
 	public String typeObject(){
 		return "Unaire";
 	}
+
+	public abstract void setAvancement(int a);
+	
+	public abstract int getAvancement();
 }

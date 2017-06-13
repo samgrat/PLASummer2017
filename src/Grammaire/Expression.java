@@ -11,7 +11,11 @@ public interface Expression {
 	boolean isExecutable();
 
 	void exec(Robot robot);
+
+	void exec(Robot r, int avancement);
+
+	int getAvancement();
 	
-	
+	void setAvancement(int a);
 
 }

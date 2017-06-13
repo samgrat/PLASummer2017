@@ -11,6 +11,7 @@ public class Graphe {
 	int arcs[][]; // arcs[i][j] = 0 <=> pas d'arc de i vers j
 	noeud list_noeuds[]; // tableau des noeuds du graphe
 	final static int INFINI = 999999;
+	Plateau p;
 
 	/**
 	 * Constructeur d un graphe [16*16][16*16] sans liaisons
@@ -39,6 +40,7 @@ public class Graphe {
 		list_noeuds = new noeud[NCases];
 		arcs = new int[NCases][NCases];
 		int etiquette = 0; // etiquette du noeud dans arcs[][]
+		this.p = p;
 
 		for (int j = 0; j < 16; j++) {
 			for (int i = 0; i < 16; i++) { // on parcours p
@@ -145,7 +147,7 @@ public class Graphe {
 
 		// on recupere l indice de la case a etudier
 		indice = p.rechercher(x_in_p, y_in_p);
-
+		if(p.rechercher(i,j) > 10 || p.rechercher(i,j) == 0){
 			// si on peut aller sur cette case
 			if ((indice > 10 || indice == 0)) {
 				// on cree un arc entre le noeud courant et le noeud a la
@@ -156,6 +158,10 @@ public class Graphe {
 				arcs[x_in_arcs][y_in_arcs] = 0;
 				// arcs[y_in_arcs][x_in_arcs] = 0;
 			}
+		} else {
+			arcs[x_in_arcs][y_in_arcs] = 0;
+			// arcs[y_in_arcs][x_in_arcs] = 0;
+		}
 	}
 
 	/**
@@ -219,7 +225,7 @@ public class Graphe {
 		// j++;
 		// }
 		for (int k = 0; k < NCases; k++) {
-			chaine += k + ":";
+			chaine += k +" Pred("+list_noeuds[k].getPred() + ") :";
 			for (int l = 0; l < NCases; l++) {
 				if (arcs[k][l] == 1) {
 					chaine += " " + l + ", ";

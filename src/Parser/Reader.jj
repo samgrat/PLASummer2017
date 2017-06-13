@@ -9,8 +9,6 @@ options
 PARSER_BEGIN(Reader)
 package Parser;
 import java.util.LinkedList;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import Grammaire.*;
 import Grammaire.Binaires.*;
 
@@ -160,18 +158,12 @@ TOKEN : /* UNAIRE */
 Expression EXPRESSION() :
 {
   Expression exp;
-  LinkedList < Expression > list = new LinkedList();
 }
 {
   exp = OPERATOR()
   {
-    //System.out.println("Operator=" + exp.toString());
     return exp;
   }
-//| < STAR > exp = EXPRESSION()
-//  {
-//    return Liste.star(exp);
-//  }
 
 | < LACC > 
   exp = LISTE() 
@@ -213,12 +205,10 @@ Expression LISTE() :
 Expression OPERATOR() :
 {
   Token t;
-  String s;
 }
 {
   t = < UNAIRE >
   {
-    s = t.toString();	
-    return Dico.get(t.toString());
+    return Dico.get(t.toString()); // TODO ajouter un indice de reperage dans l'arbre
   }
 }

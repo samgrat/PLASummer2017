@@ -26,6 +26,10 @@ public class Main extends Application {
 		InputStream in = new ByteArrayInputStream(s.getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
+		
+		exp.setAvancement(0);
+		System.out.println();
+		System.out.println(exp.toString());
 		return exp;
 	}
 
@@ -41,16 +45,20 @@ public class Main extends Application {
 
 		Plateau p = new Plateau(listePiece, o);
 		
-		Graphe g = new Graphe(p);
-		//System.out.println(g.toString());
-		Dijkstra d = new Dijkstra(g, 220, 254);
-		System.out.print("Dijkstra de "+d.origine+" a "+d.destination+" [ ");
-		for(int i = 0; i< d.chemin.size(); i++){
-			System.out.print(d.chemin.get(i)+" ");
-		}
-		System.out.println("]");
+//		for(int ori = 0; ori < 256; ori ++){
+//			for(int dest = 0; dest < 256; dest ++){
+//		Graphe g = new Graphe(p);
+//		//System.out.println(g.toString());
+//		Dijkstra d = new Dijkstra(g, ori, dest);
+//		System.out.print("Dijkstra de "+d.origine+" a "+d.destination+" [ ");
+//		for(int i = 0; i< d.chemin.size(); i++){
+//			System.out.print(d.chemin.get(i)+" ");
+//		}
+//		System.out.println("]");
+//			}
+//		}
 			
-		Expression exp = StringtoExpr("{M}");
+		Expression exp = StringtoExpr("{M;{H>{{H;H}|M}}}");
 		
 		Joueur joueur1 = new Joueur(1, p, root, exp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
 		
