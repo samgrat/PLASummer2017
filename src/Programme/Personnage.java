@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 public class Personnage extends Parent{
 	static protected int TAILLE_CASE;
 	
+
 	protected int x;
 
 	protected int y;			

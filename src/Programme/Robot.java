@@ -3,248 +3,239 @@ package Programme;
 import Grammaire.*;
 import Graphique.Main;
 import Graphique.Plateau;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
- * classe d'objet Robot
- * le robot est capable de se deplacer
+ * classe d'objet Robot le robot est capable de se deplacer
  */
 public class Robot extends Personnage {
-	private int pv = 1;
-	private int indice_robot;
-	private ImageView[][] listeRobot;
-	private Plateau p;
+
+	private Joueur joueur;
+	private Plateau plateau;
 	private Comportement comport;
-	Rectangle vie1;
+	private int count = 0;
+	ImageView imageRobot;
+
+	public Joueur getJoueur(){
+		return this.joueur;
+	}
 	
-	public Robot(int id_joueur, Plateau p, Comportement comp){
-		System.out.println("constructeur robot");
-		this.indice_robot = id_joueur+2;
-		listeRobot = new ImageView[16][16];
-		this.p = p;
+	public Plateau getPlateau(){
+		return this.plateau;
+	}
+	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte) {
+		joueur = j;
+		plateau = p;
 		comport = comp;
+		setX(x);
+		setY(y);
+
+		if (j.Indice_joueur() == 1) {
+			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
+			addRobot(getX(), getY(), plateau, root, imageRobot, comport, difficulte);
+		} else {
+			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge.png")));
+			addRobot(getX(), getY(), plateau, root, imageRobot, comport, difficulte);
+		}
 	}
-	
-	public void addRobotBleu(int x, int y, Plateau p, Group root){
-		System.out.println("robot bleu");
-		ImageView robot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
-		addRobot(x, y, p, root, robot);
-	}
-	
-	public void addRobotRouge(int x, int y, Plateau p, Group root){
-		System.out.println("robot rouge");
-		ImageView robot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge.png")));
-		addRobot(x, y, p, root, robot);
-	}
-	
-	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot){
-		robot.setFitWidth(60);
-		robot.setFitHeight(60);
-		robot.setLayoutX(5 + x * 60);
-		robot.setLayoutY(5 + y * 60);
-		listeRobot[x][y] = robot;
+
+	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Comportement comp, int difficulte) {
+
+		robot.setScaleX(1.2);
+		robot.setScaleY(1.2);
+		robot.setFitWidth(plateau.getSize());
+		robot.setFitHeight(plateau.getSize());
+		robot.setLayoutX(5 + x * plateau.getSize());
+		robot.setLayoutY(5 + y * plateau.getSize());
+		// p.setCasePlateau(getX(), getY(), joueur.Indice_joueur()+2);
 		root.getChildren().add(robot);
-		p.setCasePlateau(x, y, indice_robot);
-		int test = 0;
-		while(test < 10){
-			this.exec(x, y, root);
-			test++;
+
+		Timeline tpsVieRobot = new Timeline(
+				new KeyFrame(Duration.millis(1000 / difficulte), new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						if (count == 50 * difficulte) {
+							imageRobot.setVisible(false);
+							plateau.setCasePlateau(getX(), getY(), 0);
+						} else {
+							count++;
+							exec();
+						}
+					}
+				}));
+		tpsVieRobot.setCycleCount(50 * difficulte + 1);
+		tpsVieRobot.play();
+	}
+
+	public void hit(int x, int y) {
+		int a;
+		if (joueur.Indice_joueur() == 1) {
+			a = 2;
+		} else if (joueur.Indice_joueur() == 2) {
+			a = 1;
+		} else {
+			a = 0;
+			System.out.println("erreur, a=0");
 		}
-	}
-	
-	public void exec(int x, int y, Group root){
-		comport.exec(this);
-	}
-	
-	public void afficherVie() {
-		vie1 = new Rectangle();
-		vie1.setWidth(15);
-		vie1.setHeight(8);
-		vie1.setArcWidth(5);
-		vie1.setArcHeight(5);
-		vie1.setFill(Color.LIGHTGREEN);
-		vie1.setLayoutX(12);
-		vie1.setLayoutY(56);
-		this.getChildren().add(vie1);
-	}
-	
-	public void actualiserVie() {
-		switch (this.pv) {
-		case 0:
-			vie1.setVisible(false);
-			break;
-		case 1:
-			vie1.setVisible(true);
-			break;
-		default:
-			this.pv = 1;
-			vie1.setVisible(true);
-			break;
+
+		int x1 = x + 1, y1 = y + 1, x2 = x - 1, y2 = y - 1;
+
+		if (x + 1 > 15) {
+			x1 = 0;
+		} else if (x - 1 < 0) {
+			x2 = 15;
+
 		}
-	}
-	
-	public void perdVie() {
-		this.pv--;
-		actualiserVie();
+
+		if (y + 1 > 15) {
+			y1 = 0;
+		} else if (y - 1 < 0) {
+			y2 = 15;
+		}
+
+		if (plateau.rechercher(x1, y) == a || plateau.rechercher(x2, y) == a || plateau.rechercher(x, y1) == a
+				|| plateau.rechercher(x, y2) == a) {
+			plateau.getJoueur(a).perdVie();
+		}
+
 	}
 
 	public void droite() {
-		// on recupere la position locale
-		int x = (int) listeRobot[this.x][this.y].getTranslateX() / 60;
-		int y = (int) listeRobot[this.x][this.y].getTranslateY() / 60;
-		// on recupere l indice de la case (x,y)
-		int indice = p.rechercher(x, y);
-		System.out.println("x = " + (this.getTranslateX() / 60)+" y = "+ ((int) this.getTranslateY() / 60));
-		// si l indice recupere est different de l indice du joueur
-//		if (indice != indice_robot-2) {
-//			p.setCasePlateau(x, y, 0);
-//			System.out.println(p.getCasePlateau(x,y));
-//		}
-		// si on sort du donut
-		if (this.getTranslateX() + 60 > 959) {
-			x = 0;
-			y = (int) this.getTranslateY() / 60;
-			indice = p.rechercher(x, y);
-			// si la case vise est vide ou n a pas d obstacle
+		int indice = plateau.rechercher(getX(), getY());
+		if (indice != joueur.Indice_joueur()) {
+			plateau.setCasePlateau(getX(), getY(), 0);
+		}
+		if (getX() + 1 > 15) {
+			indice = plateau.rechercher(0, getY());
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				listeRobot[15][y].setTranslateX(0);
-				System.out.println("getTx = "+this.getTranslateX());
-
+				setX(0);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutX(0);
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(15, getY(), joueur.Indice_joueur() + 2);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60 + 1;
-			y = (int) (this.getTranslateY() / 60);
-			indice = p.rechercher(x, y);
+			indice = plateau.rechercher(getX() + 1, getY());
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				listeRobot[x-1][y].setTranslateX(this.getTranslateX() + 60);
-				System.out.println("getTx + 60= "+ (this.getTranslateX()+60));
-
+				setX(getX() + 1);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutX(imageRobot.getLayoutX() + plateau.getSize());
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 			}
-
 		}
 	}
 
 	public void gauche() {
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
-		int indice = p.rechercher(x, y);
-		if (indice != indice_robot-2) {
-			p.setCasePlateau(x, y, 0);
+		int indice = plateau.rechercher(getX(), getY());
+		if (indice != joueur.Indice_joueur()) {
+			plateau.setCasePlateau(getX(), getY(), 0);
 		}
-		if (this.getTranslateX() - 60 < 0) {
-			x = 15;
-			y = (int) this.getTranslateY() / 60;
-			indice = p.rechercher(x, y);
+		if (getX() - 1 < 0) {
+			indice = plateau.rechercher(15, getY());
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateX(900);
-
+				setX(15);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutX(15*plateau.getSize());
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(0, getY(), joueur.Indice_joueur() + 2);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60 - 1;
-			y = (int) (this.getTranslateY() / 60);
-			indice = p.rechercher(x, y);
+			indice = plateau.rechercher(getX() - 1, getY());
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateX(this.getTranslateX() - 60);
-
+				setX(getX() - 1);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutX(imageRobot.getLayoutX() - plateau.getSize());
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 			}
-
 		}
 	}
 
 	public void monter() {
-
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
-		int indice = p.rechercher(x, y);
-		if (indice != indice_robot-2) {
-			p.setCasePlateau(x, y, 0);
+		int indice = plateau.rechercher(getX(), getY());
+		if (indice != joueur.Indice_joueur()) {
+			plateau.setCasePlateau(getX(), getY(), 0);
 		}
-		if (this.getTranslateY() - 60 < 0) {
-			x = (int) this.getTranslateX() / 60;
-			y = 15;
-			indice = p.rechercher(x, y);
+		if (getY() - 1 < 0) {
+			indice = plateau.rechercher(getX(), 15);
 			if (indice > 10 || indice == 0) {
-				
-				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateY(900);
-
+				setY(15);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutY(15*plateau.getSize());
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(getX(), 0, joueur.Indice_joueur() + 2);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60;
-			y = (int) (this.getTranslateY() / 60) - 1;
-			indice = p.rechercher(x, y);
+			indice = plateau.rechercher(getX(), getY() - 1);
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateY(this.getTranslateY() - 60);
-
+				setY(getY() - 1);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutY(imageRobot.getLayoutY() - plateau.getSize());
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 			}
-
 		}
 	}
 
 	public void descendre() {
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
-		int indice = p.rechercher(x, y);
-		if (indice != indice_robot-2) {
-			p.setCasePlateau(x, y, 0);
+		int indice = plateau.rechercher(getX(), getY());
+		if (indice != joueur.Indice_joueur()) {
+			plateau.setCasePlateau(getX(), getY(), 0);
 		}
-		if (this.getTranslateY() + 60 > 959) {
-			x = (int) this.getTranslateX() / 60;
-			y = 0;
-			indice = p.rechercher(x, y);
+		if (getY() + 1 > 15) {
+			indice = plateau.rechercher(getX(), 0);
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateY(0);
-
+				setY(0);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutY(0);
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(getX(), 15, joueur.Indice_joueur() + 2);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60;
-			y = (int) (this.getTranslateY() / 60) + 1;
-			indice = p.rechercher(x, y);
+			indice = plateau.rechercher(getX(), getY() + 1);
 			if (indice > 10 || indice == 0) {
-
-				p.setCasePlateau(x, y, indice_robot);
-				this.setTranslateY(this.getTranslateY() + 60);
-
+				setY(getY() + 1);
+				plateau.ramasser(getX(), getY(), joueur, indice);
+				hit(getX(), getY());
+				joueur.getScore().actuScore();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				imageRobot.setLayoutY(imageRobot.getLayoutY() + plateau.getSize());
 			} else {
-				//this.perdVie();
+				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 			}
-
 		}
-
 	}
-	
+
+	public void exec() {
+		comport.exec(this);
+	}
+
 }

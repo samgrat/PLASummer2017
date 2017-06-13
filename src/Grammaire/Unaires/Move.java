@@ -28,9 +28,9 @@ public class Move extends Unaire {
 		
 		Random R = new Random();
 		int valeur = R.nextInt(3); // génere soit 2, soit 1, soit 0
-		int valtest = 0;
 		
-		switch (valtest) {
+		
+		switch (valeur) {
 		case 0:
 			// TODO modifier le test d obstacles
 			r.droite();
@@ -41,6 +41,9 @@ public class Move extends Unaire {
 		case 2:
 			r.monter();
 			break;
+		case 3:
+			r.descendre();
+			break;
 		default:
 			break;
 		}
@@ -48,8 +51,11 @@ public class Move extends Unaire {
 
 	@Override
 	public void exec(Robot r, int a) {
-		if (a == avancement)
+		if (a == avancement){
 			System.out.println("exec M avancement " + avancement);
+			exec(r);
+		}
+		
 		
 	}
 	

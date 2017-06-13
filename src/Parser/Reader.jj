@@ -8,7 +8,6 @@ options
 
 PARSER_BEGIN(Reader)
 package Parser;
-import java.util.LinkedList;
 import Grammaire.*;
 import Grammaire.Binaires.*;
 
@@ -22,7 +21,7 @@ public class Reader
     try
     {
       exp = Reader.EXPRESSION();
-      System.out.println("exp= " + exp.toString());
+      System.out.println("exp = " + exp.toString());
     }
     catch (Exception e)
     {
@@ -113,7 +112,7 @@ TOKEN : /* TO_IGNORE */
 {
       < DIGITS : ["0"-"9"]>
 	| < LOWER_LETTERS : ["a"-"z"] >
-	| < UPPER_LETTERS : [ "A", "C", "D", "E", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
+	| < UPPER_LETTERS : [ "A", "C", "D", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
 }
 
 
@@ -209,6 +208,6 @@ Expression OPERATOR() :
 {
   t = < UNAIRE >
   {
-    return Dico.get(t.toString()); // TODO ajouter un indice de reperage dans l'arbre
+    return Dico.get(t.toString());
   }
 }

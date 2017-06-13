@@ -72,6 +72,7 @@ public class Graphe {
 	 * @param direction
 	 *            : haut, bas, droite ou gauche
 	 */
+	
 	private void lookAround(Plateau p, int i, int j, int etiquette, String direction) {
 		int indice = 0;
 		int var_dir_x = 0;
@@ -147,21 +148,24 @@ public class Graphe {
 
 		// on recupere l indice de la case a etudier
 		indice = p.rechercher(x_in_p, y_in_p);
-		if(p.rechercher(i,j) > 10 || p.rechercher(i,j) == 0){
+		if (p.rechercher(i, j) > 10 || p.rechercher(i, j) == 0) {
+
+			indice = p.rechercher(x_in_p, y_in_p);
+
 			// si on peut aller sur cette case
 			if ((indice > 10 || indice == 0)) {
 				// on cree un arc entre le noeud courant et le noeud a la
 				// direction voulue
 				arcs[x_in_arcs][y_in_arcs] = 1;
-				// arcs[y_in_arcs][x_in_arcs] = 1;
 			} else {
+
 				arcs[x_in_arcs][y_in_arcs] = 0;
 				// arcs[y_in_arcs][x_in_arcs] = 0;
 			}
 		} else {
 			arcs[x_in_arcs][y_in_arcs] = 0;
-			// arcs[y_in_arcs][x_in_arcs] = 0;
 		}
+
 	}
 
 	/**
@@ -214,6 +218,7 @@ public class Graphe {
 		int i = 0;
 		int j = 0;
 		String chaine = "";
+
 		// while(j<NCases){
 		// chaine += "[";
 		// while (i<NCases){
@@ -225,7 +230,7 @@ public class Graphe {
 		// j++;
 		// }
 		for (int k = 0; k < NCases; k++) {
-			chaine += k +" Pred("+list_noeuds[k].getPred() + ") :";
+			chaine += k + " Pred(" + list_noeuds[k].getPred() + ") :";
 			for (int l = 0; l < NCases; l++) {
 				if (arcs[k][l] == 1) {
 					chaine += " " + l + ", ";

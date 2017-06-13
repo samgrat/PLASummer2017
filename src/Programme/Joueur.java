@@ -1,101 +1,153 @@
 package Programme;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 import Grammaire.Comportement;
-import Grammaire.Expression;
+import java.net.URL;
+import Graphique.End;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
 import Parser.ParseException;
-import Parser.Reader;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Joueur extends Personnage {
 	private Score s;
-	private Robot r;
 	private Plateau p;
+	private Comportement comport;
 	private int pv = 3;
 	private int indice_joueur;
 
-	private int nbr_boulon;
-	private int nbr_planche;
-	private int nbr_vis;
-	private int nbr_piece;
+	private int pieceViolette = 0;
+	private int pieceVerte = 0;
+	private int pieceRose = 0;
+	private int pieceOrange = 0;
 
 	Rectangle vie1;
 	Rectangle vie2;
 	Rectangle vie3;
+	Rectangle cache1;
+	Rectangle cache3;
 	Group root;
-	
+    
+	private int difficulte;
 
-	public Score getScore() { return this.s; }
+	public int getPieceViolette() {
+		return pieceViolette;
+	}
 
-	public void setScore(Score s) { this.s = s; }
+	public void setPieceViolette(int pieceViolette) {
+		this.pieceViolette = pieceViolette;
+	}
 
-	// accesseur indice_joueur
-	public int Indice_joueur() { return indice_joueur; }
+	public int getPieceVerte() {
+		return pieceVerte;
+	}
 
-	// accesseur nbr_boulon
-	public int Nbr_boulon() { return nbr_boulon; }
+	public void setPieceVerte(int pieceVerte) {
+		this.pieceVerte = pieceVerte;
+	}
 
-	// accesseur nbr_planche
-	public int Nbr_planche() { return nbr_planche; }
+	public int getPieceRose() {
+		return pieceRose;
+	}
 
-	// accesseur niveau_attaque
-	public int Nbr_vis() { return nbr_vis; }
+	public void setPieceRose(int pieceRose) {
+		this.pieceRose = pieceRose;
+	}
 
-	// accesseur nbr_piece
-	public int Nbr_piece() { return nbr_piece; }
-	
-	public void incrPiece() { nbr_piece++; }
+	public int getPieceOrange() {
+		return pieceOrange;
+	}
+
+	public void setPieceOrange(int pieceOrange) {
+		this.pieceOrange = pieceOrange;
+	}
+
+	public void setDifficulte(int d) {
+		this.difficulte = d;
+	}
+
+	public Score getScore() {
+		return this.s;
+	}
+
+	public void setScore(Score s) {
+		this.s = s;
+	}
+
+	public int Indice_joueur() {
+		return indice_joueur;
+	}
+
+	public void incrPiece(int indice) {
+		switch (indice) {
+		case 11:
+			this.pieceViolette++;
+			break;
+		case 12:
+			this.pieceVerte++;
+			break;
+		case 13:
+			this.pieceRose++;
+			break;
+		case 14:
+			this.pieceOrange++;
+			break;
+		}
+	}
 
 	/**
 	 * creation d'un joueur
 	 * 
 	 * @param indice
 	 *            1 si joueur 1 ou 2 si joueur 2
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
-	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp) { 
-		nbr_boulon = 0;
-		nbr_planche = 0;
-		nbr_vis = 0;
+
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp) {
+		
+		this.comport = comp;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
-		r = new Robot(indice_joueur, p, comp);
+
 		if (indice_joueur == 1) {
-			p.setCasePlateau(indice_joueur, 0, 0);
-			creeJoueur("images/Textures/personnagebleu.png");
+			setX(0);
+			setY(0);
+			p.setCasePlateau(indice_joueur, x, y);
+			creeJoueur("images/Textures/persobleu.png");
 		} else if (indice_joueur == 2) {
-			p.setCasePlateau(indice_joueur, 15, 15);
-			creeJoueur("images/Textures/personnagerouge.png");
+			setX(15);
+			setY(15);
+			p.setCasePlateau(indice_joueur, x, y);
+			creeJoueur("images/Textures/persorouge.png");
 		}
 	}
 
 	public void creeJoueur(String file) {
 		ImageView joueur = new ImageView(new Image(Main.class.getResourceAsStream(file)));
-		joueur.setFitWidth(60);
-		joueur.setFitHeight(60);
+		joueur.setScaleX(1.2);
+		joueur.setScaleY(1.2);
+		joueur.setFitWidth(p.getSize());
+		joueur.setFitHeight(p.getSize());
 		joueur.setLayoutX(5);
 		joueur.setLayoutY(5);
 		this.getChildren().add(joueur);
 
 		Rectangle r = new Rectangle();
-		r.setWidth(50);
+		r.setFill(Color.WHITE);
+		r.setWidth(47);
 		r.setHeight(10);
+		r.opacityProperty().set(.35);
 		r.setArcWidth(10);
 		r.setArcHeight(10);
-		r.setFill(Color.BLACK);
-		r.setLayoutX(10);
+		r.setLayoutX(11);
 		r.setLayoutY(55);
-		r.setStroke(Color.WHITE);
 		this.getChildren().add(r);
 
 		afficherVie();
@@ -103,59 +155,106 @@ public class Joueur extends Personnage {
 
 	public void afficherVie() {
 		vie1 = new Rectangle();
-		vie1.setWidth(15);
+		vie1.setWidth(10);
 		vie1.setHeight(8);
-		vie1.setArcWidth(5);
-		vie1.setArcHeight(5);
-		vie1.setFill(Color.LIGHTGREEN);
+		vie1.setArcWidth(10);
+		vie1.setArcHeight(10);
 		vie1.setLayoutX(12);
 		vie1.setLayoutY(56);
-		this.getChildren().add(vie1);
+		
+		cache1 = new Rectangle();
+		cache1.setWidth(12);
+		cache1.setHeight(8);
+		cache1.setLayoutX(16);
+		cache1.setLayoutY(56);
+		
+		
+		if (indice_joueur == 1) {
+			vie1.setFill(Color.ROYALBLUE);
+			cache1.setFill(Color.ROYALBLUE);
+		}
+		
+		else {
+			vie1.setFill(Color.RED);
+			cache1.setFill(Color.RED);
+		}
+		
+		this.getChildren().addAll(vie1, cache1);
 
 		vie2 = new Rectangle();
-		vie2.setWidth(15);
+		vie2.setWidth(14);
 		vie2.setHeight(8);
-		vie2.setArcWidth(5);
-		vie2.setArcHeight(5);
-		vie2.setFill(Color.LIGHTGREEN);
 		vie2.setLayoutX(12 + 15.5);
 		vie2.setLayoutY(56);
+		
+		if (indice_joueur == 1) {
+			vie2.setFill(Color.ROYALBLUE);
+		}
+		
+		else {
+			vie2.setFill(Color.RED);
+		}
+		
 		this.getChildren().add(vie2);
 
 		vie3 = new Rectangle();
-		vie3.setWidth(15);
+		vie3.setWidth(14);
 		vie3.setHeight(8);
-		vie3.setArcWidth(5);
-		vie3.setArcHeight(5);
-		vie3.setFill(Color.LIGHTGREEN);
+		vie3.setArcWidth(10);
+		vie3.setArcHeight(10);
 		vie3.setLayoutX(12 + 31);
 		vie3.setLayoutY(56);
-		this.getChildren().add(vie3);
+		
+		cache3 = new Rectangle();
+		cache3.setWidth(10);
+		cache3.setHeight(8);
+		cache3.setLayoutX(40);
+		cache3.setLayoutY(56);
+		
+		if (indice_joueur == 1) {
+			vie3.setFill(Color.ROYALBLUE);
+			cache3.setFill(Color.ROYALBLUE);
+		}
+		
+		else {
+			vie3.setFill(Color.RED);
+			cache3.setFill(Color.RED);
+		}
+		
+		this.getChildren().addAll(vie3, cache3);
 	}
 
 	public void actualiserVie() {
 		switch (this.pv) {
 		case 0:
 			vie1.setVisible(false);
+			cache1.setVisible(false);
 			vie2.setVisible(false);
 			vie3.setVisible(false);
+			cache3.setVisible(false);
+			new End(root);
 			break;
 		case 1:
 			vie1.setVisible(true);
+			cache1.setVisible(true);
 			vie2.setVisible(false);
 			vie3.setVisible(false);
+			cache3.setVisible(false);
 			break;
 		case 2:
 			vie1.setVisible(true);
+			cache1.setVisible(true);
 			vie2.setVisible(true);
 			vie3.setVisible(false);
+			cache3.setVisible(false);
 			break;
 		default:
-			this.nbr_piece = 0;
 			this.pv = 3;
 			vie1.setVisible(true);
+			cache1.setVisible(true);
 			vie2.setVisible(true);
 			vie3.setVisible(true);
+			cache3.setVisible(true);
 			s.actuScore();
 			break;
 		}
@@ -167,187 +266,167 @@ public class Joueur extends Personnage {
 	}
 
 	public void droite() {
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateX() + 60 > 959) {
-			x = 0;
-			y = (int) this.getTranslateY() / 60;
-			indice = p.rechercher(x, y);
+		if (getX()+1  > 15) {
+			indice = p.rechercher(0, y);
 			if (indice > 10 || indice == 0) {
-
+				setX(0);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(0);
+			} else if (indice == this.indice_joueur + 2) {
 
+				p.setCasePlateau(15, y, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(15, y, indice_joueur);
 			}
-
+			
 		} else {
-			x = (int) this.getTranslateX() / 60 + 1;
-			y = (int) (this.getTranslateY() / 60);
-			indice = p.rechercher(x, y);
+			indice = p.rechercher(x + 1, y);
 			if (indice > 10 || indice == 0) {
-
+				setX(getX() + 1);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateX(this.getTranslateX() + 60);
+			} else if (indice == this.indice_joueur + 2) {
 
+				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, y, indice_joueur);
 			}
-
 		}
 	}
 
 	public void gauche() {
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateX() - 60 < 0) {
-			x = 15;
-			y = (int) this.getTranslateY() / 60;
-			indice = p.rechercher(x, y);
-			if (indice > 10 || indice == 0) {
 
+		if (getX() - 1 < 0) {
+			indice = p.rechercher(15, y);
+			if (indice > 10 || indice == 0) {
+				setX(15);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(900);
+				this.setTranslateX(15*p.getSize());
 
+			} else if (indice == this.indice_joueur + 2) {
+				p.setCasePlateau(0, y, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(0, y, indice_joueur);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60 - 1;
-			y = (int) (this.getTranslateY() / 60);
-			indice = p.rechercher(x, y);
+			indice = p.rechercher(x - 1, y);
 			if (indice > 10 || indice == 0) {
-
+				setX(getX() - 1);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(this.getTranslateX() - 60);
-
+				this.setTranslateX(this.getTranslateX() - p.getSize());
+			} else if (indice == this.indice_joueur + 2) {
+				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, y, indice_joueur);
 			}
-
 		}
 	}
 
 	public void monter() {
-
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateY() - 60 < 0) {
-			x = (int) this.getTranslateX() / 60;
-			y = 15;
-			indice = p.rechercher(x, y);
+		if (getY() - 1 < 0) {
+			indice = p.rechercher(x, 15);
 			if (indice > 10 || indice == 0) {
-
+				setY(15);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(900);
-
+				this.setTranslateY(15*p.getSize());
+			} else if (indice == this.indice_joueur + 2) {
+				p.setCasePlateau(x, 0, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, 0, indice_joueur);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60;
-			y = (int) (this.getTranslateY() / 60) - 1;
-			indice = p.rechercher(x, y);
+			indice = p.rechercher(x, y - 1);
 			if (indice > 10 || indice == 0) {
-
+				setY(getY() - 1);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(this.getTranslateY() - 60);
-
+				this.setTranslateY(this.getTranslateY() - p.getSize());
+			} else if (indice == this.indice_joueur + 2) {
+				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, y, indice_joueur);
 			}
-
 		}
 	}
 
 	public void descendre() {
-		int x = (int) this.getTranslateX() / 60;
-		int y = (int) this.getTranslateY() / 60;
 		int indice = p.rechercher(x, y);
-		if (indice != indice_joueur+2) {
+		if (indice != indice_joueur + 2) {
 			p.setCasePlateau(x, y, 0);
 		}
-		if (this.getTranslateY() + 60 > 959) {
-			x = (int) this.getTranslateX() / 60;
-			y = 0;
-			indice = p.rechercher(x, y);
+		if (getY() + 1 > 15) {
+			indice = p.rechercher(x, 0);
 			if (indice > 10 || indice == 0) {
-
+				setY(0);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
 				this.setTranslateY(0);
-
+			} else if (indice == this.indice_joueur + 2) {
+				p.setCasePlateau(x, 15, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, 15, indice_joueur);
 			}
-
 		} else {
-			x = (int) this.getTranslateX() / 60;
-			y = (int) (this.getTranslateY() / 60) + 1;
-			indice = p.rechercher(x, y);
+			indice = p.rechercher(x, y + 1);
 			if (indice > 10 || indice == 0) {
-
+				setY(getY() + 1);
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(this.getTranslateY() + 60);
-
+				this.setTranslateY(this.getTranslateY() + p.getSize());
+			} else if (indice == this.indice_joueur + 2) {
+				p.setCasePlateau(x, y, indice_joueur);
 			} else {
 				this.perdVie();
+				p.setCasePlateau(x, y, indice_joueur);
 			}
-
 		}
+	}
+
+	public void invoquerRobot1(Group root) {
+		new Robot(this, root, p, comport, x, y, difficulte);	
+	}
+
+	public void invoquerRobot2(Group root) {
 
 	}
 
-	public void invoquerRobot1() {
-		if (indice_joueur == 1) {
-			r.addRobotBleu((int)getTranslateX()/60, (int)getTranslateY()/60, p, root);
-			this.getChildren().add(r);
-		} else {
-			r.addRobotRouge((int)getTranslateX()/60, (int)getTranslateY()/60, p, root);
-			this.getChildren().add(r);
-		}
-		
-	}
-
-	public void invoquerRobot2() {
+	public void invoquerRobot3(Group root) {
 
 	}
 
-	public void invoquerRobot3() {
-
-	}
-
-	public void invoquerRobot4() {
+	public void invoquerRobot4(Group root) {
 
 	}
 }

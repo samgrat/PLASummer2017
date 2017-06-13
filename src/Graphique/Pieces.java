@@ -1,41 +1,103 @@
 package Graphique;
 
-import javafx.scene.Parent;
+import Programme.Personnage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
-public class Pieces extends Parent {
-	private ImageView[][] listePiece;
-	final int indice_piece = 11;
+public class Pieces extends Personnage {
+	private ImageView piece;
+	private CouleurPiece couleur;
+	private int indiceCouleur;
+	private Timeline timeline;
 
-	public ImageView getPiece(int x, int y) {
-		return listePiece[x][y];
+	public void stopTimeline(){
+		this.timeline.stop();
+	}
+	
+	public int getIndiceCouleur(){
+		return couleur.getIndice();
+	}
+	public ImageView getImagePiece() {
+		return piece;
 	}
 
-	public void setPiece(int x, int y, ImageView val) {
-		this.listePiece[x][y] = val;
+	public void setImagePiece(ImageView imagePiece) {
+		this.piece = imagePiece;
 	}
 
-	public Pieces() {
-		listePiece = new ImageView[16][16];
-	}
+	public Pieces(Plateau p, Group root) {
+		
+		int idpiece;
 
-	public void addPieces(Plateau p) {
-		int x, y;
+		p.setListePiece(this);
+		p.incrCompteurPiece();
+		int abs, ord;
 		do {
-			x = (int) (Math.random() * 16);
-			y = (int) (Math.random() * 16);
-		} while (p.rechercher(x, y) != 0);
+			abs = (int) (Math.random() * 15);
+			ord = (int) (Math.random() * 15);
+			
+		} while (p.rechercher(abs, ord) != 0);
+		setX(abs);
+		setY(ord);
+		
+		ImageView pieceorange = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceorange.png")));
+		ImageView piecerose = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piecerose.png")));
+		ImageView pieceverte = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceverte.png")));
+		ImageView pieceviolette = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceviolette.png")));
+		
+		idpiece = (int) (Math.random() * 100);
+		if ((0 <= idpiece) && (idpiece < 25)) {
+			piece = piecerose;
+			couleur = CouleurPiece.ROSE;
+		}
+		
+		else if ((25 <= idpiece) && (idpiece < 50)) {
+			piece = pieceverte;
+			couleur = CouleurPiece.VERT;
+		}
+		
+		else if ((50 <= idpiece) && (idpiece < 60)) {
+			piece = pieceorange;
+			couleur = CouleurPiece.ORANGE;
+		}
+		
+		else {
+			piece = pieceviolette;
+			couleur = CouleurPiece.VIOLET;
+		}
+		this.indiceCouleur = getIndiceCouleur();
 
-		ImageView piece = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piece.png")));
+		p.setCasePlateau(x, y, indiceCouleur);
+		piece.setScaleX(2.0);
+		piece.setScaleY(2.0);
 		piece.setFitWidth(60);
 		piece.setFitHeight(60);
-		piece.setTranslateX(5 + x * 60);
-		piece.setTranslateY(5 + y * 60);
-		listePiece[x][y] = piece;
-		this.getChildren().add(piece);
-		p.setCasePlateau(x, y, indice_piece);
+		piece.setTranslateX(6 + x * 60);
+		piece.setTranslateY(6 + y * 60);
 
+		root.getChildren().add(piece);
+		
+		timeline = new Timeline(new KeyFrame(Duration.millis(7000), new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				delPiece(piece, x, y, p, root);
+			}
+		}));
+		timeline.play();
+	}
+	
+	public void delPiece(ImageView piece, int x, int y, Plateau p, Group root){
+		p.setCasePlateau(x, y, 0);
+		p.delListePiece(p.rechercherPiece(x, y));
+
+		piece.setVisible(false);
+
+		new Pieces(p, root);
 	}
 
 }
