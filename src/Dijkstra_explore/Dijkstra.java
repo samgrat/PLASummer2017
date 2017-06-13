@@ -44,7 +44,6 @@ public class Dijkstra {
 			
 			for(int i = 0; i < g.NCases; i++){
 				// si il y a un arc
-
 				if(g.arcs[noeud_courant.getEtiquette()][i] != 0){
 					// si le nouveau chemin est plus court
 					if(noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i] 
@@ -84,7 +83,7 @@ public class Dijkstra {
 	 * @return
 	 */
 	int distance_min_in_g (Graphe g, List<Boolean> q){
-		float dmin = Graphe.INFINI;
+		float dmin = Graphe.INFINI+1;
 		int n = -1;
 		
 		for(int i = 0; i <g.NCases; i++){

@@ -42,15 +42,14 @@ public class Main extends Application {
 		Plateau p = new Plateau(listePiece, o);
 		
 		Graphe g = new Graphe(p);
-		
-		Dijkstra d = new Dijkstra(g, 0, 220);
+		//System.out.println(g.toString());
+		Dijkstra d = new Dijkstra(g, 220, 254);
 		System.out.print("Dijkstra de "+d.origine+" a "+d.destination+" [ ");
 		for(int i = 0; i< d.chemin.size(); i++){
 			System.out.print(d.chemin.get(i)+" ");
 		}
 		System.out.println("]");
-		
-		
+			
 		Expression exp = StringtoExpr("{M}");
 		
 		Joueur joueur1 = new Joueur(1, p, root, exp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
