@@ -78,6 +78,24 @@ public class Pipe extends Binaire {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean isExecutable(Robot robot) {
+		if (this.pipe().isExecutable(robot)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isExecutable(Robot r, int a) {
+		if (this.pipe().isExecutable(r, a)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	@Override
 	public void exec(Robot robot) {
@@ -90,9 +108,9 @@ public class Pipe extends Binaire {
 		if (a >= avancement) {
 			// si on a jamais execute l arbre
 			if(passed == null)
-				pipe().exec(r);
+				pipe().exec(r, a);
 			else
-				passed.exec(r);
+				passed.exec(r, a);
 		}
 
 	}
@@ -122,5 +140,12 @@ public class Pipe extends Binaire {
 				return AvTail;
 		}else
 			return passed.getAvancementMax();
+	}
+
+	@Override
+	public void resetPassed() {
+		passed = null;
+		head.resetPassed();
+		tail.resetPassed();
 	}
 }

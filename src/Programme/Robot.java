@@ -18,15 +18,15 @@ public class Robot extends Personnage {
 	private int indice_robot;
 	private ImageView[][] listeRobot;
 	private Plateau p;
-	private Expression express;
+	private Comportement comport;
 	Rectangle vie1;
 	
-	public Robot(int id_joueur, Plateau p, Expression exp){
+	public Robot(int id_joueur, Plateau p, Comportement comp){
 		System.out.println("constructeur robot");
 		this.indice_robot = id_joueur+2;
 		listeRobot = new ImageView[16][16];
 		this.p = p;
-		express = exp;
+		comport = comp;
 	}
 	
 	public void addRobotBleu(int x, int y, Plateau p, Group root){
@@ -57,7 +57,7 @@ public class Robot extends Personnage {
 	}
 	
 	public void exec(int x, int y, Group root){
-		express.exec(this);
+		comport.exec(this);
 	}
 	
 	public void afficherVie() {

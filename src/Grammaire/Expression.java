@@ -20,4 +20,10 @@ public interface Expression {
 
 	int getAvancementMax();
 
+	boolean isExecutable(Robot robot);
+
+	boolean isExecutable(Robot r, int a);
+
+	public void resetPassed();
+
 }

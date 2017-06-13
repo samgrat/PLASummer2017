@@ -43,6 +43,22 @@ public class Liste implements Expression {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean isExecutable(Robot robot) {
+		if (head.isExecutable(robot) && tail.isExecutable(robot)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isExecutable(Robot r, int a) {
+		if (head.isExecutable(r, a) && tail.isExecutable(r, a)) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void exec(Robot robot) {
@@ -60,7 +76,6 @@ public class Liste implements Expression {
 			head.exec(r, a);
 			tail.exec(r, a);
 		}
-
 	}
 
 	@Override
@@ -85,6 +100,12 @@ public class Liste implements Expression {
 			return AvHead;
 		else
 			return AvTail;
+	}
+
+	@Override
+	public void resetPassed() {
+		head.resetPassed();
+		tail.resetPassed();	
 	}
 
 }

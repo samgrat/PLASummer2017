@@ -3,6 +3,7 @@ package Programme;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import Grammaire.Comportement;
 import Grammaire.Expression;
 import Graphique.Main;
 import Graphique.Plateau;
@@ -61,14 +62,14 @@ public class Joueur extends Personnage {
 	 *            1 si joueur 1 ou 2 si joueur 2
 	 * @throws ParseException 
 	 */
-	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) { 
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp) { 
 		nbr_boulon = 0;
 		nbr_planche = 0;
 		nbr_vis = 0;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
-		r = new Robot(indice_joueur, p, exp);
+		r = new Robot(indice_joueur, p, comp);
 		if (indice_joueur == 1) {
 			p.setCasePlateau(indice_joueur, 0, 0);
 			creeJoueur("images/Textures/personnagebleu.png");

@@ -27,10 +27,6 @@ public class Main extends Application {
 		InputStream in = new ByteArrayInputStream(s.getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
-		
-		exp.setAvancement(0);
-		System.out.println();
-		System.out.println(exp.toString()+" avancement max = "+exp.getAvancementMax());
 		return exp;
 	}
 
@@ -59,13 +55,13 @@ public class Main extends Application {
 //			}
 //		}
 			
-		Expression exp = StringtoExpr("{M;{H>{{H;H}|M}}}");
+		Expression exp = StringtoExpr("{M;{H;{{H;H}|M}}}");
 		
-		Comportement c = new Comportement(exp);
+		Comportement comp = new Comportement(exp);
 		
-		Joueur joueur1 = new Joueur(1, p, root, exp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
+		Joueur joueur1 = new Joueur(1, p, root, comp); Score score1 = new Score(joueur1); joueur1.setScore(score1);
 		
-		Joueur joueur2 = new Joueur(2, p, root, exp); Score score2 = new Score(joueur2); joueur2.setScore(score2);
+		Joueur joueur2 = new Joueur(2, p, root, comp); Score score2 = new Score(joueur2); joueur2.setScore(score2);
 		
 		Clavier clav = new Clavier(joueur2, joueur1, p);
 		

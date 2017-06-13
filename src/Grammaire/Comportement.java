@@ -7,6 +7,7 @@ public class Comportement {
 	private Expression exp;
 	
 	public Comportement(Expression e){
+		e.setAvancement(0);
 		exp = e;
 		avancement = 0;
 	}
@@ -16,8 +17,10 @@ public class Comportement {
 		// lorsquon atteint l avancement max on boucle
 		if( avancement < exp.getAvancementMax())
 			avancement++;
-		else
+		else{
 			avancement = 0;
+			exp.resetPassed();
+		}
 	}
 	
 	public String toString(){

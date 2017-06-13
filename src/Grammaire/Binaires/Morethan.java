@@ -53,19 +53,35 @@ public class Morethan extends Binaire {
 			return tail;
 		}
 	}
+	
+	private Expression morethan(Robot robot) {
+		if (head.isExecutable(robot))
+			return head;
+		else {
+			return tail;
+		}
+	}
+	
+	private Expression morethan(Robot r, int a) {
+		if (head.isExecutable(r, a))
+			return head;
+		else {
+			return tail;
+		}
+	}
 
 	@Override
 	public void exec() {
 		Expression header = morethan();
 		if (header != head)
-			morethan().exec();
+			header.exec();
 	}
 
 	@Override
 	public void exec(Robot robot) {
-		Expression header = morethan();
+		Expression header = morethan(robot);
 		if (header != head)
-			morethan().exec(robot);
+			header.exec(robot);
 	}
 
 	@Override
@@ -73,11 +89,11 @@ public class Morethan extends Binaire {
 		if (a >= avancement) {
 			// si on est jamais passe par la
 			if (passed == null) {
-				Expression header = morethan();
+				Expression header = morethan(r, a);
 				if (header != head)
-					morethan().exec(r, a);
+					header.exec(r, a);
 			} else
-				passed.exec(r);
+				passed.exec(r,a);
 		}
 	}
 
@@ -89,6 +105,24 @@ public class Morethan extends Binaire {
 	@Override
 	public boolean isExecutable() {
 		if (this.morethan().isExecutable()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean isExecutable(Robot robot) {
+		if (this.morethan(robot).isExecutable(robot)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isExecutable(Robot r, int a) {
+		if (this.morethan(r, a).isExecutable(r, a)) {
 			return true;
 		} else {
 			return false;
@@ -120,5 +154,13 @@ public class Morethan extends Binaire {
 				return AvTail;
 		}else
 			return passed.getAvancementMax();
+	}
+
+	@Override
+	public void resetPassed() {
+		passed = null;
+		head.resetPassed();
+		tail.resetPassed();
+		
 	}
 }
