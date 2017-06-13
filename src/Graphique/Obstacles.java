@@ -14,6 +14,8 @@ public class Obstacles extends Parent {
 		obstacle.setFitHeight(60);
 		obstacle.setFitWidth(60);
 		
+		/* "map_1.png" : obstacles repartis sur la carte 
+		
 		// case(1, 14)
 		p.setCasePlateau(1, 14, indice_obstacles);
 		// case(2, 14)
@@ -57,8 +59,70 @@ public class Obstacles extends Parent {
 		// case(13, 1)
 		p.setCasePlateau(13, 1, indice_obstacles);
 		// case(14, 1)
-		p.setCasePlateau(14, 1, indice_obstacles);
+		p.setCasePlateau(14, 1, indice_obstacles); */
 		
+		/* "map_2.png" : ricm */
+		
+		// case(1, 6)
+		p.setCasePlateau(1, 6, indice_obstacles);
+		// case(1, 7)
+		p.setCasePlateau(1, 7, indice_obstacles);
+		// case(1, 8)
+		p.setCasePlateau(1, 8, indice_obstacles);
+		// case(1, 9)
+		p.setCasePlateau(1, 9, indice_obstacles);
+		// case(2, 6)
+		p.setCasePlateau(2, 6, indice_obstacles);
+		// case(3, 6)
+		p.setCasePlateau(3, 6, indice_obstacles);
+		// case(5, 6)
+		p.setCasePlateau(5, 6, indice_obstacles);
+		// case(5, 7)
+		p.setCasePlateau(5, 7, indice_obstacles);
+		// case(5, 8)
+		p.setCasePlateau(5, 8, indice_obstacles);
+		// case(5, 9)
+		p.setCasePlateau(5, 9, indice_obstacles);
+		// case(7, 6)
+		p.setCasePlateau(7, 6, indice_obstacles);
+		// case(7, 7)
+		p.setCasePlateau(7, 7, indice_obstacles);
+		// case(7, 8)
+		p.setCasePlateau(7, 8, indice_obstacles);
+		// case(7, 9)
+		p.setCasePlateau(7, 9, indice_obstacles);
+		// case(8, 6)
+		p.setCasePlateau(8, 6, indice_obstacles);
+		// case(8, 9)
+		p.setCasePlateau(8, 9, indice_obstacles);
+		// case(10, 6)
+		p.setCasePlateau(10, 6, indice_obstacles);
+		// case(10, 7)
+		p.setCasePlateau(10, 7, indice_obstacles);
+		// case(10, 8)
+		p.setCasePlateau(10, 8, indice_obstacles);
+		// case(10, 9)
+		p.setCasePlateau(10, 9, indice_obstacles);
+		// case(11, 6)
+		p.setCasePlateau(11, 6, indice_obstacles);
+		// case(12, 6)
+		p.setCasePlateau(12, 6, indice_obstacles);
+		// case(12, 7)
+		p.setCasePlateau(12, 7, indice_obstacles);
+		// case(12, 8)
+		p.setCasePlateau(12, 8, indice_obstacles);
+		// case(12, 9)
+		p.setCasePlateau(12, 9, indice_obstacles);
+		// case(13, 6)
+		p.setCasePlateau(13, 6, indice_obstacles);
+		// case(14, 6)
+		p.setCasePlateau(14, 6, indice_obstacles);
+		// case(14, 7)
+		p.setCasePlateau(14, 7, indice_obstacles);
+		// case(14, 8)
+		p.setCasePlateau(14, 8, indice_obstacles);
+		// case(14, 9)
+		p.setCasePlateau(14, 9, indice_obstacles);
 		
 		this.getChildren().add(obstacle);
 
