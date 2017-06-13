@@ -28,6 +28,10 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 	private int t = 151;
+	final URL resource = getClass().getResource("images/Textures/hit.mp3");
+    final Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    
 
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -41,9 +45,7 @@ public class Main extends Application {
 		
 		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
 		
-		final URL resource = getClass().getResource("images/Textures/ThemeSong.mp3");
-	    final Media media = new Media(resource.toString());
-	    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+		
 	    mediaPlayer.play();
 	    
 		InputStream in = new ByteArrayInputStream("{E}".getBytes());
