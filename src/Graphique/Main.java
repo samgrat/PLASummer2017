@@ -4,8 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
-import Dijkstra_explore.Dijkstra;
-import Dijkstra_explore.Graphe;
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
@@ -40,21 +38,11 @@ public class Main extends Application {
 
 		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
 
-		InputStream in = new ByteArrayInputStream("{M}".getBytes());
+		InputStream in = new ByteArrayInputStream("{E}".getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
 		Plateau p = new Plateau(root);
-		
-		Graphe g = new Graphe(p);
-		
-		Dijkstra d = new Dijkstra(g, 0, 220);
-		System.out.print("Dijkstra de "+d.origine+" a "+d.destination+" [ ");
-		for(int i = 0; i< d.chemin.size(); i++){
-			System.out.print(d.chemin.get(i)+" ");
-		}
-		System.out.println("]");
-
 
 		Joueur joueur1 = new Joueur(1, p, root, exp);
 		Score score1 = new Score(joueur1);

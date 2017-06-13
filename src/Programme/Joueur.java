@@ -130,8 +130,8 @@ public class Joueur extends Personnage {
 		ImageView joueur = new ImageView(new Image(Main.class.getResourceAsStream(file)));
 		joueur.setScaleX(1.2);
 		joueur.setScaleY(1.2);
-		joueur.setFitWidth(60);
-		joueur.setFitHeight(60);
+		joueur.setFitWidth(p.getSize());
+		joueur.setFitHeight(p.getSize());
 		joueur.setLayoutX(5);
 		joueur.setLayoutY(5);
 		this.getChildren().add(joueur);
@@ -314,7 +314,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(900);
+				this.setTranslateX(15*p.getSize());
 
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(0, y, indice_joueur);
@@ -329,7 +329,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(this.getTranslateX() - 60);
+				this.setTranslateX(this.getTranslateX() - p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
@@ -351,7 +351,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(900);
+				this.setTranslateY(15*p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, 0, indice_joueur);
 			} else {
@@ -365,7 +365,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(this.getTranslateY() - 60);
+				this.setTranslateY(this.getTranslateY() - p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
@@ -401,7 +401,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(this.getTranslateY() + 60);
+				this.setTranslateY(this.getTranslateY() + p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {

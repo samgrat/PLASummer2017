@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Graphique.Plateau;
+
 public class Dijkstra {
 	private List<Boolean> Q;
+	private Graphe g;
 	public int origine;
 	public int destination;
 	public List<Integer> chemin;
 
-	public Dijkstra(Graphe g, int o, int d) {
+	public Dijkstra(Plateau p, int o, int d) {
+		
+		g = new Graphe(p);
 		chemin = new ArrayList<Integer>();
 		Q = new ArrayList<Boolean>();
 		int q = g.NCases - 1;
@@ -79,7 +84,7 @@ public class Dijkstra {
 	 * @return
 	 */
 	int distance_min_in_g(Graphe g, List<Boolean> q) {
-		float dmin = Graphe.INFINI;
+		float dmin = Graphe.INFINI + 1;
 		int n = -1;
 
 		for (int i = 0; i < g.NCases; i++) {
