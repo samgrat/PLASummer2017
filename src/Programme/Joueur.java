@@ -18,6 +18,7 @@ public class Joueur extends Personnage {
 	private Plateau p;
 	private Expression exp;
 	public int pv = 3;
+	private int scoreint = 0;
 	private int indice_joueur;
 
 	private int pieceViolette = 0;
@@ -66,11 +67,15 @@ public class Joueur extends Personnage {
 	public void setPieceOrange(int pieceOrange) {
 		this.pieceOrange = pieceOrange;
 	}
+	
+	public int getPieces() {
+		return scoreint;
+	}
 
 	public void setDifficulte(int d) {
 		this.difficulte = d;
 	}
-
+	
 	public Score getScore() {
 		return this.s;
 	}
@@ -87,15 +92,19 @@ public class Joueur extends Personnage {
 		switch (indice) {
 		case 11:
 			this.pieceViolette++;
+			scoreint++;
 			break;
 		case 12:
 			this.pieceVerte++;
+			scoreint++;
 			break;
 		case 13:
 			this.pieceRose++;
+			scoreint++;
 			break;
 		case 14:
 			this.pieceOrange++;
+			scoreint++;
 			break;
 		}
 	}
@@ -417,7 +426,12 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, exp, x, y, difficulte);	
+		
+		
+		if (this.pieceViolette >= 2) {
+			new Robot(this, root, p, exp, x, y, difficulte);
+			this.pieceViolette -= 2;
+		}
 	}
 
 	public void invoquerRobot2(Group root) {

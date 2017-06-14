@@ -91,7 +91,7 @@ public class Plateau extends Parent {
 		new Pieces(this, root);
 	}
 
-	public void ramasser(int x, int y, Joueur j, int indice) {
+	public int ramasser(int x, int y, Joueur j, int indice) {
 
 			int i = rechercherPiece(x, y);
 			if (i != -1) {
@@ -100,7 +100,9 @@ public class Plateau extends Parent {
 				listePiece[i].stopTimeline();
 				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
 				listePiece[i] = null;
+				return i;
 			}
+			return -1;
 	}
 
 	public int rechercherPiece(int x, int y) {
