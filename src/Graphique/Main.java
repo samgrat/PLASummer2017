@@ -9,6 +9,7 @@ import Grammaire.Comportement;
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
+import Graphique.Score;
 import Programme.Joueur;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -30,14 +31,16 @@ import javafx.util.Duration;
 
 
 public class Main extends Application {
-
-	private int t = 151;
+	
+	public Joueur joueur1, joueur2;
+	public Timeline timeline;
+	public Plateau p;
+	private int t = 10;
 	Stage thestage;
 	Group pane3;
 	Button btnscene1, btnscene2;
 	Scene scene2, scene3;
 	String nomJ1,nomJ2;
-	
 	
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -88,10 +91,14 @@ public class Main extends Application {
 		temps.setFill(Color.hsb(0, .0, .2));
 		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
 		temps.setFontSmoothingType(FontSmoothingType.LCD);
+		
 		compteArebour(temps, pane3);
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+
+		timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+
 				compteArebour(temps, pane3);
+
 			}
 		}));
 		
@@ -104,24 +111,40 @@ public class Main extends Application {
 		pane3.getChildren().addAll(p, score1, score2,  joueur1, joueur2, menu, clav, temps);	
 		
 	}
-	
+
 public void compteArebour(Text temps, Group pane3) {
-		
+	
 		DecimalFormat formater = new DecimalFormat("00");
+		
 		if (this.t > 0) {
 			this.t--;
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
 			temps.setText(min + ":" + sec);
-		} else {
-			new End(pane3);
+		} 
+		
+		else {
+			
+			int scorej1 = joueur1.getPieces();
+			int scorej2 = joueur2.getPieces();
+			
+			if (scorej1 > scorej2) {
+				new End(pane3, 2);
+			}
+			
+			else if (scorej1 < scorej2) {
+				new End(pane3, 1);
+			}
+			
+			else {
+				new End(pane3, 0);
+			}
 		}
 		
-		// centrage du timer dans l'interface prvue
+		// centrage du timer dans l'interface prevue
 		double W = temps.getBoundsInLocal().getWidth();
 		double H = temps.getBoundsInLocal().getHeight();
 		temps.relocate(1125-W/2, 485-H/2);
-
-	}
+}
 
 }

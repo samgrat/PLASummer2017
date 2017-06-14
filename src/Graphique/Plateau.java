@@ -63,8 +63,8 @@ public class Plateau extends Parent {
 		}
 		this.listePiece = new Pieces[256];
 
-		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/interface.png")));
-		
+		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/map2.png")));
+
 		this.getChildren().add(bck);
 		int j = 0;
 		for (int i = 0; i < 16; i++) {
@@ -91,7 +91,7 @@ public class Plateau extends Parent {
 		new Pieces(this, root);
 	}
 
-	public void ramasser(int x, int y, Joueur j, int indice) {
+	public int ramasser(int x, int y, Joueur j, int indice) {
 
 			int i = rechercherPiece(x, y);
 			if (i != -1) {
@@ -100,7 +100,9 @@ public class Plateau extends Parent {
 				listePiece[i].stopTimeline();
 				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
 				listePiece[i] = null;
+				return i;
 			}
+			return -1;
 	}
 
 	public int rechercherPiece(int x, int y) {

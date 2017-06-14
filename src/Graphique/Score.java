@@ -1,6 +1,7 @@
 package Graphique;
 
 import Programme.Joueur;
+import Graphique.Plateau;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -18,7 +19,7 @@ public class Score extends Parent {
 	Text scorej, pieceViolette, pieceVerte, pieceRose, pieceOrange;
 	Rectangle panneau;
 	Joueur j;
-
+	
 	public Score(Joueur j) {
 		this.j = j;
 
@@ -77,9 +78,9 @@ public class Score extends Parent {
 		this.getChildren().addAll(scorej, pieceViolette, pieceVerte, pieceRose, pieceOrange);
 	}
 
-	public void actuScore() {
-
-		scorej.setText(String.valueOf(j.getPieceOrange() + j.getPieceRose() + j.getPieceVerte() + j.getPieceViolette()));
+	public void actuScore() { 
+				
+		scorej.setText(String.valueOf(j.getPieces()));
 		pieceViolette.setText(String.valueOf(j.getPieceViolette()));
 		pieceVerte.setText(String.valueOf(j.getPieceVerte()));
 		pieceRose.setText(String.valueOf(j.getPieceRose()));
@@ -136,3 +137,4 @@ public class Score extends Parent {
 		}
 	}
 }
+
