@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
-
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
