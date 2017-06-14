@@ -6,13 +6,17 @@ import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
 import Parser.ParseException;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 public class Joueur extends Personnage {
 	private Score s;
@@ -282,6 +286,13 @@ public class Joueur extends Personnage {
 			new End(root, indice_joueur);
 			timeline.stop();
 		}
+		Timeline degat  = new Timeline(new KeyFrame(Duration.millis(600), new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				mediaplayer.stop();
+				System.out.println("j'ai stop");
+			}
+		}));
+		degat.play();
 	}
 
 	public void droite() {

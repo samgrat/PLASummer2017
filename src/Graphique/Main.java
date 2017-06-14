@@ -64,7 +64,7 @@ public class Main extends Application {
 		Choix_Robot c1 = new Choix_Robot(primaryStage,thestage,scene3,pane3);	
 		System.out.println("NOMNONM = "+c1.j1.get(0));
 
-		InputStream in = new ByteArrayInputStream("{E|M}".getBytes());
+		InputStream in = new ByteArrayInputStream("{E}".getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
