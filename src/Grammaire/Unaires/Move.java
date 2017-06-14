@@ -7,9 +7,11 @@ import Grammaire.Unaire;
 import Programme.Robot;;
 
 public class Move extends Unaire {
+	
+	int avancement;
 
 	public String toString() {
-		return "M";
+		return "[M av("+ avancement+")]";
 	}
 
 	@Override
@@ -45,6 +47,32 @@ public class Move extends Unaire {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void exec(Robot r, int a) {
+		if (a == avancement){
+			System.out.println("exec M avancement " + avancement);
+			exec(r);
+		}
+		
+		
+	}
+	
+	@Override
+	public void setAvancement(int a) {
+		if (avancement == 0)
+			avancement = a;
+	}
+	
+	@Override
+	public int getAvancement() {
+		return avancement;
+	}
+	
+	@Override
+	public int getAvancementMax() {
+		return avancement;
 	}
 }
 

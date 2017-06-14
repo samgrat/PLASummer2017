@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
+
+import Grammaire.Comportement;
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
@@ -62,13 +64,15 @@ public class Main extends Application {
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
+		Comportement comp = new Comportement(exp);
+		
 		Plateau p = new Plateau(pane3);
 		
-		Joueur joueur1 = new Joueur(1, p, pane3, exp, mediaPlayer);
+		Joueur joueur1 = new Joueur(1, p, pane3, comp, mediaPlayer);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
 		
-		Joueur joueur2 = new Joueur(2, p, pane3, exp, mediaPlayer);
+		Joueur joueur2 = new Joueur(2, p, pane3, comp, mediaPlayer);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
 		

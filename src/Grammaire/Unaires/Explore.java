@@ -6,8 +6,10 @@ import Programme.Robot;
 
 public class Explore extends Unaire {
 
+	int avancement;
+
 	public String toString() {
-		return "E";
+		return "[E av(" + avancement + ")]";
 	}
 
 	@Override
@@ -20,15 +22,16 @@ public class Explore extends Unaire {
 	public void exec(Robot robot) {
 		int posR = robot.getX() + robot.getY() * 16;
 		int posJ;
-		if(robot.getJoueur().Indice_joueur() == 1)
+		if (robot.getJoueur().Indice_joueur() == 1)
 			posJ = robot.getPlateau().getJoueur(2).getX() + robot.getPlateau().getJoueur(2).getY() * 16;
-		else posJ = robot.getPlateau().getJoueur(1).getX() + robot.getPlateau().getJoueur(1).getY() * 16;
-		Dijkstra d = new Dijkstra(robot.getPlateau(), posR, posJ);
-		System.out.print("Chemin = [ ");
-		for (int i = 0; i < d.chemin.size(); i++) {
-			System.out.print(d.chemin.get(i) + " ");
+		else
+			posJ = robot.getPlateau().getJoueur(1).getX() + robot.getPlateau().getJoueur(1).getY() * 16;
+		
+		if(posJ == 238){
+			System.out.println("teehee");
 		}
-		System.out.println("]");
+
+		Dijkstra d = new Dijkstra(robot.getPlateau(), posR, posJ-1);
 		if (d.chemin.size() > 1) {
 			switch (d.chemin.get(1) - d.chemin.get(0)) {
 			case 16:
@@ -60,5 +63,29 @@ public class Explore extends Unaire {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public void exec(Robot r, int a) {
+		if (a == avancement) {
+			System.out.println("exec E avancement " + avancement);
+			exec(r);
+		}
+	}
+
+	@Override
+	public void setAvancement(int a) {
+		if (avancement == 0)
+			avancement = a;
+	}
+
+	@Override
+	public int getAvancement() {
+		return avancement;
+	}
+
+	@Override
+	public int getAvancementMax() {
+		return avancement;
 	}
 }

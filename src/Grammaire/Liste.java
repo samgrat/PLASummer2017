@@ -2,18 +2,26 @@ package Grammaire;
 
 import Programme.Robot;
 
-public class Liste implements Expression{
+public class Liste implements Expression {
 	Expression head;
 	Expression tail;
+	int avancement;
 
 	public Liste() {
 		tail = new Nil();
 		head = new Nil();
 	}
-	
+
 	public Liste(Expression s1, Expression s2) {
 		head = s1;
 		tail = s2;
+
+	}
+
+	public Liste(Expression s1, Expression s2, int a) {
+		head = s1;
+		tail = s2;
+		avancement = a;
 
 	}
 
@@ -21,16 +29,32 @@ public class Liste implements Expression{
 	public void exec() {
 		head.exec();
 		tail.exec();
-		
+
 	}
-	
-	public String toString(){
-		return ("{h = " + head.toString() + " ; t = " + tail.toString() + "}");
+
+	public String toString() {
+		return ("{av(" + avancement + ") " + head.toString() + " ; " + tail.toString() + "}");
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if(head.isExecutable() && tail.isExecutable()){
+		if (head.isExecutable() && tail.isExecutable()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean isExecutable(Robot robot) {
+		if (head.isExecutable(robot) && tail.isExecutable(robot)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isExecutable(Robot r, int a) {
+		if (head.isExecutable(r, a) && tail.isExecutable(r, a)) {
 			return true;
 		}
 		return false;
@@ -41,9 +65,47 @@ public class Liste implements Expression{
 		head.exec(robot);
 		tail.exec(robot);
 	}
-	
-	public String typeObject(){
+
+	public String typeObject() {
 		return "Liste";
+	}
+
+	@Override
+	public void exec(Robot r, int a) {
+		if (a >= avancement) {
+			head.exec(r, a);
+			tail.exec(r, a);
+		}
+	}
+
+	@Override
+	public int getAvancement() {
+		return avancement;
+	}
+
+	@Override
+	public void setAvancement(int a) {
+		if (avancement == 0)
+			avancement = a;
+		head.setAvancement(a);
+		tail.setAvancement(a + 1);
+	}
+
+	@Override
+	public int getAvancementMax() {
+		int AvHead = head.getAvancementMax();
+		int AvTail = tail.getAvancementMax();
+		
+		if(AvHead >= AvTail)
+			return AvHead;
+		else
+			return AvTail;
+	}
+
+	@Override
+	public void resetPassed() {
+		head.resetPassed();
+		tail.resetPassed();	
 	}
 
 }

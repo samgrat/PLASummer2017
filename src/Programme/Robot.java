@@ -18,7 +18,7 @@ import javafx.util.Duration;
 public class Robot extends Personnage {
 	private Joueur joueur;
 	private Plateau plateau;
-	private Expression express;
+	private Comportement comport;
 	private int count = 0;
 	ImageView imageRobot;
 	
@@ -29,23 +29,23 @@ public class Robot extends Personnage {
 	public Plateau getPlateau(){
 		return this.plateau;
 	}
-	public Robot(Joueur j, Group root, Plateau p, Expression exp, int x, int y, int difficulte) {
+	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte) {
 		joueur = j;
 		plateau = p;
-		express = exp;
+		comport = comp;
 		setX(x);
 		setY(y);
 
 		if (j.Indice_joueur() == 1) {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
-			addRobot(getX(), getY(), plateau, root, imageRobot, exp, difficulte);
+			addRobot(getX(), getY(), plateau, root, imageRobot, comport, difficulte);
 		} else {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge.png")));
-			addRobot(getX(), getY(), plateau, root, imageRobot, exp, difficulte);
+			addRobot(getX(), getY(), plateau, root, imageRobot, comport, difficulte);
 		}
 	}
 
-	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Expression exp, int difficulte) {
+	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Comportement comp, int difficulte) {
 
 		robot.setScaleX(1.2);
 		robot.setScaleY(1.2);
@@ -233,7 +233,7 @@ public class Robot extends Personnage {
 	}
 
 	public void exec() {
-		express.exec(this);
+		comport.exec(this);
 	}
 
 }

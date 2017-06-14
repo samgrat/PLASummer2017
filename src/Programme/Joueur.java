@@ -1,5 +1,6 @@
 package Programme;
 
+import Grammaire.Comportement;
 import Grammaire.Expression;
 import Graphique.End;
 import Graphique.Main;
@@ -16,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 public class Joueur extends Personnage {
 	private Score s;
 	private Plateau p;
-	private Expression exp;
+	private Comportement comport;
 	private int pv = 3;
 	private int indice_joueur;
 
@@ -108,9 +109,9 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp, MediaPlayer mediaplayer) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp, MediaPlayer mediaplayer) {
 		this.mediaplayer = mediaplayer;
-		this.exp = exp;
+		this.comport = comp;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -415,7 +416,7 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, exp, x, y, difficulte);	
+		new Robot(this, root, p, comport, x, y, difficulte);	
 	}
 
 	public void invoquerRobot2(Group root) {
