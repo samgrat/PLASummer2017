@@ -3,6 +3,7 @@ package Programme;
 import Grammaire.Expression;
 import Graphique.End;
 import Graphique.Main;
+import Graphique.Pieces;
 import Graphique.Plateau;
 import Graphique.Score;
 import Parser.ParseException;
@@ -20,7 +21,8 @@ public class Joueur extends Personnage {
 	public int pv = 3;
 	private int scoreint = 0;
 	private int indice_joueur;
-
+	
+	
 	private int pieceViolette = 0;
 	private int pieceVerte = 0;
 	private int pieceRose = 0;

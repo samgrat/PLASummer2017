@@ -31,8 +31,9 @@ import javafx.util.Duration;
 public class Main extends Application {
 	
 	public Joueur joueur1, joueur2;
-	
-	private int t = 60;
+	public Timeline timeline;
+	public Plateau p;
+	private int t = 10;
 	Stage thestage;
 	Group pane3;
 	Button btnscene1, btnscene2;
@@ -64,7 +65,8 @@ public class Main extends Application {
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
-		Plateau p = new Plateau(pane3);
+		
+		p = new Plateau(pane3);
 		
 		joueur1 = new Joueur(1, p, pane3, exp, mediaPlayer);
 		Score score1 = new Score(joueur1);
@@ -88,7 +90,7 @@ public class Main extends Application {
 		
 		compteArebour(temps, pane3);
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+		timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 
 				compteArebour(temps, pane3);
@@ -122,7 +124,7 @@ public void compteArebour(Text temps, Group pane3) {
 			
 			int scorej1 = joueur1.getPieces();
 			int scorej2 = joueur2.getPieces();
-
+			
 			if (scorej1 > scorej2) {
 				new End(pane3, 2);
 			}
