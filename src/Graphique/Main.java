@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.List;
 
 import Grammaire.Comportement;
 import Grammaire.Expression;
@@ -38,6 +39,14 @@ public class Main extends Application {
 	Scene scene2, scene3;
 	String nomJ1,nomJ2;
 	
+	private Comportement StringtoComportement(String s, Reader r) throws ParseException{
+		InputStream in = new ByteArrayInputStream(s.getBytes());
+	    r = new Reader(in);
+	    Expression exp = Reader.read(r);
+	    Comportement comp = new Comportement(exp);
+		return comp;
+	}
+	
 	
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -60,11 +69,8 @@ public class Main extends Application {
 		Choix_Robot c1 = new Choix_Robot(primaryStage,thestage,scene3,pane3);	
 		System.out.println("NOMNONM = "+c1.j1.get(0));
 
-		InputStream in = new ByteArrayInputStream("{E}".getBytes());
-	    Reader parser = new Reader(in);
-		Expression exp = Reader.read(parser);
-
-		Comportement comp = new Comportement(exp);
+		Reader parser = null;
+		Comportement comp = StringtoComportement("{E}", parser);
 		
 		Plateau p = new Plateau(pane3);
 		

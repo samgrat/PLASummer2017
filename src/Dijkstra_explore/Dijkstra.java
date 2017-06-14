@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Grammaire.DijkException;
 import Graphique.Plateau;
 
 public class Dijkstra {
@@ -58,11 +59,17 @@ public class Dijkstra {
 		// parcours recurssif pour trouver le chemin
 		while (nc.getEtiquette() != origine && j < g.NCases) {
 			chemin.add(nc.getEtiquette());
+			if(nc.getPred() == -1)
+				throw new DijkException();
 			nc = g.list_noeuds[nc.getPred()];
 			j++;
 		}
 		chemin.add(j, origine);
 		reverse();
+	}
+
+	public Dijkstra() {
+		
 	}
 
 	private void reverse() {
