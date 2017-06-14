@@ -1,7 +1,6 @@
 package Programme;
 
 import Grammaire.Comportement;
-import Grammaire.Expression;
 import Graphique.End;
 import Graphique.Main;
 import Graphique.Plateau;

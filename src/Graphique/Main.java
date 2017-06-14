@@ -54,9 +54,10 @@ public class Main extends Application {
 	    
 		
 		thestage = primaryStage;
+		
 		pane3 = new Group();
 		scene3 = new Scene(pane3, 1480, 970, Color.DARKGREY);
-	
+		
 		Choix_Robot c1 = new Choix_Robot(primaryStage,thestage,scene3,pane3);	
 		System.out.println("NOMNONM = "+c1.j1.get(0));
 
@@ -99,8 +100,7 @@ public class Main extends Application {
 
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 		
-		primaryStage.setTitle("Game");
-		
+	
 		pane3.getChildren().addAll(p, score1, score2,  joueur1, joueur2, menu, clav, temps);	
 		
 	}

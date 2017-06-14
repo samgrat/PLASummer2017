@@ -201,8 +201,6 @@ public class Graphe {
 	}
 
 	public String toString() {
-		int i = 0;
-		int j = 0;
 		String chaine = "";
 
 		// while(j<NCases){

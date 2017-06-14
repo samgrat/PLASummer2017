@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
 import I_O.fichier;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -26,7 +28,7 @@ public class Choix_Robot {
 
 	GridPane pane2, pane1bis, pane2bis;
 	Scene scene2, scene1bis, scene2bis;
-	Button btnscene2, btnscene1bis, btnscene2bis;
+	Button btnscene2, btnscene1bis, btnscene2bis, init1, init2;
 	public String nomJ1;
 	public String nomJ2;
 
@@ -44,7 +46,7 @@ public class Choix_Robot {
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
 
-		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
+		
 
 		pane1bis = new GridPane();
 		pane2bis = new GridPane();
@@ -132,11 +134,11 @@ public class Choix_Robot {
 		pane2bis.add(setRobot24, 2, 6);
 
 		Button btnscene1bis = new Button("Enregistrer");
+		btnscene1bis.setDefaultButton(true);
 		GridPane.setHalignment(btnscene1bis, HPos.CENTER);
 		pane1bis.add(btnscene1bis, 2, 8);
 		btnscene1bis.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				System.out.println("Bouton 1 activer");
 				ArrayList<String> J1bis = new ArrayList<String>();
 				J1bis.add(setRobot11.getText());
 				J1bis.add(setRobot12.getText());
@@ -146,7 +148,7 @@ public class Choix_Robot {
 				j1.add(0, setnom1.getText());
 				for (int i = 0; i < 4; i++) {
 					if (J1bis.get(i) != "") {
-						// System.out.println("Affichage à l'indice "+ i + "du
+						// System.out.println("Affichage ï¿½ l'indice "+ i + "du
 						// tableau j1 : " + J1bis.get(i));
 						j1.add(i + 1, J1bis.get(i));
 					}
@@ -154,7 +156,7 @@ public class Choix_Robot {
 
 				PrintWriter pw;
 				try {
-					pw = new PrintWriter(new BufferedWriter(new FileWriter("joueur1.txt", false)));
+					pw = new PrintWriter(new BufferedWriter(new FileWriter("Joueur1.txt", false)));
 					pw.println(j1.get(0));
 
 					pw.close();
@@ -173,8 +175,48 @@ public class Choix_Robot {
 			}
 
 		});
+		HBox hbox1 = new HBox();
+		HBox hbox2 = new HBox();
+		hbox1.setPrefWidth(100);
+		hbox2.setPrefWidth(100);
+		init1 = new Button("RÃ©initialiser");
+		init2 = new Button("RÃ©initialiser");
+		hbox1.getChildren().add(init1);
+		hbox2.getChildren().add(init2);
 
+		pane1bis.add(hbox1, 1, 8);
+		pane2bis.add(hbox2, 1, 8);
+		
+		
+		
+		
+
+		init1.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				fichier.initialisation("Joueur1.txt");
+				j1 = fichier.lecture("Joueur1.txt");
+				setRobot11.setText(j1.get(1));
+				setRobot12.setText(j1.get(2));
+				setRobot13.setText(j1.get(3));
+				setRobot14.setText(j1.get(4));
+		
+			}
+		});
+		
+		init2.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				fichier.initialisation("Joueur2.txt");
+				j2 = fichier.lecture("Joueur2.txt");
+				setRobot21.setText(j2.get(1));
+				setRobot22.setText(j2.get(2));
+				setRobot23.setText(j2.get(3));
+				setRobot24.setText(j2.get(4));
+			}
+		});
+		
+		
 		btnscene2bis = new Button("Enregistrer");
+		btnscene2bis.setDefaultButton(true);
 		GridPane.setHalignment(btnscene2bis, HPos.CENTER);
 		pane2bis.add(btnscene2bis, 2, 8);
 		btnscene2bis.setOnAction(new EventHandler<ActionEvent>() {
@@ -197,7 +239,7 @@ public class Choix_Robot {
 
 				PrintWriter pw;
 				try {
-					pw = new PrintWriter(new BufferedWriter(new FileWriter("joueur2.txt", false)));
+					pw = new PrintWriter(new BufferedWriter(new FileWriter("Joueur2.txt", false)));
 					pw.println(j2.get(0));
 
 					pw.close();
@@ -258,8 +300,9 @@ public class Choix_Robot {
 		joueur2.relocate(1125 - W2 / 2, 938 - H2 / 2);
 
 		// TODO : centrer les noms dans les cases correspondantes
-		// TODO : scanf pour entrer le nom des joueurs en début de partie
+		// TODO : scanf pour entrer le nom des joueurs en dï¿½but de partie
 
 		thestage.setScene(scene3);
+		thestage.centerOnScreen();
 	}
 }
