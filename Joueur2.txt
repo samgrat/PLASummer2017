@@ -1,13 +1,5 @@
-<<<<<<< HEAD
+B
 B
 {E}
 {H;X}
 {X|O}
-{E}
-=======
-2
-*{E}
-*{H;X}
-*{X|O}
-*{X|O}
->>>>>>> branch 'Sam_new' of https://baptiste.betend@gitlab.com/baptiste.betend/PLA.git
