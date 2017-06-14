@@ -16,7 +16,7 @@ public class Joueur extends Personnage {
 	private Score s;
 	private Plateau p;
 	private Expression exp;
-	private int pv = 3;
+	public int pv = 3;
 	private int indice_joueur;
 
 	private int pieceViolette = 0;
@@ -260,7 +260,7 @@ public class Joueur extends Personnage {
 		this.pv--;
 		actualiserVie();
 		if (pv == 0) {
-			new End(root);
+			new End(root, indice_joueur);
 		}
 	}
 

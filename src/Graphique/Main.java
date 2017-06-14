@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-	private int t = 151;
+	private int t = 25;
 
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
@@ -50,10 +50,12 @@ public class Main extends Application {
 		Joueur joueur1 = new Joueur(1, p, root, exp);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
+		int scorej1 = 0;
 
 		Joueur joueur2 = new Joueur(2, p, root, exp);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
+		int scorej2 = 0;
 		
 		p.setJoueur(joueur1, joueur2);
 
@@ -66,10 +68,10 @@ public class Main extends Application {
 		temps.setFill(Color.hsb(0, .0, .2));
 		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
 		temps.setFontSmoothingType(FontSmoothingType.LCD);
-		compteArebour(temps, root);
+		compteArebour(temps, root, scorej1, scorej2);
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				compteArebour(temps, root);
+				compteArebour(temps, root, scorej1, scorej2);
 			}
 		}));
 		
@@ -83,8 +85,8 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 
-public void compteArebour(Text temps, Group root) {
-		
+public void compteArebour(Text temps, Group root, int scorej1, int scorej2) {
+	
 		DecimalFormat formater = new DecimalFormat("00");
 		
 		if (this.t > 0) {
@@ -92,8 +94,22 @@ public void compteArebour(Text temps, Group root) {
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
 			temps.setText(min + ":" + sec);
-		} else {
-			new End(root);
+		} 
+		
+		else {
+			
+			if (scorej1 > scorej2) {
+				new End(root, 1);
+			}
+			
+			else if (scorej1 < scorej2) {
+				new End(root, 2);
+			}
+			
+			else {
+				new End(root, 0);
+			}
+			
 		}
 		
 		// centrage du timer dans l'interface prevue
