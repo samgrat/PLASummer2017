@@ -7,24 +7,27 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+
+import Graphique.Choix_Robot.*;
+import I_O.*;
+
 public class Score extends Parent {
 	Text piece;
-	Text joueur;
 	Rectangle panneau;
 	Joueur j;
-
 	
-	public Score(Joueur j) {
+	public Score(Joueur j, String nom) {
 		this.j = j;
-
+		String nomJ;
 		
-		joueur = new Text("NOM JOUEUR");
+		if(j.Indice_joueur() == 1){
+			nomJ = nom;
+		}
+		else{
+			nomJ = nom;
+		}
 		
-		// TODO : centrer les noms dans les cases correspondantes
-		// TODO : scanf pour entrer le nom des joueurs en début de partie 
-		
-		joueur.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		joueur.setX(1025);
 		
 		piece = new Text(String.valueOf(j.Nbr_piece()));
 
@@ -34,22 +37,13 @@ public class Score extends Parent {
 		piece.setX(1120);
 		
 		if (j.Indice_joueur() == 1) {
-
-			piece.setFill(Color.BLUE);
-			piece.setY(425);
-			joueur.setFill(Color.BLUE);
-			joueur.setY(45);
-		} else {
-			piece.setFill(Color.RED);
-			piece.setY(565);
-			
-			joueur.setFill(Color.RED);
-			joueur.setY(950);
+		piece.setFill(Color.BLUE);
+		piece.setY(425);
+		}else{
+		piece.setFill(Color.RED);
+		piece.setY(565);
 		}
-		
-		this.getChildren().add(piece);
-		this.getChildren().add(joueur);
-	}
+		}
 
 	public void actuScore() {
 		piece.setText(String.valueOf(j.Nbr_piece()));
