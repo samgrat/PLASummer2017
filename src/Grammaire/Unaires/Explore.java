@@ -23,8 +23,12 @@ public class Explore extends Unaire {
 		if(robot.getJoueur().Indice_joueur() == 1)
 			posJ = robot.getPlateau().getJoueur(2).getX() + robot.getPlateau().getJoueur(2).getY() * 16;
 		else posJ = robot.getPlateau().getJoueur(1).getX() + robot.getPlateau().getJoueur(1).getY() * 16;
-		
 		Dijkstra d = new Dijkstra(robot.getPlateau(), posR, posJ);
+		System.out.print("Chemin = [ ");
+		for (int i = 0; i < d.chemin.size(); i++) {
+			System.out.print(d.chemin.get(i) + " ");
+		}
+		System.out.println("]");
 		if (d.chemin.size() > 1) {
 			switch (d.chemin.get(1) - d.chemin.get(0)) {
 			case 16:

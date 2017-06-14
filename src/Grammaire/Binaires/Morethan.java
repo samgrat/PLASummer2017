@@ -1,10 +1,6 @@
 package Grammaire.Binaires;
 
-import java.util.List;
-import java.util.Random;
-
 import Grammaire.Binaire;
-import Grammaire.ExpException;
 import Grammaire.Expression;
 import Programme.Robot;
 

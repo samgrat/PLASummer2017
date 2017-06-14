@@ -1,6 +1,5 @@
 package Programme;
 
-import java.net.URL;
 import Grammaire.Expression;
 import Graphique.End;
 import Graphique.Main;
@@ -10,7 +9,6 @@ import Parser.ParseException;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -35,6 +33,7 @@ public class Joueur extends Personnage {
 	Group root;
     
 	private int difficulte;
+	MediaPlayer mediaplayer;
 
 	public int getPieceViolette() {
 		return pieceViolette;
@@ -109,8 +108,8 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) {
-		
+	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp, MediaPlayer mediaplayer) {
+		this.mediaplayer = mediaplayer;
 		this.exp = exp;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
@@ -262,6 +261,7 @@ public class Joueur extends Personnage {
 
 	public void perdVie() {
 		this.pv--;
+        mediaplayer.play();
 		actualiserVie();
 	}
 

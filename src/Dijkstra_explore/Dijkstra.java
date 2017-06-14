@@ -45,8 +45,7 @@ public class Dijkstra {
 					if (noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i] < g.list_noeuds[i]
 							.getDistance()) {
 						// mise a jour du chemin
-						g.list_noeuds[i]
-								.setDistance(noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i]);
+						g.list_noeuds[i].setDistance(noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i]);
 						g.list_noeuds[i].setPred(noeud_courant.getEtiquette());
 					}
 				}

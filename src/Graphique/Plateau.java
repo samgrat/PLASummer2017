@@ -47,6 +47,9 @@ public class Plateau extends Parent {
 	}
 
 	public void setListePiece(Pieces piece) {
+		if (compteurPiece>255) {
+			compteurPiece = 0;
+		}
 		this.listePiece[compteurPiece] = piece;
 	}
 

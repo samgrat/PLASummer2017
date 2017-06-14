@@ -28,11 +28,7 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 	private int t = 151;
-	final URL resource = getClass().getResource("images/Textures/hit.mp3");
-    final Media media = new Media(resource.toString());
-    final MediaPlayer mediaPlayer = new MediaPlayer(media);
-    
-
+	
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
 	}
@@ -45,20 +41,21 @@ public class Main extends Application {
 		
 		Scene scene = new Scene(root, 1480, 970, Color.DARKGREY);
 		
-		
-	    mediaPlayer.play();
+		final URL resource = getClass().getResource("images/Textures/hit.mp3");
+	    final Media media = new Media(resource.toString());
+	    final MediaPlayer mediaPlayer = new MediaPlayer(media);
 	    
 		InputStream in = new ByteArrayInputStream("{E}".getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
 		Plateau p = new Plateau(root);
-
-		Joueur joueur1 = new Joueur(1, p, root, exp);
+		
+		Joueur joueur1 = new Joueur(1, p, root, exp, mediaPlayer);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
-
-		Joueur joueur2 = new Joueur(2, p, root, exp);
+		
+		Joueur joueur2 = new Joueur(2, p, root, exp, mediaPlayer);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
 		
@@ -88,6 +85,7 @@ public class Main extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 
 public void compteArebour(Text temps, Group root) {
