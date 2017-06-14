@@ -12,4 +12,8 @@ public abstract class Unaire implements Operateur {
 			return false;
 		}
 	}
+	
+	public String typeObject(){
+		return "Unaire";
+	}
 }

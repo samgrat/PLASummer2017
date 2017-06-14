@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import Grammaire.*;
+import Grammaire.Binaires.*;
 
 public class Reader
 {
@@ -24,7 +25,7 @@ public class Reader
     try
     {
       exp = Reader.EXPRESSION();
-      System.out.println("exp= " + exp.toString());
+      System.out.println("exp = " + exp.toString());
     }
     catch (Exception e)
     {
@@ -115,7 +116,7 @@ TOKEN : /* TO_IGNORE */
 {
       < DIGITS : ["0"-"9"]>
 	| < LOWER_LETTERS : ["a"-"z"] >
-	| < UPPER_LETTERS : [ "A", "C", "D", "E", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
+	| < UPPER_LETTERS : [ "A", "C", "D", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
 }
 
 

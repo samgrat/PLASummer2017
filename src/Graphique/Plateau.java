@@ -9,18 +9,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Plateau extends Parent {
+	private int size = 60;
 	private Group root;
 	private Joueur j1, j2;
 	private Integer[][] casePlateau;
 	private Pieces[] listePiece;
 	private int compteurPiece = 0;
 	
+	public int getSize(){
+		return size;
+	}
 	public void setJoueur(Joueur j1, Joueur j2){
 		this.j1 = j1;
 		this.j2 = j2;
 	}
 
-	public Joueur getJoueur1(int indice){
+	public Joueur getJoueur(int indice){
 		if (indice == 1) {
 			return j1;
 		} else if(indice == 2){
@@ -43,6 +47,9 @@ public class Plateau extends Parent {
 	}
 
 	public void setListePiece(Pieces piece) {
+		if (compteurPiece>255) {
+			compteurPiece = 0;
+		}
 		this.listePiece[compteurPiece] = piece;
 	}
 
@@ -62,10 +69,10 @@ public class Plateau extends Parent {
 		int j = 0;
 		for (int i = 0; i < 16; i++) {
 			Rectangle rectangle = new Rectangle();
-			rectangle.setX(5 + j * 60);
-			rectangle.setY(5 + i * 60);
-			rectangle.setWidth(60);
-			rectangle.setHeight(60);
+			rectangle.setX(5 + j * getSize());
+			rectangle.setY(5 + i * getSize());
+			rectangle.setWidth(getSize());
+			rectangle.setHeight(getSize());
 			rectangle.setFill(Color.TRANSPARENT);
 			rectangle.setStroke(Color.TRANSPARENT);
 			rectangle.setStrokeWidth(1);

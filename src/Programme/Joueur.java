@@ -9,6 +9,7 @@ import Parser.ParseException;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -30,8 +31,9 @@ public class Joueur extends Personnage {
 	Rectangle cache1;
 	Rectangle cache3;
 	Group root;
-
+    
 	private int difficulte;
+	MediaPlayer mediaplayer;
 
 	public int getPieceViolette() {
 		return pieceViolette;
@@ -106,8 +108,8 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp) {
-		
+	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp, MediaPlayer mediaplayer) {
+		this.mediaplayer = mediaplayer;
 		this.exp = exp;
 		this.root = root;
 		this.indice_joueur = indice_joueur;
@@ -130,8 +132,8 @@ public class Joueur extends Personnage {
 		ImageView joueur = new ImageView(new Image(Main.class.getResourceAsStream(file)));
 		joueur.setScaleX(1.2);
 		joueur.setScaleY(1.2);
-		joueur.setFitWidth(60);
-		joueur.setFitHeight(60);
+		joueur.setFitWidth(p.getSize());
+		joueur.setFitHeight(p.getSize());
 		joueur.setLayoutX(5);
 		joueur.setLayoutY(5);
 		this.getChildren().add(joueur);
@@ -258,6 +260,7 @@ public class Joueur extends Personnage {
 
 	public void perdVie() {
 		this.pv--;
+        mediaplayer.play();
 		actualiserVie();
 		if (pv == 0) {
 			new End(root, indice_joueur);
@@ -316,7 +319,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(900);
+				this.setTranslateX(15*p.getSize());
 
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(0, y, indice_joueur);
@@ -331,7 +334,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(this.getTranslateX() - 60);
+				this.setTranslateX(this.getTranslateX() - p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
@@ -353,7 +356,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(900);
+				this.setTranslateY(15*p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, 0, indice_joueur);
 			} else {
@@ -367,7 +370,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(this.getTranslateY() - 60);
+				this.setTranslateY(this.getTranslateY() - p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {
@@ -403,7 +406,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(this.getTranslateY() + 60);
+				this.setTranslateY(this.getTranslateY() + p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, y, indice_joueur);
 			} else {

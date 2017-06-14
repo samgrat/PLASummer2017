@@ -127,12 +127,12 @@ static private int jjMoveNfa_0(int startState, int curPos)
                      if (kind > 42)
                         kind = 42;
                   }
-                  else if ((0x6fbde3aL & l) != 0L)
+                  else if ((0x6fbde1aL & l) != 0L)
                   {
                      if (kind > 43)
                         kind = 43;
                   }
-                  if ((0x42164L & l) != 0L)
+                  else if ((0x42164L & l) != 0L)
                   {
                      if (kind > 49)
                         kind = 49;
@@ -143,11 +143,11 @@ static private int jjMoveNfa_0(int startState, int curPos)
                      kind = 42;
                   break;
                case 2:
-                  if ((0x6fbde3aL & l) != 0L && kind > 43)
+                  if ((0x6fbde1aL & l) != 0L)
                      kind = 43;
                   break;
                case 3:
-                  if ((0x42164L & l) != 0L && kind > 49)
+                  if ((0x42164L & l) != 0L)
                      kind = 49;
                   break;
                default : break;
