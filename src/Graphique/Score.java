@@ -8,6 +8,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+
+import Graphique.Choix_Robot.*;
+import I_O.*;
+
 public class Score extends Parent {
 
 	Text scorej, pieceViolette, pieceVerte, pieceRose, pieceOrange;
@@ -16,14 +21,6 @@ public class Score extends Parent {
 
 	public Score(Joueur j) {
 		this.j = j;
-
-		Text nomj1 = new Text("JOUEUR 1");
-		nomj1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		nomj1.setFontSmoothingType(FontSmoothingType.LCD);
-
-		Text nomj2 = new Text("JOUEUR 2");
-		nomj2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		nomj2.setFontSmoothingType(FontSmoothingType.LCD);
 
 		scorej = new Text(String.valueOf(j.getPieceOrange() + j.getPieceRose() + j.getPieceVerte() + j.getPieceViolette()));
 		scorej.setX(1111);
@@ -56,12 +53,6 @@ public class Score extends Parent {
 
 			scorej.setFill(Color.ROYALBLUE);
 			scorej.setY(420);
-
-			nomj1.setFill(Color.ROYALBLUE);
-			// centrage du nom du joueur dans l'interface prevue
-			double W1 = nomj1.getBoundsInLocal().getWidth();
-			double H1 = nomj1.getBoundsInLocal().getHeight();
-			nomj1.relocate(1125 - W1 / 2, 30 - H1 / 2);
 		}
 
 		else {
@@ -69,12 +60,6 @@ public class Score extends Parent {
 			
 			scorej.setFill(Color.RED);
 			scorej.setY(590);
-
-			nomj2.setFill(Color.RED);
-			// centrage du nom du joueur dans l'interface prevue
-			double W2 = nomj2.getBoundsInLocal().getWidth();
-			double H2 = nomj2.getBoundsInLocal().getHeight();
-			nomj2.relocate(1125 - W2 / 2, 938 - H2 / 2);
 		}
 		
 		pieceViolette.setFill(Color.hsb(0, .0, .2));
@@ -89,7 +74,7 @@ public class Score extends Parent {
 		pieceOrange.setFill(Color.hsb(0, .0, .2));
 		pieceOrange.setY(421 + a);
 		
-		this.getChildren().addAll(scorej, nomj1, nomj2, pieceViolette, pieceVerte, pieceRose, pieceOrange);
+		this.getChildren().addAll(scorej, pieceViolette, pieceVerte, pieceRose, pieceOrange);
 	}
 
 	public void actuScore() {
