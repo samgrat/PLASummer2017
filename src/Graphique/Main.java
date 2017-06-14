@@ -95,8 +95,7 @@ public class Main extends Application {
 
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 		
-		primaryStage.setTitle("Game");
-		
+	
 		pane3.getChildren().addAll(p, score1, score2,  joueur1, joueur2, menu, clav, temps);	
 		
 	}
