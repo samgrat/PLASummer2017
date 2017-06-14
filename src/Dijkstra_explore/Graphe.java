@@ -122,11 +122,11 @@ public class Graphe {
 		} else { // sinon donut
 			switch (direction) {
 			case "haut":
-				y_in_p = 0;
+				y_in_p = 15;
 				y_in_arcs = (NCases - 1) - (15 - etiquette);
 				break;
 			case "bas":
-				y_in_p = 15;
+				y_in_p = 0;
 				y_in_arcs = etiquette - (NCases - 1 - 15);
 				break;
 			case "gauche":
