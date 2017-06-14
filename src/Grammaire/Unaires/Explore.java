@@ -7,6 +7,7 @@ import Programme.Robot;
 public class Explore extends Unaire {
 
 	int avancement;
+	int direction;
 
 	public String toString() {
 		return "[E av(" + avancement + ")]";
@@ -20,6 +21,10 @@ public class Explore extends Unaire {
 
 	@Override
 	public void exec(Robot robot) {
+		int posJX, posJY, indpos;
+		int newpos;
+		direction = 0;
+
 		int posR = robot.getX() + robot.getY() * 16;
 		int posJ;
 		if (robot.getJoueur().Indice_joueur() == 1)
@@ -27,11 +32,19 @@ public class Explore extends Unaire {
 		else
 			posJ = robot.getPlateau().getJoueur(1).getX() + robot.getPlateau().getJoueur(1).getY() * 16;
 		
-		if(posJ == 238){
-			System.out.println("teehee");
-		}
+		do {
+			newpos = lookAround(posJ, direction);
+			
+			posJX = postoX(newpos);
+			posJY = postoY(newpos);
+			indpos = robot.getPlateau().rechercher(posJX, posJY);
+			System.out.println("case X = "+posJX+" Y = "+posJY +" indpos = "+indpos);
 
-		Dijkstra d = new Dijkstra(robot.getPlateau(), posR, posJ-1);
+			direction++;
+		} while (indpos != 0 && indpos <= 10);
+
+		
+		Dijkstra d = new Dijkstra(robot.getPlateau(), posR, newpos);
 		if (d.chemin.size() > 1) {
 			switch (d.chemin.get(1) - d.chemin.get(0)) {
 			case 16:
@@ -65,6 +78,41 @@ public class Explore extends Unaire {
 		}
 	}
 
+	private int lookAround(int posJ, int dir) {
+		int newpos;
+
+		switch (dir) {
+		// on regarde a gauche
+		case 0:
+			newpos = posJ - 1;
+			if (newpos <= 0 || newpos > 255)
+				newpos = posJ + 15;
+			return newpos;
+			// on regarde en haut
+		case 1:
+			newpos = posJ - 16;
+			if (newpos <= 0 || newpos > 255)
+				newpos = posJ + 240;
+			return newpos;
+		// on regarde a droite
+		case 2:
+			newpos = posJ + 1;
+			if (newpos <= 0 || newpos > 255)
+				newpos = posJ - 15;
+			return newpos;
+		// on regarde en bas
+		case 3:
+			newpos = posJ + 16;
+			if (newpos <= 0 || newpos > 255)
+				newpos = posJ - 240;
+			return newpos;
+		default:
+			System.out.println("Erreur: la cible est entouree");
+			direction = 0;
+			return posJ;
+		}
+	}
+
 	@Override
 	public void exec(Robot r, int a) {
 		if (a == avancement) {
@@ -87,5 +135,13 @@ public class Explore extends Unaire {
 	@Override
 	public int getAvancementMax() {
 		return avancement;
+	}
+
+	public int postoX(int pos) {
+		return (pos % 16);
+	}
+
+	public int postoY(int pos) {
+		return (pos - (pos%16))/16;
 	}
 }
