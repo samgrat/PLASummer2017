@@ -303,5 +303,6 @@ public class Choix_Robot {
 		// TODO : scanf pour entrer le nom des joueurs en d�but de partie
 
 		thestage.setScene(scene3);
+		thestage.centerOnScreen();
 	}
 }

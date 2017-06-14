@@ -4,6 +4,15 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
+import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import com.sun.javafx.tk.Toolkit;
+import java.awt.Dimension;
+
 import Grammaire.Expression;
 import Parser.ParseException;
 import Parser.Reader;
@@ -52,9 +61,10 @@ public class Main extends Application {
 	    
 		
 		thestage = primaryStage;
+		
 		pane3 = new Group();
 		scene3 = new Scene(pane3, 1480, 970, Color.DARKGREY);
-	
+		
 		Choix_Robot c1 = new Choix_Robot(primaryStage,thestage,scene3,pane3);	
 		System.out.println("NOMNONM = "+c1.j1.get(0));
 
