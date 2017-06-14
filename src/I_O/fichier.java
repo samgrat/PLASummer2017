@@ -34,9 +34,9 @@ public class fichier {
 		return tab;
 	}
 
-	public static void initialisation() {
+	public static void initialisation(String f) {
 		try {
-			String fichier = "Joueur1.txt";
+			String fichier = f;
 			FileWriter fw = new FileWriter(fichier);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter fichierSortie = new PrintWriter(bw);
