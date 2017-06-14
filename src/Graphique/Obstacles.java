@@ -14,7 +14,7 @@ public class Obstacles extends Parent {
 		obstacle.setFitHeight(60);
 		obstacle.setFitWidth(60);
 		
-		/* "map_1.png" : obstacles repartis sur la carte 
+		//"map_1.png" : obstacles repartis sur la carte 
 		
 		// case(1, 14)
 		p.setCasePlateau(1, 14, indice_obstacles);
@@ -59,9 +59,9 @@ public class Obstacles extends Parent {
 		// case(13, 1)
 		p.setCasePlateau(13, 1, indice_obstacles);
 		// case(14, 1)
-		p.setCasePlateau(14, 1, indice_obstacles); */
+		p.setCasePlateau(14, 1, indice_obstacles); 
 		
-		/* "map_2.png" : ricm */
+		/* "map_2.png" : ricm 
 		
 		// case(1, 6)
 		p.setCasePlateau(1, 6, indice_obstacles);
@@ -122,7 +122,7 @@ public class Obstacles extends Parent {
 		// case(14, 8)
 		p.setCasePlateau(14, 8, indice_obstacles);
 		// case(14, 9)
-		p.setCasePlateau(14, 9, indice_obstacles);
+		p.setCasePlateau(14, 9, indice_obstacles);*/
 		
 		this.getChildren().add(obstacle);
 

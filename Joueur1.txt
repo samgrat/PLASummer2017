@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 A
-A
-=======
-dz
->>>>>>> branch 'Julien' of https://baptiste.betend@gitlab.com/baptiste.betend/PLA.git
 {E}
-*{H;B}
-*{H|{X>O}}
+{H;B}
+{H|{X>O}}
+{E}

@@ -65,8 +65,6 @@ public class Choix_Robot {
 
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
-		// //nomJ1 = setnom1.getText();
-		// System.out.println("Test nom 1" + nomJ1);
 		GridPane.setHalignment(nom1, HPos.LEFT);
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
@@ -179,8 +177,8 @@ public class Choix_Robot {
 		HBox hbox2 = new HBox();
 		hbox1.setPrefWidth(100);
 		hbox2.setPrefWidth(100);
-		init1 = new Button("Réinitialiser");
-		init2 = new Button("Réinitialiser");
+		init1 = new Button("Reinitialiser");
+		init2 = new Button("Reinitialiser");
 		hbox1.getChildren().add(init1);
 		hbox2.getChildren().add(init2);
 

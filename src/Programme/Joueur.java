@@ -6,6 +6,7 @@ import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
 import Parser.ParseException;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,7 +37,12 @@ public class Joueur extends Personnage {
     
 	private int difficulte;
 	MediaPlayer mediaplayer;
+	Timeline timeline;
 
+	
+	public void setTimeline(Timeline timeline){
+		this.timeline = timeline;
+	}
 	public int getPieceViolette() {
 		return pieceViolette;
 	}
@@ -274,6 +280,7 @@ public class Joueur extends Personnage {
 		actualiserVie();
 		if (pv == 0) {
 			new End(root, indice_joueur);
+			timeline.stop();
 		}
 	}
 

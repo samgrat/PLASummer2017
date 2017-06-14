@@ -1,18 +1,12 @@
 package Graphique;
 
 import Programme.Joueur;
-import Graphique.Plateau;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
-
-import java.util.ArrayList;
-
-import Graphique.Choix_Robot.*;
-import I_O.*;
 
 public class Score extends Parent {
 

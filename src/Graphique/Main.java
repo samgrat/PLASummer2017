@@ -35,7 +35,7 @@ public class Main extends Application {
 	public Joueur joueur1, joueur2;
 	public Timeline timeline;
 	public Plateau p;
-	private int t = 10;
+	private int t = 121;
 	Stage thestage;
 	Group pane3;
 	Button btnscene1, btnscene2;
@@ -64,7 +64,7 @@ public class Main extends Application {
 		Choix_Robot c1 = new Choix_Robot(primaryStage,thestage,scene3,pane3);	
 		System.out.println("NOMNONM = "+c1.j1.get(0));
 
-		InputStream in = new ByteArrayInputStream("{E}".getBytes());
+		InputStream in = new ByteArrayInputStream("{E|M}".getBytes());
 	    Reader parser = new Reader(in);
 		Expression exp = Reader.read(parser);
 
@@ -72,11 +72,11 @@ public class Main extends Application {
 		
 		Plateau p = new Plateau(pane3);
 		
-		Joueur joueur1 = new Joueur(1, p, pane3, comp, mediaPlayer);
+		joueur1 = new Joueur(1, p, pane3, comp, mediaPlayer);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
 		
-		Joueur joueur2 = new Joueur(2, p, pane3, comp, mediaPlayer);
+		joueur2 = new Joueur(2, p, pane3, comp, mediaPlayer);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
 		
@@ -103,7 +103,8 @@ public class Main extends Application {
 		}));
 		
 		timeline.setCycleCount(Animation.INDEFINITE);
-		
+		joueur1.setTimeline(timeline);
+		joueur2.setTimeline(timeline);
 
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 		
@@ -113,7 +114,7 @@ public class Main extends Application {
 	}
 
 public void compteArebour(Text temps, Group pane3) {
-	
+	int scorej1, scorej2;
 		DecimalFormat formater = new DecimalFormat("00");
 		
 		if (this.t > 0) {
@@ -121,23 +122,24 @@ public void compteArebour(Text temps, Group pane3) {
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
 			temps.setText(min + ":" + sec);
-		} 
-		
-		else {
-			
-			int scorej1 = joueur1.getPieces();
-			int scorej2 = joueur2.getPieces();
+		} else {
+			System.out.println(joueur1.getPieces());
+			scorej1 = joueur1.getPieces();
+			scorej2 = joueur2.getPieces();
 			
 			if (scorej1 > scorej2) {
 				new End(pane3, 2);
+				timeline.stop();
 			}
 			
 			else if (scorej1 < scorej2) {
 				new End(pane3, 1);
+				timeline.stop();
 			}
 			
 			else {
 				new End(pane3, 0);
+				timeline.stop();
 			}
 		}
 		
