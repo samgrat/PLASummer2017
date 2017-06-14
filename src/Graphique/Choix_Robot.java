@@ -134,11 +134,11 @@ public class Choix_Robot {
 		pane2bis.add(setRobot24, 2, 6);
 
 		Button btnscene1bis = new Button("Enregistrer");
+		btnscene1bis.setDefaultButton(true);
 		GridPane.setHalignment(btnscene1bis, HPos.CENTER);
 		pane1bis.add(btnscene1bis, 2, 8);
 		btnscene1bis.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				System.out.println("Bouton 1 activer");
 				ArrayList<String> J1bis = new ArrayList<String>();
 				J1bis.add(setRobot11.getText());
 				J1bis.add(setRobot12.getText());
@@ -216,6 +216,7 @@ public class Choix_Robot {
 		
 		
 		btnscene2bis = new Button("Enregistrer");
+		btnscene2bis.setDefaultButton(true);
 		GridPane.setHalignment(btnscene2bis, HPos.CENTER);
 		pane2bis.add(btnscene2bis, 2, 8);
 		btnscene2bis.setOnAction(new EventHandler<ActionEvent>() {
