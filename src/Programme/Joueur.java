@@ -27,9 +27,13 @@ public class Joueur extends Personnage {
 	private Comportement comport4;
 	private int pv = 3;
 	private int scoreint = 0;
+	private int[] coutrobot1;
+	private int[] coutrobot2;
+	private int[] coutrobot3;
+	private int[] coutrobot4;
+
 	private int indice_joueur;
-	
-	
+
 	private int pieceViolette = 0;
 	private int pieceVerte = 0;
 	private int pieceRose = 0;
@@ -41,7 +45,7 @@ public class Joueur extends Personnage {
 	Rectangle cache1;
 	Rectangle cache3;
 	Group root;
-    
+
 	private int difficulte;
 	MediaPlayer mediaplayer;
 	Timeline timeline;
@@ -81,7 +85,7 @@ public class Joueur extends Personnage {
 	public void setPieceOrange(int pieceOrange) {
 		this.pieceOrange = pieceOrange;
 	}
-	
+
 	public int getPieces() {
 		return scoreint;
 	}
@@ -89,7 +93,7 @@ public class Joueur extends Personnage {
 	public void setDifficulte(int d) {
 		this.difficulte = d;
 	}
-	
+
 	public Score getScore() {
 		return this.s;
 	}
@@ -131,12 +135,18 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp[], MediaPlayer mediaplayer) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement[] compj, int[][] tabCoutRVPj,
+			MediaPlayer mediaplayer) {
 		this.mediaplayer = mediaplayer;
-		this.comport1 = comp[0];
-		this.comport2 = comp[1];
-		this.comport3 = comp[2];
-		this.comport4 = comp[3];
+
+		this.comport1 = compj[0];
+		this.comport2 = compj[1];
+		this.comport3 = compj[2];
+		this.comport4 = compj[3];
+		this.coutrobot1 = tabCoutRVPj[0];
+		this.coutrobot2 = tabCoutRVPj[1];
+		this.coutrobot3 = tabCoutRVPj[2];
+		this.coutrobot4 = tabCoutRVPj[3];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -186,24 +196,23 @@ public class Joueur extends Personnage {
 		vie1.setArcHeight(10);
 		vie1.setLayoutX(12);
 		vie1.setLayoutY(56);
-		
+
 		cache1 = new Rectangle();
 		cache1.setWidth(12);
 		cache1.setHeight(8);
 		cache1.setLayoutX(16);
 		cache1.setLayoutY(56);
-		
-		
+
 		if (indice_joueur == 1) {
 			vie1.setFill(Color.ROYALBLUE);
 			cache1.setFill(Color.ROYALBLUE);
 		}
-		
+
 		else {
 			vie1.setFill(Color.RED);
 			cache1.setFill(Color.RED);
 		}
-		
+
 		this.getChildren().addAll(vie1, cache1);
 
 		vie2 = new Rectangle();
@@ -211,15 +220,15 @@ public class Joueur extends Personnage {
 		vie2.setHeight(8);
 		vie2.setLayoutX(12 + 15.5);
 		vie2.setLayoutY(56);
-		
+
 		if (indice_joueur == 1) {
 			vie2.setFill(Color.ROYALBLUE);
 		}
-		
+
 		else {
 			vie2.setFill(Color.RED);
 		}
-		
+
 		this.getChildren().add(vie2);
 
 		vie3 = new Rectangle();
@@ -229,23 +238,23 @@ public class Joueur extends Personnage {
 		vie3.setArcHeight(10);
 		vie3.setLayoutX(12 + 31);
 		vie3.setLayoutY(56);
-		
+
 		cache3 = new Rectangle();
 		cache3.setWidth(10);
 		cache3.setHeight(8);
 		cache3.setLayoutX(40);
 		cache3.setLayoutY(56);
-		
+
 		if (indice_joueur == 1) {
 			vie3.setFill(Color.ROYALBLUE);
 			cache3.setFill(Color.ROYALBLUE);
 		}
-		
+
 		else {
 			vie3.setFill(Color.RED);
 			cache3.setFill(Color.RED);
 		}
-		
+
 		this.getChildren().addAll(vie3, cache3);
 	}
 
@@ -286,10 +295,10 @@ public class Joueur extends Personnage {
 
 	public void perdVie() {
 		this.pv--;
-        mediaplayer.play();
+		mediaplayer.play();
 		actualiserVie();
-		if (pv == 0) {
-			new End(root, indice_joueur);
+		if (pv <= 0) {
+			new End(root, indice_joueur, timeline);
 			timeline.stop();
 		}
 		Timeline degat  = new Timeline(new KeyFrame(Duration.millis(600), new EventHandler<ActionEvent>() {
@@ -321,7 +330,7 @@ public class Joueur extends Personnage {
 				this.perdVie();
 				p.setCasePlateau(15, y, indice_joueur);
 			}
-			
+
 		} else {
 			indice = p.rechercher(x + 1, y);
 			if (indice > 10 || indice == 0) {
@@ -353,7 +362,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateX(15*p.getSize());
+				this.setTranslateX(15 * p.getSize());
 
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(0, y, indice_joueur);
@@ -390,7 +399,7 @@ public class Joueur extends Personnage {
 				p.ramasser(x, y, this, indice);
 				this.getScore().actuScore();
 				p.setCasePlateau(x, y, indice_joueur);
-				this.setTranslateY(15*p.getSize());
+				this.setTranslateY(15 * p.getSize());
 			} else if (indice == this.indice_joueur + 2) {
 				p.setCasePlateau(x, 0, indice_joueur);
 			} else {
@@ -450,26 +459,56 @@ public class Joueur extends Personnage {
 		}
 	}
 
-	public void invoquerRobot1(Group root) {		
-		if (this.pieceViolette >= 2) {
-			new Robot(this, root, p, this.comport1, x, y, difficulte);
+	public void invoquerRobot1(Group root) {
+
+		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+				&& pieceOrange >= 1) {
+
+			setPieceRose(pieceRose - coutrobot1[0]);
+			setPieceVerte(pieceVerte - coutrobot1[1]);
+			setPieceViolette(pieceViolette - coutrobot1[2]);
+			setPieceOrange(pieceOrange - 1);
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			this.pieceViolette -= 2;
+			new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
 		}
 	}
 
 	public void invoquerRobot2(Group root) {
-		new Robot(this, root, p, this.comport2, x, y, difficulte);
-		p.setCasePlateau(x, y, Indice_joueur()+2);
+		if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
+				&& pieceOrange >= 1) {
+
+			setPieceRose(pieceRose - coutrobot2[0]);
+			setPieceVerte(pieceVerte - coutrobot2[1]);
+			setPieceViolette(pieceViolette - coutrobot2[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
+			new Robot(this, root, p, comport2, x, y, difficulte, coutrobot2);
+		}
 	}
 
 	public void invoquerRobot3(Group root) {
-		new Robot(this, root, p, this.comport3, x, y, difficulte);
-		p.setCasePlateau(x, y, Indice_joueur()+2);
+		if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+				&& pieceOrange >= 1) {
+
+			setPieceRose(pieceRose - coutrobot3[0]);
+			setPieceVerte(pieceVerte - coutrobot3[1]);
+			setPieceViolette(pieceViolette - coutrobot3[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
+			new Robot(this, root, p, comport3, x, y, difficulte, coutrobot3);
+		}
 	}
 
 	public void invoquerRobot4(Group root) {
-		new Robot(this, root, p, this.comport4, x, y, difficulte);
-		p.setCasePlateau(x, y, Indice_joueur()+2);
+		if (pieceRose >= coutrobot4[0] && pieceVerte >= coutrobot4[1] && pieceViolette >= coutrobot4[2]
+				&& pieceOrange >= 1) {
+
+			setPieceRose(pieceRose - coutrobot4[0]);
+			setPieceVerte(pieceVerte - coutrobot4[1]);
+			setPieceViolette(pieceViolette - coutrobot4[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
+			new Robot(this, root, p, comport4, x, y, difficulte, coutrobot4);
+		}
 	}
 }

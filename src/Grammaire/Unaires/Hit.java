@@ -3,6 +3,7 @@ package Grammaire.Unaires;
 import Grammaire.Unaire;
 import Programme.Robot;
 
+
 public class Hit extends Unaire {
 	
 	int avancement;
@@ -19,18 +20,16 @@ public class Hit extends Unaire {
 
 	@Override
 	public void exec(Robot robot) {
-		// TODO Algo de Hit:
-		// le robot frappe en face de lui
+		// le robot frappe autour de lui
 		robot.hit(robot.getX(), robot.getY());
-		
-		
 	}
 
 	@Override
 	public void exec(Robot r, int a) {
-		if (a == avancement)
+		if (a == avancement){
 			System.out.println("exec H avancement " + avancement);
-		
+			exec(r);
+		}
 	}
 	
 	@Override

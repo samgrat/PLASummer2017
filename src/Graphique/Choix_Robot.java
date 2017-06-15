@@ -27,6 +27,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -90,19 +92,25 @@ public String nomJ2;
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
 
-		
+		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));	
+		bg.setTranslateX(-11);
+		bg.setTranslateY(-11);
 
 		pane1bis = new GridPane();
 		pane2bis = new GridPane();
+
 		scene1bis = new Scene(pane1bis, 330, 320);
 		scene2bis = new Scene(pane2bis, 330, 320);
 		pane1bis.setPadding(new Insets(10));
 		pane1bis.setHgap(25);
 		pane1bis.setVgap(15);
-
+		
 		pane2bis.setPadding(new Insets(10));
 		pane2bis.setHgap(25);
 		pane2bis.setVgap(15);
+	
+		// pane1bis.getChildren().add(bg);
+		// pane2bis.getChildren().add(bg);
 
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
@@ -355,7 +363,6 @@ public String nomJ2;
 		thestage.centerOnScreen();
 		
 		
-		
 		Comportement compj1[] = new Comportement[4];
 		Comportement compj2[] = new Comportement[4];
 		
@@ -378,13 +385,20 @@ public String nomJ2;
 			compj2[i] = StringtoComportement(express_j2[i], r);
 		}
 		
+	    int tabCoutRVPj1[][] = new int[express_j1.length][3] ;
+		int tabCoutRVPj2[][] = new int[express_j2.length][3] ;
+		
+		for(int i = 0 ; i < express_j1.length ; i++){
+			tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
+			tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
+		}
 		Plateau p = new Plateau(pane3);
 		
-		jou1 = new Joueur(1, p, pane3, compj1, mediaPlayer);
+		jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
 		Score score1 = new Score(jou1);
 		jou1.setScore(score1);
 		
-		jou2 = new Joueur(2, p, pane3, compj2, mediaPlayer);
+		jou2 = new Joueur(2, p, pane3, compj2, tabCoutRVPj2, mediaPlayer);
 		Score score2 = new Score(jou2);
 		jou2.setScore(score2);
 		
@@ -436,17 +450,17 @@ public void compteArebour(Text temps, Group pane3) {
 			scorej2 = jou2.getPieces();
 			
 			if (scorej1 > scorej2) {
-				new End(pane3, 2);
+				new End(pane3, 2, timeline);
 				timeline.stop();
 			}
 			
 			else if (scorej1 < scorej2) {
-				new End(pane3, 1);
+				new End(pane3, 1, timeline);
 				timeline.stop();
 			}
 			
 			else {
-				new End(pane3, 0);
+				new End(pane3, 0, timeline);
 				timeline.stop();
 			}
 		}
@@ -455,5 +469,42 @@ public void compteArebour(Text temps, Group pane3) {
 		double W = temps.getBoundsInLocal().getWidth();
 		double H = temps.getBoundsInLocal().getHeight();
 		temps.relocate(1125-W/2, 485-H/2);
+}
+
+/**
+ * Retourne le cout du robot correspondant a la sequence entree
+ * @param s
+ * @return
+ */
+private int[] CoutRobot(String s) {
+	int tabCoutRVP[] = new int[3];
+	for (int i = 0; i < s.length(); i++) {
+		switch (s.charAt(i)) {
+		// piece Rose
+		case '{':
+		case '}':
+		case '|':
+		case ';':
+			tabCoutRVP[0]++;
+			break;
+		// piece Vert
+		case 'M':
+		case 'H':
+		case 'R':
+			tabCoutRVP[1]++;
+			break;
+		// piece Violette
+		case '>':
+		case 'E':
+			tabCoutRVP[2]++;
+			break;
+		default:
+			System.out.println("Erreur: operateur non reconnu");
+			System.exit(-1);
+
+		}
+		return tabCoutRVP;
+	}
+	return tabCoutRVP;
 }
 }

@@ -2,6 +2,7 @@ package Graphique;
 
 import javafx.scene.shape.Rectangle;
 import I_O.fichier;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
@@ -11,10 +12,8 @@ import javafx.scene.text.Text;
 
 public class End extends Parent{
 	
-	public End(Group root, int indice_joueur){
-		
-		// Choix_Robot rb = new Choix_Robot();
-
+	public End(Group root, int indice_joueur, Timeline timeline){
+		timeline.stop();
 		Rectangle r = new Rectangle();
 		r.setHeight(965);
 		r.setWidth(965);
@@ -37,7 +36,7 @@ public class End extends Parent{
 			double W2 = j2win.getBoundsInLocal().getWidth();
 			j2win.relocate(495 - W2 / 2, 460);
 			
-			root.getChildren().add(j2win);
+			root.getChildren().addAll(r, j2win);
 			root.requestFocus();
 		}
 		
@@ -54,11 +53,11 @@ public class End extends Parent{
 			double W1 = j1win.getBoundsInLocal().getWidth();
 			j1win.relocate(495 - W1 / 2, 460);
 			
-			root.getChildren().add(j1win);
+			root.getChildren().addAll(r, j1win);
 			root.requestFocus();
 		}
 		
-		else if (indice_joueur == 0) {
+		else {
 			
 			Text eg = new Text("ÉGALITÉ !");
 			eg.setX(390);
@@ -67,8 +66,8 @@ public class End extends Parent{
 			eg.setFontSmoothingType(FontSmoothingType.LCD);
 			eg.setFill(Color.WHITE);
 			
-			root.getChildren().add(eg);
-			root.requestFocus();
-		}
+			root.getChildren().addAll(r, eg);
+			root.requestFocus();		
+		}	
 	}
 }
