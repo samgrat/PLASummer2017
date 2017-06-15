@@ -52,7 +52,7 @@ public class Move extends Unaire {
 	@Override
 	public void exec(Robot r, int a) {
 		if (a == avancement){
-			System.out.println("exec M avancement " + avancement);
+			//System.out.println("exec M avancement " + avancement);
 			exec(r);
 		}
 		

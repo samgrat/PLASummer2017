@@ -34,7 +34,6 @@ public class Reader implements ReaderConstants {
 
   static final public Expression EXPRESSION() throws ParseException {
   Expression exp;
-  LinkedList < Expression > list = new LinkedList();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case UNAIRE:
       exp = OPERATOR();

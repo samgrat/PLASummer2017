@@ -17,7 +17,10 @@ import javafx.scene.shape.Rectangle;
 public class Joueur extends Personnage {
 	private Score s;
 	private Plateau p;
-	private Comportement comport;
+	private Comportement comport1;
+	private Comportement comport2;
+	private Comportement comport3;
+	private Comportement comport4;
 	private int pv = 3;
 	private int indice_joueur;
 
@@ -109,9 +112,12 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp, MediaPlayer mediaplayer) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement[] compj1, MediaPlayer mediaplayer) {
 		this.mediaplayer = mediaplayer;
-		this.comport = comp;
+		this.comport1 = compj1[0];
+		this.comport2 = compj1[1];
+		this.comport3 = compj1[2];
+		this.comport4 = compj1[3];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -416,18 +422,18 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, comport, x, y, difficulte);	
+		new Robot(this, root, p, comport1, x, y, difficulte);	
 	}
 
 	public void invoquerRobot2(Group root) {
-
+		new Robot(this, root, p, comport2, x, y, difficulte);
 	}
 
 	public void invoquerRobot3(Group root) {
-
+		new Robot(this, root, p, comport3, x, y, difficulte);
 	}
 
 	public void invoquerRobot4(Group root) {
-
+		new Robot(this, root, p, comport4, x, y, difficulte);
 	}
 }

@@ -29,7 +29,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
 public class Main extends Application {
 
 	private int t = 151;
@@ -37,53 +36,101 @@ public class Main extends Application {
 	Group pane3;
 	Button btnscene1, btnscene2;
 	Scene scene2, scene3;
-	String nomJ1,nomJ2;
-	
-	private Comportement StringtoComportement(String s, Reader r) throws ParseException{
+	String nomJ1, nomJ2;
+
+	private Comportement StringtoComportement(String s, Reader r) throws ParseException {
 		InputStream in = new ByteArrayInputStream(s.getBytes());
-	    r = new Reader(in);
-	    Expression exp = Reader.read(r);
-	    Comportement comp = new Comportement(exp);
+		Reader.ReInit(in);
+		Expression exp = Reader.read(r);
+		Comportement comp = new Comportement(exp);
 		return comp;
 	}
-	
-	
+
+	/**
+	 * Retourne le cout du robot correspondant a la sequence entree
+	 * @param s
+	 * @return
+	 */
+	private int[] CoutRobot(String s) {
+		int tabCoutRVB[] = new int[3];
+		for (int i = 0; i < s.length(); i++) {
+			switch (s.charAt(i)) {
+			// piece Rose
+			case '{':
+			case '}':
+			case '|':
+			case ';':
+				tabCoutRVB[0]++;
+				break;
+			// piece Vert
+			case 'M':
+			case 'H':
+			case 'R':
+				tabCoutRVB[1]++;
+				break;
+			// piece Bleue
+			case '>':
+			case 'E':
+				tabCoutRVB[2]++;
+				break;
+			default:
+				System.out.println("Erreur: operateur non reconnu");
+				System.exit(-1);
+
+			}
+			return tabCoutRVB;
+		}
+		return tabCoutRVB;
+	}
+
 	public static void main(String[] args) {
 		Application.launch(Main.class, args);
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws ParseException {
 
 		primaryStage.setTitle("THE FLOOR IS LAVA");
-        
+
 		final URL resource = getClass().getResource("images/Textures/hit.mp3");
-	    final Media media = new Media(resource.toString());
-	    final MediaPlayer mediaPlayer = new MediaPlayer(media);
-	    
-		
+		final Media media = new Media(resource.toString());
+		final MediaPlayer mediaPlayer = new MediaPlayer(media);
+
 		thestage = primaryStage;
 		pane3 = new Group();
 		scene3 = new Scene(pane3, 1480, 970, Color.DARKGREY);
-	
-		Choix_Robot c1 = new Choix_Robot(primaryStage,thestage,scene3,pane3);	
-		System.out.println("NOMNONM = "+c1.j1.get(0));
 
-		Reader parser = null;
-		Comportement comp = StringtoComportement("{E}", parser);
+		Choix_Robot c1 = new Choix_Robot(primaryStage, thestage, scene3, pane3);
+		System.out.println("NOMNONM = " + c1.j1.get(0));
+
+		Comportement compj1[] = new Comportement[4];
+		Comportement compj2[] = new Comportement[4];
+
+		String express_j1[] = { "{E}", "{M}", "{M;E}", "{M|E}" };
+		String express_j2[] = { "{M}", "{E}", "{M;E}", "{M|E}" };
 		
+		
+
+		InputStream init = new ByteArrayInputStream("".getBytes());
+		Reader r = new Reader(init);
+
+		for (int i = 0; i < 4; i++) {
+			compj1[i] = StringtoComportement(express_j1[i], r);
+			compj2[i] = StringtoComportement(express_j2[i], r);
+		}
+
 		Plateau p = new Plateau(pane3);
-		
-		Joueur joueur1 = new Joueur(1, p, pane3, comp, mediaPlayer);
+
+		Joueur joueur1 = new Joueur(1, p, pane3, compj1, mediaPlayer);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
-		
-		Joueur joueur2 = new Joueur(2, p, pane3, comp, mediaPlayer);
+
+		Joueur joueur2 = new Joueur(2, p, pane3, compj2, mediaPlayer);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
-		
+
 		p.setJoueur(joueur1, joueur2);
-		
+
 		Clavier clav = new Clavier(joueur2, joueur1, p, pane3);
 
 		Text temps = new Text(String.valueOf(this.t));
@@ -99,20 +146,19 @@ public class Main extends Application {
 				compteArebour(temps, pane3);
 			}
 		}));
-		
+
 		timeline.setCycleCount(Animation.INDEFINITE);
-		
 
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
-		
+
 		primaryStage.setTitle("Game");
-		
-		pane3.getChildren().addAll(p, score1, score2,  joueur1, joueur2, menu, clav, temps);	
-		
+
+		pane3.getChildren().addAll(p, score1, score2, joueur1, joueur2, menu, clav, temps);
+
 	}
-	
-public void compteArebour(Text temps, Group pane3) {
-		
+
+	public void compteArebour(Text temps, Group pane3) {
+
 		DecimalFormat formater = new DecimalFormat("00");
 		if (this.t > 0) {
 			this.t--;
@@ -122,11 +168,11 @@ public void compteArebour(Text temps, Group pane3) {
 		} else {
 			new End(pane3);
 		}
-		
+
 		// centrage du timer dans l'interface prvue
 		double W = temps.getBoundsInLocal().getWidth();
 		double H = temps.getBoundsInLocal().getHeight();
-		temps.relocate(1125-W/2, 485-H/2);
+		temps.relocate(1125 - W / 2, 485 - H / 2);
 
 	}
 

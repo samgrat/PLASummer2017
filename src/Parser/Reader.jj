@@ -161,7 +161,6 @@ TOKEN : /* UNAIRE */
 Expression EXPRESSION() :
 {
   Expression exp;
-  LinkedList < Expression > list = new LinkedList();
 }
 {
   exp = OPERATOR()
