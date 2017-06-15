@@ -26,7 +26,7 @@ public class End extends Parent{
 		if (indice_joueur == 1) {
 			
 			String j2 = fichier.lecture("Joueur2.txt").get(0);
-			Text j2win = new Text(j2 + " A GAGN… !");
+			Text j2win = new Text(j2 + " A GAGNÈ !");
 			j2win.setX(360);
 			j2win.setY(500);
 			j2win.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
@@ -43,7 +43,7 @@ public class End extends Parent{
 		else if (indice_joueur == 2) {
 			
 			String j1 = fichier.lecture("Joueur1.txt").get(0);
-			Text j1win = new Text(j1 + " A GAGN… !");
+			Text j1win = new Text(j1 + " A GAGNÈ !");
 			j1win.setX(360);
 			j1win.setY(500);
 			j1win.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
@@ -59,7 +59,7 @@ public class End extends Parent{
 		
 		else {
 			
-			Text eg = new Text("…GALIT… !");
+			Text eg = new Text("ÈGALITÈ !");
 			eg.setX(390);
 			eg.setY(500);
 			eg.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
