@@ -46,12 +46,12 @@ public class Menu extends Parent {
 				boutonMode1.setDefaultButton(false);
 				boutonMode2.setDefaultButton(true);
 				// boutonMode2.requestFocus();
-				// } else if (ev.getCode() == KeyCode.LEFT) {
-				// boutonMode1.setDefaultButton(false);
-				// boutonMode3.setDefaultButton(true);
-				// boutonMode3.requestFocus();
-				// }
+			} else if (ev.getCode() == KeyCode.LEFT) {
+				boutonMode1.setDefaultButton(false);
+				boutonMode3.setDefaultButton(true);
+				boutonMode3.requestFocus();
 			}
+
 		});
 
 		boutonMode2.setLayoutX(460);
@@ -110,12 +110,12 @@ public class Menu extends Parent {
 				boutonMode3.setDefaultButton(false);
 				boutonMode2.setDefaultButton(true);
 				// boutonMode2.requestFocus();
-				// } else if (ev.getCode() == KeyCode.RIGHT) {
-				// boutonMode1.setDefaultButton(true);
-				// boutonMode1.requestFocus();
-				// boutonMode3.setDefaultButton(false);
-				// }
+			} else if (ev.getCode() == KeyCode.RIGHT) {
+				boutonMode1.setDefaultButton(true);
+				boutonMode1.requestFocus();
+				boutonMode3.setDefaultButton(false);
 			}
+
 		});
 
 		this.getChildren().add(boutonMode1);

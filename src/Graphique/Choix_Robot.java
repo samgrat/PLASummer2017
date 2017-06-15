@@ -82,7 +82,7 @@ public class Choix_Robot {
 
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
-
+		
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
