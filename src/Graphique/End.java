@@ -21,7 +21,6 @@ public class End extends Parent{
 		r.setLayoutY(5);
 		r.setFill(Color.BLACK);
 		r.setOpacity(.75);
-		root.getChildren().add(r);
 		
 		if (indice_joueur == 1) {
 			
