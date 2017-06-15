@@ -11,12 +11,9 @@ public class Reader implements ReaderConstants {
   public static Expression read(Reader parser) throws ParseException
   {
     Expression exp = null;
-    //System.out.println("Reading from standard input...");
-    //System.out.print("Enter an expression : ");
     try
     {
       exp = Reader.EXPRESSION();
-      //System.out.println("exp = " + exp.toString());
     }
     catch (Exception e)
     {

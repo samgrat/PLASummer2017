@@ -193,7 +193,10 @@ public class Robot extends Personnage {
 	}
 
 	public void exec() {
+		
 		comport.exec(this);
+		
+		
 	}
 	
 	public void hit(int x, int y){
