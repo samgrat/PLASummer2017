@@ -22,7 +22,6 @@ public class Joueur extends Personnage {
 	private int scoreint = 0;
 	private int indice_joueur;
 	
-	
 	private int pieceViolette = 0;
 	private int pieceVerte = 0;
 	private int pieceRose = 0;
@@ -273,7 +272,11 @@ public class Joueur extends Personnage {
 		this.pv--;
         mediaplayer.play();
 		actualiserVie();
-		if (pv == 0) {
+		
+		Joueur joueur1 = new Joueur(1, p, root, exp, mediaplayer);
+		Joueur joueur2 = new Joueur(2, p, root, exp, mediaplayer);
+		
+		if ((joueur1.pv <= 0) && (joueur2.pv <= 0)) {
 			new End(root, indice_joueur);
 		}
 	}

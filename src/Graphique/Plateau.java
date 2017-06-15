@@ -63,7 +63,7 @@ public class Plateau extends Parent {
 		}
 		this.listePiece = new Pieces[256];
 
-		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/map3.png")));
+		ImageView bck = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/map1.png")));
 		this.getChildren().add(bck);
 		
 		int j = 0;
