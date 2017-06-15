@@ -1,12 +1,24 @@
 package Graphique;
 
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import Grammaire.Comportement;
+import Grammaire.Expression;
 import I_O.fichier;
+import Parser.ParseException;
+import Parser.Reader;
+import Programme.Joueur;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -17,27 +29,34 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Choix_Robot {
 	ArrayList<String> j1;
 	ArrayList<String> j2;
 
+	public Joueur jou1, jou2;
+	private int t = 121;
 	GridPane pane2, pane1bis, pane2bis;
 	Scene scene2, scene1bis, scene2bis;
 	Button btnscene2, btnscene1bis, btnscene2bis, init1, init2;
-	public String nomJ1;
-	public String nomJ2;
-
-	public void addNomJ1(String j1) {
-		this.nomJ1 = j1;
-	}
-
-	public String getNomJ2() {
-		return this.nomJ2;
+	public Timeline timeline;
+	
+	
+	
+	private Comportement StringtoComportement(String s, Reader r) throws ParseException{
+		InputStream in = new ByteArrayInputStream(s.getBytes());
+		Reader.ReInit(in);
+	    Expression exp = Reader.read(r);
+	    Comportement comp = new Comportement(exp);
+		return comp;
 	}
 
 	public Choix_Robot(Stage primaryStage, Stage thestage, Scene scene3, Group pane3) {
@@ -250,7 +269,12 @@ public class Choix_Robot {
 					String ligne = j2.get(j);
 					fichier.ecrire("Joueur2.txt", ligne);
 				}
-				ButtonClicked(event, thestage, scene3, pane3);
+				try {
+					ButtonClicked(event, thestage, scene3, pane3);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				// primaryStage.close();
 			}
 		});
@@ -264,10 +288,8 @@ public class Choix_Robot {
 		return j2.get(0);
 	}
 
-	public void ButtonClicked(ActionEvent e, Stage thestage, Scene scene3, Group pane3) {
-		if (e.getSource() == btnscene2bis)
-			nomJ1 = j1.get(0);
-		nomJ2 = j2.get(0);
+	public void ButtonClicked(ActionEvent e, Stage thestage, Scene scene3, Group pane3) throws ParseException {
+		if (e.getSource() == btnscene2bis){
 		Text joueur1 = new Text(j1.get(0));
 		Text joueur2 = new Text(j2.get(0));
 
@@ -282,8 +304,8 @@ public class Choix_Robot {
 		joueur2.setFill(Color.RED);
 		joueur2.setY(950);
 
-		pane3.getChildren().add(joueur1);
-		pane3.getChildren().add(joueur2);
+		//pane3.getChildren().add(joueur1);
+		//pane3.getChildren().add(joueur2);
 
 		joueur1.setFill(Color.ROYALBLUE);
 		// centrage du nom du joueur dans l'interface prevue
@@ -299,8 +321,117 @@ public class Choix_Robot {
 
 		// TODO : centrer les noms dans les cases correspondantes
 		// TODO : scanf pour entrer le nom des joueurs en d�but de partie
+		
+		final URL resource = getClass().getResource("images/Textures/hit.mp3");
+	    final Media media = new Media(resource.toString());
+	    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+	    
 
 		thestage.setScene(scene3);
 		thestage.centerOnScreen();
+		
+		
+		
+		Comportement compj1[] = new Comportement[4];
+		Comportement compj2[] = new Comportement[4];
+		
+		String express_j1[] = new String[4];		
+		String express_j2[] = new String[4];		
+		
+		for(int i = 0; i < express_j1.length; i++){
+			express_j1[i] = j1.get(i+1);			
+			express_j2[i] = j2.get(i+1);
+			System.out.println("Case" + i + "du tableau 1 :" + express_j1[i]);
+			System.out.println("Case" + i + "du tableau 2 :" + express_j2[i]);
+		}
+		
+		//String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
+		//String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
+		
+		InputStream init = new ByteArrayInputStream("".getBytes());
+	    Reader r = new Reader(init);
+			
+	    for(int i = 0; i < 4; i++){
+			compj1[i] = StringtoComportement(express_j1[i], r);
+			compj2[i] = StringtoComportement(express_j2[i], r);
+		}
+		
+		Plateau p = new Plateau(pane3);
+		
+		jou1 = new Joueur(1, p, pane3, compj1, mediaPlayer);
+		Score score1 = new Score(jou1);
+		jou1.setScore(score1);
+		
+		jou2 = new Joueur(2, p, pane3, compj2, mediaPlayer);
+		Score score2 = new Score(jou2);
+		jou2.setScore(score2);
+		
+		p.setJoueur(jou1, jou2);
+		
+		Clavier clav = new Clavier(jou2, jou1, p, pane3);
+
+		Text temps = new Text(String.valueOf(this.t));
+		temps.setX(1090);
+		temps.setY(505);
+
+		temps.setFill(Color.hsb(0, .0, .2));
+		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
+		temps.setFontSmoothingType(FontSmoothingType.LCD);
+		
+		compteArebour(temps, pane3);
+
+		timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+
+				compteArebour(temps, pane3);
+
+			}
+		}));
+		
+		timeline.setCycleCount(Animation.INDEFINITE);
+		jou1.setTimeline(timeline);
+		jou2.setTimeline(timeline);
+
+		Menu menu = new Menu(clav, timeline, jou1, jou2);
+		
+	
+		pane3.getChildren().addAll(p, score1, score2,  jou1, jou2, menu, clav, temps,joueur1,joueur2);	
+		}
 	}
+
+public void compteArebour(Text temps, Group pane3) {
+	int scorej1, scorej2;
+		DecimalFormat formater = new DecimalFormat("00");
+		
+		if (this.t > 0) {
+			this.t--;
+			String min = String.valueOf(this.t / 60);
+			String sec = formater.format(this.t % 60);
+			temps.setText(min + ":" + sec);
+		} else {
+			//System.out.println(joueur1.getPieces());
+			scorej1 = jou1.getPieces();
+			scorej2 = jou2.getPieces();
+			
+			if (scorej1 > scorej2) {
+				new End(pane3, 2);
+				timeline.stop();
+			}
+			
+			else if (scorej1 < scorej2) {
+				new End(pane3, 1);
+				timeline.stop();
+			}
+			
+			else {
+				new End(pane3, 0);
+				timeline.stop();
+			}
+		}
+		
+		// centrage du timer dans l'interface prevue
+		double W = temps.getBoundsInLocal().getWidth();
+		double H = temps.getBoundsInLocal().getHeight();
+		temps.relocate(1125-W/2, 485-H/2);
+}
 }

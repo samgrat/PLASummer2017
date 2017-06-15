@@ -21,7 +21,10 @@ import javafx.util.Duration;
 public class Joueur extends Personnage {
 	private Score s;
 	private Plateau p;
-	private Comportement comport;
+	private Comportement comport1;
+	private Comportement comport2;
+	private Comportement comport3;
+	private Comportement comport4;
 	private int pv = 3;
 	private int scoreint = 0;
 	private int indice_joueur;
@@ -128,9 +131,12 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp, MediaPlayer mediaplayer) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement comp[], MediaPlayer mediaplayer) {
 		this.mediaplayer = mediaplayer;
-		this.comport = comp;
+		this.comport1 = comp[0];
+		this.comport2 = comp[1];
+		this.comport3 = comp[2];
+		this.comport4 = comp[3];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -446,20 +452,24 @@ public class Joueur extends Personnage {
 
 	public void invoquerRobot1(Group root) {		
 		if (this.pieceViolette >= 2) {
-			new Robot(this, root, p, this.comport, x, y, difficulte);
+			new Robot(this, root, p, this.comport1, x, y, difficulte);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
 			this.pieceViolette -= 2;
 		}
 	}
 
 	public void invoquerRobot2(Group root) {
-
+		new Robot(this, root, p, this.comport2, x, y, difficulte);
+		p.setCasePlateau(x, y, Indice_joueur()+2);
 	}
 
 	public void invoquerRobot3(Group root) {
-
+		new Robot(this, root, p, this.comport3, x, y, difficulte);
+		p.setCasePlateau(x, y, Indice_joueur()+2);
 	}
 
 	public void invoquerRobot4(Group root) {
-
+		new Robot(this, root, p, this.comport4, x, y, difficulte);
+		p.setCasePlateau(x, y, Indice_joueur()+2);
 	}
 }
