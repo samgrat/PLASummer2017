@@ -28,13 +28,14 @@ public class Hit extends Unaire {
 		Plateau p = robot.getPlateau();
 		
 		int X = robot.getX();
+		int X2 = robot.getX();
 		int Y = robot.getY();
+		int Y2 = robot.getY();
 		
 		if(robot.getX()+1 > 15){
 			X = -1;
-		}
-		if(robot.getX()-1 < 0){
-			X = 16;
+		} else if(robot.getX()-1 < 0){
+			X2 = 16;
 		}
 		
 		else{
@@ -43,33 +44,38 @@ public class Hit extends Unaire {
 		
 		if(robot.getY()+1 > 15){
 			Y = -1;System.out.println("Y+1>15");
-		}
-		if(robot.getY()-1 < 0){
-			Y = 16;System.out.println("Y-1<0");
+		}else if(robot.getY()-1 < 0){
+			Y2 = 16;System.out.println("Y-1<0");
 		}
 		
 		//Si le robot appartient au joueur1
 		if(robot.getJoueur().Indice_joueur() == 1){
 			 if(p.rechercher(X+1,robot.getY()) != 2){
 				if(p.rechercher(robot.getX(),Y+1) != 2){
-					if(p.rechercher(X-1,robot.getY()) != 2){
-						if(p.rechercher(robot.getX(),Y-1) != 2){
+					if(p.rechercher(X2-1,robot.getY()) != 2){
+						if(p.rechercher(robot.getX(),Y2-1) != 2){
 							throw new ExpException();
 						}
 						else{
-							robot.getPlateau().getJoueur(2);
+							robot.getPlateau().getJoueur(2).perdVie();
+							//System.out.println("Taper coordonné : X ="+robot.getX() +"Y ="+ (Y2-1) );
 						}
 					}
 					else{
-						robot.getPlateau().getJoueur(2);
+						robot.getPlateau().getJoueur(2).perdVie();
+						//System.out.println("Taper coordonné : X ="+ (X2-1) +"Y = "+ robot.getY() );
+
 					}
 				}
 				else{
-					robot.getPlateau().getJoueur(2);
+					robot.getPlateau().getJoueur(2).perdVie();
+					//System.out.println("Taper coordonné : X ="+robot.getX() +"Y =" + (Y+1) );
+
 				}	
 			 }
 			 else{
-				 robot.getPlateau().getJoueur(2);
+				 robot.getPlateau().getJoueur(2).perdVie();
+				 //System.out.println("Taper coordonné : X ="+ (X+1) +"Y ="+ robot.getY() );
 			}
 		}
 			 
@@ -77,24 +83,24 @@ public class Hit extends Unaire {
 		else{
 			 if(p.rechercher(X+1,robot.getY()) != 1){
 					if(p.rechercher(robot.getX(),Y+1) != 1){
-						if(p.rechercher(X-1,robot.getY()) != 1){
-							if(p.rechercher(robot.getX(),Y-1) != 1){
+						if(p.rechercher(X2-1,robot.getY()) != 1){
+							if(p.rechercher(robot.getX(),Y2-1) != 1){
 								throw new ExpException();
 							}
 							else{
-								robot.getPlateau().getJoueur(1);
+								robot.getPlateau().getJoueur(1).perdVie();
 							}
 						}
 						else{
-							robot.getPlateau().getJoueur(1);
+							robot.getPlateau().getJoueur(1).perdVie();
 						}
 					}
 					else{
-						robot.getPlateau().getJoueur(1);
+						robot.getPlateau().getJoueur(1).perdVie();
 					}	
 				 }
 				 else{
-					 robot.getPlateau().getJoueur(1);
+					 robot.getPlateau().getJoueur(1).perdVie();
 				}
 		}
 	
