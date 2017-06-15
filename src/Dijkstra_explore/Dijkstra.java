@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Grammaire.DijkException;
 import Graphique.Plateau;
 
 public class Dijkstra {
@@ -18,7 +19,7 @@ public class Dijkstra {
 		g = new Graphe(p);
 		chemin = new ArrayList<Integer>();
 		Q = new ArrayList<Boolean>();
-		int q = g.NCases - 1;
+		int q = g.NCases;
 		origine = o;
 		destination = d;
 		noeud noeud_courant = new noeud();
@@ -41,11 +42,12 @@ public class Dijkstra {
 			for (int i = 0; i < g.NCases; i++) {
 				// si il y a un arc
 				if(g.arcs[noeud_courant.getEtiquette()][i] != 0){
+					
 					// si le nouveau chemin est plus court
-					if (noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i] < g.list_noeuds[i]
+					if (noeud_courant.getDistance() + 1 < g.list_noeuds[i]
 							.getDistance()) {
 						// mise a jour du chemin
-						g.list_noeuds[i].setDistance(noeud_courant.getDistance() + g.arcs[noeud_courant.getEtiquette()][i]);
+						g.list_noeuds[i].setDistance(noeud_courant.getDistance() + 1);
 						g.list_noeuds[i].setPred(noeud_courant.getEtiquette());
 					}
 				}
@@ -56,12 +58,18 @@ public class Dijkstra {
 		noeud nc = new noeud(g.list_noeuds[destination]);
 		// parcours recurssif pour trouver le chemin
 		while (nc.getEtiquette() != origine && j < g.NCases) {
-			chemin.add(j, nc.getEtiquette());
+			chemin.add(nc.getEtiquette());
+			if(nc.getPred() == -1)
+				throw new DijkException();
 			nc = g.list_noeuds[nc.getPred()];
 			j++;
 		}
 		chemin.add(j, origine);
 		reverse();
+	}
+
+	public Dijkstra() {
+		
 	}
 
 	private void reverse() {

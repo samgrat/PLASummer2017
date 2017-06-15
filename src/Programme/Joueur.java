@@ -1,5 +1,6 @@
 package Programme;
 
+import Grammaire.Comportement;
 import Grammaire.Expression;
 import Graphique.End;
 import Graphique.Main;
@@ -20,6 +21,10 @@ public class Joueur extends Personnage {
 	private Expression exp;
 	public int pv = 3;
 	private int scoreint = 0;
+	private Comportement comport1;
+	private Comportement comport2;
+	private Comportement comport3;
+	private Comportement comport4;
 	private int indice_joueur;
 	
 	private int pieceViolette = 0;
@@ -118,9 +123,12 @@ public class Joueur extends Personnage {
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Expression exp, MediaPlayer mediaplayer) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement[] compj1, MediaPlayer mediaplayer) {
 		this.mediaplayer = mediaplayer;
-		this.exp = exp;
+		this.comport1 = compj1[0];
+		this.comport2 = compj1[1];
+		this.comport3 = compj1[2];
+		this.comport4 = compj1[3];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -272,11 +280,7 @@ public class Joueur extends Personnage {
 		this.pv--;
         mediaplayer.play();
 		actualiserVie();
-		
-		Joueur joueur1 = new Joueur(1, p, root, exp, mediaplayer);
-		Joueur joueur2 = new Joueur(2, p, root, exp, mediaplayer);
-		
-		if ((joueur1.pv <= 0) && (joueur2.pv <= 0)) {
+		if (pv <= 0) {
 			new End(root, indice_joueur);
 		}
 	}
@@ -431,23 +435,18 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		
-		
-		if (this.pieceViolette >= 2) {
-			new Robot(this, root, p, exp, x, y, difficulte);
-			this.pieceViolette -= 2;
-		}
+		new Robot(this, root, p, comport1, x, y, difficulte);	
 	}
 
 	public void invoquerRobot2(Group root) {
-
+		new Robot(this, root, p, comport2, x, y, difficulte);
 	}
 
 	public void invoquerRobot3(Group root) {
-
+		new Robot(this, root, p, comport3, x, y, difficulte);
 	}
 
 	public void invoquerRobot4(Group root) {
-
+		new Robot(this, root, p, comport4, x, y, difficulte);
 	}
 }
