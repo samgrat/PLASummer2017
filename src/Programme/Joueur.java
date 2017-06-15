@@ -8,6 +8,7 @@ import Graphique.Pieces;
 import Graphique.Plateau;
 import Graphique.Score;
 import Parser.ParseException;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,8 @@ public class Joueur extends Personnage {
 	private Plateau p;
 	private Expression exp;
 	public int pv = 3;
+	public Joueur joueur1, joueur2;
+	public Timeline timeline;
 	private int scoreint = 0;
 	private Comportement comport1;
 	private Comportement comport2;
@@ -38,6 +41,7 @@ public class Joueur extends Personnage {
 	Rectangle cache1;
 	Rectangle cache3;
 	Group root;
+	Group pane3;
     
 	private int difficulte;
 	MediaPlayer mediaplayer;
@@ -276,13 +280,18 @@ public class Joueur extends Personnage {
 		}
 	}
 
+	public int getPV() {
+		return pv;
+	}
+	
+	public void setPV(int pv) {
+		this.pv = pv;
+	}
+	
 	public void perdVie() {
 		this.pv--;
         mediaplayer.play();
 		actualiserVie();
-		if (pv <= 0) {
-			new End(root, indice_joueur);
-		}
 	}
 
 	public void droite() {

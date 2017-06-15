@@ -20,6 +20,7 @@ public class End extends Parent{
 		r.setLayoutY(5);
 		r.setFill(Color.BLACK);
 		r.setOpacity(0.75);	
+		root.getChildren().add(r);
 		
 		if (indice_joueur == 1) {
 			
@@ -34,7 +35,7 @@ public class End extends Parent{
 			double W2 = j2win.getBoundsInLocal().getWidth();
 			j2win.relocate(495 - W2 / 2, 460);
 			
-			root.getChildren().addAll(r, j2win);
+			root.getChildren().add(j2win);
 			root.requestFocus();
 		}
 		
@@ -51,7 +52,7 @@ public class End extends Parent{
 			double W1 = j1win.getBoundsInLocal().getWidth();
 			j1win.relocate(495 - W1 / 2, 460);
 			
-			root.getChildren().addAll(r, j1win);
+			root.getChildren().add(j1win);
 			root.requestFocus();
 		}
 		
@@ -64,7 +65,7 @@ public class End extends Parent{
 			eg.setFontSmoothingType(FontSmoothingType.LCD);
 			eg.setFill(Color.WHITE);
 			
-			root.getChildren().addAll(r, eg);
+			root.getChildren().add(eg);
 			root.requestFocus();		
 		}	
 	}

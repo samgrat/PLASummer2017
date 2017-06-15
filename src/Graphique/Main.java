@@ -34,7 +34,7 @@ public class Main extends Application {
 	public Joueur joueur1, joueur2;
 	public Timeline timeline;
 	public Plateau p;
-	private int t = 61;
+	private int t = 151;
 
 	Stage thestage;
 	Group pane3;
@@ -129,7 +129,6 @@ public class Main extends Application {
 
 		Joueur joueur2 = new Joueur(2, p, pane3, compj2, mediaPlayer);
 		Score score2 = new Score(joueur2);
-
 		joueur2.setScore(score2);
 
 		p.setJoueur(joueur1, joueur2);
@@ -148,7 +147,7 @@ public class Main extends Application {
 
 		timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-
+				
 				compteArebour(temps, pane3);
 
 			}
@@ -159,9 +158,20 @@ public class Main extends Application {
 		Menu menu = new Menu(clav, timeline, joueur1, joueur2);
 
 		primaryStage.setTitle("Game");
+		
+		if ((joueur1.getPV() == 0) && (joueur2.getPV() > 0)) {
+			new End(pane3, 1);
+			joueur2.setPV(1000);
+			timeline.stop();
+		}
+		
+		else if ((joueur2.getPV() == 0) && (joueur1.getPV() > 0)) {
+			new End(pane3, 2);
+			joueur1.setPV(1000);
+			timeline.stop();
+		}
 
 		pane3.getChildren().addAll(p, score1, score2, joueur1, joueur2, menu, clav, temps);
-
 	}
 
 public void compteArebour(Text temps, Group pane3) {
@@ -172,7 +182,7 @@ public void compteArebour(Text temps, Group pane3) {
 			this.t--;
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
-			temps.setText(min + ":" + sec);
+			temps.setText(min + ":" + sec);			
 		} 
 		
 		else {
@@ -192,7 +202,6 @@ public void compteArebour(Text temps, Group pane3) {
 			
 			else if (scorej1 == scorej2) {
 				new End(pane3, 0);
-				pane3.requestFocus();
 				timeline.stop();
 			}
 		}
