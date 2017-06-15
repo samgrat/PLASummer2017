@@ -51,17 +51,19 @@ public class Choix_Robot {
 	Scene scene2, scene1bis, scene2bis;
 	Button btnscene2, btnscene1bis, btnscene2bis, init1, init2;
 
+	private InputStream init = new ByteArrayInputStream("".getBytes());
+	private Reader r = new Reader(init);
+	private boolean inputisnotcorrect = true;
+
 	public Timeline timeline;
-public String nomJ1;
-public String nomJ2;
-	
-	
-	
-	private Comportement StringtoComportement(String s, Reader r) throws ParseException{
+	public String nomJ1;
+	public String nomJ2;
+
+	private Comportement StringtoComportement(String s, Reader r) throws ParseException {
 		InputStream in = new ByteArrayInputStream(s.getBytes());
 		Reader.ReInit(in);
-	    Expression exp = Reader.read(r);
-	    Comportement comp = new Comportement(exp);
+		Expression exp = Reader.read(r);
+		Comportement comp = new Comportement(exp);
 		return comp;
 	}
 
@@ -92,7 +94,7 @@ public String nomJ2;
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
 
-		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));	
+		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));
 		bg.setTranslateX(-11);
 		bg.setTranslateY(-11);
 
@@ -104,21 +106,21 @@ public String nomJ2;
 		pane1bis.setPadding(new Insets(10));
 		pane1bis.setHgap(25);
 		pane1bis.setVgap(15);
-		
+
 		pane2bis.setPadding(new Insets(10));
 		pane2bis.setHgap(25);
 		pane2bis.setVgap(15);
-	
+
 		// pane1bis.getChildren().add(bg);
 		// pane2bis.getChildren().add(bg);
 
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
-		
+
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
-		
+
 		GridPane.setHalignment(nom1, HPos.LEFT);
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
@@ -199,23 +201,39 @@ public String nomJ2;
 				J1bis.add(setRobot13.getText());
 				J1bis.add(setRobot14.getText());
 
-				j1.add(0, setnom1.getText());
+				Comportement compj1[] = new Comportement[4];
+
+				String[] express_j1 = new String[4];
+
+				primaryStage.setScene(scene1bis);
+				inputisnotcorrect = false;
+
+				j1.set(0, setnom1.getText());
 				for (int i = 0; i < 4; i++) {
 					if (J1bis.get(i) != "") {
-						// System.out.println("Affichage ï¿½ l'indice "+ i + "du
+						// System.out.println("Affichage à l'indice "+ i +
+						// "du
 						// tableau j1 : " + J1bis.get(i));
-						j1.add(i + 1, J1bis.get(i));
+						j1.set(i + 1, J1bis.get(i));
+						express_j1[i] = J1bis.get(i);
+					}
+				}
+
+				for (int i = 0; i < 4; i++) {
+					try {
+						compj1[i] = StringtoComportement(express_j1[i], r);
+					} catch (ParseException e) {
+						inputisnotcorrect = true;
 					}
 				}
 
 				PrintWriter pw;
 				try {
-					pw = new PrintWriter(new BufferedWriter(new FileWriter("Joueur1.txt", false)));
+					pw = new PrintWriter(new BufferedWriter(new FileWriter("joueur1.txt", false)));
 					pw.println(j1.get(0));
 
 					pw.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -223,9 +241,11 @@ public String nomJ2;
 					String ligne = j1.get(j);
 					fichier.ecrire("Joueur1.txt", ligne);
 				}
-				// ArrayList<String> J1 = fichier.lecture("joueur1.txt");
-				// System.out.println("TEST NOM = " + J1.get(0));
-				primaryStage.setScene(scene2bis);
+				if (inputisnotcorrect) {
+					primaryStage.setScene(scene1bis);
+				} else {
+					primaryStage.setScene(scene2bis);
+				}
 			}
 
 		});
@@ -279,21 +299,40 @@ public String nomJ2;
 				J2bis.add(setRobot23.getText());
 				J2bis.add(setRobot24.getText());
 
-				j2.add(0, setnom2.getText());
-				for (int i = 0; i < J2bis.size(); i++) {
+				Comportement compj2[] = new Comportement[4];
+
+				inputisnotcorrect = false;
+
+				String[] express_j2 = new String[4];
+
+				primaryStage.setScene(scene2bis);
+
+				j1.set(0, setnom1.getText());
+				for (int i = 0; i < 4; i++) {
 					if (J2bis.get(i) != "") {
-						j2.add(i + 1, J2bis.get(i));
+						// System.out.println("Affichage à l'indice "+ i +
+						// "du
+						// tableau j1 : " + J1bis.get(i));
+						j2.set(i + 1, J2bis.get(i));
+						express_j2[i] = J2bis.get(i);
+					}
+				}
+
+				for (int i = 0; i < 4; i++) {
+					try {
+						compj2[i] = StringtoComportement(express_j2[i], r);
+					} catch (ParseException e) {
+						inputisnotcorrect = true;
 					}
 				}
 
 				PrintWriter pw;
 				try {
-					pw = new PrintWriter(new BufferedWriter(new FileWriter("Joueur2.txt", false)));
+					pw = new PrintWriter(new BufferedWriter(new FileWriter("joueur2.txt", false)));
 					pw.println(j2.get(0));
 
 					pw.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -301,12 +340,17 @@ public String nomJ2;
 					String ligne = j2.get(j);
 					fichier.ecrire("Joueur2.txt", ligne);
 				}
-				try {
-					ButtonClicked(event, thestage, scene3, pane3);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+				if (inputisnotcorrect) {
+					primaryStage.setScene(scene2bis);
+				} else {
+					try {
+						ButtonClicked(event, thestage, scene3, pane3);
+					} catch (ParseException e) {
+						primaryStage.setScene(scene1bis);
+					}
 				}
+
 				// primaryStage.close();
 			}
 		});
@@ -321,189 +365,187 @@ public String nomJ2;
 	}
 
 	public void ButtonClicked(ActionEvent e, Stage thestage, Scene scene3, Group pane3) throws ParseException {
-		if (e.getSource() == btnscene2bis){
-		Text joueur1 = new Text(j1.get(0));
-		Text joueur2 = new Text(j2.get(0));
+		if (e.getSource() == btnscene2bis) {
+			Text joueur1 = new Text(j1.get(0));
+			Text joueur2 = new Text(j2.get(0));
 
-		joueur1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		joueur1.setX(1025);
-		joueur2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
-		joueur2.setX(1025);
+			joueur1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+			joueur1.setX(1025);
+			joueur2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
+			joueur2.setX(1025);
 
-		joueur1.setFill(Color.BLUE);
-		joueur1.setY(45);
+			joueur1.setFill(Color.BLUE);
+			joueur1.setY(45);
 
-		joueur2.setFill(Color.RED);
-		joueur2.setY(950);
+			joueur2.setFill(Color.RED);
+			joueur2.setY(950);
 
-		//pane3.getChildren().add(joueur1);
-		//pane3.getChildren().add(joueur2);
+			// pane3.getChildren().add(joueur1);
+			// pane3.getChildren().add(joueur2);
 
-		joueur1.setFill(Color.ROYALBLUE);
-		// centrage du nom du joueur dans l'interface prevue
-		double W1 = joueur1.getBoundsInLocal().getWidth();
-		double H1 = joueur1.getBoundsInLocal().getHeight();
-		joueur1.relocate(1125 - W1 / 2, 30 - H1 / 2);
+			joueur1.setFill(Color.ROYALBLUE);
+			// centrage du nom du joueur dans l'interface prevue
+			double W1 = joueur1.getBoundsInLocal().getWidth();
+			double H1 = joueur1.getBoundsInLocal().getHeight();
+			joueur1.relocate(1125 - W1 / 2, 30 - H1 / 2);
 
-		joueur2.setFill(Color.RED);
-		// centrage du nom du joueur dans l'interface prevue
-		double W2 = joueur2.getBoundsInLocal().getWidth();
-		double H2 = joueur2.getBoundsInLocal().getHeight();
-		joueur2.relocate(1125 - W2 / 2, 938 - H2 / 2);
+			joueur2.setFill(Color.RED);
+			// centrage du nom du joueur dans l'interface prevue
+			double W2 = joueur2.getBoundsInLocal().getWidth();
+			double H2 = joueur2.getBoundsInLocal().getHeight();
+			joueur2.relocate(1125 - W2 / 2, 938 - H2 / 2);
 
-		// TODO : centrer les noms dans les cases correspondantes
-		// TODO : scanf pour entrer le nom des joueurs en dï¿½but de partie
-		
-		final URL resource = getClass().getResource("images/Textures/hit.mp3");
-	    final Media media = new Media(resource.toString());
-	    final MediaPlayer mediaPlayer = new MediaPlayer(media);
-	    
+			// TODO : centrer les noms dans les cases correspondantes
+			// TODO : scanf pour entrer le nom des joueurs en dï¿½but de partie
 
-		thestage.setScene(scene3);
-		thestage.centerOnScreen();
-		
-		
-		Comportement compj1[] = new Comportement[4];
-		Comportement compj2[] = new Comportement[4];
-		
-		String express_j1[] = new String[4];		
-		String express_j2[] = new String[4];		
-		
-		for(int i = 0; i < express_j1.length; i++){
-			express_j1[i] = j1.get(i+1);			
-			express_j2[i] = j2.get(i+1);
-		}
-		
-		//String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
-		//String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
-		
-		InputStream init = new ByteArrayInputStream("".getBytes());
-	    Reader r = new Reader(init);
-			
-	    for(int i = 0; i < 4; i++){
-			compj1[i] = StringtoComportement(express_j1[i], r);
-			compj2[i] = StringtoComportement(express_j2[i], r);
-		}
-		
-	    int tabCoutRVPj1[][] = new int[express_j1.length][3] ;
-		int tabCoutRVPj2[][] = new int[express_j2.length][3] ;
-		
-		for(int i = 0 ; i < express_j1.length ; i++){
-			tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
-			tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
-		}
-		Plateau p = new Plateau(pane3);
-		
-		jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
-		Score score1 = new Score(jou1);
-		jou1.setScore(score1);
-		
-		jou2 = new Joueur(2, p, pane3, compj2, tabCoutRVPj2, mediaPlayer);
-		Score score2 = new Score(jou2);
-		jou2.setScore(score2);
-		
-		p.setJoueur(jou1, jou2);
-		
-		Clavier clav = new Clavier(jou2, jou1, p, pane3);
+			final URL resource = getClass().getResource("images/Textures/hit.mp3");
+			final Media media = new Media(resource.toString());
+			final MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-		Text temps = new Text(String.valueOf(this.t));
-		temps.setX(1090);
-		temps.setY(505);
+			thestage.setScene(scene3);
+			thestage.centerOnScreen();
 
-		temps.setFill(Color.hsb(0, .0, .2));
-		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
-		temps.setFontSmoothingType(FontSmoothingType.LCD);
-		
-		compteArebour(temps, pane3);
+			Comportement compj1[] = new Comportement[4];
+			Comportement compj2[] = new Comportement[4];
 
-		timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
+			String express_j1[] = new String[4];
+			String express_j2[] = new String[4];
 
-				compteArebour(temps, pane3);
-
+			for (int i = 0; i < express_j1.length; i++) {
+				express_j1[i] = j1.get(i + 1);
+				express_j2[i] = j2.get(i + 1);
 			}
-		}));
-		
-		timeline.setCycleCount(Animation.INDEFINITE);
-		jou1.setTimeline(timeline);
-		jou2.setTimeline(timeline);
 
-		Menu menu = new Menu(clav, timeline, jou1, jou2);
-		
-	
-		pane3.getChildren().addAll(p, score1, score2,  jou1, jou2, menu, clav, temps,joueur1,joueur2);	
+			// String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
+			// String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
+
+			// InputStream init = new ByteArrayInputStream("".getBytes());
+			// Reader r = new Reader(init);
+
+			for (int i = 0; i < 4; i++) {
+				compj1[i] = StringtoComportement(express_j1[i], r);
+				compj2[i] = StringtoComportement(express_j2[i], r);
+			}
+
+			int tabCoutRVPj1[][] = new int[express_j1.length][3];
+			int tabCoutRVPj2[][] = new int[express_j2.length][3];
+
+			for (int i = 0; i < express_j1.length; i++) {
+				tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
+				tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
+			}
+			Plateau p = new Plateau(pane3);
+
+			jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
+			Score score1 = new Score(jou1);
+			jou1.setScore(score1);
+
+			jou2 = new Joueur(2, p, pane3, compj2, tabCoutRVPj2, mediaPlayer);
+			Score score2 = new Score(jou2);
+			jou2.setScore(score2);
+
+			p.setJoueur(jou1, jou2);
+
+			Clavier clav = new Clavier(jou2, jou1, p, pane3);
+
+			Text temps = new Text(String.valueOf(this.t));
+			temps.setX(1090);
+			temps.setY(505);
+
+			temps.setFill(Color.hsb(0, .0, .2));
+			temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
+			temps.setFontSmoothingType(FontSmoothingType.LCD);
+
+			compteArebour(temps, pane3);
+
+			timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+
+					compteArebour(temps, pane3);
+
+				}
+			}));
+
+			timeline.setCycleCount(Animation.INDEFINITE);
+			jou1.setTimeline(timeline);
+			jou2.setTimeline(timeline);
+
+			Menu menu = new Menu(clav, timeline, jou1, jou2);
+
+			pane3.getChildren().addAll(p, score1, score2, jou1, jou2, menu, clav, temps, joueur1, joueur2);
 		}
 	}
 
-public void compteArebour(Text temps, Group pane3) {
-	int scorej1, scorej2;
+	public void compteArebour(Text temps, Group pane3) {
+		int scorej1, scorej2;
 		DecimalFormat formater = new DecimalFormat("00");
-		
+
 		if (this.t > 0) {
 			this.t--;
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
 			temps.setText(min + ":" + sec);
 		} else {
-			//System.out.println(joueur1.getPieces());
+			// System.out.println(joueur1.getPieces());
 			scorej1 = jou1.getPieces();
 			scorej2 = jou2.getPieces();
-			
+
 			if (scorej1 > scorej2) {
 				new End(pane3, 2, timeline);
 				timeline.stop();
 			}
-			
+
 			else if (scorej1 < scorej2) {
 				new End(pane3, 1, timeline);
 				timeline.stop();
 			}
-			
+
 			else {
 				new End(pane3, 0, timeline);
 				timeline.stop();
 			}
 		}
-		
+
 		// centrage du timer dans l'interface prevue
 		double W = temps.getBoundsInLocal().getWidth();
 		double H = temps.getBoundsInLocal().getHeight();
-		temps.relocate(1125-W/2, 485-H/2);
-}
-
-/**
- * Retourne le cout du robot correspondant a la sequence entree
- * @param s
- * @return
- */
-private int[] CoutRobot(String s) {
-	int tabCoutRVP[] = new int[3];
-	for (int i = 0; i < s.length(); i++) {
-		switch (s.charAt(i)) {
-		// piece Rose
-		case '{':
-		case '}':
-		case '|':
-		case ';':
-			tabCoutRVP[0]++;
-			break;
-		// piece Vert
-		case 'M':
-		case 'H':
-		case 'R':
-			tabCoutRVP[1]++;
-			break;
-		// piece Violette
-		case '>':
-		case 'E':
-			tabCoutRVP[2]++;
-			break;
-		default:
-			System.out.println("Erreur: operateur non reconnu");
-			System.exit(-1);
-
-		}
+		temps.relocate(1125 - W / 2, 485 - H / 2);
 	}
-	return tabCoutRVP;
-}
+
+	/**
+	 * Retourne le cout du robot correspondant a la sequence entree
+	 * 
+	 * @param s
+	 * @return
+	 */
+	private int[] CoutRobot(String s) {
+		int tabCoutRVP[] = new int[3];
+		for (int i = 0; i < s.length(); i++) {
+			switch (s.charAt(i)) {
+			// piece Rose
+			case '{':
+			case '}':
+			case '|':
+			case ';':
+				tabCoutRVP[0]++;
+				break;
+			// piece Vert
+			case 'M':
+			case 'H':
+			case 'R':
+				tabCoutRVP[1]++;
+				break;
+			// piece Violette
+			case '>':
+			case 'E':
+				tabCoutRVP[2]++;
+				break;
+			default:
+				System.out.println("Erreur: operateur non reconnu");
+				System.exit(-1);
+
+			}
+		}
+		return tabCoutRVP;
+	}
 }
