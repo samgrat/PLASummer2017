@@ -89,23 +89,21 @@ public class Robot extends Personnage {
 			indice = plateau.rechercher(0, getY());
 			if (indice > 10 || indice == 0) {
 				setX(0);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(0);
 			} else {
 				plateau.setCasePlateau(15, getY(), joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		} else {
 			indice = plateau.rechercher(getX() + 1, getY());
 			if (indice > 10 || indice == 0) {
 				setX(getX() + 1);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(imageRobot.getLayoutX() + plateau.getSize());
 			} else {
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		}
 	}
@@ -119,23 +117,21 @@ public class Robot extends Personnage {
 			indice = plateau.rechercher(15, getY());
 			if (indice > 10 || indice == 0) {
 				setX(15);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(15 * plateau.getSize());
 			} else {
 				plateau.setCasePlateau(0, getY(), joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		} else {
 			indice = plateau.rechercher(getX() - 1, getY());
 			if (indice > 10 || indice == 0) {
 				setX(getX() - 1);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(imageRobot.getLayoutX() - plateau.getSize());
 			} else {
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		}
 	}
@@ -149,23 +145,21 @@ public class Robot extends Personnage {
 			indice = plateau.rechercher(getX(), 15);
 			if (indice > 10 || indice == 0) {
 				setY(15);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(15 * plateau.getSize());
 			} else {
 				plateau.setCasePlateau(getX(), 0, joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		} else {
 			indice = plateau.rechercher(getX(), getY() - 1);
 			if (indice > 10 || indice == 0) {
 				setY(getY() - 1);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(imageRobot.getLayoutY() - plateau.getSize());
 			} else {
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		}
 	}
@@ -179,23 +173,21 @@ public class Robot extends Personnage {
 			indice = plateau.rechercher(getX(), 0);
 			if (indice > 10 || indice == 0) {
 				setY(0);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(0);
 			} else {
 				plateau.setCasePlateau(getX(), 15, joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		} else {
 			indice = plateau.rechercher(getX(), getY() + 1);
 			if (indice > 10 || indice == 0) {
 				setY(getY() + 1);
-				plateau.ramasser(getX(), getY(), joueur, indice);
-				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(imageRobot.getLayoutY() + plateau.getSize());
 			} else {
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
+				throw new ExpException();
 			}
 		}
 	}

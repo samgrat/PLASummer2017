@@ -23,8 +23,6 @@ public class fichier {
 			String ligne;
 			while ((ligne = br.readLine()) != null) {
 				tab.add(ligne);
-				//System.out.println(ligne);
-
 			}
 			br.close();
 
