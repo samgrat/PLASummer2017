@@ -1,0 +1,5 @@
+Guerrier
+Recolteur
+Tourelle
+Paysan
+Glaneur 
