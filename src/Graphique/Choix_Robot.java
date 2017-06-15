@@ -341,8 +341,6 @@ public class Choix_Robot {
 		for(int i = 0; i < express_j1.length; i++){
 			express_j1[i] = j1.get(i+1);			
 			express_j2[i] = j2.get(i+1);
-			System.out.println("Case" + i + "du tableau 1 :" + express_j1[i]);
-			System.out.println("Case" + i + "du tableau 2 :" + express_j2[i]);
 		}
 		
 		//String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
