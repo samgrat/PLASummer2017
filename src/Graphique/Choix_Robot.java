@@ -5,22 +5,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import I_O.fichier;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
 
 public class Choix_Robot {
 	ArrayList<String> j1;
@@ -36,8 +39,25 @@ public class Choix_Robot {
 		this.nomJ1 = j1;
 	}
 
-	public String getNomJ2() {
-		return this.nomJ2;
+//	public String getNomJ2() 
+//		return this.nomJ2;
+//	}
+
+	public EventHandler<KeyEvent> maxLength(final Integer i) {
+		return new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent arg0) {
+
+				TextField tx = (TextField) arg0.getSource();
+				if (tx.getText().length() >= i) {
+					arg0.consume();
+				}
+
+			}
+
+		};
+
 	}
 
 	public Choix_Robot(Stage primaryStage, Stage thestage, Scene scene3, Group pane3) {
@@ -65,6 +85,7 @@ public class Choix_Robot {
 
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
+		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// //nomJ1 = setnom1.getText();
 		// System.out.println("Test nom 1" + nomJ1);
 		GridPane.setHalignment(nom1, HPos.LEFT);
@@ -101,6 +122,7 @@ public class Choix_Robot {
 
 		Text nom2 = new Text("Nom Joueur 2");
 		TextField setnom2 = new TextField();
+		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		GridPane.setHalignment(nom2, HPos.LEFT);
 		pane2bis.add(nom2, 1, 2);
 		pane2bis.add(setnom2, 2, 2);
@@ -134,6 +156,7 @@ public class Choix_Robot {
 		pane2bis.add(setRobot24, 2, 6);
 
 		Button btnscene1bis = new Button("Enregistrer");
+		// btnscene1bis.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
 		btnscene1bis.setDefaultButton(true);
 		GridPane.setHalignment(btnscene1bis, HPos.CENTER);
 		pane1bis.add(btnscene1bis, 2, 8);
@@ -186,10 +209,6 @@ public class Choix_Robot {
 
 		pane1bis.add(hbox1, 1, 8);
 		pane2bis.add(hbox2, 1, 8);
-		
-		
-		
-		
 
 		init1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -199,10 +218,10 @@ public class Choix_Robot {
 				setRobot12.setText(j1.get(2));
 				setRobot13.setText(j1.get(3));
 				setRobot14.setText(j1.get(4));
-		
+
 			}
 		});
-		
+
 		init2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				fichier.initialisation("Joueur2.txt");
@@ -213,8 +232,7 @@ public class Choix_Robot {
 				setRobot24.setText(j2.get(4));
 			}
 		});
-		
-		
+
 		btnscene2bis = new Button("Enregistrer");
 		btnscene2bis.setDefaultButton(true);
 		GridPane.setHalignment(btnscene2bis, HPos.CENTER);
