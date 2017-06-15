@@ -1,10 +1,13 @@
 package Programme;
 
+import java.beans.DefaultPersistenceDelegate;
+
 import Grammaire.Comportement;
 import Graphique.End;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
+import Graphique.Choix_Robot;
 import Parser.ParseException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -31,9 +34,7 @@ public class Joueur extends Personnage {
 	private int[] coutrobot2;
 	private int[] coutrobot3;
 	private int[] coutrobot4;
-
 	private int indice_joueur;
-
 	private int pieceViolette = 0;
 	private int pieceVerte = 0;
 	private int pieceRose = 0;
@@ -45,6 +46,7 @@ public class Joueur extends Personnage {
 	Rectangle cache1;
 	Rectangle cache3;
 	Group root;
+	Group pane3;
 
 	private int difficulte;
 	MediaPlayer mediaplayer;
@@ -104,6 +106,14 @@ public class Joueur extends Personnage {
 
 	public int Indice_joueur() {
 		return indice_joueur;
+	}
+	
+	public void setPV(int pv) {
+		this.pv = pv;
+	}
+	
+	public int getPV() {
+		return this.pv;
 	}
 
 	public void incrPiece(int indice) {
@@ -297,18 +307,17 @@ public class Joueur extends Personnage {
 		this.pv--;
 		mediaplayer.play();
 		actualiserVie();
-		if (pv <= 0) {
-			new End(root, indice_joueur, timeline);
-			timeline.stop();
-		}
+		
 		Timeline degat  = new Timeline(new KeyFrame(Duration.millis(600), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				mediaplayer.stop();
 				System.out.println("j'ai stop");
 			}
 		}));
+		
 		degat.play();
 	}
+
 
 	public void droite() {
 		int indice = p.rechercher(x, y);
@@ -460,10 +469,9 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-
-		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2] 
 				&& pieceOrange >= 1) {
-
+			
 			setPieceRose(pieceRose - coutrobot1[0]);
 			setPieceVerte(pieceVerte - coutrobot1[1]);
 			setPieceViolette(pieceViolette - coutrobot1[2]);
@@ -471,6 +479,7 @@ public class Joueur extends Personnage {
 			p.setCasePlateau(x, y, Indice_joueur()+2);
 			new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
 		}
+	
 	}
 
 	public void invoquerRobot2(Group root) {

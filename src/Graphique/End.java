@@ -1,5 +1,6 @@
 package Graphique;
 
+import Graphique.Choix_Robot;
 import javafx.scene.shape.Rectangle;
 import I_O.fichier;
 import javafx.animation.Timeline;

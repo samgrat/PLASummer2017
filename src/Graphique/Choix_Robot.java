@@ -47,13 +47,14 @@ public class Choix_Robot {
 
 	public Joueur jou1, jou2;
 	private int t = 121;
+	Plateau p;
 	GridPane pane2, pane1bis, pane2bis;
 	Scene scene2, scene1bis, scene2bis;
 	Button btnscene2, btnscene1bis, btnscene2bis, init1, init2;
 
 	public Timeline timeline;
-public String nomJ1;
-public String nomJ2;
+	public String nomJ1;
+	public String nomJ2;
 	
 	
 	
@@ -444,8 +445,24 @@ public void compteArebour(Text temps, Group pane3) {
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
 			temps.setText(min + ":" + sec);
-		} else {
-			//System.out.println(joueur1.getPieces());
+			
+			if ((jou1.getPV() == 0) && (jou2.getPV() > 0)) {
+				new End(pane3, 1, timeline);
+				p.setCasePlateau(jou1.getX(), jou1.getY(), 0);
+				p.setCasePlateau(jou2.getX(), jou2.getY(), 0);
+				timeline.stop();
+			}
+			
+			else if ((jou2.getPV() == 0) && (jou1.getPV() > 0)) {
+				new End(pane3, 2, timeline);
+				p.setCasePlateau(jou1.getX(), jou1.getY(), 0);
+				p.setCasePlateau(jou2.getX(), jou2.getY(), 0);
+				timeline.stop();
+			}
+		}
+		
+		else {
+			
 			scorej1 = jou1.getPieces();
 			scorej2 = jou2.getPieces();
 			
