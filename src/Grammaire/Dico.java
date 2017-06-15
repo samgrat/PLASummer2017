@@ -29,7 +29,7 @@ public class Dico {
 		switch (l) {
 		case "H":
 			return new Hit();
-		case "G":
+		case "R":
 			return new Gather();
 		case "E":
 			return new Explore();
