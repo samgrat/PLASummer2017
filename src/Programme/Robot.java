@@ -20,6 +20,10 @@ public class Robot extends Personnage {
 	private Plateau plateau;
 	private Comportement comport;
 	private int count = 0;
+	final int piececrea = 1 ; 
+	private int pieceRose = 0 ;
+	private int pieceBleu = 0 ; 
+	private int pieceVert = 0 ; 
 	ImageView imageRobot;
 	
 	public Joueur getJoueur(){
@@ -29,12 +33,15 @@ public class Robot extends Personnage {
 	public Plateau getPlateau(){
 		return this.plateau;
 	}
-	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte) {
+	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte, int tabP[]) {
 		joueur = j;
 		plateau = p;
 		comport = comp;
 		setX(x);
 		setY(y);
+		pieceRose = tabP[0] ; 
+		pieceBleu = tabP[1] ;
+		pieceVert = tabP[2] ;
 
 		if (j.Indice_joueur() == 1) {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
@@ -72,37 +79,7 @@ public class Robot extends Personnage {
 		tpsVieRobot.play();
 	}
 
-	public void hit(int x, int y) {
-		int a;
-		if (joueur.Indice_joueur() == 1) {
-			a = 2;
-		} else if (joueur.Indice_joueur() == 2) {
-			a = 1;
-		} else {
-			a = 0;
-			System.out.println("erreur, a=0");
-		}
-
-		int x1 = x + 1, y1 = y + 1, x2 = x - 1, y2 = y - 1;
-
-		if (x + 1 > 15) {
-			x1 = 0;
-		} else if (x - 1 < 0) {
-			x2 = 15;
-		}
-
-		if (y + 1 > 15) {
-			y1 = 0;
-		} else if (y - 1 < 0) {
-			y2 = 15;
-		}
-
-		if (plateau.rechercher(x1, y) == a || plateau.rechercher(x2, y) == a || plateau.rechercher(x, y1) == a
-				|| plateau.rechercher(x, y2) == a) {
-			plateau.getJoueur(a).perdVie();
-		}
-
-	}
+	
 
 	public void droite() {
 		int indice = plateau.rechercher(getX(), getY());
@@ -114,7 +91,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setX(0);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(0);
@@ -126,7 +102,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setX(getX() + 1);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(imageRobot.getLayoutX() + plateau.getSize());
@@ -146,7 +121,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setX(15);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(15*plateau.getSize());
@@ -158,7 +132,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setX(getX() - 1);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutX(imageRobot.getLayoutX() - plateau.getSize());
@@ -178,7 +151,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setY(15);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(15*plateau.getSize());
@@ -190,7 +162,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setY(getY() - 1);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(imageRobot.getLayoutY() - plateau.getSize());
@@ -210,7 +181,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setY(0);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(0);
@@ -222,7 +192,6 @@ public class Robot extends Personnage {
 			if (indice > 10 || indice == 0) {
 				setY(getY() + 1);
 				plateau.ramasser(getX(), getY(), joueur, indice);
-				hit(getX(), getY());
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
 				imageRobot.setLayoutY(imageRobot.getLayoutY() + plateau.getSize());
