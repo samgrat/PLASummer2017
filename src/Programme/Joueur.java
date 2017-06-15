@@ -118,7 +118,77 @@ public class Joueur extends Personnage {
 			scoreint++;
 			break;
 		}
+	if (this.indice_joueur == 1){
+		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+				&& pieceOrange >= 1) {
+			ImageView r1 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu1.png")));
+			r1.setX(987);
+			r1.setY(75);
+			r1.prefWidth(0.7);
+			root.getChildren().add(r1);
+		}
+		if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
+				&& pieceOrange >= 1) {
+			ImageView r2 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu2.png")));
+			r2.setX(1113);
+			r2.setY(75);
+			r2.prefWidth(0.7);
+			root.getChildren().add(r2);
+		}
+		if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+				&& pieceOrange >= 1) {
+			ImageView r3 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu3.png")));
+			r3.setX(987);
+			r3.setY(190);
+			r3.prefWidth(0.7);
+			root.getChildren().add(r3);
+		}
+		if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+				&& pieceOrange >= 1) {
+			ImageView r4 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu4.png")));
+			r4.setX(1113);
+			r4.setY(190);
+			r4.prefWidth(0.7);
+			root.getChildren().add(r4);
+		}
 	}
+	if(this.indice_joueur == 2){
+			if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+					&& pieceOrange >= 1) {
+				ImageView r5 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu1.png")));
+				r5.setX(987);
+				r5.setY(628);
+				r5.prefWidth(0.7);
+				root.getChildren().add(r5);
+			}
+			if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
+					&& pieceOrange >= 1) {
+				ImageView r6 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu2.png")));
+				r6.setX(1113);
+				r6.setY(628);
+				r6.prefWidth(0.7);
+				root.getChildren().add(r6);
+			}
+			if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+					&& pieceOrange >= 1) {
+				ImageView r7 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu3.png")));
+				r7.setX(987);
+				r7.setY(743);
+				r7.prefWidth(0.7);
+				root.getChildren().add(r7);
+			}
+			if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+					&& pieceOrange >= 1) {
+				ImageView r8 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu4.png")));
+				r8.setX(1113);
+				r8.setY(743);
+				r8.prefWidth(0.7);
+				root.getChildren().add(r8);
+			}
+		
+		
+	}
+}
 
 	/**
 	 * creation d'un joueur
@@ -443,19 +513,57 @@ public class Joueur extends Personnage {
 		}
 	}
 
+	
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, comport1, x, y, difficulte , coutrobot1);	
+
+		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+				&& pieceOrange >= 1) {
+			
+			setPieceRose(pieceRose - coutrobot1[0]);
+			setPieceVerte(pieceVerte - coutrobot1[1]);
+			setPieceViolette(pieceViolette - coutrobot1[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
+			new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
+		}
 	}
 
+
+
+
 	public void invoquerRobot2(Group root) {
+		if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
+				&& pieceOrange >= 1) {
+			setPieceRose(pieceRose - coutrobot1[0]);
+			setPieceVerte(pieceVerte - coutrobot1[1]);
+			setPieceViolette(pieceViolette - coutrobot1[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
 		new Robot(this, root, p, comport2, x, y, difficulte , coutrobot2);
+		}
 	}
 
 	public void invoquerRobot3(Group root) {
-		new Robot(this, root, p, comport3, x, y, difficulte, coutrobot3);
+		if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+				&& pieceOrange >= 1) {
+			setPieceRose(pieceRose - coutrobot3[0]);
+			setPieceVerte(pieceVerte - coutrobot3[1]);
+			setPieceViolette(pieceViolette - coutrobot3[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
+		new Robot(this, root, p, comport3, x, y, difficulte , coutrobot3);
+		}
 	}
 
 	public void invoquerRobot4(Group root) {
+		if (pieceRose >= coutrobot4[0] && pieceVerte >= coutrobot4[1] && pieceViolette >= coutrobot4[2]
+				&& pieceOrange >= 1) {
+			setPieceRose(pieceRose - coutrobot4[0]);
+			setPieceVerte(pieceVerte - coutrobot4[1]);
+			setPieceViolette(pieceViolette - coutrobot4[2]);
+			setPieceOrange(pieceOrange - 1);
+			p.setCasePlateau(x, y, Indice_joueur()+2);
 		new Robot(this, root, p, comport4, x, y, difficulte , coutrobot4);
+		}
 	}
 }

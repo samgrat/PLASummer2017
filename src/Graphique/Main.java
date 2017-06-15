@@ -110,7 +110,7 @@ public class Main extends Application {
 		Comportement compj1[] = new Comportement[4];
 		Comportement compj2[] = new Comportement[4];
 
-		String express_j1[] = { "{E}", "{M}", "{M;E}", "{M|E}" };
+		String express_j1[] = { "{E}", "{M}", "{{M;E}|{H;M}}", "{M|E}" };
 		String express_j2[] = { "{M}", "{E}", "{M;E}", "{M|E}" };
 		
 		int tabCoutRVBj1[][] = new int[express_j1.length][3] ;
