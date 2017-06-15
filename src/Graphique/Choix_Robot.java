@@ -138,6 +138,10 @@ public String nomJ2;
 		pane1bis.setPadding(new Insets(10));
 		pane1bis.setHgap(25);
 		pane1bis.setVgap(15);
+		
+		pane2bis.setPadding(new Insets(10));
+		pane2bis.setHgap(25);
+		pane2bis.setVgap(15);
 
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
