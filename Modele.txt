@@ -1,5 +1,6 @@
-Guerrier
-Recolteur
-Tourelle
-Paysan
-Glaneur 
+{M;H}
+{H>M}
+{M;R}
+{R>M}
+{H} 
+{H>{R>M}}
