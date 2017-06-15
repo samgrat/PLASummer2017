@@ -11,6 +11,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import Grammaire.Comportement;
+import Grammaire.Expression;
 import I_O.fichier;
 import Parser.ParseException;
 import Parser.Reader;
@@ -25,10 +26,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -39,11 +41,17 @@ import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import Grammaire.*;
 
 public class Choix_Robot {
 	ArrayList<String> j1;
 	ArrayList<String> j2;
+	ArrayList<String> l1;
+	ArrayList<String> lrobot;
+	ArrayList<Integer> arg;
+
+	final ComboBox<String> comboBox1 = new ComboBox(), comboBox2 = new ComboBox(), comboBox3 = new ComboBox(),
+			comboBox4 = new ComboBox(), comboBox5 = new ComboBox(), comboBox6 = new ComboBox(),
+			comboBox7 = new ComboBox(), comboBox8 = new ComboBox();
 
 	public Joueur jou1, jou2;
 	private int t = 121;
@@ -69,6 +77,29 @@ public String nomJ2;
 		this.nomJ1 = j1;
 	}
 
+	public void modif(String s, TextField a) {
+		switch (s) {
+		case "Guerrier 1":
+			a.setText(l1.get(0));
+			break;
+		case "Guerrier 2":
+			a.setText(l1.get(1));
+			break;
+		case "Recolteur 1":
+			a.setText(l1.get(2));
+			break;
+		case "Recolteur 2":
+			a.setText(l1.get(3));
+			break;
+		case "Tourelle":
+			a.setText(l1.get(4));
+			break;
+		case "Polyvalent":
+			a.setText(l1.get(5));
+			break;
+		}
+	}
+
 	public EventHandler<KeyEvent> maxLength(final Integer i) {
 		return new EventHandler<KeyEvent>() {
 
@@ -89,32 +120,28 @@ public String nomJ2;
 	public Choix_Robot(Stage primaryStage, Stage thestage, Scene scene3, Group pane3) {
 
 		// fichier.initialisation();
+		String a = "Guerrier 1", b = "Guerrier 2", c = "Recolteur 1", d = "Recolteur 2", e = "Tourelle",
+				f = "Polyvalent";
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
-
 		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));	
 		bg.setTranslateX(-11);
 		bg.setTranslateY(-11);
+		l1 = fichier.lecture("Modele.txt");
 
 		pane1bis = new GridPane();
 		pane2bis = new GridPane();
 
-		scene1bis = new Scene(pane1bis, 330, 320);
-		scene2bis = new Scene(pane2bis, 330, 320);
+		scene1bis = new Scene(pane1bis, 350, 320);
+		scene2bis = new Scene(pane2bis, 350, 320);
+
 		pane1bis.setPadding(new Insets(10));
 		pane1bis.setHgap(25);
 		pane1bis.setVgap(15);
-		
-		pane2bis.setPadding(new Insets(10));
-		pane2bis.setHgap(25);
-		pane2bis.setVgap(15);
-	
-		// pane1bis.getChildren().add(bg);
-		// pane2bis.getChildren().add(bg);
 
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
-		
+
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
@@ -122,70 +149,126 @@ public String nomJ2;
 		GridPane.setHalignment(nom1, HPos.LEFT);
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
+		pane1bis.add(new Text("1"), 0, 3);
 
-		Text nomJ11 = new Text("Robot 1 :");
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
-		GridPane.setHalignment(nomJ11, HPos.CENTER);
-		pane1bis.add(nomJ11, 1, 3);
+		// GridPane.setHalignment(nomJ11, HPos.CENTER);
+		comboBox1.setPrefWidth(150);
+		comboBox1.getItems().setAll(a, b, c, d, e, f);
+		pane1bis.add(comboBox1, 1, 3);
+		pane1bis.add(new Text("1"), 0, 3);
 		pane1bis.add(setRobot11, 2, 3);
+		comboBox1.valueProperty().addListener(observable -> {
+			modif(comboBox1.getValue(), setRobot11);
 
-		Text nomJ12 = new Text("Robot 2 :");
+		});
+
 		TextField setRobot12 = new TextField(j1.get(2));
 		setRobot12.getText();
-		GridPane.setHalignment(nomJ12, HPos.CENTER);
-		pane1bis.add(nomJ12, 1, 4);
+		// GridPane.setHalignment(nomJ12, HPos.CENTER);
+		comboBox2.setPrefWidth(150);
+		comboBox2.getItems().setAll(a, b, c, d, e, f);
+		pane1bis.add(new Text("2"), 0, 4);
+		pane1bis.add(comboBox2, 1, 4);
+		// pane1bis.add(nomJ12, 1, 4);
 		pane1bis.add(setRobot12, 2, 4);
+		comboBox2.valueProperty().addListener(observable -> {
+			modif(comboBox2.getValue(), setRobot12);
 
-		Text nomJ13 = new Text("Robot 3 :");
+		});
+
 		TextField setRobot13 = new TextField(j1.get(3));
 		setRobot13.getText();
-		GridPane.setHalignment(nomJ13, HPos.CENTER);
-		pane1bis.add(nomJ13, 1, 5);
+		// GridPane.setHalignment(nomJ13, HPos.CENTER);
+		comboBox3.setPrefWidth(150);
+		comboBox3.getItems().setAll(a, b, c, d, e, f);
+		// comboBox3.getSelectionModel().selectFirst();
+		pane1bis.add(new Text("3"), 0, 5);
+		pane1bis.add(comboBox3, 1, 5);
+		// pane1bis.add(nomJ13, 1, 5);
 		pane1bis.add(setRobot13, 2, 5);
+		comboBox3.valueProperty().addListener(observable -> {
+			modif(comboBox3.getValue(), setRobot13);
 
-		Text nomJ14 = new Text("Robot 4:");
+		});
+
 		TextField setRobot14 = new TextField(j1.get(4));
 		setRobot14.getText();
-		GridPane.setHalignment(nomJ14, HPos.CENTER);
-		pane1bis.add(nomJ14, 1, 6);
+		// GridPane.setHalignment(nomJ14, HPos.CENTER);
+		comboBox4.setPrefWidth(150);
+		comboBox4.getItems().setAll(a, b, c, d, e, f);
+		pane1bis.add(new Text("4"), 0, 6);
+		pane1bis.add(comboBox4, 1, 6);
+		// pane1bis.add(nomJ14, 1, 6);
 		pane1bis.add(setRobot14, 2, 6);
+		comboBox4.valueProperty().addListener(observable -> {
+			modif(comboBox4.getValue(), setRobot14);
+
+		});
 
 		Text nom2 = new Text("Nom Joueur 2");
 		TextField setnom2 = new TextField();
 		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
-		GridPane.setHalignment(nom2, HPos.LEFT);
+		// GridPane.setHalignment(nom2, HPos.LEFT);
 		pane2bis.add(nom2, 1, 2);
 		pane2bis.add(setnom2, 2, 2);
 
-		Text nomJ21 = new Text("Robot 1 :");
 		TextField setRobot21 = new TextField(j2.get(1));
 		setRobot21.getText();
-		GridPane.setHalignment(nomJ21, HPos.CENTER);
-		pane2bis.add(nomJ21, 1, 3);
+		// GridPane.setHalignment(nomJ21, HPos.CENTER);
+		comboBox5.setPrefWidth(150);
+		comboBox5.getItems().setAll(a, b, c, d, e, f);
+		pane2bis.add(comboBox5, 1, 3);
+		pane2bis.add(new Text("1"), 0, 3);
+		// pane2bis.add(nomJ21, 1, 3);
 		pane2bis.add(setRobot21, 2, 3);
+		comboBox5.valueProperty().addListener(observable -> {
+			modif(comboBox5.getValue(), setRobot21);
 
-		Text nomJ22 = new Text("Robot 2 :");
+		});
+
 		TextField setRobot22 = new TextField(j2.get(2));
 		setRobot22.getText();
-		GridPane.setHalignment(nomJ22, HPos.CENTER);
-		pane2bis.add(nomJ22, 1, 4);
+		// GridPane.setHalignment(nomJ22, HPos.CENTER);
+		comboBox6.setPrefWidth(150);
+		comboBox6.getItems().setAll(a, b, c, d, e, f);
+		pane2bis.add(comboBox6, 1, 4);
+		pane2bis.add(new Text("2"), 0, 4);
+		// pane2bis.add(nomJ22, 1, 4);
 		pane2bis.add(setRobot22, 2, 4);
+		comboBox6.valueProperty().addListener(observable -> {
+			modif(comboBox6.getValue(), setRobot22);
 
-		Text nomJ23 = new Text("Robot 3 :");
+		});
+
 		TextField setRobot23 = new TextField(j2.get(3));
 		setRobot23.getText();
-		GridPane.setHalignment(nomJ23, HPos.CENTER);
-		pane2bis.add(nomJ23, 1, 5);
+		// GridPane.setHalignment(nomJ23, HPos.CENTER);
+		comboBox7.setPrefWidth(150);
+		comboBox7.getItems().setAll(a, b, c, d, e, f);
+		pane2bis.add(comboBox7, 1, 5);
+		pane2bis.add(new Text("3"), 0, 5);
+		// pane2bis.add(nomJ23, 1, 5);
 		pane2bis.add(setRobot23, 2, 5);
+		comboBox7.valueProperty().addListener(observable -> {
+			modif(comboBox7.getValue(), setRobot23);
 
-		Text nomJ24 = new Text("Robot 4:");
+		});
+
 		TextField setRobot24 = new TextField(j2.get(4));
 		setRobot24.getText();
-		GridPane.setHalignment(nomJ24, HPos.CENTER);
-		pane2bis.add(nomJ24, 1, 6);
+		// GridPane.setHalignment(nomJ24, HPos.CENTER);
+		comboBox8.setPrefWidth(150);
+		comboBox8.getItems().setAll(a, b, c, d, e, f);
+		pane2bis.add(comboBox8, 1, 6);
+		pane2bis.add(new Text("4"), 0, 6);
+		// pane2bis.add(nomJ24, 1, 6);
 		pane2bis.add(setRobot24, 2, 6);
+		comboBox8.valueProperty().addListener(observable -> {
+			modif(comboBox8.getValue(), setRobot24);
 
+		});
 		Button btnscene1bis = new Button("Enregistrer");
 		// btnscene1bis.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
 		btnscene1bis.setDefaultButton(true);
@@ -233,8 +316,10 @@ public String nomJ2;
 		HBox hbox2 = new HBox();
 		hbox1.setPrefWidth(100);
 		hbox2.setPrefWidth(100);
-		init1 = new Button("Reinitialiser");
-		init2 = new Button("Reinitialiser");
+		
+		init1 = new Button("Modele");
+		init2 = new Button("Modele");
+
 		hbox1.getChildren().add(init1);
 		hbox2.getChildren().add(init2);
 
@@ -243,24 +328,32 @@ public String nomJ2;
 
 		init1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				fichier.initialisation("Joueur1.txt");
-				j1 = fichier.lecture("Joueur1.txt");
-				setRobot11.setText(j1.get(1));
-				setRobot12.setText(j1.get(2));
-				setRobot13.setText(j1.get(3));
-				setRobot14.setText(j1.get(4));
+				// fichier.initialisation("Joueur1.txt");
+				// j1 = fichier.lecture("Joueur1.txt");
+				setRobot11.setText(l1.get(0));
+				comboBox1.setValue(a);
+				setRobot12.setText(l1.get(1));
+				comboBox2.setValue(b);
+				setRobot13.setText(l1.get(2));
+				comboBox3.setValue(c);
+				setRobot14.setText(l1.get(3));
+				comboBox4.setValue(d);
 
 			}
 		});
 
 		init2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				fichier.initialisation("Joueur2.txt");
-				j2 = fichier.lecture("Joueur2.txt");
-				setRobot21.setText(j2.get(1));
-				setRobot22.setText(j2.get(2));
-				setRobot23.setText(j2.get(3));
-				setRobot24.setText(j2.get(4));
+				// fichier.initialisation("Joueur2.txt");
+				// j2 = fichier.lecture("Joueur2.txt");
+				setRobot21.setText(l1.get(0));
+				comboBox5.setValue(a);
+				setRobot22.setText(l1.get(1));
+				comboBox6.setValue(b);
+				setRobot23.setText(l1.get(2));
+				comboBox7.setValue(c);
+				setRobot24.setText(l1.get(3));
+				comboBox8.setValue(d);
 			}
 		});
 
