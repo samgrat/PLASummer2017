@@ -489,7 +489,7 @@ public String nomJ2;
 			tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
 		}
 		Plateau p = new Plateau(pane3);
-		
+		pane3.getChildren().add(p);
 		jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
 		Score score1 = new Score(jou1);
 		jou1.setScore(score1);
@@ -525,9 +525,8 @@ public String nomJ2;
 		jou2.setTimeline(timeline);
 
 		Menu menu = new Menu(clav, timeline, jou1, jou2);
-		
-	
-		pane3.getChildren().addAll(p, score1, score2,  jou1, jou2, menu, clav, temps,joueur1,joueur2);	
+
+		pane3.getChildren().addAll(score1, score2,  jou1, jou2, menu, clav, temps,joueur1,joueur2);	
 		}
 	}
 

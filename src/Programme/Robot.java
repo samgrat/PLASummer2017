@@ -61,7 +61,7 @@ public class Robot extends Personnage {
 		robot.setFitHeight(plateau.getSize());
 		robot.setLayoutX(5 + x * plateau.getSize());
 		robot.setLayoutY(5 + y * plateau.getSize());
-		// p.setCasePlateau(getX(), getY(), joueur.Indice_joueur()+2);
+		p.setCasePlateau(getX(), getY(), joueur.Indice_joueur()+2);
 		root.getChildren().add(robot);
 
 		Timeline tpsVieRobot = new Timeline(
