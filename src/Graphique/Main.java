@@ -106,26 +106,32 @@ public class Main extends Application {
 		Comportement compj1[] = new Comportement[4];
 		Comportement compj2[] = new Comportement[4];
 
-		String express_j1[] = { "{E}", "{M}", "{M;E}", "{M|E}" };
+		String express_j1[] = { "{H}", "{M}", "{M;E}", "{M|E}" };
 		String express_j2[] = { "{M}", "{E}", "{M;E}", "{M|E}" };
 		
+		int tabCoutRVBj1[][] = new int[express_j1.length][3];
+		int tabCoutRVBj2[][] = new int[express_j2.length][3];
 		
-
+		for(int i = 0; i < express_j1.length; i++){
+			tabCoutRVBj1[i] = CoutRobot(express_j1[i]);
+			tabCoutRVBj2[i] = CoutRobot(express_j2[i]);
+		}
+		
 		InputStream init = new ByteArrayInputStream("".getBytes());
 		Reader r = new Reader(init);
 
-		for (int i = 0; i < 4; i++) {
-			compj1[i] = StringtoComportement(express_j1[i], r);
-			compj2[i] = StringtoComportement(express_j2[i], r);
+		for (int j = 0; j < 4; j++) {
+			compj1[j] = StringtoComportement(express_j1[j], r);
+			compj2[j] = StringtoComportement(express_j2[j], r);
 		}
 
 		Plateau p = new Plateau(pane3);
 
-		Joueur joueur1 = new Joueur(1, p, pane3, compj1, mediaPlayer);
+		Joueur joueur1 = new Joueur(1, p, pane3, compj1, tabCoutRVBj1, mediaPlayer);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
 
-		Joueur joueur2 = new Joueur(2, p, pane3, compj2, mediaPlayer);
+		Joueur joueur2 = new Joueur(2, p, pane3, compj2, tabCoutRVBj2, mediaPlayer);
 		Score score2 = new Score(joueur2);
 		joueur2.setScore(score2);
 

@@ -21,6 +21,10 @@ public class Joueur extends Personnage {
 	private Comportement comport2;
 	private Comportement comport3;
 	private Comportement comport4;
+	private int[] coutrobot1;
+	private int[] coutrobot2;
+	private int[] coutrobot3;
+	private int[] coutrobot4;
 	private int pv = 3;
 	private int indice_joueur;
 
@@ -106,18 +110,23 @@ public class Joueur extends Personnage {
 
 	/**
 	 * creation d'un joueur
+	 * @param tabCoutRVBj1 
 	 * 
 	 * @param indice
 	 *            1 si joueur 1 ou 2 si joueur 2
 	 * @throws ParseException
 	 */
 
-	public Joueur(int indice_joueur, Plateau p, Group root, Comportement[] compj1, MediaPlayer mediaplayer) {
+	public Joueur(int indice_joueur, Plateau p, Group root, Comportement[] compj, int[][] tabCoutRVBj, MediaPlayer mediaplayer) {
 		this.mediaplayer = mediaplayer;
-		this.comport1 = compj1[0];
-		this.comport2 = compj1[1];
-		this.comport3 = compj1[2];
-		this.comport4 = compj1[3];
+		this.comport1 = compj[0];
+		this.comport2 = compj[1];
+		this.comport3 = compj[2];
+		this.comport4 = compj[3];
+		this.coutrobot1 = tabCoutRVBj[0];
+		this.coutrobot2 = tabCoutRVBj[1];
+		this.coutrobot3 = tabCoutRVBj[2];
+		this.coutrobot4 = tabCoutRVBj[3];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -422,7 +431,7 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, comport1, x, y, difficulte);	
+		new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);	
 	}
 
 	public void invoquerRobot2(Group root) {
