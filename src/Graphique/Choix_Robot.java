@@ -193,7 +193,7 @@ public class Choix_Robot {
 		comboBox5.setPrefWidth(150);
 		comboBox5.getItems().setAll(a, b, c, d, e, f);
 		pane2bis.add(comboBox5, 1, 3);
-		pane1bis.add(new Text("1"), 0, 3);
+		pane2bis.add(new Text("1"), 0, 3);
 		// pane2bis.add(nomJ21, 1, 3);
 		pane2bis.add(setRobot21, 2, 3);
 		comboBox5.valueProperty().addListener(observable -> {
@@ -207,7 +207,7 @@ public class Choix_Robot {
 		comboBox6.setPrefWidth(150);
 		comboBox6.getItems().setAll(a, b, c, d, e, f);
 		pane2bis.add(comboBox6, 1, 4);
-		pane1bis.add(new Text("2"), 0, 4);
+		pane2bis.add(new Text("2"), 0, 4);
 		// pane2bis.add(nomJ22, 1, 4);
 		pane2bis.add(setRobot22, 2, 4);
 		comboBox6.valueProperty().addListener(observable -> {
@@ -221,7 +221,7 @@ public class Choix_Robot {
 		comboBox7.setPrefWidth(150);
 		comboBox7.getItems().setAll(a, b, c, d, e, f);
 		pane2bis.add(comboBox7, 1, 5);
-		pane1bis.add(new Text("3"), 0, 5);
+		pane2bis.add(new Text("3"), 0, 5);
 		// pane2bis.add(nomJ23, 1, 5);
 		pane2bis.add(setRobot23, 2, 5);
 		comboBox7.valueProperty().addListener(observable -> {
@@ -235,7 +235,7 @@ public class Choix_Robot {
 		comboBox8.setPrefWidth(150);
 		comboBox8.getItems().setAll(a, b, c, d, e, f);
 		pane2bis.add(comboBox8, 1, 6);
-		pane1bis.add(new Text("4"), 0, 6);
+		pane2bis.add(new Text("4"), 0, 6);
 		// pane2bis.add(nomJ24, 1, 6);
 		pane2bis.add(setRobot24, 2, 6);
 		comboBox8.valueProperty().addListener(observable -> {
