@@ -503,7 +503,6 @@ private int[] CoutRobot(String s) {
 			System.exit(-1);
 
 		}
-		return tabCoutRVP;
 	}
 	return tabCoutRVP;
 }

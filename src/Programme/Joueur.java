@@ -34,10 +34,10 @@ public class Joueur extends Personnage {
 
 	private int indice_joueur;
 
-	private int pieceViolette = 0;
-	private int pieceVerte = 0;
-	private int pieceRose = 0;
-	private int pieceOrange = 0;
+	private int pieceViolette = 10;
+	private int pieceVerte = 10;
+	private int pieceRose = 10;
+	private int pieceOrange = 10;
 
 	Rectangle vie1;
 	Rectangle vie2;
@@ -304,7 +304,6 @@ public class Joueur extends Personnage {
 		Timeline degat  = new Timeline(new KeyFrame(Duration.millis(600), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				mediaplayer.stop();
-				System.out.println("j'ai stop");
 			}
 		}));
 		degat.play();
