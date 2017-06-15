@@ -14,6 +14,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -44,19 +46,25 @@ public class Choix_Robot {
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
 
-		primaryStage.setTitle("Zombie War Machinator Demolition Evolution III");
+		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));	
+		bg.setTranslateX(-11);
+		bg.setTranslateY(-11);
 
 		pane1bis = new GridPane();
 		pane2bis = new GridPane();
+
 		scene1bis = new Scene(pane1bis, 330, 320);
 		scene2bis = new Scene(pane2bis, 330, 320);
 		pane1bis.setPadding(new Insets(10));
 		pane1bis.setHgap(25);
 		pane1bis.setVgap(15);
-
+		
 		pane2bis.setPadding(new Insets(10));
 		pane2bis.setHgap(25);
 		pane2bis.setVgap(15);
+	
+		// pane1bis.getChildren().add(bg);
+		// pane2bis.getChildren().add(bg);
 
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();

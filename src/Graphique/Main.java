@@ -33,7 +33,7 @@ public class Main extends Application {
 	public Joueur joueur1, joueur2;
 	public Timeline timeline;
 	public Plateau p;
-	private int t = 10;
+	private int t = 61;
 	Stage thestage;
 	Group pane3;
 	Button btnscene1, btnscene2;
@@ -127,14 +127,18 @@ public void compteArebour(Text temps, Group pane3) {
 			
 			if (scorej1 > scorej2) {
 				new End(pane3, 2);
+				timeline.stop();
 			}
 			
 			else if (scorej1 < scorej2) {
 				new End(pane3, 1);
+				timeline.stop();
 			}
 			
-			else {
+			else if (scorej1 == scorej2) {
 				new End(pane3, 0);
+				pane3.requestFocus();
+				timeline.stop();
 			}
 		}
 		
