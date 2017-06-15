@@ -472,7 +472,7 @@ public class Joueur extends Personnage {
 	public void invoquerRobot1(Group root) {
 		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2] 
 				&& pieceOrange >= 1) {
-			
+
 			setPieceRose(pieceRose - coutrobot1[0]);
 			setPieceVerte(pieceVerte - coutrobot1[1]);
 			setPieceViolette(pieceViolette - coutrobot1[2]);

@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
 import Grammaire.Comportement;
 import Grammaire.Expression;
 import I_O.fichier;

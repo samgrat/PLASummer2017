@@ -43,9 +43,9 @@ public class Hit extends Unaire {
 		}
 		
 		if(robot.getY()+1 > 15){
-			Y = -1;System.out.println("Y+1>15");
+			Y = -1;
 		}else if(robot.getY()-1 < 0){
-			Y2 = 16;System.out.println("Y-1<0");
+			Y2 = 16;
 		}
 		
 		//Si le robot appartient au joueur1

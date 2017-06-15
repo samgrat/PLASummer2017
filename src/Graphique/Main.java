@@ -27,7 +27,7 @@ public class Main extends Application {
 
 		primaryStage.setTitle("THE FLOOR IS LAVA");
 		thestage = primaryStage;
-		
+	
 		pane3 = new Group();
 		scene3 = new Scene(pane3, 1480, 970, Color.DARKGREY);
 		
