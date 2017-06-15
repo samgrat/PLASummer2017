@@ -56,7 +56,7 @@ public class Main extends Application {
 	 * @return
 	 */
 	private int[] CoutRobot(String s) {
-		int tabCoutRVB[] = new int[3];
+		int tabCoutRVP[] = new int[3];
 		for (int i = 0; i < s.length(); i++) {
 			switch (s.charAt(i)) {
 			// piece Rose
@@ -64,27 +64,27 @@ public class Main extends Application {
 			case '}':
 			case '|':
 			case ';':
-				tabCoutRVB[0]++;
+				tabCoutRVP[0]++;
 				break;
 			// piece Vert
 			case 'M':
 			case 'H':
 			case 'R':
-				tabCoutRVB[1]++;
+				tabCoutRVP[1]++;
 				break;
-			// piece Bleue
+			// piece Violette
 			case '>':
 			case 'E':
-				tabCoutRVB[2]++;
+				tabCoutRVP[2]++;
 				break;
 			default:
 				System.out.println("Erreur: operateur non reconnu");
 				System.exit(-1);
 
 			}
-			return tabCoutRVB;
+			return tabCoutRVP;
 		}
-		return tabCoutRVB;
+		return tabCoutRVP;
 	}
 
 	public static void main(String[] args) {
@@ -113,11 +113,11 @@ public class Main extends Application {
 		String express_j1[] = { "{E}", "{M}", "{M;E}", "{M|E}" };
 		String express_j2[] = { "{M}", "{E}", "{M;E}", "{M|E}" };
 		
-		int tabCoutRVBj1[][] = new int[express_j1.length][3] ;
+		int tabCoutRVPj1[][] = new int[express_j1.length][3] ;
 		int tabCoutRVBj2[][] = new int[express_j2.length][3] ;
 		
 		for(int i = 0 ; i < express_j1.length ; i++){
-			tabCoutRVBj1[i] = CoutRobot(express_j1[i]);
+			tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
 			tabCoutRVBj2[i] = CoutRobot(express_j2[i]);
 			
 			
@@ -134,11 +134,11 @@ public class Main extends Application {
 
 		Plateau p = new Plateau(pane3);
 
-		Joueur joueur1 = new Joueur(1, p, pane3, compj1, tabCoutRVBj1 , mediaPlayer);
+		joueur1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1 , mediaPlayer);
 		Score score1 = new Score(joueur1);
 		joueur1.setScore(score1);
 
-		Joueur joueur2 = new Joueur(2, p, pane3, compj2,  tabCoutRVBj2 , mediaPlayer);
+		joueur2 = new Joueur(2, p, pane3, compj2,  tabCoutRVBj2 , mediaPlayer);
 		Score score2 = new Score(joueur2);
 
 		joueur2.setScore(score2);

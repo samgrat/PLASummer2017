@@ -20,28 +20,29 @@ public class Robot extends Personnage {
 	private Plateau plateau;
 	private Comportement comport;
 	private int count = 0;
-	final int piececrea = 1 ; 
-	private int pieceRose = 0 ;
-	private int pieceBleu = 0 ; 
-	private int pieceVert = 0 ; 
+	final int piececrea = 1;
+	private int pieceRose = 0;
+	private int pieceVerte = 0;
+	private int pieceViolette = 0;
 	ImageView imageRobot;
-	
-	public Joueur getJoueur(){
+
+	public Joueur getJoueur() {
 		return this.joueur;
 	}
-	
-	public Plateau getPlateau(){
+
+	public Plateau getPlateau() {
 		return this.plateau;
 	}
+
 	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte, int tabP[]) {
 		joueur = j;
 		plateau = p;
 		comport = comp;
 		setX(x);
 		setY(y);
-		pieceRose = tabP[0] ; 
-		pieceBleu = tabP[1] ;
-		pieceVert = tabP[2] ;
+		pieceRose = tabP[0];
+		pieceViolette = tabP[1];
+		pieceVerte = tabP[2];
 
 		if (j.Indice_joueur() == 1) {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
@@ -78,8 +79,6 @@ public class Robot extends Personnage {
 		tpsVieRobot.setCycleCount(50 * difficulte + 1);
 		tpsVieRobot.play();
 	}
-
-	
 
 	public void droite() {
 		int indice = plateau.rechercher(getX(), getY());
@@ -123,7 +122,7 @@ public class Robot extends Personnage {
 				plateau.ramasser(getX(), getY(), joueur, indice);
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
-				imageRobot.setLayoutX(15*plateau.getSize());
+				imageRobot.setLayoutX(15 * plateau.getSize());
 			} else {
 				plateau.setCasePlateau(0, getY(), joueur.Indice_joueur() + 2);
 			}
@@ -153,7 +152,7 @@ public class Robot extends Personnage {
 				plateau.ramasser(getX(), getY(), joueur, indice);
 				joueur.getScore().actuScore();
 				plateau.setCasePlateau(getX(), getY(), joueur.Indice_joueur() + 2);
-				imageRobot.setLayoutY(15*plateau.getSize());
+				imageRobot.setLayoutY(15 * plateau.getSize());
 			} else {
 				plateau.setCasePlateau(getX(), 0, joueur.Indice_joueur() + 2);
 			}
