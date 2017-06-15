@@ -431,7 +431,7 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);	
+		new Robot(this, root, p, comport1, x, y, difficulte);	
 	}
 
 	public void invoquerRobot2(Group root) {
