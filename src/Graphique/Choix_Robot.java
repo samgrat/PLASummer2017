@@ -334,8 +334,8 @@ public class Choix_Robot {
 		pane2bis.add(setRobot24, 2, 6);
 		comboBox8.valueProperty().addListener(observable -> {
 			modif(comboBox8.getValue(), setRobot24);
-
 		});
+		
 		Button btnscene1bis = new Button("Enregistrer");
 		// btnscene1bis.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
 		btnscene1bis.setDefaultButton(true);
