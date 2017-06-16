@@ -25,19 +25,29 @@ public class Joueur extends Personnage {
 	private Comportement comport2;
 	private Comportement comport3;
 	private Comportement comport4;
+	private Comportement comport5;
+	private Comportement comport6;
+	private Comportement comport7;
+	private Comportement comport8;
+	
 	private int pv = 3;
 	private int scoreint = 0;
 	private int[] coutrobot1;
 	private int[] coutrobot2;
 	private int[] coutrobot3;
 	private int[] coutrobot4;
-
+	private int[] coutrobot5;
+	private int[] coutrobot6;
+	private int[] coutrobot7;
+	private int[] coutrobot8;
+	
+	
 	private int indice_joueur;
 
-	private int pieceViolette = 0;
-	private int pieceVerte = 0;
-	private int pieceRose = 0;
-	private int pieceOrange = 0;
+	private int pieceViolette = 10;
+	private int pieceVerte = 10;
+	private int pieceRose = 10;
+	private int pieceOrange = 10;
 
 	Rectangle vie1;
 	Rectangle vie2;
@@ -196,6 +206,21 @@ public class Joueur extends Personnage {
 		
 	}
 }
+	
+
+	public void ChangerComport(){
+		this.comport1 = this.comport5;
+		//System.out.println("comport1 changer : [" + comport1 + "]" );
+		this.comport2 = this.comport6;
+		this.comport3 = this.comport7;
+		this.comport4 = this.comport8;
+		
+		this.coutrobot1 = this.coutrobot5;
+		this.coutrobot2 = this.coutrobot6;
+		this.coutrobot3 = this.coutrobot7;
+		this.coutrobot4 = this.coutrobot8;
+	}
+	
 
 	/**
 	 * creation d'un joueur
@@ -210,13 +235,24 @@ public class Joueur extends Personnage {
 		this.mediaplayer = mediaplayer;
 
 		this.comport1 = compj[0];
+//		System.out.println("Comportement 1 : [" + comport1+"]");
 		this.comport2 = compj[1];
 		this.comport3 = compj[2];
 		this.comport4 = compj[3];
+		this.comport5 = compj[4];
+		this.comport6 = compj[5];
+		//System.out.println("Comportement 5" + compj[5]);
+		this.comport7 = compj[6];
+		this.comport8 = compj[7];
+		
 		this.coutrobot1 = tabCoutRVPj[0];
 		this.coutrobot2 = tabCoutRVPj[1];
 		this.coutrobot3 = tabCoutRVPj[2];
 		this.coutrobot4 = tabCoutRVPj[3];
+		this.coutrobot5 = tabCoutRVPj[4];
+		this.coutrobot6 = tabCoutRVPj[5];
+		this.coutrobot7 = tabCoutRVPj[6];
+		this.coutrobot8 = tabCoutRVPj[7];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
@@ -538,7 +574,9 @@ public class Joueur extends Personnage {
 			setPieceViolette(pieceViolette - coutrobot1[2]);
 			setPieceOrange(pieceOrange - 1);
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
+			Robot r1 = new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
+			System.out.println("comport1 :["+ this.comport1 + "]");
+			r1.setComportement(comport1);
 		}
 	}
 
@@ -553,7 +591,8 @@ public class Joueur extends Personnage {
 			setPieceViolette(pieceViolette - coutrobot2[2]);
 			setPieceOrange(pieceOrange - 1);
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport2, x, y, difficulte, coutrobot2);
+			Robot r2 =new Robot(this, root, p, comport2, x, y, difficulte, coutrobot2);
+			r2.setComportement(comport2);
 		}
 	}
 
@@ -565,7 +604,8 @@ public class Joueur extends Personnage {
 			setPieceViolette(pieceViolette - coutrobot3[2]);
 			setPieceOrange(pieceOrange - 1);
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport3, x, y, difficulte, coutrobot3);
+			Robot r3 =new Robot(this, root, p, comport3, x, y, difficulte, coutrobot3);
+			r3.setComportement(comport3);
 		}
 	}
 
@@ -577,7 +617,8 @@ public class Joueur extends Personnage {
 			setPieceViolette(pieceViolette - coutrobot4[2]);
 			setPieceOrange(pieceOrange - 1);
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport4, x, y, difficulte, coutrobot4);
+			Robot r4 = new Robot(this, root, p, comport4, x, y, difficulte, coutrobot4);
+			r4.setComportement(comport4);
 		}
 	}
 }

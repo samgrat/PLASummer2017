@@ -49,6 +49,10 @@ public class Clavier extends Parent {
 					case "EQUALS":
 						c1.invoquerRobot4(root);
 						break;
+					case "SHIFT":
+						System.out.println("SHIF activé");
+						c1.ChangerComport();
+						break;
 					}
 
 				} else {
@@ -78,6 +82,9 @@ public class Clavier extends Parent {
 					case "DIGIT4":
 						c2.invoquerRobot4(root);
 						break;
+					case "A":
+						System.out.println("A");
+						c2.ChangerComport();
 					}
 
 				}

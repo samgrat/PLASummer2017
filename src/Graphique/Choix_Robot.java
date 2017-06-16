@@ -121,6 +121,11 @@ public String nomJ2;
 		// fichier.initialisation();
 		String a = "Guerrier 1", b = "Guerrier 2", c = "Recolteur 1", d = "Recolteur 2", e = "Tourelle",
 				f = "Polyvalent";
+		
+//		fichier.initialisation("Joueur1.txt");
+//		fichier.initialisation("Joueur2.txt");
+
+		
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
 		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));	
@@ -147,12 +152,19 @@ public String nomJ2;
 
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
+		Text collec11 = new Text("1ère collection");
+		Text collec21 = new Text("2ème collection");
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		
 		GridPane.setHalignment(nom1, HPos.LEFT);
-		pane1bis.add(nom1, 1, 2);
-		pane1bis.add(setnom1, 2, 2);
+
+	
 		pane1bis.add(new Text("1"), 0, 3);
+		pane1bis.add(nom1, 1, 1);
+		pane1bis.add(setnom1, 2, 1);
+		pane1bis.add(collec11, 2, 2);
+		pane1bis.add(collec21, 3, 2);
+		
 
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
@@ -209,14 +221,36 @@ public String nomJ2;
 			modif(comboBox4.getValue(), setRobot14);
 
 		});
+		
+		
+		
+		TextField setRobot11bis = new TextField(j1.get(5));
+		setRobot11bis.getText();
+		pane1bis.add(setRobot11bis, 3, 3);
 
+		TextField setRobot12bis = new TextField(j1.get(6));
+		setRobot12bis.getText();		
+		pane1bis.add(setRobot12bis, 3, 4);
+
+		TextField setRobot13bis = new TextField(j1.get(7));
+		setRobot13bis.getText();
+		pane1bis.add(setRobot13bis, 3, 5);
+
+		TextField setRobot14bis = new TextField(j1.get(8));
+		setRobot14bis.getText();		
+		pane1bis.add(setRobot14bis, 3, 6);
+		
 		Text nom2 = new Text("Nom Joueur 2");
 		TextField setnom2 = new TextField();
+		Text collec12 = new Text("1ère collection");
+		Text collec22 = new Text("2ème collection");
 		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// GridPane.setHalignment(nom2, HPos.LEFT);
-		pane2bis.add(nom2, 1, 2);
-		pane2bis.add(setnom2, 2, 2);
-
+		pane2bis.add(nom2, 1, 1);
+		pane2bis.add(setnom2, 2, 1);
+		pane2bis.add(collec12, 2, 2);
+		pane2bis.add(collec22, 3, 2);
+		
 		TextField setRobot21 = new TextField(j2.get(1));
 		setRobot21.getText();
 		// GridPane.setHalignment(nomJ21, HPos.CENTER);
@@ -270,8 +304,24 @@ public String nomJ2;
 		pane2bis.add(setRobot24, 2, 6);
 		comboBox8.valueProperty().addListener(observable -> {
 			modif(comboBox8.getValue(), setRobot24);
-
 		});
+		
+		TextField setRobot21bis = new TextField(j2.get(5));
+		setRobot21bis.getText();
+		pane2bis.add(setRobot21bis, 3, 3);
+
+		TextField setRobot22bis = new TextField(j2.get(6));
+		setRobot22bis.getText();		
+		pane2bis.add(setRobot22bis, 3, 4);
+
+		TextField setRobot23bis = new TextField(j2.get(7));
+		setRobot23bis.getText();
+		pane2bis.add(setRobot23bis, 3, 5);
+
+		TextField setRobot24bis = new TextField(j2.get(8));
+		setRobot24bis.getText();		
+		pane2bis.add(setRobot24bis, 3, 6);
+		
 		Button btnscene1bis = new Button("Enregistrer");
 		// btnscene1bis.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
 		btnscene1bis.setDefaultButton(true);
@@ -284,9 +334,14 @@ public String nomJ2;
 				J1bis.add(setRobot12.getText());
 				J1bis.add(setRobot13.getText());
 				J1bis.add(setRobot14.getText());
-
+				J1bis.add(setRobot11bis.getText());
+				J1bis.add(setRobot12bis.getText());
+				J1bis.add(setRobot13bis.getText());
+				J1bis.add(setRobot14bis.getText());
+				
+				
 				j1.add(0, setnom1.getText());
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 8; i++) {
 					if (J1bis.get(i) != "") {
 						// System.out.println("Affichage ï¿½ l'indice "+ i + "du
 						// tableau j1 : " + J1bis.get(i));
@@ -305,7 +360,7 @@ public String nomJ2;
 					e.printStackTrace();
 				}
 
-				for (int j = 1; j < 5; j++) {
+				for (int j = 1; j < 9; j++) {
 					String ligne = j1.get(j);
 					fichier.ecrire("Joueur1.txt", ligne);
 				}
@@ -374,9 +429,13 @@ public String nomJ2;
 				J2bis.add(setRobot22.getText());
 				J2bis.add(setRobot23.getText());
 				J2bis.add(setRobot24.getText());
-
+				J2bis.add(setRobot21bis.getText());
+				J2bis.add(setRobot22bis.getText());
+				J2bis.add(setRobot23bis.getText());
+				J2bis.add(setRobot24bis.getText());
+				
 				j2.add(0, setnom2.getText());
-				for (int i = 0; i < J2bis.size(); i++) {
+				for (int i = 0; i < 8; i++) {
 					if (J2bis.get(i) != "") {
 						j2.add(i + 1, J2bis.get(i));
 					}
@@ -393,7 +452,7 @@ public String nomJ2;
 					e.printStackTrace();
 				}
 
-				for (int j = 1; j < 5; j++) {
+				for (int j = 1; j < 9; j++) {
 					String ligne = j2.get(j);
 					fichier.ecrire("Joueur2.txt", ligne);
 				}
@@ -459,11 +518,11 @@ public String nomJ2;
 		thestage.centerOnScreen();
 		
 		
-		Comportement compj1[] = new Comportement[4];
-		Comportement compj2[] = new Comportement[4];
-		
-		String express_j1[] = new String[4];		
-		String express_j2[] = new String[4];		
+		Comportement compj1[] = new Comportement[8];
+		Comportement compj2[] = new Comportement[8];
+	
+		String express_j1[] = new String[8];		
+		String express_j2[] = new String[8];		
 		
 		for(int i = 0; i < express_j1.length; i++){
 			express_j1[i] = j1.get(i+1);			
@@ -476,13 +535,13 @@ public String nomJ2;
 		InputStream init = new ByteArrayInputStream("".getBytes());
 	    Reader r = new Reader(init);
 			
-	    for(int i = 0; i < 4; i++){
+	    for(int i = 0; i < 8; i++){
 			compj1[i] = StringtoComportement(express_j1[i], r);
 			compj2[i] = StringtoComportement(express_j2[i], r);
 		}
 		
-	    int tabCoutRVPj1[][] = new int[express_j1.length][3] ;
-		int tabCoutRVPj2[][] = new int[express_j2.length][3] ;
+	    int tabCoutRVPj1[][] = new int[express_j1.length][7];
+		int tabCoutRVPj2[][] = new int[express_j2.length][7];
 		
 		for(int i = 0 ; i < express_j1.length ; i++){
 			tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
