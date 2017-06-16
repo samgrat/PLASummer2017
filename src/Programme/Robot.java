@@ -30,6 +30,12 @@ public class Robot extends Personnage {
 	public Plateau getPlateau() {
 		return this.plateau;
 	}
+	
+	public void setComportement(Comportement comport){
+		this.comport = comport;
+	}
+	
+	
 
 	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte, int tabP[]) {
 		joueur = j;
@@ -46,6 +52,7 @@ public class Robot extends Personnage {
 			addRobot(getX(), getY(), plateau, root, imageRobot, comport, difficulte);
 		}
 	}
+	
 
 	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Comportement comp, int difficulte) {
 
@@ -187,10 +194,7 @@ public class Robot extends Personnage {
 	}
 
 	public void exec() {
-		
 		comport.exec(this);
-		
-		
 	}
 	
 	public void hit(int x, int y){

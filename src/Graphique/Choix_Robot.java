@@ -130,6 +130,11 @@ public class Choix_Robot {
 		// fichier.initialisation();
 		String a = "Guerrier 1", b = "Guerrier 2", c = "Recolteur 1", d = "Recolteur 2", e = "Tourelle",
 				f = "Polyvalent";
+		
+//		fichier.initialisation("Joueur1.txt");
+//		fichier.initialisation("Joueur2.txt");
+
+		
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
 
@@ -194,11 +199,18 @@ public class Choix_Robot {
 		nom1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		nom1.setFill(Color.WHITE);
 		TextField setnom1 = new TextField();
+		Text collec11 = new Text("1�re collection");
+		Text collec21 = new Text("2�me collection");
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 
 		GridPane.setHalignment(nom1, HPos.LEFT);
-		pane1bis.add(nom1, 1, 2);
-		pane1bis.add(setnom1, 2, 2);
+	
+		pane1bis.add(new Text("1"), 0, 3);
+		pane1bis.add(nom1, 1, 1);
+		pane1bis.add(setnom1, 2, 1);
+		pane1bis.add(collec11, 2, 2);
+		pane1bis.add(collec21, 3, 2);
+		
 
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
@@ -263,16 +275,35 @@ public class Choix_Robot {
 			modif(comboBox4.getValue(), setRobot14);
 
 		});
+		
+		TextField setRobot11bis = new TextField(j1.get(5));
+		setRobot11bis.getText();
+		pane1bis.add(setRobot11bis, 3, 3);
 
-		Text nom2 = new Text("Nom du joueur 2 :");
-		nom2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
-		nom2.setFill(Color.WHITE);
+		TextField setRobot12bis = new TextField(j1.get(6));
+		setRobot12bis.getText();		
+		pane1bis.add(setRobot12bis, 3, 4);
+
+		TextField setRobot13bis = new TextField(j1.get(7));
+		setRobot13bis.getText();
+		pane1bis.add(setRobot13bis, 3, 5);
+
+		TextField setRobot14bis = new TextField(j1.get(8));
+		setRobot14bis.getText();		
+		pane1bis.add(setRobot14bis, 3, 6);
+		
+		Text nom2 = new Text("Nom Joueur 2");
+		
 		TextField setnom2 = new TextField();
+		Text collec12 = new Text("1�re collection");
+		Text collec22 = new Text("2�me collection");
 		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// GridPane.setHalignment(nom2, HPos.LEFT);
-		pane2bis.add(nom2, 1, 2);
-		pane2bis.add(setnom2, 2, 2);
-
+		pane2bis.add(nom2, 1, 1);
+		pane2bis.add(setnom2, 2, 1);
+		pane2bis.add(collec12, 2, 2);
+		pane2bis.add(collec22, 3, 2);
+		
 		TextField setRobot21 = new TextField(j2.get(1));
 		setRobot21.getText();
 		// GridPane.setHalignment(nomJ21, HPos.CENTER);
@@ -335,7 +366,23 @@ public class Choix_Robot {
 		comboBox8.valueProperty().addListener(observable -> {
 			modif(comboBox8.getValue(), setRobot24);
 		});
+		
+		TextField setRobot21bis = new TextField(j2.get(5));
+		setRobot21bis.getText();
+		pane2bis.add(setRobot21bis, 3, 3);
 
+		TextField setRobot22bis = new TextField(j2.get(6));
+		setRobot22bis.getText();		
+		pane2bis.add(setRobot22bis, 3, 4);
+
+		TextField setRobot23bis = new TextField(j2.get(7));
+		setRobot23bis.getText();
+		pane2bis.add(setRobot23bis, 3, 5);
+
+		TextField setRobot24bis = new TextField(j2.get(8));
+		setRobot24bis.getText();		
+		pane2bis.add(setRobot24bis, 3, 6);
+		
 		Button btnscene1bis = new Button("Enregistrer");
 		// btnscene1bis.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
 		btnscene1bis.setDefaultButton(true);
@@ -348,6 +395,10 @@ public class Choix_Robot {
 				J1bis.add(setRobot12.getText());
 				J1bis.add(setRobot13.getText());
 				J1bis.add(setRobot14.getText());
+				J1bis.add(setRobot11bis.getText());
+				J1bis.add(setRobot12bis.getText());
+				J1bis.add(setRobot13bis.getText());
+				J1bis.add(setRobot14bis.getText());
 
 				Comportement compj1[] = new Comportement[4];
 
@@ -357,7 +408,8 @@ public class Choix_Robot {
 				inputisnotcorrect = false;
 
 				j1.set(0, setnom1.getText());
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 8; i++) {
+
 					if (J1bis.get(i) != "") {
 						// System.out.println("Affichage � l'indice "+ i +
 						// "du
@@ -385,7 +437,7 @@ public class Choix_Robot {
 					e.printStackTrace();
 				}
 
-				for (int j = 1; j < 5; j++) {
+				for (int j = 1; j < 9; j++) {
 					String ligne = j1.get(j);
 					fichier.ecrire("Joueur1.txt", ligne);
 				}
@@ -456,6 +508,10 @@ public class Choix_Robot {
 				J2bis.add(setRobot22.getText());
 				J2bis.add(setRobot23.getText());
 				J2bis.add(setRobot24.getText());
+				J2bis.add(setRobot21bis.getText());
+				J2bis.add(setRobot22bis.getText());
+				J2bis.add(setRobot23bis.getText());
+				J2bis.add(setRobot24bis.getText());
 
 				Comportement compj2[] = new Comportement[4];
 
@@ -464,9 +520,9 @@ public class Choix_Robot {
 				String[] express_j2 = new String[4];
 
 				primaryStage.setScene(scene2bis);
-
-				j1.set(0, setnom1.getText());
-				for (int i = 0; i < 4; i++) {
+				j2.set(0, setnom2.getText());
+//				j2.add(0, setnom2.getText());
+				for (int i = 0; i < 8; i++) {
 					if (J2bis.get(i) != "") {
 						// System.out.println("Affichage � l'indice "+ i +
 						// "du
@@ -494,7 +550,7 @@ public class Choix_Robot {
 					e.printStackTrace();
 				}
 
-				for (int j = 1; j < 5; j++) {
+				for (int j = 1; j < 9; j++) {
 					String ligne = j2.get(j);
 					fichier.ecrire("Joueur2.txt", ligne);
 				}
@@ -557,54 +613,58 @@ public class Choix_Robot {
 			final Media media = new Media(resource.toString());
 			final MediaPlayer mediaPlayer = new MediaPlayer(media);
 
+		thestage.setScene(scene3);
+		thestage.centerOnScreen();
+		
+		
+		Comportement compj1[] = new Comportement[8];
+		Comportement compj2[] = new Comportement[8];
+	
+		String express_j1[] = new String[8];		
+		String express_j2[] = new String[8];		
+		
+		for(int i = 0; i < express_j1.length; i++){
+			express_j1[i] = j1.get(i+1);			
+			express_j2[i] = j2.get(i+1);
+		}
+		
+		//String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
+		//String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
+		
+		InputStream init = new ByteArrayInputStream("".getBytes());
+	    Reader r = new Reader(init);
+			
+	    for(int i = 0; i < 8; i++){
+			compj1[i] = StringtoComportement(express_j1[i], r);
+			compj2[i] = StringtoComportement(express_j2[i], r);
+		}
+		
+	    int tabCoutRVPj1[][] = new int[express_j1.length][7];
+		int tabCoutRVPj2[][] = new int[express_j2.length][7];
+		
+		for(int i = 0 ; i < express_j1.length ; i++){
+			tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
+			tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
+		}
+		Plateau p = new Plateau(pane3);
+		
+		jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
+		Score score1 = new Score(jou1);
+		jou1.setScore(score1);
+		
+		jou2 = new Joueur(2, p, pane3, compj2, tabCoutRVPj2, mediaPlayer);
+		Score score2 = new Score(jou2);
+		jou2.setScore(score2);
+		
+		p.setJoueur(jou1, jou2);
+		
+		Clavier clav = new Clavier(jou2, jou1, p, pane3);
+
+
 			thestage.setScene(scene3);
 			thestage.centerOnScreen();
 
-			Comportement compj1[] = new Comportement[4];
-			Comportement compj2[] = new Comportement[4];
-
-			String express_j1[] = new String[4];
-			String express_j2[] = new String[4];
-
-			for (int i = 0; i < express_j1.length; i++) {
-				express_j1[i] = j1.get(i + 1);
-				express_j2[i] = j2.get(i + 1);
-			}
-
-			for (int i = 0; i < 4; i++) {
-				compj1[i] = StringtoComportement(express_j1[i], r);
-				compj2[i] = StringtoComportement(express_j2[i], r);
-			}
-
-			int tabCoutRVPj1[][] = new int[express_j1.length][3];
-			int tabCoutRVPj2[][] = new int[express_j2.length][3];
-
-			for (int i = 0; i < express_j1.length; i++) {
-				tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
-				tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
-			}
-
-			thestage.setScene(scene3);
-			thestage.centerOnScreen();
-
-			for (int i = 0; i < 4; i++) {
-				compj1[i] = StringtoComportement(express_j1[i], r);
-				compj2[i] = StringtoComportement(express_j2[i], r);
-			}
-
-			Plateau p = new Plateau(pane3);
-			pane3.getChildren().add(p);
-			jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
-			Score score1 = new Score(jou1);
-			jou1.setScore(score1);
-
-			jou2 = new Joueur(2, p, pane3, compj2, tabCoutRVPj2, mediaPlayer);
-			Score score2 = new Score(jou2);
-			jou2.setScore(score2);
-
-			p.setJoueur(jou1, jou2);
-
-			Clavier clav = new Clavier(jou2, jou1, p, pane3);
+			
 
 			Text temps = new Text(String.valueOf(this.t));
 			temps.setX(1090);
