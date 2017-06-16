@@ -21,9 +21,6 @@ public class Robot extends Personnage {
 	private Comportement comport;
 	private int count = 0;
 	final int piececrea = 1;
-	private int pieceRose = 0;
-	private int pieceVerte = 0;
-	private int pieceViolette = 0;
 	ImageView imageRobot;
 
 	public Joueur getJoueur() {
@@ -40,9 +37,6 @@ public class Robot extends Personnage {
 		comport = comp;
 		setX(x);
 		setY(y);
-		pieceRose = tabP[0];
-		pieceViolette = tabP[1];
-		pieceVerte = tabP[2];
 
 		if (j.Indice_joueur() == 1) {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));

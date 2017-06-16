@@ -4,8 +4,6 @@ import Programme.Joueur;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class Clavier extends Parent {

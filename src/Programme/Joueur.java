@@ -328,7 +328,6 @@ public class Joueur extends Personnage {
 			cache3.setVisible(false);
 			break;
 		default:
-			this.pv = 3;
 			vie1.setVisible(true);
 			cache1.setVisible(true);
 			vie2.setVisible(true);
@@ -343,7 +342,8 @@ public class Joueur extends Personnage {
 		this.pv--;
 		mediaplayer.play();
 		actualiserVie();
-		if (pv <= 0) {
+		if (pv == 0) {
+			this.pv--;
 			new End(root, indice_joueur, timeline);
 			timeline.stop();
 		}
@@ -352,7 +352,6 @@ public class Joueur extends Personnage {
 				mediaplayer.stop();
 			}
 		}));
-		
 		degat.play();
 	}
 
@@ -583,7 +582,7 @@ public class Joueur extends Personnage {
 			} else {
 				imageRobot3.setVisible(false);
 			}
-			if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+			if (pieceRose >= coutrobot4[0] && pieceVerte >= coutrobot4[1] && pieceViolette >= coutrobot4[2]
 					&& pieceOrange >= 1) {
 				imageRobot4.setVisible(true);
 			} else {

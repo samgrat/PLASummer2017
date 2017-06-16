@@ -59,7 +59,6 @@ public class Obstacles extends Parent {
 		// case(14, 1)
 		p.setCasePlateau(14, 1, indice_obstacles); 
 		
-
 		/* "map2.png" : ricm 
 		
 		// case(1, 6)

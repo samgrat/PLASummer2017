@@ -46,23 +46,23 @@ public class Pieces extends Personnage {
 		setX(abs);
 		setY(ord);
 		
-		ImageView pieceorange = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceorange.png")));
 		ImageView piecerose = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/piecerose.png")));
 		ImageView pieceverte = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceverte.png")));
+		ImageView pieceorange = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceorange.png")));
 		ImageView pieceviolette = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/pieceviolette.png")));
 		
 		idpiece = (int) (Math.random() * 100);
-		if ((0 <= idpiece) && (idpiece < 25)) {
+		if ((0 <= idpiece) && (idpiece < 35)) {
 			piece = piecerose;
 			couleur = CouleurPiece.ROSE;
 		}
 		
-		else if ((25 <= idpiece) && (idpiece < 50)) {
+		else if ((35 <= idpiece) && (idpiece < 70)) {
 			piece = pieceverte;
 			couleur = CouleurPiece.VERT;
 		}
 		
-		else if ((50 <= idpiece) && (idpiece < 60)) {
+		else if ((70 <= idpiece) && (idpiece < 90)) {
 			piece = pieceorange;
 			couleur = CouleurPiece.ORANGE;
 		}
