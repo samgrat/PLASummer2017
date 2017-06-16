@@ -149,8 +149,8 @@ public class Choix_Robot {
 		pane2bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
-		scene1bis = new Scene(pane1bis, 350, 320);
-		scene2bis = new Scene(pane2bis, 350, 320);
+		scene1bis = new Scene(pane1bis, 470, 350);
+		scene2bis = new Scene(pane2bis, 470, 350);
 
 		pane1bis.setPadding(new Insets(10));
 		pane1bis.setHgap(25);
@@ -192,6 +192,7 @@ public class Choix_Robot {
 		fourb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		fourb.setFill(Color.WHITE);
 
+		
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
 
@@ -199,10 +200,16 @@ public class Choix_Robot {
 		nom1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		nom1.setFill(Color.WHITE);
 		TextField setnom1 = new TextField();
-		Text collec11 = new Text("1�re collection");
-		Text collec21 = new Text("2�me collection");
+		Text collec11 = new Text("1ere collection");
+		Text collec21 = new Text("2eme collection");
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 
+		collec11.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		collec11.setFill(Color.WHITE);
+		
+		collec21.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		collec21.setFill(Color.WHITE);
+		
 		GridPane.setHalignment(nom1, HPos.LEFT);
 	
 		pane1bis.add(new Text("1"), 0, 3);
@@ -292,11 +299,19 @@ public class Choix_Robot {
 		setRobot14bis.getText();		
 		pane1bis.add(setRobot14bis, 3, 6);
 		
-		Text nom2 = new Text("Nom Joueur 2");
-		
+		Text nom2 = new Text("Nom du Joueur 2");
+		nom2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		nom2.setFill(Color.WHITE);
 		TextField setnom2 = new TextField();
-		Text collec12 = new Text("1�re collection");
-		Text collec22 = new Text("2�me collection");
+		Text collec12 = new Text("1ere collection");
+		Text collec22 = new Text("2eme collection");
+		
+		collec12.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		collec12.setFill(Color.WHITE);
+		
+		collec22.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		collec22.setFill(Color.WHITE);
+		
 		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// GridPane.setHalignment(nom2, HPos.LEFT);
 		pane2bis.add(nom2, 1, 1);
@@ -317,7 +332,6 @@ public class Choix_Robot {
 		pane2bis.add(setRobot21, 2, 3);
 		comboBox5.valueProperty().addListener(observable -> {
 			modif(comboBox5.getValue(), setRobot21);
-
 		});
 
 		TextField setRobot22 = new TextField(j2.get(2));
@@ -400,9 +414,9 @@ public class Choix_Robot {
 				J1bis.add(setRobot13bis.getText());
 				J1bis.add(setRobot14bis.getText());
 
-				Comportement compj1[] = new Comportement[4];
+				Comportement compj1[] = new Comportement[8];
 
-				String[] express_j1 = new String[4];
+				String[] express_j1 = new String[8];
 
 				primaryStage.setScene(scene1bis);
 				inputisnotcorrect = false;
@@ -415,11 +429,11 @@ public class Choix_Robot {
 						// "du
 						// tableau j1 : " + J1bis.get(i));
 						j1.set(i + 1, J1bis.get(i));
-						express_j1[i] = J1bis.get(i);
+						express_j1[i] = j1.get(i+1);
 					}
 				}
 
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 8; i++) {
 					try {
 						compj1[i] = StringtoComportement(express_j1[i], r);
 					} catch (ParseException e) {
@@ -513,11 +527,11 @@ public class Choix_Robot {
 				J2bis.add(setRobot23bis.getText());
 				J2bis.add(setRobot24bis.getText());
 
-				Comportement compj2[] = new Comportement[4];
+				Comportement compj2[] = new Comportement[8];
 
 				inputisnotcorrect = false;
 
-				String[] express_j2 = new String[4];
+				String[] express_j2 = new String[8];
 
 				primaryStage.setScene(scene2bis);
 				j2.set(0, setnom2.getText());
@@ -532,7 +546,7 @@ public class Choix_Robot {
 					}
 				}
 
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 8; i++) {
 					try {
 						compj2[i] = StringtoComportement(express_j2[i], r);
 					} catch (ParseException e) {
@@ -631,8 +645,8 @@ public class Choix_Robot {
 		//String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
 		//String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
 		
-		InputStream init = new ByteArrayInputStream("".getBytes());
-	    Reader r = new Reader(init);
+//		InputStream init = new ByteArrayInputStream("".getBytes());
+//	    Reader r = new Reader(init);
 			
 	    for(int i = 0; i < 8; i++){
 			compj1[i] = StringtoComportement(express_j1[i], r);
@@ -647,6 +661,7 @@ public class Choix_Robot {
 			tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
 		}
 		Plateau p = new Plateau(pane3);
+		pane3.getChildren().add(p);
 		
 		jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
 		Score score1 = new Score(jou1);
