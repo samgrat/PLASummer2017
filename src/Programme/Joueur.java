@@ -31,7 +31,6 @@ public class Joueur extends Personnage {
 	private int[] coutrobot2;
 	private int[] coutrobot3;
 	private int[] coutrobot4;
-
 	private int indice_joueur;
 
 	private int pieceViolette = 0;
@@ -50,6 +49,7 @@ public class Joueur extends Personnage {
 	Rectangle cache1;
 	Rectangle cache3;
 	Group root;
+	Group pane3;
 
 	private int difficulte;
 	MediaPlayer mediaplayer;
@@ -110,6 +110,14 @@ public class Joueur extends Personnage {
 	public int Indice_joueur() {
 		return indice_joueur;
 	}
+	
+	public void setPV(int pv) {
+		this.pv = pv;
+	}
+	
+	public int getPV() {
+		return this.pv;
+	}
 
 	public void incrPiece(int indice) {
 		switch (indice) {
@@ -130,7 +138,6 @@ public class Joueur extends Personnage {
 			scoreint++;
 			break;
 		}
-
 	}
 
 	/**
@@ -345,8 +352,10 @@ public class Joueur extends Personnage {
 				mediaplayer.stop();
 			}
 		}));
+		
 		degat.play();
 	}
+
 
 	public void droite() {
 		int indice = p.rechercher(x, y);
@@ -498,9 +507,9 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-
-		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2] 
 				&& pieceOrange >= 1) {
+
 			setPieceRose(pieceRose - coutrobot1[0]);
 			setPieceVerte(pieceVerte - coutrobot1[1]);
 			setPieceViolette(pieceViolette - coutrobot1[2]);
@@ -509,11 +518,13 @@ public class Joueur extends Personnage {
 			new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
 			actuPanel();
 		}
+	
 	}
 
 	public void invoquerRobot2(Group root) {
 		if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
 				&& pieceOrange >= 1) {
+
 			setPieceRose(pieceRose - coutrobot2[0]);
 			setPieceVerte(pieceVerte - coutrobot2[1]);
 			setPieceViolette(pieceViolette - coutrobot2[2]);
@@ -527,6 +538,7 @@ public class Joueur extends Personnage {
 	public void invoquerRobot3(Group root) {
 		if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
 				&& pieceOrange >= 1) {
+
 			setPieceRose(pieceRose - coutrobot3[0]);
 			setPieceVerte(pieceVerte - coutrobot3[1]);
 			setPieceViolette(pieceViolette - coutrobot3[2]);
@@ -540,6 +552,7 @@ public class Joueur extends Personnage {
 	public void invoquerRobot4(Group root) {
 		if (pieceRose >= coutrobot4[0] && pieceVerte >= coutrobot4[1] && pieceViolette >= coutrobot4[2]
 				&& pieceOrange >= 1) {
+
 			setPieceRose(pieceRose - coutrobot4[0]);
 			setPieceVerte(pieceVerte - coutrobot4[1]);
 			setPieceViolette(pieceViolette - coutrobot4[2]);
