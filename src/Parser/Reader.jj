@@ -196,7 +196,6 @@ Expression EXPRESSION() :
 | < LACC > 
   exp = LISTE() 
   < RACC >
-  < NONE >
   {
     return exp;
   }

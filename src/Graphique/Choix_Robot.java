@@ -323,7 +323,7 @@ public class Choix_Robot {
 
 		TextField setRobot24 = new TextField(j2.get(4));
 		setRobot24.getText();
-		// GridPane.setHalignment(nomJ24, HPos.CENTER);
+		// Gridane.setHalignment(nomJ24, HPos.CENTER);
 		comboBox8.setPrefWidth(150);
 		comboBox8.getItems().setAll(a, b, c, d, e, f);
 
