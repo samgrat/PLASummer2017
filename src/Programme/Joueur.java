@@ -156,6 +156,14 @@ public class Joueur extends Personnage {
 		this.comport2 = compj[1];
 		this.comport3 = compj[2];
 		this.comport4 = compj[3];
+		
+		/* Affichage comportements pour le debug */
+		System.out.println("Joueur"+ indice_joueur);
+		System.out.println(comport1.toString());
+		System.out.println(comport2.toString());
+		System.out.println(comport3.toString());
+		System.out.println(comport4.toString());
+		
 		this.coutrobot1 = tabCoutRVPj[0];
 		this.coutrobot2 = tabCoutRVPj[1];
 		this.coutrobot3 = tabCoutRVPj[2];
