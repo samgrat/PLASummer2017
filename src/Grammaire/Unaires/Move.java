@@ -17,7 +17,6 @@ public class Move extends Unaire {
 	@Override
 	public void exec() {
 		// fonction de test
-		System.out.println("exec M");
 	}
 	
 	// TODO changer le robot en param en consequence
@@ -52,7 +51,6 @@ public class Move extends Unaire {
 	@Override
 	public void exec(Robot r, int a) {
 		if (a == avancement){
-			//System.out.println("exec M avancement " + avancement);
 			exec(r);
 		}
 		

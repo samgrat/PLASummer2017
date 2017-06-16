@@ -17,7 +17,6 @@ public class Explore extends Unaire {
 	@Override
 	public void exec() {
 		// fonction de test
-		System.out.println("exec E");
 	}
 
 	@Override

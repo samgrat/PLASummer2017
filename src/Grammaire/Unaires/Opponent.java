@@ -14,7 +14,6 @@ public class Opponent extends Unaire {
 	@Override
 	public void exec() {
 		// fonction de test
-		System.out.println("exec O");
 	}
 
 	@Override
@@ -26,8 +25,7 @@ public class Opponent extends Unaire {
 
 	@Override
 	public void exec(Robot r, int a) {
-		if (a == avancement)
-			System.out.println("exec O avancement " + avancement);
+		if (a == avancement){ }
 		
 	}
 	

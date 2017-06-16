@@ -16,7 +16,6 @@ public class Gather extends Unaire {
 	@Override
 	public void exec() {
 		// fonction de test
-		System.out.println("exec G");
 	}
 
 	@Override
@@ -48,8 +47,7 @@ public class Gather extends Unaire {
 
 	@Override
 	public void exec(Robot r, int a) {
-		if (a == avancement)
-			System.out.println("exec G avancement " + avancement);
+		if (a == avancement) {}
 		
 	}
 	

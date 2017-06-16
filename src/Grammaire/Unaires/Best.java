@@ -14,7 +14,6 @@ public class Best extends Unaire {
 	@Override
 	public void exec() {
 		// fonction de test
-		System.out.println("exec B");
 
 	}
 
@@ -26,8 +25,7 @@ public class Best extends Unaire {
 
 	@Override
 	public void exec(Robot r, int a) {
-		if (a == avancement)
-			System.out.println("exec B avancement " + avancement);
+		if (a == avancement){ }
 	}
 
 	@Override

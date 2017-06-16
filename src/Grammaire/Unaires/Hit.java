@@ -16,7 +16,6 @@ public class Hit extends Unaire {
 	@Override
 	public void exec() {
 		// fonction de test
-		System.out.println("exec H");
 	}
 
 	@Override
