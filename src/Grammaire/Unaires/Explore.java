@@ -2,6 +2,7 @@ package Grammaire.Unaires;
 
 import Dijkstra_explore.Dijkstra;
 import Grammaire.DijkException;
+import Grammaire.ExpException;
 import Grammaire.Unaire;
 import Programme.Robot;
 
@@ -22,7 +23,7 @@ public class Explore extends Unaire {
 	@Override
 	public void exec(Robot robot) {
 		int posJX, posJY, indpos;
-		int newpos;
+		int newpos = 0;
 		direction = 0;
 		Dijkstra d = new Dijkstra();
 
@@ -34,12 +35,16 @@ public class Explore extends Unaire {
 			posJ = robot.getPlateau().getJoueur(1).getX() + robot.getPlateau().getJoueur(1).getY() * 16;
 
 		do {
-			newpos = lookAround(posJ, direction);
-
+			try {
+				newpos = lookAround(posJ, direction);
+			} catch (ExpException e) {
+			}
+			
 			posJX = postoX(newpos);
 			posJY = postoY(newpos);
 			indpos = robot.getPlateau().rechercher(posJX, posJY);
-			//System.out.println("case X = " + posJX + " Y = " + posJY + " indpos = " + indpos);
+			// System.out.println("case X = " + posJX + " Y = " + posJY + "
+			// indpos = " + indpos);
 
 			direction++;
 		} while (indpos != 0 && indpos <= 10);
@@ -47,36 +52,47 @@ public class Explore extends Unaire {
 		try {
 			d = new Dijkstra(robot.getPlateau(), posR, newpos);
 		} catch (DijkException e1) {
-			newpos = lookAround(posJ, direction);
+			try {
+				newpos = lookAround(posJ, direction);
+			} catch (ExpException e) {
+			}
 
 			posJX = postoX(newpos);
 			posJY = postoY(newpos);
 			indpos = robot.getPlateau().rechercher(posJX, posJY);
-			//System.out.println("case X = " + posJX + " Y = " + posJY + " indpos = " + indpos);
-			
+			// System.out.println("case X = " + posJX + " Y = " + posJY + "
+			// indpos = " + indpos);
+
 			direction++;
 			try {
 				d = new Dijkstra(robot.getPlateau(), posR, newpos);
 			} catch (DijkException e2) {
-
-				newpos = lookAround(posJ, direction);
+				try {
+					newpos = lookAround(posJ, direction);
+				} catch (ExpException e) {
+				}
 
 				posJX = postoX(newpos);
 				posJY = postoY(newpos);
 				indpos = robot.getPlateau().rechercher(posJX, posJY);
-				//System.out.println("case X = " + posJX + " Y = " + posJY + " indpos = " + indpos);
+				// System.out.println("case X = " + posJX + " Y = " + posJY + "
+				// indpos = " + indpos);
 
 				direction++;
 				try {
 					d = new Dijkstra(robot.getPlateau(), posR, newpos);
 				} catch (DijkException e3) {
 
-					newpos = lookAround(posJ, direction);
+					try {
+						newpos = lookAround(posJ, direction);
+					} catch (ExpException e) {
+					}
 
 					posJX = postoX(newpos);
 					posJY = postoY(newpos);
 					indpos = robot.getPlateau().rechercher(posJX, posJY);
-					//System.out.println("case X = " + posJX + " Y = " + posJY + " indpos = " + indpos);
+					// System.out.println("case X = " + posJX + " Y = " + posJY
+					// + " indpos = " + indpos);
 
 					direction++;
 					try {
@@ -152,14 +168,14 @@ public class Explore extends Unaire {
 		default:
 			System.out.println("Erreur: la cible est entouree");
 			direction = 0;
-			return posJ;
+			throw new ExpException();
 		}
 	}
 
 	@Override
 	public void exec(Robot r, int a) {
 		if (a == avancement) {
-			//System.out.println("exec E avancement " + avancement);
+			// System.out.println("exec E avancement " + avancement);
 			exec(r);
 		}
 	}

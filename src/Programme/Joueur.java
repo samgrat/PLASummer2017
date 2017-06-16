@@ -177,13 +177,11 @@ public class Joueur extends Personnage {
 		this.mediaplayer = mediaplayer;
 
 		this.comport1 = compj[0];
-		// System.out.println("Comportement 1 : [" + comport1+"]");
 		this.comport2 = compj[1];
 		this.comport3 = compj[2];
 		this.comport4 = compj[3];
 		this.comport5 = compj[4];
 		this.comport6 = compj[5];
-		// System.out.println("Comportement 5" + compj[5]);
 		this.comport7 = compj[6];
 		this.comport8 = compj[7];
 

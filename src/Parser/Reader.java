@@ -68,7 +68,6 @@ public class Reader implements ReaderConstants {
       jj_consume_token(LACC);
       exp = LISTE();
       jj_consume_token(RACC);
-      jj_consume_token(NONE);
     {if (true) return exp;}
       break;
     default:
