@@ -72,8 +72,8 @@ public class Choix_Robot {
 	public Timeline timeline;
 	public String nomJ1;
 	public String nomJ2;
-	
-	private Comportement StringtoComportement(String s, Reader r) throws ParseException{
+
+	private Comportement StringtoComportement(String s, Reader r) throws ParseException {
 		InputStream in = new ByteArrayInputStream(s.getBytes());
 		Reader.ReInit(in);
 		Expression exp = Reader.read(r);
@@ -132,18 +132,17 @@ public class Choix_Robot {
 				f = "Polyvalent";
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
-		
+
 		Image bg = new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png"));
-		
+
 		l1 = fichier.lecture("Modele.txt");
 
 		pane1bis = new GridPane();
-		pane1bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, 
+		pane1bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 		pane2bis = new GridPane();
-		pane2bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, 
+		pane2bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-		
 
 		scene1bis = new Scene(pane1bis, 350, 320);
 		scene2bis = new Scene(pane2bis, 350, 320);
@@ -155,39 +154,39 @@ public class Choix_Robot {
 		pane2bis.setPadding(new Insets(10));
 		pane2bis.setHgap(25);
 		pane2bis.setVgap(15);
-		
+
 		Text one = new Text("1");
 		one.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		one.setFill(Color.WHITE);
-		
+
 		Text two = new Text("2");
 		two.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		two.setFill(Color.WHITE);
-		
+
 		Text three = new Text("3");
 		three.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		three.setFill(Color.WHITE);
-		
+
 		Text four = new Text("4");
 		four.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		four.setFill(Color.WHITE);
-		
+
 		Text oneb = new Text("1");
 		oneb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		oneb.setFill(Color.WHITE);
-		
+
 		Text twob = new Text("2");
 		twob.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		twob.setFill(Color.WHITE);
-		
+
 		Text threeb = new Text("3");
 		threeb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		threeb.setFill(Color.WHITE);
-		
+
 		Text fourb = new Text("4");
 		fourb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
 		fourb.setFill(Color.WHITE);
-		
+
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
 
@@ -201,17 +200,16 @@ public class Choix_Robot {
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
 
-
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
 		// GridPane.setHalignment(nomJ11, HPos.CENTER);
 		comboBox1.setPrefWidth(150);
-		comboBox1.getItems().setAll(a, b, c, d, e, f);		
+		comboBox1.getItems().setAll(a, b, c, d, e, f);
 		pane1bis.add(comboBox1, 1, 3);
-		
+
 		pane1bis.add(oneb, 0, 3);
-		
-		pane1bis.add(setRobot11, 2, 3);	
+
+		pane1bis.add(setRobot11, 2, 3);
 		comboBox1.valueProperty().addListener(observable -> {
 			modif(comboBox1.getValue(), setRobot11);
 
@@ -222,9 +220,9 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ12, HPos.CENTER);
 		comboBox2.setPrefWidth(150);
 		comboBox2.getItems().setAll(a, b, c, d, e, f);
-		
+
 		pane1bis.add(twob, 0, 4);
-		
+
 		pane1bis.add(comboBox2, 1, 4);
 		// pane1bis.add(nomJ12, 1, 4);
 		pane1bis.add(setRobot12, 2, 4);
@@ -239,9 +237,9 @@ public class Choix_Robot {
 		comboBox3.setPrefWidth(150);
 		comboBox3.getItems().setAll(a, b, c, d, e, f);
 		// comboBox3.getSelectionModel().selectFirst();
-	
+
 		pane1bis.add(threeb, 0, 5);
-		
+
 		pane1bis.add(comboBox3, 1, 5);
 		// pane1bis.add(nomJ13, 1, 5);
 		pane1bis.add(setRobot13, 2, 5);
@@ -257,7 +255,7 @@ public class Choix_Robot {
 		comboBox4.getItems().setAll(a, b, c, d, e, f);
 
 		pane1bis.add(fourb, 0, 6);
-		
+
 		pane1bis.add(comboBox4, 1, 6);
 		// pane1bis.add(nomJ14, 1, 6);
 		pane1bis.add(setRobot14, 2, 6);
@@ -282,7 +280,7 @@ public class Choix_Robot {
 		comboBox5.getItems().setAll(a, b, c, d, e, f);
 
 		pane2bis.add(one, 0, 3);
-		
+
 		pane2bis.add(comboBox5, 1, 3);
 		// pane2bis.add(nomJ21, 1, 3);
 		pane2bis.add(setRobot21, 2, 3);
@@ -296,9 +294,9 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ22, HPos.CENTER);
 		comboBox6.setPrefWidth(150);
 		comboBox6.getItems().setAll(a, b, c, d, e, f);
-		
+
 		pane2bis.add(two, 0, 4);
-		
+
 		pane2bis.add(comboBox6, 1, 4);
 		// pane2bis.add(nomJ22, 1, 4);
 		pane2bis.add(setRobot22, 2, 4);
@@ -312,9 +310,9 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ23, HPos.CENTER);
 		comboBox7.setPrefWidth(150);
 		comboBox7.getItems().setAll(a, b, c, d, e, f);
-		
+
 		pane2bis.add(three, 0, 5);
-		
+
 		pane2bis.add(comboBox7, 1, 5);
 		// pane2bis.add(nomJ23, 1, 5);
 		pane2bis.add(setRobot23, 2, 5);
@@ -328,16 +326,16 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ24, HPos.CENTER);
 		comboBox8.setPrefWidth(150);
 		comboBox8.getItems().setAll(a, b, c, d, e, f);
-		
+
 		pane2bis.add(four, 0, 6);
-		
+
 		pane2bis.add(comboBox8, 1, 6);
 		// pane2bis.add(nomJ24, 1, 6);
 		pane2bis.add(setRobot24, 2, 6);
 		comboBox8.valueProperty().addListener(observable -> {
 			modif(comboBox8.getValue(), setRobot24);
 		});
-		
+
 		Button btnscene1bis = new Button("Enregistrer");
 		// btnscene1bis.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
 		btnscene1bis.setDefaultButton(true);
@@ -403,7 +401,7 @@ public class Choix_Robot {
 		HBox hbox2 = new HBox();
 		hbox1.setPrefWidth(100);
 		hbox2.setPrefWidth(100);
-		
+
 		init1 = new Button("Modele");
 		init2 = new Button("Modele");
 
@@ -540,9 +538,6 @@ public class Choix_Robot {
 			joueur2.setFill(Color.RED);
 			joueur2.setY(950);
 
-			// pane3.getChildren().add(joueur1);
-			// pane3.getChildren().add(joueur2);
-
 			joueur1.setFill(Color.ROYALBLUE);
 			// centrage du nom du joueur dans l'interface prevue
 			double W1 = joueur1.getBoundsInLocal().getWidth();
@@ -558,71 +553,47 @@ public class Choix_Robot {
 			// TODO : centrer les noms dans les cases correspondantes
 			// TODO : scanf pour entrer le nom des joueurs en d�but de partie
 
-
-
-final URL resource = getClass().getResource("images/Textures/hit.mp3");
-final Media media = new Media(resource.toString());
-final MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-		thestage.setScene(scene3);
-		thestage.centerOnScreen();
-		
-		
-		Comportement compj1[] = new Comportement[4];
-		Comportement compj2[] = new Comportement[4];
-		
-		String express_j1[] = new String[4];		
-		String express_j2[] = new String[4];		
-		
-		for(int i = 0; i < express_j1.length; i++){
-			express_j1[i] = j1.get(i+1);			
-			express_j2[i] = j2.get(i+1);
-		}
-		
-		//String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
-		//String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
-		
-		InputStream init = new ByteArrayInputStream("".getBytes());
-	    Reader r = new Reader(init);
-			
-	    for(int i = 0; i < 4; i++){
-			compj1[i] = StringtoComportement(express_j1[i], r);
-			compj2[i] = StringtoComportement(express_j2[i], r);
-		}
-		
-	    int tabCoutRVPj1[][] = new int[express_j1.length][3] ;
-		int tabCoutRVPj2[][] = new int[express_j2.length][3] ;
-		
-		for(int i = 0 ; i < express_j1.length ; i++){
-			tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
-			tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
-		}
+			final URL resource = getClass().getResource("images/Textures/hit.mp3");
+			final Media media = new Media(resource.toString());
+			final MediaPlayer mediaPlayer = new MediaPlayer(media);
 
 			thestage.setScene(scene3);
 			thestage.centerOnScreen();
+
+			Comportement compj1[] = new Comportement[4];
+			Comportement compj2[] = new Comportement[4];
+
+			String express_j1[] = new String[4];
+			String express_j2[] = new String[4];
 
 			for (int i = 0; i < express_j1.length; i++) {
 				express_j1[i] = j1.get(i + 1);
 				express_j2[i] = j2.get(i + 1);
 			}
-			// String express_j1[] = {"{E}","{M}","{M;E}","{M|E}"};
-			// String express_j2[] = {"{M}","{E}","{M;E}","{M|E}"};
-
-			// InputStream init = new ByteArrayInputStream("".getBytes());
-			// Reader r = new Reader(init);
 
 			for (int i = 0; i < 4; i++) {
 				compj1[i] = StringtoComportement(express_j1[i], r);
 				compj2[i] = StringtoComportement(express_j2[i], r);
 			}
 
+			int tabCoutRVPj1[][] = new int[express_j1.length][3];
+			int tabCoutRVPj2[][] = new int[express_j2.length][3];
 
 			for (int i = 0; i < express_j1.length; i++) {
 				tabCoutRVPj1[i] = CoutRobot(express_j1[i]);
 				tabCoutRVPj2[i] = CoutRobot(express_j2[i]);
 			}
-			Plateau p = new Plateau(pane3);
 
+			thestage.setScene(scene3);
+			thestage.centerOnScreen();
+
+			for (int i = 0; i < 4; i++) {
+				compj1[i] = StringtoComportement(express_j1[i], r);
+				compj2[i] = StringtoComportement(express_j2[i], r);
+			}
+
+			Plateau p = new Plateau(pane3);
+			pane3.getChildren().add(p);
 			jou1 = new Joueur(1, p, pane3, compj1, tabCoutRVPj1, mediaPlayer);
 			Score score1 = new Score(jou1);
 			jou1.setScore(score1);
@@ -659,7 +630,7 @@ final MediaPlayer mediaPlayer = new MediaPlayer(media);
 
 			Menu menu = new Menu(clav, timeline, jou1, jou2);
 
-			pane3.getChildren().addAll(p, score1, score2, jou1, jou2, menu, clav, temps, joueur1, joueur2);
+			pane3.getChildren().addAll(score1, score2, jou1, jou2, menu, clav, temps, joueur1, joueur2);
 		}
 	}
 
@@ -672,14 +643,14 @@ final MediaPlayer mediaPlayer = new MediaPlayer(media);
 			String min = String.valueOf(this.t / 60);
 			String sec = formater.format(this.t % 60);
 			temps.setText(min + ":" + sec);
-			
+
 			if ((jou1.getPV() == 0) && (jou2.getPV() > 0)) {
 				new End(pane3, 1, timeline);
 				p.setCasePlateau(jou1.getX(), jou1.getY(), 0);
 				p.setCasePlateau(jou2.getX(), jou2.getY(), 0);
 				timeline.stop();
 			}
-			
+
 			else if ((jou2.getPV() == 0) && (jou1.getPV() > 0)) {
 				new End(pane3, 2, timeline);
 				p.setCasePlateau(jou1.getX(), jou1.getY(), 0);
@@ -687,7 +658,7 @@ final MediaPlayer mediaPlayer = new MediaPlayer(media);
 				timeline.stop();
 			}
 		}
-		
+
 		else {
 			scorej1 = jou1.getPieces();
 			scorej2 = jou2.getPieces();
