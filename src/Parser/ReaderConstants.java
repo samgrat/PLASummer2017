@@ -21,29 +21,31 @@ public interface ReaderConstants {
   /** RegularExpression Id. */
   int UPPER_LETTERS = 43;
   /** RegularExpression Id. */
-  int LACC = 44;
+  int NONE = 44;
   /** RegularExpression Id. */
-  int RACC = 45;
+  int LACC = 45;
   /** RegularExpression Id. */
-  int SEMI = 46;
+  int RACC = 46;
   /** RegularExpression Id. */
-  int PIPE = 47;
+  int SEMI = 47;
   /** RegularExpression Id. */
-  int MORETHAN = 48;
+  int PIPE = 48;
   /** RegularExpression Id. */
-  int UNAIRE = 49;
+  int MORETHAN = 49;
   /** RegularExpression Id. */
-  int HIT = 50;
+  int UNAIRE = 50;
   /** RegularExpression Id. */
-  int RECOLT = 51;
+  int HIT = 51;
   /** RegularExpression Id. */
-  int EXPLORE = 52;
+  int RECOLT = 52;
   /** RegularExpression Id. */
-  int BEST = 53;
+  int EXPLORE = 53;
   /** RegularExpression Id. */
-  int FOLLOW = 54;
+  int BEST = 54;
   /** RegularExpression Id. */
-  int MOVE = 55;
+  int FOLLOW = 55;
+  /** RegularExpression Id. */
+  int MOVE = 56;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -60,7 +62,6 @@ public interface ReaderConstants {
     "\"\\t\"",
     "\"\\r\"",
     "\"\\n\"",
-    "\"\"",
     "\"\\u0001\"",
     "\"\\u0002\"",
     "\"\\u0003\"",
@@ -90,6 +91,7 @@ public interface ReaderConstants {
     "\"\\u001e\"",
     "\"\\u001f\"",
     "\"\\u007f\"",
+    "\"\\u0000\"",
     "\"//\"",
     "\"/*\"",
     "<SL_COMMENT>",
@@ -98,6 +100,7 @@ public interface ReaderConstants {
     "<DIGITS>",
     "<LOWER_LETTERS>",
     "<UPPER_LETTERS>",
+    "\"\"",
     "\"{\"",
     "\"}\"",
     "\";\"",
