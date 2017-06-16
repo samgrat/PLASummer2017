@@ -29,7 +29,7 @@ public class Main extends Application {
 		thestage = primaryStage;
 	
 		pane3 = new Group();
-		scene3 = new Scene(pane3, 1480, 970, Color.DARKGREY);
+		scene3 = new Scene(pane3, 1620, 970, Color.DARKGREY);
 		
 		new Choix_Robot(primaryStage,thestage,scene3,pane3);
 		}

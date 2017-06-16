@@ -479,6 +479,7 @@ public class Choix_Robot {
 	public String GetNom2() {
 		return j2.get(0);
 	}
+	
 
 	public void ButtonClicked(ActionEvent e, Stage thestage, Scene scene3, Group pane3) throws ParseException {
 		if (e.getSource() == btnscene2bis){
@@ -573,7 +574,7 @@ public class Choix_Robot {
 		temps.setFill(Color.hsb(0, .0, .2));
 		temps.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 50));
 		temps.setFontSmoothingType(FontSmoothingType.LCD);
-		
+
 		compteArebour(temps, pane3);
 
 		timeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
@@ -590,8 +591,58 @@ public class Choix_Robot {
 
 		Menu menu = new Menu(clav, timeline, jou1, jou2);
 		
-	
-		pane3.getChildren().addAll(p, score1, score2,  jou1, jou2, menu, clav, temps,joueur1,joueur2);	
+		Text expr11 = new Text(j1.get(1));
+		Text expr12 = new Text(j1.get(2));
+		Text expr13 = new Text(j1.get(3));
+		Text expr14 = new Text(j1.get(4));
+		
+		Text expr21 = new Text(j2.get(1));
+		Text expr22 = new Text(j2.get(2));
+		Text expr23 = new Text(j2.get(3));
+		Text expr24 = new Text(j2.get(4));
+		
+		expr11.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W11 = expr11.getBoundsInLocal().getWidth();
+		expr11.relocate(1547 - W11 / 2, 80);
+		expr11.setFill(Color.hsb(0, .0, .2));
+		
+		expr12.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W12 = expr12.getBoundsInLocal().getWidth();
+		expr12.relocate(1547 - W12 / 2, 192);
+		expr12.setFill(Color.hsb(0, .0, .2));
+		
+		expr13.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W13 = expr13.getBoundsInLocal().getWidth();
+		expr13.relocate(1547 - W13 / 2, 314);
+		expr13.setFill(Color.hsb(0, .0, .2));
+		
+		expr14.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W14 = expr14.getBoundsInLocal().getWidth();
+		expr14.relocate(1547 - W14 / 2, 432);
+		expr14.setFill(Color.hsb(0, .0, .2));
+		
+		expr21.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W21 = expr21.getBoundsInLocal().getWidth();
+		expr21.relocate(1547 - W21 / 2, 568);
+		expr21.setFill(Color.hsb(0, .0, .2));
+		
+		expr22.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W22 = expr22.getBoundsInLocal().getWidth();
+		expr22.relocate(1547 - W22 / 2, 683);
+		expr22.setFill(Color.hsb(0, .0, .2));
+		
+		expr23.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W23 = expr23.getBoundsInLocal().getWidth();
+		expr23.relocate(1547 - W23 / 2, 800);
+		expr23.setFill(Color.hsb(0, .0, .2));
+		
+		expr24.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 15));
+		double W24 = expr24.getBoundsInLocal().getWidth();
+		expr24.relocate(1547 - W24 / 2, 920);
+		expr24.setFill(Color.hsb(0, .0, .2));
+			
+		pane3.getChildren().addAll(p, score1, score2, expr11, expr12, expr13, expr14, expr21, expr22, expr23, expr24,
+				jou1, jou2, menu, clav, temps,joueur1,joueur2);	
 		}
 	}
 
