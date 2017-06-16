@@ -1,9 +1,6 @@
 package Graphique;
 
 import java.net.URL;
-
-import Graphique.Choix_Robot;
-import javafx.scene.shape.Rectangle;
 import I_O.fichier;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
@@ -11,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;

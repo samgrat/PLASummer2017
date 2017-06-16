@@ -21,9 +21,6 @@ public class Robot extends Personnage {
 	private Comportement comport;
 	private int count = 0;
 	final int piececrea = 1;
-	private int pieceRose = 0;
-	private int pieceVerte = 0;
-	private int pieceViolette = 0;
 	ImageView imageRobot;
 
 	public Joueur getJoueur() {
@@ -33,6 +30,12 @@ public class Robot extends Personnage {
 	public Plateau getPlateau() {
 		return this.plateau;
 	}
+	
+	public void setComportement(Comportement comport){
+		this.comport = comport;
+	}
+	
+	
 
 	public Robot(Joueur j, Group root, Plateau p, Comportement comp, int x, int y, int difficulte, int tabP[]) {
 		joueur = j;
@@ -40,9 +43,6 @@ public class Robot extends Personnage {
 		comport = comp;
 		setX(x);
 		setY(y);
-		pieceRose = tabP[0];
-		pieceViolette = tabP[1];
-		pieceVerte = tabP[2];
 
 		if (j.Indice_joueur() == 1) {
 			imageRobot = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu.png")));
@@ -52,6 +52,7 @@ public class Robot extends Personnage {
 			addRobot(getX(), getY(), plateau, root, imageRobot, comport, difficulte);
 		}
 	}
+	
 
 	public void addRobot(int x, int y, Plateau p, Group root, ImageView robot, Comportement comp, int difficulte) {
 
@@ -61,7 +62,7 @@ public class Robot extends Personnage {
 		robot.setFitHeight(plateau.getSize());
 		robot.setLayoutX(5 + x * plateau.getSize());
 		robot.setLayoutY(5 + y * plateau.getSize());
-		// p.setCasePlateau(getX(), getY(), joueur.Indice_joueur()+2);
+		p.setCasePlateau(getX(), getY(), joueur.Indice_joueur()+2);
 		root.getChildren().add(robot);
 
 		Timeline tpsVieRobot = new Timeline(

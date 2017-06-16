@@ -100,6 +100,7 @@ public class Plateau extends Parent {
 				listePiece[i].stopTimeline();
 				listePiece[i].delPiece(listePiece[i].getImagePiece(), x, y, this, root);
 				listePiece[i] = null;
+				j.actuPanel();
 				return i;
 			}
 			return -1;

@@ -1,13 +1,10 @@
 package Programme;
 
-import java.beans.DefaultPersistenceDelegate;
-
 import Grammaire.Comportement;
 import Graphique.End;
 import Graphique.Main;
 import Graphique.Plateau;
 import Graphique.Score;
-import Graphique.Choix_Robot;
 import Parser.ParseException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,12 +25,22 @@ public class Joueur extends Personnage {
 	private Comportement comport2;
 	private Comportement comport3;
 	private Comportement comport4;
+	private Comportement comport5;
+	private Comportement comport6;
+	private Comportement comport7;
+	private Comportement comport8;
+
 	private int pv = 3;
 	private int scoreint = 0;
 	private int[] coutrobot1;
 	private int[] coutrobot2;
 	private int[] coutrobot3;
 	private int[] coutrobot4;
+	private int[] coutrobot5;
+	private int[] coutrobot6;
+	private int[] coutrobot7;
+	private int[] coutrobot8;
+
 	private int indice_joueur;
 
 	private int pieceViolette = 0;
@@ -41,6 +48,10 @@ public class Joueur extends Personnage {
 	private int pieceRose = 0;
 	private int pieceOrange = 0;
 
+	ImageView imageRobot1;
+	ImageView imageRobot2;
+	ImageView imageRobot3;
+	ImageView imageRobot4;
 
 	Rectangle vie1;
 	Rectangle vie2;
@@ -54,10 +65,10 @@ public class Joueur extends Personnage {
 	MediaPlayer mediaplayer;
 	Timeline timeline;
 
-	
-	public void setTimeline(Timeline timeline){
+	public void setTimeline(Timeline timeline) {
 		this.timeline = timeline;
 	}
+
 	public int getPieceViolette() {
 		return pieceViolette;
 	}
@@ -109,11 +120,11 @@ public class Joueur extends Personnage {
 	public int Indice_joueur() {
 		return indice_joueur;
 	}
-	
+
 	public void setPV(int pv) {
 		this.pv = pv;
 	}
-	
+
 	public int getPV() {
 		return this.pv;
 	}
@@ -139,6 +150,20 @@ public class Joueur extends Personnage {
 		}
 	}
 
+
+	public void ChangerComport() {
+		this.comport1 = this.comport5;
+		// System.out.println("comport1 changer : [" + comport1 + "]" );
+		this.comport2 = this.comport6;
+		this.comport3 = this.comport7;
+		this.comport4 = this.comport8;
+
+		this.coutrobot1 = this.coutrobot5;
+		this.coutrobot2 = this.coutrobot6;
+		this.coutrobot3 = this.coutrobot7;
+		this.coutrobot4 = this.coutrobot8;
+	}
+
 	/**
 	 * creation d'un joueur
 	 * 
@@ -155,13 +180,55 @@ public class Joueur extends Personnage {
 		this.comport2 = compj[1];
 		this.comport3 = compj[2];
 		this.comport4 = compj[3];
+		this.comport5 = compj[4];
+		this.comport6 = compj[5];
+		this.comport7 = compj[6];
+		this.comport8 = compj[7];
+
 		this.coutrobot1 = tabCoutRVPj[0];
 		this.coutrobot2 = tabCoutRVPj[1];
 		this.coutrobot3 = tabCoutRVPj[2];
 		this.coutrobot4 = tabCoutRVPj[3];
+		this.coutrobot5 = tabCoutRVPj[4];
+		this.coutrobot6 = tabCoutRVPj[5];
+		this.coutrobot7 = tabCoutRVPj[6];
+		this.coutrobot8 = tabCoutRVPj[7];
 		this.root = root;
 		this.indice_joueur = indice_joueur;
 		this.p = p;
+
+		if (this.indice_joueur == 1) {
+			imageRobot1 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu1.png")));
+			imageRobot2 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu2.png")));
+			imageRobot3 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu3.png")));
+			imageRobot4 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotbleu4.png")));
+			imageRobot1.setY(75);
+			imageRobot2.setY(75);
+			imageRobot3.setY(190);
+			imageRobot4.setY(190);
+		} else {
+			imageRobot1 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge1.png")));
+			imageRobot2 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge2.png")));
+			imageRobot3 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge3.png")));
+			imageRobot4 = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/robotrouge4.png")));
+			imageRobot1.setY(628);
+			imageRobot2.setY(628);
+			imageRobot3.setY(743);
+			imageRobot4.setY(743);
+		}
+		imageRobot1.setX(987);
+		imageRobot1.prefWidth(0.7);
+		imageRobot1.setVisible(false);
+		imageRobot2.setX(1113);
+		imageRobot2.prefWidth(0.7);
+		imageRobot2.setVisible(false);
+		imageRobot3.setX(987);
+		imageRobot3.prefWidth(0.7);
+		imageRobot3.setVisible(false);
+		imageRobot4.setX(1113);
+		imageRobot4.prefWidth(0.7);
+		imageRobot4.setVisible(false);
+		root.getChildren().addAll(imageRobot1, imageRobot2, imageRobot3, imageRobot4);
 
 		if (indice_joueur == 1) {
 			setX(0);
@@ -294,7 +361,6 @@ public class Joueur extends Personnage {
 			cache3.setVisible(false);
 			break;
 		default:
-			this.pv = 3;
 			vie1.setVisible(true);
 			cache1.setVisible(true);
 			vie2.setVisible(true);
@@ -309,16 +375,18 @@ public class Joueur extends Personnage {
 		this.pv--;
 		mediaplayer.play();
 		actualiserVie();
-		
-		Timeline degat  = new Timeline(new KeyFrame(Duration.millis(600), new EventHandler<ActionEvent>() {
+		if (pv == 0) {
+			this.pv--;
+			new End(root, indice_joueur, timeline);
+			timeline.stop();
+		}
+		Timeline degat = new Timeline(new KeyFrame(Duration.millis(600), new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				mediaplayer.stop();
 			}
 		}));
-		
 		degat.play();
 	}
-
 
 	public void droite() {
 		int indice = p.rechercher(x, y);
@@ -470,17 +538,20 @@ public class Joueur extends Personnage {
 	}
 
 	public void invoquerRobot1(Group root) {
-		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2] 
+		if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
 				&& pieceOrange >= 1) {
 
 			setPieceRose(pieceRose - coutrobot1[0]);
 			setPieceVerte(pieceVerte - coutrobot1[1]);
 			setPieceViolette(pieceViolette - coutrobot1[2]);
 			setPieceOrange(pieceOrange - 1);
-			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
+
+			p.setCasePlateau(x, y, Indice_joueur() + 2);
+			Robot r1 = new Robot(this, root, p, comport1, x, y, difficulte, coutrobot1);
+			r1.setComportement(comport1);
+			actuPanel();
 		}
-	
+
 	}
 
 	public void invoquerRobot2(Group root) {
@@ -491,8 +562,11 @@ public class Joueur extends Personnage {
 			setPieceVerte(pieceVerte - coutrobot2[1]);
 			setPieceViolette(pieceViolette - coutrobot2[2]);
 			setPieceOrange(pieceOrange - 1);
+
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport2, x, y, difficulte, coutrobot2);
+			Robot r2 =new Robot(this, root, p, comport2, x, y, difficulte, coutrobot2);
+			r2.setComportement(comport2);
+			actuPanel();
 		}
 	}
 
@@ -504,8 +578,11 @@ public class Joueur extends Personnage {
 			setPieceVerte(pieceVerte - coutrobot3[1]);
 			setPieceViolette(pieceViolette - coutrobot3[2]);
 			setPieceOrange(pieceOrange - 1);
+
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport3, x, y, difficulte, coutrobot3);
+			Robot r3 =new Robot(this, root, p, comport3, x, y, difficulte, coutrobot3);
+			r3.setComportement(comport3);
+			actuPanel();
 		}
 	}
 
@@ -517,8 +594,65 @@ public class Joueur extends Personnage {
 			setPieceVerte(pieceVerte - coutrobot4[1]);
 			setPieceViolette(pieceViolette - coutrobot4[2]);
 			setPieceOrange(pieceOrange - 1);
+			
 			p.setCasePlateau(x, y, Indice_joueur()+2);
-			new Robot(this, root, p, comport4, x, y, difficulte, coutrobot4);
+			Robot r4 = new Robot(this, root, p, comport4, x, y, difficulte, coutrobot4);
+			r4.setComportement(comport4);
+			actuPanel();
+		}
+	}
+
+	public void actuPanel() {
+		if (this.indice_joueur == 1) {
+			if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+					&& pieceOrange >= 1) {
+				imageRobot1.setVisible(true);
+			} else {
+				imageRobot1.setVisible(false);
+			}
+			if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
+					&& pieceOrange >= 1) {
+				imageRobot2.setVisible(true);
+			} else {
+				imageRobot2.setVisible(false);
+			}
+			if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+					&& pieceOrange >= 1) {
+				imageRobot3.setVisible(true);
+			} else {
+				imageRobot3.setVisible(false);
+			}
+			if (pieceRose >= coutrobot4[0] && pieceVerte >= coutrobot4[1] && pieceViolette >= coutrobot4[2]
+					&& pieceOrange >= 1) {
+				imageRobot4.setVisible(true);
+			} else {
+				imageRobot4.setVisible(false);
+			}
+		} else {
+			if (pieceRose >= coutrobot1[0] && pieceVerte >= coutrobot1[1] && pieceViolette >= coutrobot1[2]
+					&& pieceOrange >= 1) {
+				imageRobot1.setVisible(true);
+			} else {
+				imageRobot1.setVisible(false);
+			}
+			if (pieceRose >= coutrobot2[0] && pieceVerte >= coutrobot2[1] && pieceViolette >= coutrobot2[2]
+					&& pieceOrange >= 1) {
+				imageRobot2.setVisible(true);
+			} else {
+				imageRobot2.setVisible(false);
+			}
+			if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+					&& pieceOrange >= 1) {
+				imageRobot3.setVisible(true);
+			} else {
+				imageRobot3.setVisible(false);
+			}
+			if (pieceRose >= coutrobot3[0] && pieceVerte >= coutrobot3[1] && pieceViolette >= coutrobot3[2]
+					&& pieceOrange >= 1) {
+				imageRobot4.setVisible(true);
+			} else {
+				imageRobot4.setVisible(false);
+			}
 		}
 	}
 }

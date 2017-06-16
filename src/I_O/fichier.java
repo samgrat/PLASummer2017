@@ -33,41 +33,51 @@ public class fichier {
 	}
 
 	public static void initialisation(String f) {
+		if(f == "Joueur1.txt"){
 		try {
 			String fichier = f;
 			FileWriter fw = new FileWriter(fichier);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter fichierSortie = new PrintWriter(bw);
-			fichierSortie.println("PAPA");
-			fichierSortie.println("{X}");
-			fichierSortie.println("*{H;B}");
-			fichierSortie.println("*{H|{X>O}}");
-			fichierSortie.println("*{X|O}");
+			fichierSortie.println("");
+			fichierSortie.println("{M}");
+			fichierSortie.println("*{H;M}");
+			fichierSortie.println("*{H|{R>E}}");
+			fichierSortie.println("*{E|H}");
+			fichierSortie.println("{M}");
+			fichierSortie.println("*{H;M}");
+			fichierSortie.println("*{H|{R>E}}");
+			fichierSortie.println("*{E|H}");
 			fichierSortie.close();
 			System.out.println("Le fichier " + fichier + " a ete cree!");
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-
+		}else{
 		try {
-			String fichier2 = "Joueur2.txt";
+			String fichier2 = f;
 			FileWriter fw2 = new FileWriter(fichier2);
 			BufferedWriter bw2 = new BufferedWriter(fw2);
 			PrintWriter fichierSortie2 = new PrintWriter(bw2);
-			fichierSortie2.println("MAMAN");
-			fichierSortie2.println("*{X;O}");
-			fichierSortie2.println("*{H;X}");
-			fichierSortie2.println("*{X|O}");
-			fichierSortie2.println("*{X|O}");
+			fichierSortie2.println("");
+			fichierSortie2.println("{X;O}");
+			fichierSortie2.println("{H;X}");
+			fichierSortie2.println("{X|O}");
+			fichierSortie2.println("{X|O}");
+			fichierSortie2.println("{M}");
+			fichierSortie2.println("{H;M}");
+			fichierSortie2.println("{H|{R>E}}");
+			fichierSortie2.println("{E|H}");
 			fichierSortie2.close();
 			System.out.println("Le fichier " + fichier2 + " a ete cree!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		}
 	}
+
 
 	public static void ecrire(String fichier, String s) {
 

@@ -24,19 +24,21 @@ public class Reader
     //System.out.print("Enter an expression : ");
     try
     {
-      exp = Reader.EXPRESSION();
+      exp = Reader.EXPRESSION_INIT();
       //System.out.println("exp = " + exp.toString());
     }
     catch (Exception e)
     {
       System.out.println("NOK.");
       System.out.println(e.getMessage());
+      throw new ParseException();
       //Reader.ReInit(System.in);
     }
     catch (Error e)
     {
       System.out.println("Oops.");
       System.out.println(e.getMessage());
+      throw new ParseException();
     }
 	return exp;
     }
@@ -47,13 +49,12 @@ PARSER_END(Reader)
 // les caractères ignorés
 SKIP :
 {
-  " "
-| "'"
+   " "
+|  "'"
 | "\t"
 | "\r"
 | "\n"
   // attention élimine la notion de fin de ligne
-| ""
 | "\u0001"
 | "\u0002"
 | "\u0003"
@@ -83,6 +84,7 @@ SKIP :
 | "\u001e"
 | "\u001f"
 | "\u007f"
+| "\0"
 }
 
 MORE :
@@ -116,7 +118,8 @@ TOKEN : /* TO_IGNORE */
 {
       < DIGITS : ["0"-"9"]>
 	| < LOWER_LETTERS : ["a"-"z"] >
-	| < UPPER_LETTERS : [ "A", "C", "D", " ", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
+	| < UPPER_LETTERS : [ "A", "C", "D", "I"-"L", "N"-"Q", "S"-"W", "Y"-"Z"] >
+	| < NONE : "">
 }
 
 
@@ -125,7 +128,6 @@ TOKEN : /* SPECIALS */
 
     < LACC : "{" >
   | < RACC : "}" >
-//  | < STAR : "*" >
   | < SEMI : ";" >
 
 }
@@ -158,6 +160,28 @@ TOKEN : /* UNAIRE */
 
 }
 
+Expression EXPRESSION_INIT() :
+{
+  Expression exp;
+}
+{
+  
+  < LACC > 
+  exp = LISTE() 
+  < RACC >
+  (
+   < NONE >
+  {
+    return exp;
+  }
+  | < EOF >
+  {
+    return exp;
+  }
+  )
+
+}
+
 Expression EXPRESSION() :
 {
   Expression exp;
@@ -168,10 +192,6 @@ Expression EXPRESSION() :
     //System.out.println("Operator=" + exp.toString());
     return exp;
   }
-//| < STAR > exp = EXPRESSION()
-//  {
-//    return Liste.star(exp);
-//  }
 
 | < LACC > 
   exp = LISTE() 

@@ -36,20 +36,18 @@ static private int jjMoveStringLiteralDfa0_0()
 {
    switch(curChar)
    {
-      case 32:
-         return jjStopAtPos(0, 1);
       case 47:
          return jjMoveStringLiteralDfa1_0(0x3000000000L);
       case 59:
-         return jjStopAtPos(0, 46);
-      case 62:
-         return jjStopAtPos(0, 48);
-      case 123:
-         return jjStopAtPos(0, 44);
-      case 124:
          return jjStopAtPos(0, 47);
-      case 125:
+      case 62:
+         return jjStopAtPos(0, 49);
+      case 123:
          return jjStopAtPos(0, 45);
+      case 124:
+         return jjStopAtPos(0, 48);
+      case 125:
+         return jjStopAtPos(0, 46);
       default :
          return jjMoveNfa_0(0, 0);
    }
@@ -96,19 +94,7 @@ static private int jjMoveNfa_0(int startState, int curPos)
             {
                case 0:
                   if ((0x3ff000000000000L & l) != 0L)
-                  {
-                     if (kind > 41)
-                        kind = 41;
-                  }
-                  else if (curChar == 32)
-                  {
-                     if (kind > 43)
-                        kind = 43;
-                  }
-                  break;
-               case 2:
-                  if (curChar == 32)
-                     kind = 43;
+                     kind = 41;
                   break;
                default : break;
             }
@@ -134,8 +120,8 @@ static private int jjMoveNfa_0(int startState, int curPos)
                   }
                   else if ((0x42164L & l) != 0L)
                   {
-                     if (kind > 49)
-                        kind = 49;
+                     if (kind > 50)
+                        kind = 50;
                   }
                   break;
                case 1:
@@ -148,7 +134,7 @@ static private int jjMoveNfa_0(int startState, int curPos)
                   break;
                case 3:
                   if ((0x42164L & l) != 0L)
-                     kind = 49;
+                     kind = 50;
                   break;
                default : break;
             }
@@ -293,8 +279,8 @@ public static final String[] jjstrLiteralImages = {
 "", null, null, null, null, null, null, null, null, null, null, null, null, 
 null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
 null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-null, null, null, "\173", "\175", "\73", "\174", "\76", null, null, null, null, null, 
-null, null, };
+null, null, null, null, "\173", "\175", "\73", "\174", "\76", null, null, null, null, 
+null, null, null, };
 
 /** Lexer state names. */
 public static final String[] lexStateNames = {
@@ -307,10 +293,10 @@ public static final String[] lexStateNames = {
 public static final int[] jjnewLexState = {
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 2, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-   -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, -1, -1, 
 };
 static final long[] jjtoToken = {
-   0x3fe0000000001L, 
+   0x7fe0000000001L, 
 };
 static final long[] jjtoSkip = {
    0x1cffffffffeL, 
@@ -448,12 +434,12 @@ public static Token getNextToken()
      {
        case 0:
          try { input_stream.backup(0);
-            while ((curChar < 64 && (0x80fffffffeL & (1L << curChar)) != 0L) || 
+            while ((curChar < 64 && (0x81ffffffffL & (1L << curChar)) != 0L) || 
                    (curChar >> 6) == 1 && (0x8000000000000000L & (1L << (curChar & 077))) != 0L)
                curChar = input_stream.BeginToken();
          }
          catch (java.io.IOException e1) { continue EOFLoop; }
-         jjmatchedKind = 6;
+         jjmatchedKind = 44;
          jjmatchedPos = -1;
          curPos = 0;
          curPos = jjMoveStringLiteralDfa0_0();
@@ -485,6 +471,7 @@ public static Token getNextToken()
         {
            matchedToken = jjFillToken();
            matchedToken.specialToken = specialToken;
+           TokenLexicalActions(matchedToken);
        if (jjnewLexState[jjmatchedKind] != -1)
          curLexState = jjnewLexState[jjmatchedKind];
            return matchedToken;
@@ -562,16 +549,6 @@ static void SkipLexicalActions(Token matchedToken)
       case 5 :
          break;
       case 6 :
-         if (jjmatchedPos == -1)
-         {
-            if (jjbeenHere[0] &&
-                jjemptyLineNo[0] == input_stream.getBeginLine() &&
-                jjemptyColNo[0] == input_stream.getBeginColumn())
-               throw new TokenMgrError(("Error: Bailing out of infinite loop caused by repeated empty string matches at line " + input_stream.getBeginLine() + ", column " + input_stream.getBeginColumn() + "."), TokenMgrError.LOOP_DETECTED);
-            jjemptyLineNo[0] = input_stream.getBeginLine();
-            jjemptyColNo[0] = input_stream.getBeginColumn();
-            jjbeenHere[0] = true;
-         }
          break;
       case 7 :
          break;
@@ -630,6 +607,46 @@ static void SkipLexicalActions(Token matchedToken)
       case 34 :
          break;
       case 35 :
+         break;
+      default :
+         break;
+   }
+}
+static void TokenLexicalActions(Token matchedToken)
+{
+   switch(jjmatchedKind)
+   {
+      case 0 :
+         break;
+      case 41 :
+         break;
+      case 42 :
+         break;
+      case 43 :
+         break;
+      case 44 :
+         if (jjmatchedPos == -1)
+         {
+            if (jjbeenHere[0] &&
+                jjemptyLineNo[0] == input_stream.getBeginLine() &&
+                jjemptyColNo[0] == input_stream.getBeginColumn())
+               throw new TokenMgrError(("Error: Bailing out of infinite loop caused by repeated empty string matches at line " + input_stream.getBeginLine() + ", column " + input_stream.getBeginColumn() + "."), TokenMgrError.LOOP_DETECTED);
+            jjemptyLineNo[0] = input_stream.getBeginLine();
+            jjemptyColNo[0] = input_stream.getBeginColumn();
+            jjbeenHere[0] = true;
+         }
+         break;
+      case 45 :
+         break;
+      case 46 :
+         break;
+      case 47 :
+         break;
+      case 48 :
+         break;
+      case 49 :
+         break;
+      case 50 :
          break;
       default :
          break;
