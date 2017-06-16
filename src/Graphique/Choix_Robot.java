@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
 import Grammaire.Comportement;
 import Grammaire.Expression;
 import I_O.fichier;
@@ -30,6 +31,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -124,13 +130,18 @@ public class Choix_Robot {
 				f = "Polyvalent";
 		j1 = fichier.lecture("Joueur1.txt");
 		j2 = fichier.lecture("Joueur2.txt");
-		ImageView bg = new ImageView(new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png")));	
-		bg.setTranslateX(-11);
-		bg.setTranslateY(-11);
+		
+		Image bg = new Image(Main.class.getResourceAsStream("images/Textures/fenetre.png"));
+		
 		l1 = fichier.lecture("Modele.txt");
 
 		pane1bis = new GridPane();
+		pane1bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, 
+				BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 		pane2bis = new GridPane();
+		pane2bis.setBackground(new Background(new BackgroundImage(bg, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, 
+				BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+		
 
 		scene1bis = new Scene(pane1bis, 350, 320);
 		scene2bis = new Scene(pane2bis, 350, 320);
@@ -142,27 +153,63 @@ public class Choix_Robot {
 		pane2bis.setPadding(new Insets(10));
 		pane2bis.setHgap(25);
 		pane2bis.setVgap(15);
-
+		
+		Text one = new Text("1");
+		one.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		one.setFill(Color.WHITE);
+		
+		Text two = new Text("2");
+		two.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		two.setFill(Color.WHITE);
+		
+		Text three = new Text("3");
+		three.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		three.setFill(Color.WHITE);
+		
+		Text four = new Text("4");
+		four.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		four.setFill(Color.WHITE);
+		
+		Text oneb = new Text("1");
+		oneb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		oneb.setFill(Color.WHITE);
+		
+		Text twob = new Text("2");
+		twob.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		twob.setFill(Color.WHITE);
+		
+		Text threeb = new Text("3");
+		threeb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		threeb.setFill(Color.WHITE);
+		
+		Text fourb = new Text("4");
+		fourb.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		fourb.setFill(Color.WHITE);
+		
 		primaryStage.setScene(scene1bis);
 		primaryStage.show();
 
-		Text nom1 = new Text("Nom Joueur 1");
+		Text nom1 = new Text("Nom du joueur 1 :");
+		nom1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		nom1.setFill(Color.WHITE);
 		TextField setnom1 = new TextField();
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		
-		GridPane.setHalignment(nom1, HPos.LEFT);
+		// GridPane.setHalignment(nom1, HPos.LEFT);
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
-		pane1bis.add(new Text("1"), 0, 3);
+
 
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
 		// GridPane.setHalignment(nomJ11, HPos.CENTER);
 		comboBox1.setPrefWidth(150);
-		comboBox1.getItems().setAll(a, b, c, d, e, f);
+		comboBox1.getItems().setAll(a, b, c, d, e, f);		
 		pane1bis.add(comboBox1, 1, 3);
-		pane1bis.add(new Text("1"), 0, 3);
-		pane1bis.add(setRobot11, 2, 3);
+		
+		pane1bis.add(oneb, 0, 3);
+		
+		pane1bis.add(setRobot11, 2, 3);	
 		comboBox1.valueProperty().addListener(observable -> {
 			modif(comboBox1.getValue(), setRobot11);
 
@@ -173,7 +220,9 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ12, HPos.CENTER);
 		comboBox2.setPrefWidth(150);
 		comboBox2.getItems().setAll(a, b, c, d, e, f);
-		pane1bis.add(new Text("2"), 0, 4);
+		
+		pane1bis.add(twob, 0, 4);
+		
 		pane1bis.add(comboBox2, 1, 4);
 		// pane1bis.add(nomJ12, 1, 4);
 		pane1bis.add(setRobot12, 2, 4);
@@ -188,7 +237,9 @@ public class Choix_Robot {
 		comboBox3.setPrefWidth(150);
 		comboBox3.getItems().setAll(a, b, c, d, e, f);
 		// comboBox3.getSelectionModel().selectFirst();
-		pane1bis.add(new Text("3"), 0, 5);
+	
+		pane1bis.add(threeb, 0, 5);
+		
 		pane1bis.add(comboBox3, 1, 5);
 		// pane1bis.add(nomJ13, 1, 5);
 		pane1bis.add(setRobot13, 2, 5);
@@ -202,7 +253,9 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ14, HPos.CENTER);
 		comboBox4.setPrefWidth(150);
 		comboBox4.getItems().setAll(a, b, c, d, e, f);
-		pane1bis.add(new Text("4"), 0, 6);
+
+		pane1bis.add(fourb, 0, 6);
+		
 		pane1bis.add(comboBox4, 1, 6);
 		// pane1bis.add(nomJ14, 1, 6);
 		pane1bis.add(setRobot14, 2, 6);
@@ -211,7 +264,9 @@ public class Choix_Robot {
 
 		});
 
-		Text nom2 = new Text("Nom Joueur 2");
+		Text nom2 = new Text("Nom du joueur 2 :");
+		nom2.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 12));
+		nom2.setFill(Color.WHITE);
 		TextField setnom2 = new TextField();
 		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// GridPane.setHalignment(nom2, HPos.LEFT);
@@ -223,8 +278,10 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ21, HPos.CENTER);
 		comboBox5.setPrefWidth(150);
 		comboBox5.getItems().setAll(a, b, c, d, e, f);
+
+		pane2bis.add(one, 0, 3);
+		
 		pane2bis.add(comboBox5, 1, 3);
-		pane2bis.add(new Text("1"), 0, 3);
 		// pane2bis.add(nomJ21, 1, 3);
 		pane2bis.add(setRobot21, 2, 3);
 		comboBox5.valueProperty().addListener(observable -> {
@@ -237,8 +294,10 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ22, HPos.CENTER);
 		comboBox6.setPrefWidth(150);
 		comboBox6.getItems().setAll(a, b, c, d, e, f);
+		
+		pane2bis.add(two, 0, 4);
+		
 		pane2bis.add(comboBox6, 1, 4);
-		pane2bis.add(new Text("2"), 0, 4);
 		// pane2bis.add(nomJ22, 1, 4);
 		pane2bis.add(setRobot22, 2, 4);
 		comboBox6.valueProperty().addListener(observable -> {
@@ -251,8 +310,10 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ23, HPos.CENTER);
 		comboBox7.setPrefWidth(150);
 		comboBox7.getItems().setAll(a, b, c, d, e, f);
+		
+		pane2bis.add(three, 0, 5);
+		
 		pane2bis.add(comboBox7, 1, 5);
-		pane2bis.add(new Text("3"), 0, 5);
 		// pane2bis.add(nomJ23, 1, 5);
 		pane2bis.add(setRobot23, 2, 5);
 		comboBox7.valueProperty().addListener(observable -> {
@@ -265,8 +326,10 @@ public class Choix_Robot {
 		// GridPane.setHalignment(nomJ24, HPos.CENTER);
 		comboBox8.setPrefWidth(150);
 		comboBox8.getItems().setAll(a, b, c, d, e, f);
+		
+		pane2bis.add(four, 0, 6);
+		
 		pane2bis.add(comboBox8, 1, 6);
-		pane2bis.add(new Text("4"), 0, 6);
 		// pane2bis.add(nomJ24, 1, 6);
 		pane2bis.add(setRobot24, 2, 6);
 		comboBox8.valueProperty().addListener(observable -> {
