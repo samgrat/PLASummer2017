@@ -122,7 +122,7 @@ public class Choix_Robot {
 		GridPane.setHalignment(nom1, HPos.LEFT);
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
-		pane1bis.add(new Text("1"), 0, 3);
+//		pane1bis.add(new Text("1"), 0, 3);
 
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
