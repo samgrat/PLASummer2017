@@ -116,13 +116,14 @@ public class Choix_Robot {
 
 		Text nom1 = new Text("Nom Joueur 1");
 		TextField setnom1 = new TextField();
+		setnom1.setPromptText("Joueur 1");
 		setnom1.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// //nomJ1 = setnom1.getText();
 		// System.out.println("Test nom 1" + nomJ1);
 		GridPane.setHalignment(nom1, HPos.LEFT);
 		pane1bis.add(nom1, 1, 2);
 		pane1bis.add(setnom1, 2, 2);
-//		pane1bis.add(new Text("1"), 0, 3);
+		// pane1bis.add(new Text("1"), 0, 3);
 
 		TextField setRobot11 = new TextField(j1.get(1));
 		setRobot11.getText();
@@ -182,6 +183,7 @@ public class Choix_Robot {
 
 		Text nom2 = new Text("Nom Joueur 2");
 		TextField setnom2 = new TextField();
+		setnom2.setPromptText("Joueur 2");
 		setnom2.addEventFilter(KeyEvent.KEY_TYPED, maxLength(11));
 		// GridPane.setHalignment(nom2, HPos.LEFT);
 		pane2bis.add(nom2, 1, 2);
@@ -369,6 +371,8 @@ public class Choix_Robot {
 				// primaryStage.close();
 			}
 		});
+		pane1bis.requestFocus();
+		pane2bis.requestFocus();
 	}
 
 	public String GetNom1() {
@@ -383,8 +387,31 @@ public class Choix_Robot {
 		if (e.getSource() == btnscene2bis)
 			nomJ1 = j1.get(0);
 		nomJ2 = j2.get(0);
-		Text joueur1 = new Text(j1.get(0));
-		Text joueur2 = new Text(j2.get(0));
+		
+		Text joueur1;
+		Text joueur2;
+		if (j1.get(0)==""){
+			j1.set(0, "Joueur 1");
+			joueur1 = new Text(j1.get(0));
+			
+		}else{
+			joueur1 = new Text("Joueur 1");
+		}
+		
+		if (j2.get(0)==""){
+			j2.set(0, "Joueur 2");
+			joueur2 = new Text(j2.get(0));
+		}else{
+			joueur2 = new Text("Joueur 2");
+		}
+		if (j1.get(0) == j2.get(0)){
+			j1.set(0, "Joueur 1");
+			joueur1 = new Text(j1.get(0));
+			j2.set(0, "Joueur 2");
+			joueur2 = new Text("Joueur 2");
+		}
+		
+		
 
 		joueur1.setFont(Font.loadFont(getClass().getResourceAsStream("images/Polices/kenpixel_square.ttf"), 30));
 		joueur1.setX(1025);
