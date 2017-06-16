@@ -43,10 +43,10 @@ public class Joueur extends Personnage {
 
 	private int indice_joueur;
 
-	private int pieceViolette = 10;
-	private int pieceVerte = 10;
-	private int pieceRose = 10;
-	private int pieceOrange = 10;
+	private int pieceViolette = 0;
+	private int pieceVerte = 0;
+	private int pieceRose = 0;
+	private int pieceOrange = 0;
 
 	ImageView imageRobot1;
 	ImageView imageRobot2;
